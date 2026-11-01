@@ -26,4 +26,4 @@ single literals and their values only.
   value (`literal_test.go`).
 
 The `*.txt` files and their `*.golden` files are inputs of this module's tests and the trees the engine of ZeroParse
-gives for them; see `parsers/parsers_test.go`.
+gives for them; see `parsers_test.go`.

@@ -7,12 +7,12 @@ the compiler's: the types are named after its `SyntaxKind`s, their fields are in
 the ranges are those of its `getStart` and `getEnd`. It depends only on the standard library and the ZeroParse runtime.
 
 ```bash
-# In your module, with a checkout of the ZeroParse repository at ~/src/zeroparse:
+# In your module, with a checkout of alpha-parsers at ~/src/alpha-parsers:
 go work init .
-go work use ~/src/zeroparse ~/src/zeroparse/parsers/typescript
+go work use ~/src/alpha-parsers
 ```
 
-Until ZeroParse publishes a release, a parser module depends on the `zeroparse.dev/zp` module through a local `replace` directive, so `go get` cannot fetch it from outside a checkout of the repository. The [install notes](https://github.com/zeroparse/zp/blob/main/README.md#install) show the `replace` form too.
+The module `zeroparse.dev/alpha-parsers` is not published, so `go get` cannot fetch it; use it from a checkout. The [install notes](../README.md#install) show the `replace` form too.
 
 ## Use
 
@@ -170,7 +170,7 @@ Other tests, which need the compiler too:
   compiler rejects and the parser accepts or the other way round.
 
 The tests that need no external tool: `TestGolden` (the trees of `testdata/*.txt`, also checked on every backend of
-the engine by `go test ./parsers`), `TestValid` and `TestInvalid` (sources the parser must accept and reject),
+the engine by `go test .`), `TestValid` and `TestInvalid` (sources the parser must accept and reject),
 `TestSpans`, `TestUnits`, `TestParseFile`, `TestErrors`, `TestKind`, the `Value` tests and `FuzzParse`
 (`go test -fuzz FuzzParse`: `ParseAST` agrees between position units on any input, and the ranges of a parsed file are
 valid; 2.8 million executions in 60 seconds without a failure).
@@ -190,7 +190,7 @@ mkdir /tmp/ts && cd /tmp/ts && npm install typescript@5.9.3
 # The test cases of the TypeScript repository at the same version
 git clone --depth 1 --branch v5.9.3 https://github.com/microsoft/TypeScript /tmp/TypeScript
 
-cd parsers/typescript
+cd typescript
 export ZP_TYPESCRIPT=/tmp/ts/node_modules/typescript
 export ZP_TYPESCRIPT_TESTS=/tmp/TypeScript/tests/cases
 go test -run 'TestTypeScriptSuite|TestTypeScriptLib|TestTSCMutations|TestTSCSnippets|TestTSCCookedLiteralValues' -v .
@@ -250,9 +250,9 @@ bundle fell from 1.66 million to 0.54 million.
 ## Development
 
 ```bash
-go generate ./parsers                 # regenerate parser.go after changing typescript.zp (from the repository root)
-go test ./parsers                     # parser.go up to date; golden files on every backend of the engine
-cd parsers/typescript && go test ./...   # the tests that need no compiler, and the differential tests if the variables are set
+go generate .                         # regenerate parser.go after changing typescript.zp (from the repository root)
+go test .                             # parser.go up to date; golden files on every backend of the engine
+cd typescript && go test ./...        # the tests that need no compiler, and the differential tests if the variables are set
 go test -fuzz FuzzParse               # fuzz the parser
 go test -bench .                      # benchmarks
 ```

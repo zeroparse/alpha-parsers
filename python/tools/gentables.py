@@ -1,4 +1,4 @@
-"""Generates the Unicode tables of the parsers/python module from CPython's unicodedata.
+"""Generates the Unicode tables of the python package from CPython's unicodedata.
 
 Run it with the CPython whose Unicode database the module follows (3.14: Unicode 16.0), from the
 module directory:

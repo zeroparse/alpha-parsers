@@ -94,7 +94,7 @@ func generationsIn(t *testing.T, dir string) []generation {
 }
 
 // TestGeneratedParsersAreUpToDate checks that every file of a generated package is what zp gen
-// generates from its grammar (run go generate ./parsers after changing a grammar or the generator).
+// generates from its grammar (run go generate . after changing a grammar or the generator).
 func TestGeneratedParsersAreUpToDate(t *testing.T) {
 	for _, g := range generations(t) {
 		src, err := os.ReadFile(g.grammar)
@@ -118,7 +118,7 @@ func TestGeneratedParsersAreUpToDate(t *testing.T) {
 				t.Fatal(err)
 			}
 			if string(got) != string(f.Content) {
-				t.Errorf("%s is out of date; run go generate ./parsers", path)
+				t.Errorf("%s is out of date; run go generate .", path)
 			}
 		}
 	}
@@ -126,7 +126,7 @@ func TestGeneratedParsersAreUpToDate(t *testing.T) {
 
 // TestBackends parses the inputs of each parser's testdata (testdata/*.txt) with every backend of the
 // engine and compares the trees and errors with the golden files (testdata/*.golden). The modules test
-// their generated parsers against the same files. Run go test ./parsers -update to rewrite them.
+// their generated parsers against the same files. Run go test . -update to rewrite them.
 func TestBackends(t *testing.T) {
 	backends := []struct {
 		name string

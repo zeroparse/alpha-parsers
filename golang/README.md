@@ -5,12 +5,12 @@ ZeroParse from [golang.zp](golang.zp): it accepts exactly the files `go/parser` 
 positions included. It depends only on the standard library and the ZeroParse runtime.
 
 ```bash
-# In your module, with a checkout of the ZeroParse repository at ~/src/zeroparse:
+# In your module, with a checkout of alpha-parsers at ~/src/alpha-parsers:
 go work init .
-go work use ~/src/zeroparse ~/src/zeroparse/parsers/golang
+go work use ~/src/alpha-parsers
 ```
 
-Until ZeroParse publishes a release, a parser module depends on the `zeroparse.dev/zp` module through a local `replace` directive, so `go get` cannot fetch it from outside a checkout of the repository. The [install notes](https://github.com/zeroparse/zp/blob/main/README.md#install) show the `replace` form too.
+The module `zeroparse.dev/alpha-parsers` is not published, so `go get` cannot fetch it; use it from a checkout. The [install notes](../README.md#install) show the `replace` form too.
 
 ## Use
 
@@ -57,7 +57,7 @@ expected, `x.(type)` outside a type switch), so does this parser.
 
 Every test compares the parser with the `go/parser` of the Go toolchain that runs it: acceptance, and when both accept,
 the whole tree (every node, every position, the line table and the comments). Measured with go1.27.1 (`go version`),
-`cd parsers/golang && go test -v -count=1 .`:
+`cd golang && go test -v -count=1 .`:
 
 | Test | Input | Result |
 |:--|:--|:--|

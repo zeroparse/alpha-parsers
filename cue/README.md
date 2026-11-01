@@ -7,12 +7,12 @@ reference parser, `cuelang.org/go/cue/parser` (v0.17.1, the latest release), wit
 the standard library and the ZeroParse runtime.
 
 ```bash
-# In your module, with a checkout of the ZeroParse repository at ~/src/zeroparse:
+# In your module, with a checkout of alpha-parsers at ~/src/alpha-parsers:
 go work init .
-go work use ~/src/zeroparse ~/src/zeroparse/parsers/cue
+go work use ~/src/alpha-parsers
 ```
 
-Until ZeroParse publishes a release, a parser module depends on the `zeroparse.dev/zp` module through a local `replace` directive, so `go get` cannot fetch it from outside a checkout of the repository. The [install notes](https://github.com/zeroparse/zp/blob/main/README.md#install) show the `replace` form too.
+The module `zeroparse.dev/alpha-parsers` is not published, so `go get` cannot fetch it; use it from a checkout. The [install notes](../README.md#install) show the `replace` form too.
 
 ## Use
 
@@ -111,7 +111,7 @@ out of step):
 
 ```bash
 CUE=$(go run ./hack/corpora dir cue)               # from the root of the repository
-cd parsers/cue/internal/refgen
+cd cue/internal/refgen
 go run . -cue $CUE -mutants /tmp/mutants.txt.gz -per 150 -seed 2000000     # 609,150 mutants
 go run . -cue $CUE -generated /tmp/generated.txt.gz -count 250000 -seed 5000000   # 750,000 inputs
 cd ../..
@@ -196,11 +196,11 @@ How the grammar got there (each step measured on *config*, `ParseAST`):
 ## Regenerating
 
 ```bash
-go generate ./parsers                         # parser.go from cue.zp (from the root of the repository)
-go test ./parsers -update                     # the golden files (testdata/*.golden) from the engine
-go run ./cmd/zp lint -g parsers/cue/cue.zp
-go run ./parsers/cue/internal/unitab          # the letter and digit classes at the end of cue.zp
-cd parsers/cue/internal/refgen && go run . -cue "$(cd ../../../.. && go run ./hack/corpora dir cue)" -o ../../testdata   # the results (about 2.5 MB)
+go generate .                                 # parser.go from cue.zp (from the root of the repository)
+go test . -update                             # the golden files (testdata/*.golden) from the engine
+go run zeroparse.dev/zp/cmd/zp lint -g cue/cue.zp
+go run ./cue/internal/unitab                  # the letter and digit classes at the end of cue.zp
+cd cue/internal/refgen && go run . -cue "$(cd ../../.. && go run ./hack/corpora dir cue)" -o ../../testdata   # the results (about 2.5 MB)
 ```
 
 The data is described in [testdata/README.md](testdata/README.md): the sources are those of

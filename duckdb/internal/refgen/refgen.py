@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Asks DuckDB's parser about SQL texts and writes the reference data the tests of parsers/duckdb compare with.
+"""Asks DuckDB's parser about SQL texts and writes the reference data the tests of the duckdb package compare with.
 
 Usage: refgen.py IN.jsonl OUT.jsonl[.gz]
 

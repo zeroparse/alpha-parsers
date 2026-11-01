@@ -1,6 +1,6 @@
 # Test Data
 
-The golden files (`*.txt` with `*.golden`) are written by the engine (`go test ./parsers -update` from the root of
+The golden files (`*.txt` with `*.golden`) are written by the engine (`go test . -update` from the root of
 the repository) and show the shape of the trees; the module's `TestGolden` checks the generated parser against them.
 
 The rest of the data is about [CPython](https://github.com/python/cpython) 3.14.0 (tag `v3.14.0`, commit

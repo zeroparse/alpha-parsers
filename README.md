@@ -1,7 +1,8 @@
 # Ready-Made Parsers
 
-Parsers for common languages, written in ZeroParse and generated into Go with `zp gen`. Each is a Go module of its own
-that depends only on the standard library and the ZeroParse runtime (`zeroparse.dev/zp/runtime`): import it and parse, with nothing to generate or compile at run time.
+Parsers for common languages, written in ZeroParse and generated into Go with `zp gen`. They are packages of the one Go
+module `zeroparse.dev/alpha-parsers` and depend only on the standard library and the ZeroParse runtime
+(`zeroparse.dev/zp/runtime`): import one and parse, with nothing to generate or compile at run time.
 
 | Language | Module | Specification | Checked against |
 |:--|:--|:--|:--|
@@ -18,28 +19,27 @@ that depends only on the standard library and the ZeroParse runtime (`zeroparse.
 
 ## Install
 
-Until ZeroParse publishes a release, the ready-made parser modules depend on the `zeroparse.dev/zp` module through a
-local `replace` directive (`replace zeroparse.dev/zp => ../..` in each parser's `go.mod`). That directive only
-applies inside the repository, so `go get zeroparse.dev/alpha-parsers/json` does not work from another module. Use a
-parser from a checkout of the repository, in one of two ways.
+The module `zeroparse.dev/alpha-parsers` is not published, so `go get zeroparse.dev/alpha-parsers/json` does not work
+from another module. It requires published versions of `zeroparse.dev/zp` and `zeroparse.dev/zp/runtime`, so a checkout
+of this repository is all a parser needs. Use it in one of two ways.
 
 With a `go.work` file next to your module's `go.mod`:
 
 ```bash
 go work init .
-go work use ~/src/zeroparse ~/src/zeroparse/parsers/json
+go work use ~/src/alpha-parsers
 ```
 
-or with `replace` directives in your own `go.mod`, which the `go.mod` of the parser cannot supply for you:
+or with a `replace` directive in your own `go.mod`:
 
 ```text
-require zeroparse.dev/alpha-parsers/json v0.0.0
+require zeroparse.dev/alpha-parsers v0.0.0
 
-replace zeroparse.dev/alpha-parsers/json => /path/to/zp/parsers/json
-replace zeroparse.dev/zp => /path/to/zp
+replace zeroparse.dev/alpha-parsers => /path/to/alpha-parsers
 ```
 
-(`/path/to/zp` is the full path of your checkout; `go.mod` does not expand `~`.) Run `go mod tidy` afterwards to record the requirement of the `zeroparse.dev/zp` module.
+(`/path/to/alpha-parsers` is the full path of your checkout; `go.mod` does not expand `~`.) Run `go mod tidy` afterwards
+to record the requirements of the module.
 
 ```go
 import "zeroparse.dev/alpha-parsers/json"
@@ -71,26 +71,27 @@ Each directory holds:
 | other `.go` files | Code written for the language: documentation, conversions to Go values, helpers. Those in `types/` hold the methods of the types of the grammar (a method can only be declared in the package of its type); what needs the parser or the decoder is a function of the module instead. |
 | `*_test.go` | Tests against the language's specification, conformance suites and reference implementations; examples; benchmarks |
 | `testdata/*.txt`, `*.golden` | Inputs and the expected trees and errors, checked on the generated parser here and on every backend of the engine by [parsers_test.go](parsers_test.go) |
-| `go.mod`, `LICENCE` | The module, which requires `zeroparse.dev/zp` for the runtime |
 
 ## Development
 
+From the root of the repository:
+
 ```bash
-go generate ./parsers                 # regenerate every parser (after changing a grammar, the runtime or the generator)
-go test ./parsers                     # generated files up to date; golden files on every backend of the engine
-go test ./parsers -update             # rewrite the golden files from the engine
-parsers/test.sh                       # both, and the tests of every module (fetches the test corpora first)
-cd parsers/json && go test ./...      # the tests of one module
+go generate .       # regenerate every parser (after changing a grammar, the runtime or the generator)
+go test .           # generated files up to date; golden files on every backend of the engine
+go test . -update   # rewrite the golden files from the engine
+./test.sh           # fetch the test corpora, then vet and test every package
+go test ./json/...  # the tests of one parser
 ```
 
 The generation commands are the `go:generate` lines of [generate.go](generate.go); the up-to-date test reads them, so a
 new parser needs only a new line there. The third-party corpora of the tests are fetched, not stored here (see
-[development](https://github.com/zeroparse/zp/blob/main/docs/development.md#third-party-test-corpora)); a test whose corpus is not fetched is skipped with the command to run. The modules are not part of the main module's `go test ./...`: run
-`parsers/test.sh` after changing the engine or the generator.
+[development](https://github.com/zeroparse/zp/blob/main/docs/development.md#third-party-test-corpora)); a test whose corpus is not fetched is skipped with the command to run. Run `./test.sh` against a
+checkout of ZeroParse (with a `go.work` that uses both) after changing its engine or generator.
 
 ## Status
 
-alpha-parsers is a preview of the ready-made parsers, kept apart from the ZeroParse repository. It is used with a
-`go.work` file that includes a checkout of ZeroParse, and it is discarded when ZeroParse publishes its first release.
+alpha-parsers is a preview of the ready-made parsers, kept apart from the ZeroParse repository. It requires
+development versions of ZeroParse, and it is discarded when ZeroParse publishes its first release.
 The grammars under `testdata/grammars/` of ZeroParse are the copies that its tests read; the ones here are the sources
 the parsers are generated from.

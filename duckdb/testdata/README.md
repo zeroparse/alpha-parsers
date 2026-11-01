@@ -4,7 +4,7 @@
 
 `*.txt` are inputs, `*.golden` the trees and errors that the engine returns for them. The tests of
 `zeroparse.dev/alpha-parsers` check them on every backend of the engine, and the tests of this module on the
-generated parser. Rewrite them with `go test ./parsers -update`.
+generated parser. Rewrite them with `go test . -update`.
 
 ## Reference Data
 
@@ -56,14 +56,14 @@ for a PIVOT is replaced by `UUID`). To make it again:
 ```sh
 DUCKDB=$(go run ./hack/corpora dir duckdb)   # from the root of the repository; a checkout of v1.5.6 works too (only test/sql is read)
 python3 -m venv /tmp/venv && /tmp/venv/bin/pip install duckdb==1.5.6
-DUCKDB_SRC=$DUCKDB PYTHON=/tmp/venv/bin/python parsers/duckdb/internal/refgen/generate.sh
+DUCKDB_SRC=$DUCKDB PYTHON=/tmp/venv/bin/python duckdb/internal/refgen/generate.sh
 ```
 
 To compare the parser with DuckDB on more texts than the recorded ones, for example more mutations of the tests (another
 seed), make them with the same tools and name the file in `REFERENCE_FILE`:
 
 ```sh
-cd parsers/duckdb
+cd duckdb
 python3 internal/refgen/extract.py $DUCKDB /tmp/blocks.jsonl
 python3 internal/refgen/corpus.py mutants /tmp/blocks.jsonl /tmp/more.jsonl 300000 424242   # count and seed
 python3 internal/refgen/refgen.py /tmp/more.jsonl /tmp/more-ref.jsonl --no-shapes

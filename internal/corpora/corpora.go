@@ -1,4 +1,4 @@
-// Package corpora fetches the third-party test corpora of the ready-made parsers (parsers/) into a cache directory
+// Package corpora fetches the third-party test corpora of the ready-made parsers into a cache directory
 // outside the repository, and finds them there.
 //
 // manifest.json pins every source: the URL of an archive at a fixed revision, the files to keep and the SHA-256 digest
