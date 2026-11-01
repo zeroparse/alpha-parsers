@@ -1,0 +1,2594 @@
+package duckdb
+
+// tag is the tag of the dollar-quoted string being read.
+var tag string
+
+// ===================================================================================================
+// Names, literals and types
+// ===================================================================================================
+
+// An identifier, a keyword used as a name, or a string used as a name, as written (quotes included).
+type Ident = node[string]
+// A qualified name: a, a.b, a.b.c
+type Name = { Parts []Ident }
+
+type Number = { Text string } // an integer, decimal or real literal as written
+type StringLit = node[string] // a string literal as written: '...', E'...', $$...$$, U&'...'
+type BitLit = node[string]    // B'...' or X'...'
+type BoolLit = node[string]   // TRUE or FALSE
+type NullLit = node[string]   // NULL
+type Param = node[string]     // ?, ?1, $1 or $name
+
+// A type: its name as written ("int", "double precision", "a.b.t"), and its modifiers, fields and array dimensions.
+type Type = {
+    Name   string
+    Mods   []Expr      // (10, 2) of decimal(10, 2); the length of varchar(20)
+    Fields []TypeField // struct(a int, b text) and union(...)
+    Elems  []Type      // the key and value types of map(k, v)
+    Dims   []ArrayDim  // [] and [3]
+    Zone   string      // WITH TIME ZONE, WITHOUT TIME ZONE
+}
+type TypeField = { Name Ident; Type Type }
+type ArrayDim = { Size *Number }
+
+// ===================================================================================================
+// Expressions
+// ===================================================================================================
+
+type Paren = { X Expr }
+type ColumnRef = { Parts []Ident }
+type DefaultExpr = node[string]       // DEFAULT
+type PositionalRef = { Index Number } // #1
+
+// * and t.* with their modifiers, and COLUMNS(...) and UNPACK(...)
+type Star = {
+    Qualifier *Ident
+    Exclude   []Name
+    Replace   []ReplaceItem
+    Rename    []RenameItem
+}
+type ReplaceItem = { Expr Expr; Name Ident }
+type RenameItem = { From Name; To Ident }
+type ColumnsExpr = { Arg Expr; Star bool } // COLUMNS(expr) and *COLUMNS(expr)
+type UnpackExpr = { Arg Expr }
+
+type Binary = { Left Expr; Op node[string]; Right Expr } // a + b, a AND b, a = b, a -> b, a ~~ b, ...
+type Unary = { Op node[string]; X Expr }                 // -a, +a, ~a
+type PostfixOp = { X Expr; Op node[string] }             // a !
+type Not = { X Expr }
+type IsExpr = { X Expr; Negated bool; Test string } // IS [NOT] NULL|TRUE|FALSE|UNKNOWN, ISNULL, NOTNULL, NOT NULL
+type DistinctFrom = { Left Expr; Right Expr; Negated bool }
+type IsOf = { X Expr; Types []Type; Negated bool }
+type Between = { X Expr; Lo Expr; Hi Expr; Negated bool; Symmetric bool }
+// x IN (a, b), x IN (SELECT ...), x IN y
+type In = { X Expr; Negated bool; Query *ParenQuery; Items []Expr; Source *Expr }
+// x [NOT] LIKE|ILIKE|GLOB|SIMILAR TO pattern [ESCAPE esc]
+type Like = { X Expr; Negated bool; Op string; Pattern Expr; Escape *Expr }
+// x = ANY (subquery), x < ALL (...)
+type AnyAll = { X Expr; Op string; Quantifier string; Source Expr }
+type AtTimeZone = { X Expr; Zone Expr }
+type Collate = { X Expr; Collation Name }
+type Cast = { X Expr; Type Type; Try bool; Shorthand bool } // CAST(x AS t), TRY_CAST, x::t
+type Case = { Arg *Expr; Whens []When; Else *Expr }
+type When = { Cond Expr; Then Expr }
+type Row = { Items []Expr; Keyword bool } // ROW(a, b) and (a, b)
+type ListLit = { Items []Expr }           // [a, b]
+type ArrayLit = { Items []Expr }          // ARRAY[a, b]
+type StructLit = { Fields []StructField } // {'a': 1, b: 2}
+type StructField = { Name Ident; Value Expr }
+type MapLit = { Entries []MapEntry } // MAP {k: v}
+type MapEntry = { Key Expr; Value Expr }
+type ListComp = { Expr Expr; Vars []Ident; Source Expr; Cond Expr } // [x + 1 FOR x IN l IF x > 1]
+type Lambda = { Params []Ident; Body Expr; Keyword bool }           // x -> body is a Binary; LAMBDA x: body
+type Subquery = { Query ParenQuery }                                // (SELECT ...)
+type Exists = { Query ParenQuery }
+type ArraySubquery = { Query ParenQuery }              // ARRAY(SELECT ...)
+type Grouping = { Name string; Args []Expr }           // GROUPING(a, b), GROUPING_ID(a, b)
+type TypedLit = { Type Type; Value StringLit }         // DATE '2020-01-01', DECIMAL(10, 2) '1.5'
+type IntervalLit = { Value Expr; Unit *IntervalUnit }  // INTERVAL '1' DAY, INTERVAL (x) HOUR, INTERVAL 5 DAY
+type IntervalUnit = node[string]                       // DAY, YEAR TO MONTH, ...
+type NamedArg = { Name Ident; Value Expr; Arrow bool } // name := value, name => value (Arrow)
+// A function call, with the clauses that follow it.
+type FuncCall = {
+    Name        Name
+    Quantifier  string // ALL or DISTINCT
+    Args        []Expr
+    Variadic    *Expr
+    OrderBy     *OrderBy
+    Nulls       string // IGNORE NULLS or RESPECT NULLS
+    WithinGroup *OrderBy
+    Filter      *Expr
+    ExportState bool
+    Over        *WindowOver
+}
+// The functions with a syntax of their own: COALESCE, NULLIF, EXTRACT(part FROM x), OVERLAY(x PLACING y FROM a FOR b),
+// POSITION(a IN b), SUBSTRING(x FROM a FOR b), TRIM([BOTH|LEADING|TRAILING] chars FROM x), TREAT(x AS t),
+// COLLATION FOR (x)
+type SpecialCall = {
+    Name    string
+    Spec    string // the part of EXTRACT, the side of TRIM
+    Args    []Expr
+    From    []Expr
+    For     *Expr
+    Placing *Expr
+    Chars   *Expr // the characters of TRIM(BOTH chars FROM x)
+    Type    *Type
+}
+// An indirection of an expression: x.field, x.method(args), x[i], x[lo:hi], x[lo:hi:step]; x.a[1] is two of them.
+type Indirection = { X Expr; Step Step }
+type Step ~ FieldStep | IndexStep | SliceStep
+type FieldStep = { Name Ident; Call bool; Args []Expr }
+type IndexStep = { Index Expr }
+type SliceStep = { Lo *Expr; Hi *Expr; Stride *Expr; Dash bool }
+
+type WindowOver = { Name *Ident; Spec *WindowSpec }
+type WindowSpec = { Base *Ident; PartitionBy []Expr; OrderBy *OrderBy; Frame *Frame }
+type Frame = { Unit string; Start FrameBound; End *FrameBound; Exclude string }
+type FrameBound = { Kind string; Expr *Expr }
+type WindowDef = { Name Ident; Spec WindowSpec }
+
+type OrderBy = { Items []SortItem; All bool; Direction string; Nulls string }
+type SortItem = { Expr Expr; Using string; Direction string; Nulls string }
+
+type Expr ~ Number | StringLit | BitLit | BoolLit | NullLit | Param | Paren | ColumnRef | DefaultExpr | PositionalRef | Star | ColumnsExpr | UnpackExpr | Binary | Unary | PostfixOp | Not | IsExpr | DistinctFrom | IsOf | Between | In | Like | AnyAll | AtTimeZone | Collate | Cast | Case | Row | ListLit | ArrayLit | StructLit | MapLit | ListComp | Lambda | Subquery | Exists | ArraySubquery | Grouping | TypedLit | IntervalLit | NamedArg | FuncCall | SpecialCall | Indirection | GroupingSet
+type GroupingSet = { Kind string; Items []Expr } // CUBE(...), ROLLUP(...), GROUPING SETS(...), ()
+// ===================================================================================================
+// Queries
+// ===================================================================================================
+
+// A query as a statement or in parentheses: WITH, a body (SELECT, set operations, VALUES, ...), and what orders and
+// limits it.
+type Select = {
+    With    *With
+    Body    QueryBody
+    OrderBy *OrderBy
+    Limit   *LimitClause
+    Offset  *OffsetClause
+    Locking []LockClause
+}
+type ParenQuery = { Query ParenContent }
+type ParenContent ~ Select | ParenQuery | ShowStmt
+type QueryBody ~ SelectCore | ValuesClause | TableQuery | PivotQuery | UnpivotQuery | SetOp | ParenQuery
+
+type With = { Recursive bool; CTEs []CTE }
+type CTE = { Name Ident; Columns []Ident; UsingKey []Ident; Materialized *node[string]; Query Statement }
+
+// UNION, EXCEPT and INTERSECT
+type SetOp = { Left QueryBody; Op string; Quantifier string; ByName bool; Right QueryBody }
+
+type SelectCore = {
+    FromFirst bool // FROM t SELECT ...
+    Distinct  *DistinctClause
+    Items     []SelectItem
+    Into      *IntoClause
+    From      []TableRef
+    Where     *Expr
+    GroupBy   *GroupBy
+    Having    *Expr
+    Windows   []WindowDef
+    Qualify   *Expr
+    Sample    *SampleClause
+}
+type DistinctClause = { On []Expr }
+type SelectItem = { Expr Expr; Alias *Ident; As bool; Prefix bool } // expr AS alias, expr alias, alias: expr
+type IntoClause = { Temp string; Table Name }
+type GroupBy = { All bool; Items []Expr }
+type ValuesClause = { Rows []ValuesRow }
+type ValuesRow = { Items []Expr }
+type TableQuery = { Table Name } // TABLE t
+type PivotQuery = { Source TableRef; On []PivotColumn; Using []SelectItem; GroupBy []Ident }
+type PivotColumn = { Expr Expr; In []SelectItem; Query *Select; Enum *Ident }
+type UnpivotQuery = { Source TableRef; On []SelectItem; Name *Ident; Values []Ident }
+
+type LimitClause = { Keyword string; All bool; Value *Expr; Percent string; Offset *Expr }
+type OffsetClause = { Value Expr; Rows string }
+type LockClause = { Strength string; Of []Name; Wait string }
+
+type SampleClause = { Method *Ident; Value Expr; Unit string; Repeatable *Number; Seed *Number }
+type AtClause = { Unit string; Value Expr }
+
+// ---- Tables in FROM ----
+
+// An alias of a table: t, AS t, t(a, b); that of a function can name the columns with their types (t(a int)), and may
+// have no name (AS (a int)).
+type TableAlias = { Name *Ident; Columns []Ident; ColDefs []ColDef; As bool }
+type ColDef = { Name Ident; Type Type; Collate *Name }
+type BaseTable = { Prefix *Ident; Name Name; Only bool; Star bool; Alias *TableAlias; At *AtClause; Sample *SampleClause }
+type FuncTable = {
+    Prefix     *Ident // the alias in alias: f(x)
+    Func       Expr
+    RowsFrom   []RowsFromItem
+    Lateral    bool
+    Ordinality bool
+    Alias      *TableAlias
+    Sample     *SampleClause
+}
+type RowsFromItem = { Func Expr; ColDefs []ColDef }
+type SubqueryRef = { Prefix *Ident; Query ParenQuery; Lateral bool; Alias *TableAlias; Sample *SampleClause }
+type ValuesRef = { Prefix *Ident; Values ValuesClause; Alias TableAlias; Sample *SampleClause }
+type ParenTable = { Prefix *Ident; Table TableRef; Alias *TableAlias }
+// Kind: the words before JOIN: LEFT OUTER, NATURAL, CROSS, ...
+type Join = { Left TableRef; Kind string; Right TableRef; On *Expr; Using []Ident }
+type PivotRef = { Source TableRef; Aggregates []SelectItem; Values []PivotValue; GroupBy []Ident; Alias *TableAlias }
+type PivotValue = { Header []Expr; Items []SelectItem; Enum *Ident }
+type UnpivotRef = { Source TableRef; IncludeNulls *node[string]; Header []Ident; Values []UnpivotValue; Alias *TableAlias }
+type UnpivotValue = { Header []Ident; Items []SelectItem }
+type TableRef ~ BaseTable | FuncTable | SubqueryRef | ValuesRef | ParenTable | Join | PivotRef | UnpivotRef
+// ===================================================================================================
+// Statements
+// ===================================================================================================
+
+// The statements of a script, separated by semicolons.
+type Script = { Statements []Statement }
+
+type Statement ~ Select | InsertStmt | UpdateStmt | DeleteStmt | MergeStmt | CreateTableStmt | CreateTableAsStmt | CreateViewStmt | CreateIndexStmt | CreateSchemaStmt | CreateSequenceStmt | CreateTypeStmt | CreateMacroStmt | CreateSecretStmt | AlterTableStmt | AlterSequenceStmt | AlterDatabaseStmt | AlterObjectSchemaStmt | RenameStmt | DropStmt | DropSecretStmt | CopyStmt | CopyDatabaseStmt | ExportStmt | ImportStmt | AttachStmt | DetachStmt | UseStmt | LoadStmt | PragmaStmt | SetStmt | ResetStmt | ShowStmt | ExplainStmt | PrepareStmt | ExecuteStmt | DeallocateStmt | TransactionStmt | VacuumStmt | AnalyzeStmt | CheckpointStmt | CallStmt | CommentStmt | UpdateExtensionsStmt
+
+// The table of INSERT, UPDATE, DELETE and MERGE, with its alias.
+type TargetTable = { Name Name; Only bool; Star bool; Alias *Ident; As bool }
+
+// ---- DML ----
+
+type InsertStmt = {
+    With          *With
+    OrAction      string // OR REPLACE, OR IGNORE
+    Table         Name
+    Alias         *Ident
+    By            string // BY NAME, BY POSITION
+    Columns       []Name
+    Overriding    string // OVERRIDING USER VALUE, OVERRIDING SYSTEM VALUE
+    Query         *Select
+    DefaultValues bool
+    OnConflict    *OnConflict
+    Returning     []SelectItem
+}
+type OnConflict = {
+    Target      []IndexElem
+    TargetWhere *Expr
+    Constraint  *Ident
+    Nothing     bool
+    Set         []SetClause
+    Where       *Expr
+}
+type IndexElem = { Expr Expr; Collate *Name; Class *Name; Direction string; Nulls string }
+type SetClause = { Targets []Name; Value Expr; Paren bool }
+
+type UpdateStmt = { With *With; Table TargetTable; Set []SetClause; From []TableRef; Where *Expr; Returning []SelectItem }
+type DeleteStmt = { With *With; Table TargetTable; Using []TableRef; Where *Expr; Returning []SelectItem; Truncate bool }
+type MergeStmt = { With *With; Target TargetTable; Source TableRef; On *Expr; Using []Ident; Whens []MergeWhen; Returning []SelectItem }
+type MergeWhen = { Not bool; By string; Cond *Expr; Action MergeAction }
+// UPDATE SET ..., UPDATE SET *, UPDATE [BY NAME], DELETE, INSERT (cols) VALUES (...), INSERT [BY NAME] [*], INSERT DEFAULT VALUES,
+// DO NOTHING, ERROR [message]
+type MergeAction = {
+    Kind          string
+    Set           []SetClause
+    ByName        string
+    Star          bool
+    Columns       []Ident
+    Values        []Expr
+    DefaultValues bool
+    Message       *Expr
+}
+
+// ---- CREATE ----
+
+type CreateTableStmt = {
+    OrReplace       bool
+    Temp            string
+    IfNotExists     bool
+    Name            Name
+    Elements        []TableElement
+    PartitionSorted []PartitionSorted
+    With            []Reloption
+    OnCommit        string
+}
+// PARTITIONED BY (...) or SORTED BY (...)
+type PartitionSorted = { Kind node[string]; Exprs []Expr }
+type TableElement ~ ColumnDef | TableConstraint | TableLike
+type ColumnDef = { Name Ident; Type *Type; Generated *GeneratedColumn; Constraints []ColumnConstraint }
+// GENERATED ALWAYS AS IDENTITY, GENERATED ALWAYS AS (expr) [VIRTUAL|STORED], AS (expr)
+type GeneratedColumn = { When string; Identity bool; SeqOptions []SeqOption; Expr *Expr; Storage string }
+type ColumnConstraint = {
+    Name        *Ident
+    Kind        string // NOT NULL, NULL, UNIQUE, PRIMARY KEY, CHECK, DEFAULT, REFERENCES, COLLATE, USING COMPRESSION, DEFERRABLE, ...
+    Expr        *Expr
+    Reference   *Reference
+    Collation   *Name
+    Compression *Ident
+    Options     []DefElem
+}
+type Reference = { Table Name; Columns []Ident; Match *node[string]; OnUpdate *node[string]; OnDelete *node[string] }
+type TableConstraint = {
+    Name       *Ident
+    Kind       string // CHECK, UNIQUE, PRIMARY KEY, FOREIGN KEY
+    Columns    []Ident
+    Expr       *Expr
+    Reference  *Reference
+    Index      *Ident // USING INDEX name
+    Options    []DefElem
+    Attributes []node[string] // DEFERRABLE, NOT VALID, ...
+}
+type TableLike = { Table Name; Options []node[string] }
+// name = value in WITH (...) options: the value is a type, a keyword, an operator, a number or a string.
+type DefElem = { Name Ident; Value string }
+// A storage option: name, name = expr, a.b = value
+type Reloption = { Name Name; Value *Expr; Arg *node[string] }
+type GenericOption = { Name Ident; Value *Expr }
+
+type CreateTableAsStmt = {
+    OrReplace       bool
+    Temp            string
+    IfNotExists     bool
+    Name            Name
+    Columns         []Ident
+    PartitionSorted []PartitionSorted
+    With            []Reloption
+    OnCommit        string
+    Source          Statement // a query, or EXECUTE
+    WithData        string    // WITH DATA, WITH NO DATA
+}
+type CreateViewStmt = {
+    OrReplace   bool
+    Temp        string
+    Recursive   bool
+    IfNotExists bool
+    Name        Name
+    Columns     []Ident
+    Options     []Reloption
+    Query       Select
+    CheckOption string
+}
+type CreateIndexStmt = {
+    Unique       bool
+    Concurrently bool
+    IfNotExists  bool
+    Name         *Ident
+    Table        Name
+    Method       *Ident
+    Params       []IndexElem
+    Options      []Reloption
+    Where        *Expr
+}
+type CreateSchemaStmt = { OrReplace bool; IfNotExists bool; Name Name; Elements []Statement }
+type CreateSequenceStmt = { OrReplace bool; Temp string; IfNotExists bool; Name Name; Options []SeqOption }
+type SeqOption = { Kind string; Type *Type; Value string; Owner *Name }
+type CreateTypeStmt = {
+    OrReplace   bool
+    Temp        string
+    IfNotExists bool
+    Name        Name
+    Enum        bool
+    Values      []StringLit
+    Query       *ParenQuery
+    Type        *Type
+}
+type CreateMacroStmt = { OrReplace bool; Temp string; Function bool; IfNotExists bool; Name Name; Definitions []MacroDef }
+type MacroDef = { Params []MacroParam; Expr *Expr; Query *ParenContent }
+type MacroParam = { Name Ident; Type *Type; Default *Expr; Arrow bool }
+type CreateSecretStmt = { OrReplace bool; Persist string; IfNotExists bool; Name *Ident; Storage *Ident; Options []SecretOption }
+type SecretOption = { Name Ident; Value Expr }
+
+// ---- ALTER, RENAME, DROP ----
+
+type AlterTableStmt = { Object string; IfExists bool; Name Name; Only bool; Star bool; Commands []AlterCmd }
+// One command of ALTER TABLE: Kind holds its words (ADD COLUMN, DROP CONSTRAINT, ALTER COLUMN ... SET DEFAULT, ...)
+type AlterCmd = {
+    Kind        string
+    IfExists    bool
+    IfNotExists bool
+    Column      *Name
+    Type        *Type
+    Generated   *GeneratedColumn
+    Constraints []ColumnConstraint
+    Constraint  *TableConstraint
+    Name        *Ident
+    Expr        *Expr
+    Exprs       []Expr
+    SortBy      []SortItem
+    Collate     *Name
+    Using       *Expr
+    Value       string
+    Options     []Reloption
+    Identity    []SeqOption
+    When        string
+    Behavior    string
+    Generic     []GenericAlterOption
+}
+type GenericAlterOption = { Action string; Name Ident; Value *StringLit }
+type AlterSequenceStmt = { IfExists bool; Name Name; Options []SeqOption }
+type AlterDatabaseStmt = { IfExists bool; Name Ident; Setting Ident; Value Ident }
+type AlterObjectSchemaStmt = { Object string; IfExists bool; Name Name; Schema Ident }
+type RenameStmt = { Object string; IfExists bool; Name Name; Column *Name; Constraint *Ident; NewName Ident }
+type DropStmt = { Type string; IfExists bool; Names []Name; On *Name; Behavior string }
+type DropSecretStmt = { Persist string; IfExists bool; Name Ident; Storage *Ident }
+
+// ---- COPY, EXPORT, ATTACH, ... ----
+
+type CopyStmt = {
+    Binary     bool
+    Table      *Name
+    Columns    []Ident
+    Query      *Select
+    Direction  string // FROM or TO
+    Program    bool
+    File       *Expr
+    Std        string // STDIN, STDOUT
+    Delimiters *StringLit
+    Legacy     []CopyOption
+    Options    []GenericOption
+}
+type CopyOption = { Name string; Value string; Columns []Ident }
+type CopyDatabaseStmt = { From Ident; To Ident; Flag string }
+type ExportStmt = { Database *Ident; Path StringLit; Legacy []CopyOption; Options []GenericOption }
+type ImportStmt = { Path StringLit }
+type AttachStmt = { OrReplace bool; IfNotExists bool; Database bool; Path StringLit; Alias *Ident; Options []GenericOption }
+type DetachStmt = { Database bool; IfExists bool; Name Ident }
+type UseStmt = { Name Name }
+type LoadStmt = { Install bool; Force bool; Name Ident; Source *Ident; Version *Ident }
+type PragmaStmt = { Name Ident; Values []Expr; Args []Expr; Call bool }
+type SetStmt = { Scope string; Name *Name; Values []Expr; TimeZone string; FromCurrent bool; Schema *StringLit }
+type ResetStmt = { Scope string; Name *Name; All bool; Special string }
+// SHOW, DESCRIBE and SUMMARIZE
+type ShowStmt = { Kind string; Query *Select; Name *Name; Tables bool; From *Name; Special string; All bool }
+type ExplainStmt = { Analyze string; Verbose bool; Options []ExplainOption; Stmt Statement }
+type ExplainOption = { Name string; Value string }
+type PrepareStmt = { Name Ident; Types []Type; Stmt Statement }
+type ExecuteStmt = { Name Ident; Params []Expr }
+type DeallocateStmt = { Name *Ident; All bool }
+type TransactionStmt = { Kind string; Work string; Mode string }
+type VacuumStmt = { Full bool; Freeze bool; Verbose bool; Options []node[string]; Analyze *AnalyzeStmt; Table *Name; Columns []Ident }
+type AnalyzeStmt = { Verbose bool; Table *Name; Columns []Ident }
+type CheckpointStmt = { Force bool; Database *Ident }
+type CallStmt = { Func FuncCall }
+type CommentStmt = { Object string; Name *Name; Column *Expr; Comment *StringLit }
+type UpdateExtensionsStmt = { With *With; Names []Ident }
+// ===================================================================================================
+// Lexical structure (scan.l)
+//
+// The scanner of DuckDB (PostgreSQL's flex scanner) is part of the grammar: a rule for a token matches the
+// token only, and whitespace and comments are skipped between tokens, where a rule needs them, with ws
+// written before the token it precedes. The keywords are rules of their own (SELECT, GROUP, ...),
+// generated at the end of the file.
+// ===================================================================================================
+
+// Whitespace is the five characters of the scanner's {space}, "--" comments, and /* */ comments, which nest.
+rule ws = [\t\n\u{c}\r \u{a0}\u{2000}-\u{200b}\u{202f}\u{205f}\u{2060}\u{3000}\u{feff}]* (comment [\t\n\u{c}\r \u{a0}\u{2000}-\u{200b}\u{202f}\u{205f}\u{2060}\u{3000}\u{feff}]*)*
+rule comment = "--" [^\r\n]* / block_comment
+rule block_comment = "/*" (block_comment / !"*/" .)* "*/"
+
+// A character that can continue an identifier or a keyword: the scanner's {ident_cont}, which takes every byte
+// of a non-ASCII character.
+rule wc = [a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+rule ident_start = [a-zA-Z_\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+// ---- Identifiers ----
+
+// An unquoted word or a quoted identifier. Case is preserved: the scanner of DuckDB does not fold it.
+// NULLS before FIRST or LAST is the token NULLS_LA of the scanner, which is not a name
+rule word = !([eEbBxXnN] "'" / [uU] "&'") !(&[nN] NULLS ws (FIRST / LAST)) ident_start wc*
+rule quoted_ident = "\"" ([^"]+ / "\"\"")+ "\""
+// U&"..." with Unicode escapes
+rule uquoted_ident = [uU] "&" quoted_ident (ws [uU] [eE] [sS] [cC] [aA] [pP] [eE] ws "'" [^'] "'")?
+
+// The kinds of names of the grammar differ in the keywords they may not be (see keywords.py). A quoted
+// identifier is always a name.
+rule col_id Ident = (quoted_ident / uquoted_ident / !kw_not_col_id word) #atomic
+rule type_function_name Ident = (quoted_ident / uquoted_ident / !kw_not_type_func word) #atomic
+rule function_name_token Ident = (quoted_ident / uquoted_ident / !kw_not_func_name word) #atomic
+rule type_name_token Ident = (quoted_ident / uquoted_ident / !kw_not_type_name word) #atomic
+// IDENT: not a keyword at all
+rule ident_only Ident = (quoted_ident / uquoted_ident / !kw_any word) #atomic
+// ColLabel: any word
+// NOT before BETWEEN, IN, LIKE, ILIKE and SIMILAR is a token of its own (NOT_LA) that no name accepts
+rule col_label Ident = (quoted_ident / uquoted_ident / !(NOT ws (BETWEEN / IN / LIKE / ILIKE / SIMILAR)) word) #atomic
+rule non_reserved_word Ident = (quoted_ident / uquoted_ident / !kw_reserved word) #atomic
+
+// ---- Strings ----
+
+rule sq_cont = ([\t\u{c} ] / "--" [^\r\n]*)* [\r\n] ([\t\n\u{c}\r ]+ / "--" [^\r\n]* [\r\n])* "'"
+// A standard string: '' is a quote, and strings separated by whitespace with a newline in it are one.
+rule sq_string = "'" ([^']+ / "''")* "'" (sq_cont ([^']+ / "''")* "'")*
+// An escape string: E'...' where \ escapes. \u and \U need four and eight hexadecimal digits.
+rule e_body = ([^\\']+ / "''" / "\\" ([uU] &hex4 / ![uU] .))*
+rule e_string = [eE] "'" e_body "'" (sq_cont e_body "'")*
+rule u_string = [uU] "&'" ([^']+ / "''")* "'"
+rule hex4 = [0-9a-fA-F] #repeat(4)
+// Dollar quoting: $$...$$ and $tag$...$tag$; the string ends at the same tag.
+rule dollar_string = "$" t:dq_tag "$" {tag := text($t)} ([^$]+ / !dq_close "$")* dq_close
+rule dq_close = "$" u:dq_tag "$" {text($u) == tag}
+rule dq_tag = [a-zA-Z_\u{80}-\u{10ffff}] [a-zA-Z_0-9\u{80}-\u{10ffff}]* / _
+rule bit_string = [bBxX] "'" [^']* "'" (sq_cont [^']* "'")*
+
+rule sconst StringLit = (e_string / sq_string / dollar_string / u_string) #atomic
+rule bit_lit BitLit = (bit_string) #atomic
+
+// ---- Numbers ----
+
+rule digits = [0-9] ([0-9] / "_" [0-9])*
+// An integer, a decimal or a real, as one token; an integer outside the range of an int32 is a float constant for
+// the grammar (see iconst).
+rule number Number = t:((digits ("." !"." digits?)? / "." digits) exp?) #atomic => Number{Text: text($t)}
+rule exp = [eE] [+\-]? digits
+// ICONST: an integer literal that fits in 32 bits
+rule iconst Number = t:(i:int_lit {len(text($i)) < 10 || len(text($i)) == 10 && text($i) <= "2147483647"}) => Number{Text: text($t)}
+rule int_lit = (digits !("." !".") ![eE]) #atomic
+
+// ---- Operators ----
+
+// op_chars of the scanner, and the characters that make an operator "special": an operator that has one of them
+// is never shortened (see the {operator} rule).
+rule opc = [~!@\^&|`+\-*/%<>=]
+rule cut = "--" / "/*"
+// a character of an operator: one that does not begin a comment
+rule rc = !cut opc
+// the rest of an operator is only + and -: they are trimmed from the end of an operator without special characters
+rule pm_end = (!cut [+\-])* !rc
+
+rule op_plus = ("+" &pm_end) #atomic
+rule op_minus = ("-" &pm_end) #atomic
+rule op_star = ("*" &pm_end) #atomic
+rule op_slash = ("/" &pm_end) #atomic
+rule op_lt = ("<" &pm_end) #atomic
+rule op_gt = (">" &pm_end) #atomic
+rule op_eq = ("=" &pm_end) #atomic
+rule op_le = ("<=" &pm_end) #atomic
+rule op_ge = (">=" &pm_end) #atomic
+rule op_ne = ("<>" &pm_end / "!=" !rc) #atomic
+rule op_eq_gt = ("=>" &pm_end) #atomic
+rule op_percent = ("%" !rc) #atomic
+rule op_caret = ("^" !rc) #atomic
+rule op_pow = ("**" !opc) #atomic
+rule op_idiv = ("//" !opc) #atomic
+rule op_arrow = ("->" !opc) #atomic
+rule op_darrow = ("->>" !opc) #atomic
+// Any other operator: one with a special character, or a longer or unknown one made of + - * / < > =.
+rule op_generic node[string] = &opc o:(op_special / op_plain) #atomic => $o
+rule op_special = !(("^" / "%" / "!=") !rc) (!cut [+\-*/<>=])* [~!@\^&|`%] (!cut opc)*
+rule op_plain = &core_long !(("<=" / ">=" / "=>" / "<>") &pm_end) !(("**" / "//" / "->>" / "->") !opc) core
+rule core = ((!cut [+\-])* !cut [*/<>=])+
+rule core_long = !([*/<>=] &pm_end) core
+// ===================================================================================================
+// Names
+// ===================================================================================================
+
+rule col_id_or_string Ident = (col_id / sconst) #atomic
+rule name Ident = (col_id_or_string) #atomic
+rule attr_name Ident = (col_label) #atomic
+rule param_name Ident = (type_function_name) #atomic
+
+// qualified_name: ColIdOrString | ColId indirection (the dots)
+rule qualified_name Name = qn_dotted / qn_string
+rule qn_dotted Name = p:col_id rest:(-ws -"." -ws a:attr_name)+ => Name{Parts: concat(list($p), map($rest, (r) => r.$a))}
+rule qn_string Name = s:col_id_or_string => Name{Parts: list($s)}
+// any_name: ColId | ColId attrs
+rule any_name Name = p:col_id rest:(-ws -"." -ws a:attr_name)* => Name{Parts: concat(list($p), map($rest, (r) => r.$a))}
+rule name_list []Ident = first:name rest:(-ws -"," -ws n:name)* => concat(list($first), map($rest, (r) => r.$n))
+rule name_list_opt_comma []Ident = l:name_list (ws ",")? => $l
+rule col_id_list []Ident = first:col_id rest:(-ws -"," -ws n:col_id)* => concat(list($first), map($rest, (r) => r.$n))
+
+// func_name: function_name_token | ColId indirection
+rule func_name Name = fn_single / fn_dotted
+rule fn_dotted Name = p:col_id rest:(-ws -"." -ws a:attr_name)+ => Name{Parts: concat(list($p), map($rest, (r) => r.$a))}
+rule fn_single Name = n:function_name_token &(ws "(") => Name{Parts: list($n)}
+
+// ===================================================================================================
+// Expressions
+// ===================================================================================================
+
+// The operators are ordered as the %left/%right declarations of the grammar of DuckDB order their tokens, from
+// the loosest. An operator that takes its right operand itself (postfix with r:...) is one whose rule has a
+// precedence of its own in the grammar (see comments at the levels).
+rule expr Expr = #operators {
+    skip ws
+    operand star_primary
+    operand chained
+
+    // a -> b and a ->> b. As a token, ->> has the lowest precedence (an expression on its left side is complete),
+    // but its rule has the precedence of Op, so its right side is an operand of the arithmetic operators.
+    level lv_arrow {
+        infix left &"-" o:op_arrow => Binary{Left: $lhs, Op: $o, Right: $rhs}
+        postfix &"-" o:op_darrow ws r:level(expr, lv_add) => Binary{Left: $lhs, Op: $o, Right: $r}
+    }
+    level lv_or {
+        infix left &[oO] o:(OR #atomic) => Binary{Left: $lhs, Op: $o, Right: $rhs}
+    }
+    level lv_and {
+        infix left &[aA] o:(AND #atomic) => Binary{Left: $lhs, Op: $o, Right: $rhs}
+    }
+    level lv_not {
+        prefix NOT => Not{X: $rhs}
+    }
+    // IS and its relatives take no right operand (except IS DISTINCT FROM)
+    level lv_is {
+        postfix &[iInN] (IS ws n:NOT? ws t:(NULL / TRUE / FALSE / UNKNOWN) / t:ISNULL / nn:NOT ws t:NULL) => IsExpr{X: $lhs, Negated: len($n) > 0 || len($nn) > 0, Test: text($t)}
+        postfix &[nN] t:NOTNULL => IsExpr{X: $lhs, Negated: true, Test: text($t)}
+        postfix &[iI] IS ws n:NOT? ws DISTINCT ws FROM ws r:level(expr, lv_cmp) !(ws is_start) => DistinctFrom{Left: $lhs, Right: $r, Negated: len($n) > 0}
+        postfix &[iI] IS ws n:NOT? ws OF ws "(" ws ts:type_list ws ")" !(ws is_start) => IsOf{X: $lhs, Types: $ts, Negated: len($n) > 0}
+    }
+    level lv_cmp {
+        postfix &[<>=!] o:cmp_op ws r:level(expr, lv_like) !(ws cmp_op) => Binary{Left: $lhs, Op: $o, Right: $r}
+        postfix &[+\-*/<>=~!@\^&|`%oOnNlLgGiI] o:subquery_op ws q:(ANY / SOME / ALL) ws s:any_source => AnyAll{X: $lhs, Op: text($o), Quantifier: text($q), Source: $s}
+    }
+    // BETWEEN, IN, LIKE, ILIKE, GLOB and SIMILAR TO: the rule of each has this precedence, so its operands do not
+    // contain an operator of this level; ESCAPE belongs to the rule.
+    level lv_like {
+        postfix &[nNlLiIsS] n:(NOT ws)? o:(LIKE / ILIKE / (SIMILAR ws TO) #atomic) ws p:level(expr, lv_op) (ws ESCAPE ws e:level(expr, lv_op))? !(ws like_start) => Like{X: $lhs, Negated: len($n) > 0, Op: text($o), Pattern: $p, Escape: $e}
+        postfix &[gG] o:GLOB ws p:level(expr, lv_op) !(ws like_start) => Like{X: $lhs, Negated: false, Op: text($o), Pattern: $p}
+        postfix &[nNiI] n:(NOT ws)? IN ws (q:select_with_parens / "(" ws is:expr_list_opt_comma ws ")" / s:in_source) => In{X: $lhs, Negated: len($n) > 0, Query: $q, Items: concat($is), Source: $s}
+        postfix &[nNbB] n:(NOT ws)? BETWEEN ws sy:SYMMETRIC? ws ASYMMETRIC? ws lo:b_expr ws AND ws hi:level(expr, lv_op) !(ws like_start) => Between{X: $lhs, Lo: $lo, Hi: $hi, Negated: len($n) > 0, Symmetric: len($sy) > 0}
+    }
+    // Op (the operators that are not one of the others) and OPERATOR(...); it may be a postfix operator.
+    level lv_op {
+        prefix o:qual_op => Unary{Op: $o, X: $rhs}
+        postfix &[+\-*/<>=~!@\^&|`%oO] o:qual_op ws !(BETWEEN / ESCAPE / NOT / LIKE / ILIKE / SIMILAR) r:(op_rhs_prefix / level(expr, lv_add)) => Binary{Left: $lhs, Op: $o, Right: $r}
+        postfix &[+\-*/<>=~!@\^&|`%oO] o:qual_op !(ws AT) !(ws qual_op) => PostfixOp{X: $lhs, Op: $o}
+    }
+    level lv_add {
+        infix left &[+\-] o:(op_plus / op_minus) => Binary{Left: $lhs, Op: $o, Right: $rhs}
+    }
+    level lv_mul {
+        infix left &[*/%] o:(op_star / op_slash / op_idiv / op_percent) => Binary{Left: $lhs, Op: $o, Right: $rhs}
+    }
+    level lv_pow {
+        infix left &[*\^] o:(op_caret / op_pow) => Binary{Left: $lhs, Op: $o, Right: $rhs}
+    }
+    level lv_at {
+        postfix &[aA] AT ws TIME ws ZONE ws z:level(expr, lv_collate) => AtTimeZone{X: $lhs, Zone: $z}
+    }
+    level lv_collate {
+        postfix &[cC] COLLATE ws n:any_name => Collate{X: $lhs, Collation: $n}
+    }
+    level lv_uminus {
+        prefix op_plus / op_minus => Unary{Op: $op, X: $rhs}
+    }
+    level lv_cast {
+        postfix &":" "::" ws t:typename => Cast{X: $lhs, Type: $t, Try: false, Shorthand: true}
+    }
+}
+
+// The right operand of an operator: an expression of the levels above Op, or a prefix operator and its operand.
+rule op_rhs_prefix Unary = o:qual_op ws x:(op_rhs_prefix / level(expr, lv_add)) => Unary{Op: $o, X: $x}
+
+// b_expr: the expressions that may be the lower bound of BETWEEN, a default value, ...: no AND, OR, NOT, IS NULL,
+// LIKE, IN, BETWEEN, COLLATE or AT TIME ZONE.
+rule b_expr Expr = #operators {
+    skip ws
+    operand chained
+    level lv_is {
+        postfix IS ws n:NOT? ws DISTINCT ws FROM ws r:level(b_expr, lv_cmp) !(ws is_start) => DistinctFrom{Left: $lhs, Right: $r, Negated: len($n) > 0}
+        postfix IS ws n:NOT? ws OF ws "(" ws ts:type_list ws ")" !(ws is_start) => IsOf{X: $lhs, Types: $ts, Negated: len($n) > 0}
+    }
+    level lv_cmp {
+        postfix o:cmp_op ws r:level(b_expr, lv_add) !(ws cmp_op) => Binary{Left: $lhs, Op: $o, Right: $r}
+    }
+    level lv_op {
+        prefix o:qual_op => Unary{Op: $o, X: $rhs}
+        postfix o:qual_op ws !BETWEEN r:level(b_expr, lv_add) => Binary{Left: $lhs, Op: $o, Right: $r}
+        postfix o:qual_op !(ws AT) => PostfixOp{X: $lhs, Op: $o}
+    }
+    level lv_add {
+        infix left op_plus / op_minus => Binary{Left: $lhs, Op: $op, Right: $rhs}
+    }
+    level lv_mul {
+        infix left op_star / op_slash / op_idiv / op_percent => Binary{Left: $lhs, Op: $op, Right: $rhs}
+    }
+    level lv_pow {
+        infix left op_caret / op_pow => Binary{Left: $lhs, Op: $op, Right: $rhs}
+    }
+    level lv_uminus {
+        prefix op_plus / op_minus => Unary{Op: $op, X: $rhs}
+    }
+    level lv_cast {
+        postfix "::" ws t:typename => Cast{X: $lhs, Type: $t, Try: false, Shorthand: true}
+    }
+}
+
+rule colon = ":" !(":" / "=")
+// The comparison operators do not associate: a < b < c is an error, also as the right side of AND and the like.
+rule cmp_op node[string] = (op_lt / op_gt / op_eq / op_le / op_ge / op_ne) #atomic
+// The operators of the level of BETWEEN, IN and LIKE do not associate either; IS DISTINCT FROM and IS OF do not
+// take IS after them.
+rule like_start = (NOT ws)? (LIKE / ILIKE / GLOB / SIMILAR / IN / BETWEEN)
+rule is_start = IS / ISNULL / NOTNULL
+
+// qual_Op, subquery_Op
+rule qual_op node[string] = op_generic / operator_call
+rule operator_call node[string] = (OPERATOR ws "(" ws any_operator ws ")") #atomic
+rule any_operator = (col_id ws "." ws)* all_op
+rule all_op node[string] = (
+    op_generic / op_plus / op_minus / op_star / op_slash / op_idiv / op_percent / op_caret / op_pow
+    / op_lt / op_gt / op_eq / op_le / op_ge / op_ne
+)
+rule subquery_op = all_op / operator_call / (NOT ws (LIKE / ILIKE)) #atomic / LIKE / GLOB / ILIKE
+rule any_source Expr = any_source_query / paren_expr
+rule any_source_query Subquery = q:select_with_parens => Subquery{Query: $q}
+// the right side of IN that is not parenthesized: columnref_opt_indirection | indirection_expr
+rule in_source Expr = indirection_expr / in_column
+rule in_column Expr = #operators {
+    skip ws
+    operand column_ref
+    level lv_chain {
+        postfix "." ws n:attr_name => Indirection{X: $lhs, Step: FieldStep{Name: $n}}
+        postfix "[" ws i:expr ws "]" => Indirection{X: $lhs, Step: IndexStep{Index: $i}}
+        postfix "[" ws lo:expr? ws colon ws hi:expr? ws "]" => Indirection{X: $lhs, Step: SliceStep{Lo: $lo, Hi: $hi}}
+        postfix "[" ws lo:expr? ws colon ws hi:expr? ws colon ws st:expr? ws "]" => Indirection{X: $lhs, Step: SliceStep{Lo: $lo, Hi: $hi, Stride: $st}}
+    }
+}
+
+// ===================================================================================================
+// Operands
+// ===================================================================================================
+
+// c_expr: the expressions that are not made of operators, with the indirections that follow them in expr.
+rule c_expr Expr = chained
+
+// An operand with its indirections: x.field, x.method(args), x[i], x[lo:hi]. They follow only an operand, not the
+// result of an operator, so they are not operators of expr. A column reference with indirections is a column
+// reference of the grammar of DuckDB, which no method call can follow: x[1].f() is a syntax error, but (x)[1].f() is
+// not.
+rule chained Expr = col_chained / call_chained
+rule col_chained Expr = #operators {
+    skip ws
+    operand plain_column
+    level lv_chain {
+        postfix "." ws n:attr_name => Indirection{X: $lhs, Step: FieldStep{Name: $n}}
+        postfix "[" ws i:expr ws "]" => Indirection{X: $lhs, Step: IndexStep{Index: $i}}
+        postfix "[" ws lo:expr? ws colon ws (d:"-" ws colon ws st:expr? / hi:expr? (ws colon ws st:expr?)?) ws "]" => Indirection{X: $lhs, Step: SliceStep{Lo: $lo, Hi: $hi, Stride: $st, Dash: len($d) > 0}}
+    }
+}
+rule call_chained Expr = #operators {
+    skip ws
+    operand primary_other
+    level lv_chain {
+        postfix "." ws n:attr_name (ws c:"(" ws a:func_arg_list? ws ")")? => Indirection{X: $lhs, Step: FieldStep{Name: $n, Call: len($c) > 0, Args: concat($a)}}
+        postfix "[" ws i:expr ws "]" => Indirection{X: $lhs, Step: IndexStep{Index: $i}}
+        postfix "[" ws lo:expr? ws colon ws (d:"-" ws colon ws st:expr? / hi:expr? (ws colon ws st:expr?)?) ws "]" => Indirection{X: $lhs, Step: SliceStep{Lo: $lo, Hi: $hi, Stride: $st, Dash: len($d) > 0}}
+    }
+}
+
+rule primary_other Expr = (
+    literal_primary
+    / paren_primary
+    / indirection_expr
+    / keyword_primary
+    / typed_literal
+    / column_ref
+)
+
+// Constants.
+rule literal_primary Expr = plain_literal / string_literal
+rule plain_literal Expr = l:(number / bit_lit) !(ws ("." / "[")) => $l
+// a string may be followed by .name and [i], but a call needs an expression in parentheses
+rule string_literal Expr = l:sconst !(ws "." ws attr_name ws "(") => $l
+// ICONST in positions where the grammar does not allow a float
+rule param Param = ("?" [0-9]* / "$" digits / "$" ws dollar_name) #atomic
+// the name of a parameter has no $ in it: $a$ begins a dollar-quoted string
+rule dollar_name = quoted_ident / uquoted_ident / ident_start [a-zA-Z0-9_\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]*
+rule positional_ref PositionalRef = "#" ws i:iconst => PositionalRef{Index: $i}
+
+// An identifier that does not begin a call, a typed literal or another construct that starts with a name: the common
+// case, which is tried first.
+rule plain_column ColumnRef = (
+    !(DOUBLE ws PRECISION / (CHARACTER / CHAR / NCHAR / NATIONAL / BIT) ws (VARYING / CHARACTER / CHAR) / INTERVAL ws (iconst / "("))
+    ps:dotted_idents !(ws ("(" / "{" / "'" / "$" / [eEbBxXnN] "'" / [uU] "&'"))
+) => ColumnRef{Parts: $ps}
+rule column_ref ColumnRef = ps:dotted_idents => ColumnRef{Parts: $ps}
+rule dotted_idents []Ident = first:col_id rest:(-ws -"." -ws a:attr_name)* => concat(list($first), map($rest, (r) => r.$a))
+
+// ( ... ): a subquery, an expression in parentheses, or a row
+rule paren_primary Expr = subquery_expr / row_expr / paren_expr
+rule subquery_expr Subquery = q:select_with_parens => Subquery{Query: $q}
+rule row_expr Row = "(" ws first:expr rest:(-ws -"," -ws e:expr)+ ws ")" => Row{Items: concat(list($first), map($rest, (r) => r.$e)), Keyword: false}
+rule paren_expr Paren = "(" ws e:expr ws ")" => Paren{X: $e}
+
+// The expressions that the grammar of DuckDB calls indirection_expr: they can be followed by .method(...)
+rule indirection_expr Expr = (
+    param
+    / struct_lit
+    / map_lit
+    / list_comprehension
+    / list_lit
+    / case_expr
+    / array_expr
+    / positional_ref
+    / qualified_row
+    / func_expr
+)
+
+rule func_expr Expr = !(OPERATOR ws "(") e:(cast_expr / special_call / func_call_plain / typed_literal_args) => $e
+// a call that is not followed by a string (otherwise it is the type of a literal)
+rule func_call_plain FuncCall = c:func_call !(ws sconst) => $c
+
+rule list_lit ListLit = "[" ws xs:expr_list_opt_comma? ws "]" => ListLit{Items: concat($xs)}
+rule array_expr Expr = array_subquery / array_lit
+rule array_subquery ArraySubquery = ARRAY ws q:select_with_parens => ArraySubquery{Query: $q}
+rule array_lit ArrayLit = ARRAY ws "[" ws xs:expr_list_opt_comma? ws "]" => ArrayLit{Items: concat($xs)}
+rule struct_lit StructLit = (
+    "{" ws first:struct_field rest:(-ws -"," -ws f:struct_field)* (ws ",")? ws "}"
+) => StructLit{Fields: concat(list($first), map($rest, (r) => r.$f))}
+rule struct_field StructField = n:col_id_or_string ws colon ws v:expr => StructField{Name: $n, Value: $v}
+rule map_lit MapLit = MAP ws "{" ws es:map_entries? ws "}" => MapLit{Entries: concat($es)}
+rule map_entries []MapEntry = first:map_entry rest:(-ws -"," -ws e:map_entry)* (ws ",")? => concat(list($first), map($rest, (r) => r.$e))
+rule map_entry MapEntry = k:expr ws colon ws v:expr => MapEntry{Key: $k, Value: $v}
+rule list_comprehension ListComp = list_comp_if / list_comp
+rule list_comp_if ListComp = "[" ws e:expr ws FOR ws vs:name_list ws IN ws s:c_expr ws IF ws c:expr ws "]" => ListComp{Expr: $e, Vars: $vs, Source: $s, Cond: $c}
+rule list_comp ListComp = "[" ws e:expr ws FOR ws vs:name_list ws IN ws s:expr ws "]" => ListComp{Expr: $e, Vars: $vs, Source: $s}
+
+rule case_expr Case = (
+    CASE (ws !WHEN a:expr)? ws whens:when_clause_list (ws ELSE ws e:expr)? ws END
+) => Case{Arg: $a, Whens: $whens, Else: $e}
+rule when_clause_list []When = first:when_clause rest:(-ws w:when_clause)* => concat(list($first), map($rest, (r) => r.$w))
+rule when_clause When = WHEN ws c:expr ws THEN ws t:expr => When{Cond: $c, Then: $t}
+
+rule qualified_row Row = ROW ws "(" ws xs:expr_list_opt_comma? ws ")" => Row{Items: concat($xs), Keyword: true}
+
+rule expr_list []Expr = first:expr rest:(-ws -"," -ws e:expr)* => concat(list($first), map($rest, (r) => r.$e))
+rule expr_list_opt_comma []Expr = l:expr_list (ws ",")? => $l
+
+// ---- Stars, COLUMNS, DEFAULT, lambdas ----
+
+rule star_primary Expr = star_columns / star_expr / qualified_star / columns_expr / unpack_expr / default_expr / lambda_expr
+rule default_expr DefaultExpr = (DEFAULT) #atomic
+rule columns_expr ColumnsExpr = COLUMNS ws "(" ws a:expr ws ")" => ColumnsExpr{Arg: $a, Star: false}
+rule star_columns ColumnsExpr = op_star ws COLUMNS ws "(" ws a:expr ws ")" => ColumnsExpr{Arg: $a, Star: true}
+rule unpack_expr UnpackExpr = UNPACK ws "(" ws a:expr ws ")" => UnpackExpr{Arg: $a}
+rule star_expr Star = op_star (ws ex:exclude_list)? (ws rp:replace_list)? (ws rn:rename_list)? => Star{Exclude: concat($ex), Replace: concat($rp), Rename: concat($rn)}
+rule qualified_star Star = (
+    q:col_id ws "." ws op_star (ws ex:exclude_list)? (ws rp:replace_list)? (ws rn:rename_list)?
+) => Star{Qualifier: $q, Exclude: concat($ex), Replace: concat($rp), Rename: concat($rn)}
+rule lambda_expr Lambda = LAMBDA ws ps:name_list ws colon ws b:expr => Lambda{Params: $ps, Body: $b, Keyword: true}
+
+rule except_name Name = first:col_id_or_string rest:(-ws -"." -ws n:col_id_or_string)* => Name{Parts: concat(list($first), map($rest, (r) => r.$n))}
+rule except_name_list []Name = first:except_name rest:(-ws -"," -ws n:except_name)* (ws ",")? => concat(list($first), map($rest, (r) => r.$n))
+rule exclude_list []Name = exclude_paren / exclude_single
+rule exclude_paren []Name = EXCLUDE ws "(" ws l:except_name_list ws ")" => $l
+rule exclude_single []Name = EXCLUDE ws n:except_name => list($n)
+rule replace_item ReplaceItem = e:expr ws AS ws n:col_id => ReplaceItem{Expr: $e, Name: $n}
+rule replace_list []ReplaceItem = replace_paren / replace_single
+rule replace_paren []ReplaceItem = REPLACE ws "(" ws first:replace_item rest:(-ws -"," -ws i:replace_item)* (ws ",")? ws ")" => concat(list($first), map($rest, (r) => r.$i))
+rule replace_single []ReplaceItem = REPLACE ws i:replace_item => list($i)
+rule rename_item RenameItem = f:except_name ws AS ws t:col_id => RenameItem{From: $f, To: $t}
+rule rename_list []RenameItem = rename_paren / rename_single
+rule rename_paren []RenameItem = RENAME ws "(" ws first:rename_item rest:(-ws -"," -ws i:rename_item)* (ws ",")? ws ")" => concat(list($first), map($rest, (r) => r.$i))
+rule rename_single []RenameItem = RENAME ws i:rename_item => list($i)
+
+// ---- Keyword expressions and special functions ----
+
+rule keyword_primary Expr = k:(bool_lit / null_lit / exists_expr / interval_lit / grouping_expr) !(ws ("." / "[")) => $k
+rule bool_lit BoolLit = (TRUE / FALSE) #atomic
+rule null_lit NullLit = (NULL) #atomic
+rule exists_expr Exists = EXISTS ws q:select_with_parens => Exists{Query: $q}
+rule grouping_expr Grouping = n:(GROUPING_ID / GROUPING) #atomic ws "(" ws xs:expr_list_opt_comma ws ")" => Grouping{Name: text($n), Args: $xs}
+rule cast_expr Cast = cast_plain / cast_try
+rule cast_plain Cast = CAST ws "(" ws x:expr ws AS ws t:typename ws ")" => Cast{X: $x, Type: $t, Try: false, Shorthand: false}
+rule cast_try Cast = TRY_CAST ws "(" ws x:expr ws AS ws t:typename ws ")" => Cast{X: $x, Type: $t, Try: true, Shorthand: false}
+
+rule interval_lit IntervalLit = interval_paren / interval_const
+rule interval_paren IntervalLit = INTERVAL ws "(" ws v:expr ws ")" (ws u:interval_unit)? => IntervalLit{Value: $v, Unit: $u}
+rule interval_const IntervalLit = INTERVAL ws v:(iconst / sconst) (ws u:interval_unit)? => IntervalLit{Value: $v, Unit: $u}
+rule interval_unit IntervalUnit = (interval_to / interval_field) #atomic
+rule interval_to = (
+    (YEARS / YEAR) ws TO ws (MONTHS / MONTH)
+    / (DAYS / DAY) ws TO ws (HOURS / HOUR / MINUTES / MINUTE / SECONDS / SECOND)
+    / (HOURS / HOUR) ws TO ws (MINUTES / MINUTE / SECONDS / SECOND)
+    / (MINUTES / MINUTE) ws TO ws (SECONDS / SECOND)
+)
+rule interval_field = (
+    YEARS / YEAR / MONTHS / MONTH / DAYS / DAY / HOURS / HOUR / MINUTES / MINUTE / SECONDS / SECOND
+    / MILLISECONDS / MILLISECOND / MICROSECONDS / MICROSECOND / WEEKS / WEEK / QUARTERS / QUARTER / DECADES / DECADE
+    / CENTURIES / CENTURY / MILLENNIA / MILLENNIUM
+)
+
+rule special_call Expr = (
+    sc_coalesce / sc_nullif / sc_extract / sc_extract_empty / sc_overlay / sc_position / sc_position_empty
+    / sc_substring_from / sc_substring_for_from / sc_substring_for / sc_substring_list / sc_substring_empty / sc_treat / sc_trim_chars / sc_trim / sc_collation
+)
+rule sc_coalesce SpecialCall = n:COALESCE ws "(" ws a:expr_list_opt_comma ws ")" => SpecialCall{Name: text($n), Args: $a}
+rule sc_nullif SpecialCall = n:NULLIF ws "(" ws a:expr ws "," ws b:expr ws ")" => SpecialCall{Name: text($n), Args: list($a, $b)}
+rule sc_extract SpecialCall = n:EXTRACT ws "(" ws p:extract_arg ws FROM ws x:expr ws ")" => SpecialCall{Name: text($n), Spec: text($p), Args: list($x)}
+rule sc_extract_empty SpecialCall = n:EXTRACT ws "(" ws ")" => SpecialCall{Name: text($n)}
+rule sc_overlay SpecialCall = (
+    n:OVERLAY ws "(" ws x:expr ws PLACING ws y:expr ws FROM ws a:expr (ws FOR ws b:expr)? ws ")"
+) => SpecialCall{Name: text($n), Args: list($x), Placing: $y, From: list($a), For: $b}
+rule sc_position SpecialCall = n:POSITION ws "(" ws a:b_expr ws IN ws b:b_expr ws ")" => SpecialCall{Name: text($n), Args: list($a, $b)}
+rule sc_position_empty SpecialCall = n:POSITION ws "(" ws ")" => SpecialCall{Name: text($n)}
+// SUBSTRING(x FROM a FOR b), SUBSTRING(x FOR b FROM a), SUBSTRING(x, a, b) and SUBSTRING()
+rule sc_substring_from SpecialCall = (
+    n:SUBSTRING ws "(" ws x:expr ws FROM ws a:expr (ws FOR ws b:expr)? ws ")"
+) => SpecialCall{Name: text($n), Args: list($x), From: list($a), For: $b}
+rule sc_substring_for_from SpecialCall = (
+    n:SUBSTRING ws "(" ws x:expr ws FOR ws b:expr ws FROM ws a:expr ws ")"
+) => SpecialCall{Name: text($n), Args: list($x), From: list($a), For: $b}
+rule sc_substring_for SpecialCall = n:SUBSTRING ws "(" ws x:expr ws FOR ws b:expr ws ")" => SpecialCall{Name: text($n), Args: list($x), For: $b}
+rule sc_substring_list SpecialCall = n:SUBSTRING ws "(" ws l:expr_list ws ")" => SpecialCall{Name: text($n), Args: $l}
+rule sc_substring_empty SpecialCall = n:SUBSTRING ws "(" ws ")" => SpecialCall{Name: text($n)}
+rule sc_treat SpecialCall = n:TREAT ws "(" ws x:expr ws AS ws t:typename ws ")" => SpecialCall{Name: text($n), Args: list($x), Type: $t}
+rule sc_trim_chars SpecialCall = (
+    n:TRIM ws "(" ws (s:(BOTH / LEADING / TRAILING) ws)? c:expr ws FROM ws l:expr_list_opt_comma ws ")"
+) => SpecialCall{Name: text($n), Spec: text($s), Args: $l, Chars: $c}
+rule sc_trim SpecialCall = n:TRIM ws "(" ws (s:(BOTH / LEADING / TRAILING) ws)? a:(trim_from / expr_list_opt_comma) ws ")" => SpecialCall{Name: text($n), Spec: text($s), Args: $a}
+rule sc_collation SpecialCall = n:(COLLATION ws FOR) #atomic ws "(" ws x:expr ws ")" => SpecialCall{Name: text($n), Args: list($x)}
+rule extract_arg node[string] = (ident_only / year_kw / sconst) #atomic
+rule year_kw = (
+    YEARS / YEAR / MONTHS / MONTH / DAYS / DAY / HOURS / HOUR / MINUTES / MINUTE / SECONDS / SECOND
+    / MILLISECONDS / MILLISECOND / MICROSECONDS / MICROSECOND / WEEKS / WEEK / QUARTERS / QUARTER / DECADES / DECADE
+    / CENTURIES / CENTURY / MILLENNIA / MILLENNIUM
+)
+// trim_list: a_expr FROM expr_list | FROM expr_list | expr_list
+rule trim_from []Expr = FROM ws l:expr_list_opt_comma => $l
+
+// ---- Function calls ----
+
+rule func_call FuncCall = (
+    n:func_name ws "(" ws
+    (q:(ALL / DISTINCT) ws a:func_arg_list (ws "," ws VARIADIC ws v:func_arg_expr)? / a:func_arg_list (ws "," ws VARIADIC ws v:func_arg_expr)? / VARIADIC ws v:func_arg_expr)?
+    (ws o:sort_clause)? (ws nl:opt_ignore_nulls)? ws ")"
+    (ws WITHIN ws GROUP ws "(" ws wg:sort_clause ws ")")?
+    (ws f:filter_clause)?
+    (ws ex:EXPORT_STATE)?
+    (ws ov:over_clause)?
+) => FuncCall{Name: $n, Quantifier: text($q), Args: concat($a), Variadic: $v, OrderBy: $o, Nulls: text($nl), WithinGroup: $wg, Filter: $f, ExportState: len($ex) > 0, Over: $ov}
+// func_name '(' ... ')' Sconst: a literal of a type with arguments
+rule typed_literal_args TypedLit = t:func_name_type ws "(" ws a:func_arg_list ws ")" ws s:sconst => TypedLit{Type: Type{Name: text($t), Mods: $a}, Value: $s}
+rule func_name_type node[string] = (fn_dotted / function_name_token) #atomic
+rule func_arg_list []Expr = first:func_arg_expr rest:(-ws -"," -ws e:func_arg_expr)* => concat(list($first), map($rest, (r) => r.$e))
+rule func_arg_expr Expr = named_arg / expr
+rule named_arg NamedArg = n:param_name ws (":=" / op_eq_gt) ws v:expr => NamedArg{Name: $n, Value: $v}
+rule opt_ignore_nulls node[string] = ((IGNORE / RESPECT) ws NULLS) #atomic
+rule filter_clause Expr = FILTER ws "(" ws (WHERE ws)? e:expr ws ")" => $e
+rule over_clause WindowOver = OVER ws (s:window_specification / n:col_id) => WindowOver{Name: $n, Spec: $s}
+rule window_specification WindowSpec = (
+    "(" ws (!(PARTITION / RANGE / ROWS / GROUPS) b:col_id)?
+    (ws PARTITION ws BY ws xs:expr_list)? (ws o:sort_clause)? (ws f:frame_clause)? ws ")"
+) => WindowSpec{Base: $b, PartitionBy: concat($xs), OrderBy: $o, Frame: $f}
+// BETWEEN can also name a column in a single-bound expression. Bison reduces
+// that keyword before NOT, so a two-bound frame cannot start with bare NOT.
+// Its nonassociative operator lookaheads reject either interpretation.
+rule frame_clause Frame = !frame_conflict f:(frame_between / frame_single) => $f
+rule frame_conflict = (
+    (RANGE / ROWS / GROUPS) ws BETWEEN ws
+    (BETWEEN / GLOB / ILIKE / LIKE / SIMILAR / NOT ws (BETWEEN / IN / LIKE / ILIKE / SIMILAR))
+)
+// These shifted tokens could also extend or terminate a BETWEEN column
+// expression. Do not retry that interpretation after a two-bound failure.
+rule frame_shift = (
+    AT / OPERATOR / PRECEDING / FOLLOWING / op_generic / op_plus / op_minus / op_star
+    / "[" / "(" / "?" / "{" / "#" / "$"
+)
+rule frame_single Frame = u:(RANGE / ROWS / GROUPS) ws !(BETWEEN ws frame_shift) b:frame_bound (ws e:window_exclusion)? => Frame{Unit: text($u), Start: $b, Exclude: text($e)}
+rule frame_between Frame = (
+    u:(RANGE / ROWS / GROUPS) ws BETWEEN ws !NOT b:frame_bound ws AND ws c:frame_bound (ws e:window_exclusion)?
+) => Frame{Unit: text($u), Start: $b, End: $c, Exclude: text($e)}
+rule frame_bound FrameBound = frame_bound_kw / frame_bound_expr
+rule frame_bound_kw FrameBound = k:(UNBOUNDED ws (PRECEDING / FOLLOWING) / CURRENT ws ROW) #atomic => FrameBound{Kind: text($k)}
+rule frame_bound_expr FrameBound = e:expr ws k:(PRECEDING / FOLLOWING) => FrameBound{Kind: text($k), Expr: $e}
+rule window_exclusion node[string] = (EXCLUDE ws (CURRENT ws ROW / GROUP / TIES / NO ws OTHERS)) #atomic
+// ===================================================================================================
+// Types
+// ===================================================================================================
+
+rule type_list []Type = first:typename rest:(-ws -"," -ws t:typename)* => concat(list($first), map($rest, (r) => r.$t))
+
+// SETOF is ignored in the AST, but its operand follows SimpleTypename: constructed types are not eligible,
+// and qualified names require explicit ARRAY or ARRAY[n]. Recursive member types still use typename.
+rule typename Type = SETOF ws t:type_setof / t:type_base => $t
+rule type_base Type = type_struct / type_map / type_qualified / type_simple
+rule type_setof Type = type_setof_qualified / type_simple
+rule type_simple Type = type_interval / type_datetime / type_char / type_bit / type_numeric / type_generic
+rule type_setof_qualified Type = n:(ident_only (ws "." ws ident_only)+) #atomic &(ws ARRAY) ds:array_dims => Type{Name: text($n), Dims: $ds}
+
+// The array dimensions that may follow a type: [], [3], and ARRAY, ARRAY[3]
+rule array_dims []ArrayDim = array_dims_only / array_keyword_sized / array_keyword
+rule array_dim ArrayDim = "[" ws s:iconst? ws "]" => ArrayDim{Size: $s}
+rule array_dims_only []ArrayDim = ds:(-ws d:array_dim)+ => map($ds, (x) => x.$d)
+rule array_keyword_sized []ArrayDim = ws ARRAY ws "[" ws s:iconst ws "]" => list(ArrayDim{Size: $s})
+rule array_keyword []ArrayDim = ws ARRAY => list(ArrayDim{})
+
+rule type_mods []Expr = "(" ws xs:expr_list_opt_comma? ws ")" => concat($xs)
+rule type_struct Type = n:(ROW / STRUCT / UNION) #atomic ws "(" ws fs:colid_type_list ws ")" ds:array_dims_only? => Type{Name: text($n), Fields: $fs, Dims: concat($ds)}
+rule colid_type_list []TypeField = first:colid_type rest:(-ws -"," -ws f:colid_type)* => concat(list($first), map($rest, (r) => r.$f))
+rule colid_type TypeField = n:col_id ws t:typename => TypeField{Name: $n, Type: $t}
+rule type_map Type = n:MAP #atomic ws "(" ws ts:type_list ws ")" ds:array_dims_only? => Type{Name: text($n), Elems: $ts, Dims: concat($ds)}
+// INTERVAL(3) and INTERVAL DAY TO HOUR
+rule type_interval Type = n:(INTERVAL (ws "(" ws iconst ws ")" / ws interval_unit)?) #atomic ds:array_dims? => Type{Name: text($n), Dims: concat($ds)}
+rule type_datetime Type = (
+    n:(TIMESTAMP / TIME) #atomic ps:(-ws -"(" -ws n:iconst -ws -")") #repeat(,1) (ws z:time_zone_spec)? ds:array_dims?
+) => Type{Name: text($n), Mods: map($ps, (x) => x.$n), Zone: text($z), Dims: concat($ds)}
+rule time_zone_spec node[string] = ((WITH / WITHOUT) ws TIME ws ZONE) #atomic
+rule type_char Type = n:char_name ps:(-ws -"(" -ws n:iconst -ws -")") #repeat(,1) ds:array_dims? => Type{Name: text($n), Mods: map($ps, (x) => x.$n), Dims: concat($ds)}
+rule char_name node[string] = (NATIONAL ws (CHARACTER / CHAR) (ws VARYING)? / NCHAR (ws VARYING)? / CHARACTER (ws VARYING)? / CHAR (ws VARYING)? / VARCHAR) #atomic
+rule type_bit Type = n:(BIT (ws VARYING)?) #atomic (ws "(" ws xs:expr_list_opt_comma ws ")")? ds:array_dims? => Type{Name: text($n), Mods: concat($xs), Dims: concat($ds)}
+rule type_numeric Type = type_double / type_numeric_mods / type_numeric_plain
+rule type_double Type = n:(DOUBLE ws PRECISION) #atomic ds:array_dims? => Type{Name: text($n), Dims: concat($ds)}
+rule type_numeric_mods Type = type_float / type_decimal
+rule type_float Type = n:FLOAT #atomic ps:(-ws -"(" -ws p:iconst -ws -")") #repeat(,1) ds:array_dims? => Type{Name: text($n), Mods: map($ps, (x) => x.$p), Dims: concat($ds)}
+rule type_decimal Type = n:(DECIMAL / DEC / NUMERIC) #atomic (ws ms:type_mods)? ds:array_dims? => Type{Name: text($n), Mods: concat($ms), Dims: concat($ds)}
+rule type_numeric_plain Type = n:(INTEGER / INT / SMALLINT / BIGINT / REAL / BOOLEAN) #atomic ds:array_dims? => Type{Name: text($n), Dims: concat($ds)}
+rule type_qualified Type = n:(ident_only (ws "." ws ident_only)+) #atomic ds:array_dims? => Type{Name: text($n), Dims: concat($ds)}
+rule type_generic Type = n:type_name_token #atomic (ws ms:type_mods)? ds:array_dims? => Type{Name: text($n), Mods: concat($ms), Dims: concat($ds)}
+
+// A literal of a type: DATE '2020-01-01', INT '5', DECIMAL(10, 2) '1.5'
+rule typed_literal TypedLit = tl:(typed_literal_nchar / typed_literal_const / typed_literal_name) !(ws ("." / "[")) => $tl
+rule typed_literal_nchar TypedLit = n:[nN] #atomic &"'" s:sconst => TypedLit{Type: Type{Name: text($n)}, Value: $s}
+rule typed_literal_const TypedLit = t:const_type ws s:sconst => TypedLit{Type: $t, Value: $s}
+rule typed_literal_name TypedLit = !([eEbBxXnN] "'") t:func_name_type ws s:sconst => TypedLit{Type: Type{Name: text($t)}, Value: $s}
+rule const_type Type = type_numeric_const / type_char_const / type_bit_const / type_datetime_const
+rule type_numeric_const Type = type_double_const / type_numeric_mods_const / type_numeric_plain_const
+rule type_double_const Type = n:(DOUBLE ws PRECISION) #atomic => Type{Name: text($n)}
+rule type_numeric_mods_const Type = type_float_const / type_decimal_const
+rule type_float_const Type = n:FLOAT #atomic ps:(-ws -"(" -ws p:iconst -ws -")") #repeat(,1) => Type{Name: text($n), Mods: map($ps, (x) => x.$p)}
+rule type_decimal_const Type = n:(DECIMAL / DEC / NUMERIC) #atomic (ws ms:type_mods)? => Type{Name: text($n), Mods: concat($ms)}
+rule type_numeric_plain_const Type = n:(INTEGER / INT / SMALLINT / BIGINT / REAL / BOOLEAN) #atomic => Type{Name: text($n)}
+rule type_char_const Type = n:char_name ps:(-ws -"(" -ws n:iconst -ws -")") #repeat(,1) => Type{Name: text($n), Mods: map($ps, (x) => x.$n)}
+rule type_bit_const Type = n:(BIT (ws VARYING)?) #atomic (ws "(" ws xs:expr_list_opt_comma ws ")")? => Type{Name: text($n), Mods: concat($xs)}
+rule type_datetime_const Type = n:(TIMESTAMP / TIME) #atomic ps:(-ws -"(" -ws n:iconst -ws -")") #repeat(,1) (ws z:time_zone_spec)? => Type{Name: text($n), Mods: map($ps, (x) => x.$n), Zone: text($z)}
+// ===================================================================================================
+// SELECT (select.y)
+// ===================================================================================================
+
+// SelectStmt: select_no_parens | select_with_parens
+rule select_stmt Select = select_no_parens / select_paren_stmt
+rule select_paren_stmt Select = pq:select_with_parens => Select{Body: $pq}
+
+rule select_with_parens ParenQuery = "(" ws q:paren_content ws ")" => ParenQuery{Query: $q}
+rule paren_content ParenContent = select_no_parens / select_with_parens / show_stmt
+
+rule select_no_parens Select = (
+    (w:with_clause ws)? b:select_body
+    (ws o:sort_clause)?
+    (ws l1:locking_clauses)?
+    (ws (l:limit_clause (ws of:offset_clause)? / of:offset_clause (ws l:limit_clause)?))?
+    (ws l2:locking_clauses)?
+) => Select{With: $w, Body: $b, OrderBy: $o, Limit: $l, Offset: $of, Locking: concat($l1, $l2)}
+
+// ---- WITH ----
+
+rule with_clause With = with_recursive / with_plain
+rule with_recursive With = WITH ws RECURSIVE ws first:cte rest:(-ws -"," -ws c:cte)* => With{Recursive: true, CTEs: concat(list($first), map($rest, (x) => x.$c))}
+rule with_plain With = WITH ws first:cte rest:(-ws -"," -ws c:cte)* => With{CTEs: concat(list($first), map($rest, (x) => x.$c))}
+rule cte CTE = (
+    n:name (ws "(" ws cs:name_list_opt_comma ws ")")? (ws USING ws KEY ws "(" ws k:col_id_list (ws ",")? ws ")")?
+    ws AS (ws m:materialized)? ws "(" ws q:preparable ws ")"
+) => CTE{Name: $n, Columns: concat($cs), UsingKey: concat($k), Materialized: $m, Query: $q}
+rule materialized node[string] = (MATERIALIZED / NOT ws MATERIALIZED) #atomic
+
+// ---- Set operations ----
+
+rule select_body QueryBody = #operators {
+    skip ws
+    operand select_core
+    operand from_first
+    operand values_clause
+    operand table_query
+    operand pivot_query
+    operand unpivot_query
+    operand select_with_parens
+
+    level lv_union {
+        infix left o:(UNION / EXCEPT) (ws q:(ALL / DISTINCT))? bn:(ws BY ws NAME)? => SetOp{Left: $lhs, Op: text($o), Quantifier: text($q), ByName: len($bn) > 0, Right: $rhs}
+    }
+    level lv_intersect {
+        infix left o:INTERSECT (ws q:(ALL / DISTINCT))? bn:(ws BY ws NAME)? => SetOp{Left: $lhs, Op: text($o), Quantifier: text($q), ByName: len($bn) > 0, Right: $rhs}
+    }
+}
+
+// ---- SELECT ----
+
+rule select_core SelectCore = (
+    SELECT
+    (ws d:distinct_clause ws is:target_list_opt_comma / (ws ALL)? (ws is:target_list_opt_comma)?)
+    (ws into:into_clause)?
+    (ws FROM ws f:from_list_opt_comma)?
+    (ws WHERE ws w:expr)?
+    (ws g:group_clause)?
+    (ws HAVING ws h:expr)?
+    (ws wd:window_clause)?
+    (ws QUALIFY ws q:expr)?
+    (ws s:sample_clause)?
+) => SelectCore{Distinct: $d, Items: concat($is), Into: $into, From: concat($f), Where: $w, GroupBy: $g, Having: $h, Windows: concat($wd), Qualify: $q, Sample: $s}
+
+rule from_first SelectCore = (
+    FROM ws f:from_list
+    (ws SELECT (ws d:distinct_clause ws is:target_list_opt_comma / (ws ALL)? (ws is:target_list_opt_comma)?))?
+    (ws into:into_clause)?
+    (ws WHERE ws w:expr)?
+    (ws g:group_clause)?
+    (ws HAVING ws h:expr)?
+    (ws wd:window_clause)?
+    (ws QUALIFY ws q:expr)?
+    (ws s:sample_clause)?
+) => SelectCore{FromFirst: true, Distinct: $d, Items: concat($is), Into: $into, From: $f, Where: $w, GroupBy: $g, Having: $h, Windows: concat($wd), Qualify: $q, Sample: $s}
+
+rule distinct_clause DistinctClause = DISTINCT (ws ON ws "(" ws xs:expr_list_opt_comma ws ")")? => DistinctClause{On: concat($xs)}
+
+rule target_list_opt_comma []SelectItem = first:select_item rest:(-ws -"," -ws i:select_item)* (ws ",")? => concat(list($first), map($rest, (r) => r.$i))
+rule select_item SelectItem = item_prefixed / item_plain
+rule item_prefixed SelectItem = a:col_id ws colon ws e:expr => SelectItem{Expr: $e, Alias: $a, Prefix: true}
+rule item_plain SelectItem = e:expr (ws kw:AS ws al:col_label_or_string / ws al:ident_only)? => SelectItem{Expr: $e, Alias: $al, As: len($kw) > 0}
+rule col_label_or_string Ident = (col_label / sconst) #atomic
+
+rule into_clause IntoClause = INTO ws t:opt_temp_table_name => $t
+rule opt_temp_table_name IntoClause = into_temp / into_table / into_plain
+rule into_temp IntoClause = t:((TEMPORARY / TEMP) / LOCAL ws (TEMPORARY / TEMP) / GLOBAL ws (TEMPORARY / TEMP) / UNLOGGED) #atomic ws (TABLE ws)? n:qualified_name => IntoClause{Temp: text($t), Table: $n}
+rule into_table IntoClause = TABLE ws n:qualified_name => IntoClause{Table: $n}
+rule into_plain IntoClause = n:qualified_name => IntoClause{Table: $n}
+
+rule group_clause GroupBy = group_all / group_list
+rule group_all GroupBy = GROUP ws BY ws ALL => GroupBy{All: true}
+rule group_list GroupBy = GROUP ws BY ws first:group_by_item rest:(-ws -"," -ws i:group_by_item)* (ws ",")? => GroupBy{Items: concat(list($first), map($rest, (r) => r.$i))}
+rule group_by_item Expr = grouping_set / group_expr
+rule group_expr Expr = !((CUBE / ROLLUP) ws "(") e:expr => $e
+rule grouping_set GroupingSet = gs_rollup / gs_sets / gs_empty
+rule gs_rollup GroupingSet = k:(ROLLUP / CUBE) #atomic ws "(" ws xs:expr_list_opt_comma ws ")" => GroupingSet{Kind: text($k), Items: $xs}
+rule gs_sets GroupingSet = k:(GROUPING ws SETS) #atomic ws "(" ws xs:group_by_list_opt_comma ws ")" => GroupingSet{Kind: text($k), Items: $xs}
+rule gs_empty GroupingSet = "(" ws ")" => GroupingSet{}
+rule group_by_list_opt_comma []Expr = first:group_by_item rest:(-ws -"," -ws i:group_by_item)* (ws ",")? => concat(list($first), map($rest, (r) => r.$i))
+
+rule window_clause []WindowDef = WINDOW ws first:window_definition rest:(-ws -"," -ws w:window_definition)* => concat(list($first), map($rest, (r) => r.$w))
+rule window_definition WindowDef = n:col_id ws AS ws s:window_specification => WindowDef{Name: $n, Spec: $s}
+
+// ---- VALUES, TABLE, PIVOT ----
+
+rule values_clause ValuesClause = VALUES ws first:values_row rest:(-ws -"," -ws r:values_row)* (ws ",")? => ValuesClause{Rows: concat(list($first), map($rest, (x) => x.$r))}
+rule values_row ValuesRow = "(" ws xs:expr_list_opt_comma ws ")" => ValuesRow{Items: $xs}
+rule table_query TableQuery = TABLE ws n:qualified_name => TableQuery{Table: $n}
+
+rule pivot_query PivotQuery = (
+    pivot_keyword ws s:table_ref &(ws (ON / USING / GROUP))
+    (ws ON ws on:pivot_column_list)?
+    (ws USING ws us:target_list_opt_comma)?
+    (ws GROUP ws BY ws g:name_list_opt_comma_opt_bracket)?
+) => PivotQuery{Source: $s, On: concat($on), Using: concat($us), GroupBy: concat($g)}
+rule pivot_keyword = PIVOT_WIDER / PIVOT
+rule unpivot_keyword = PIVOT_LONGER / UNPIVOT
+rule unpivot_query UnpivotQuery = (
+    unpivot_keyword ws s:table_ref ws ON ws on:target_list_opt_comma (ws INTO ws NAME ws n:name ws (VALUE / VALUES) ws vs:name_list_opt_comma_opt_bracket)?
+) => UnpivotQuery{Source: $s, On: $on, Name: $n, Values: concat($vs)}
+rule name_list_opt_comma_opt_bracket []Ident = bracketed_names / name_list_opt_comma
+rule bracketed_names []Ident = "(" ws l:name_list_opt_comma ws ")" => $l
+rule pivot_column_list []PivotColumn = first:pivot_column_entry rest:(-ws -"," -ws e:pivot_column_entry)* (ws ",")? => concat(list($first), map($rest, (r) => r.$e))
+rule pivot_column_entry PivotColumn = (
+    e:b_expr (ws IN ws ("(" ws q:select_no_parens ws ")" / "(" ws is:target_list_opt_comma ws ")" / n:col_id_or_string))?
+) => PivotColumn{Expr: $e, Query: $q, In: concat($is), Enum: $n}
+
+// ---- ORDER BY, LIMIT, locking ----
+
+rule sort_clause OrderBy = sort_all / sort_list
+rule sort_all OrderBy = ORDER ws BY ws ALL (ws d:asc_desc)? (ws n:nulls_order)? => OrderBy{All: true, Direction: text($d), Nulls: text($n)}
+rule sort_list OrderBy = ORDER ws BY ws first:sortby rest:(-ws -"," -ws s:sortby)* => OrderBy{Items: concat(list($first), map($rest, (r) => r.$s))}
+rule sortby SortItem = sortby_using / sortby_plain
+rule sortby_using SortItem = e:expr ws USING ws u:qual_all_op (ws n:nulls_order)? => SortItem{Expr: $e, Using: text($u), Nulls: text($n)}
+rule sortby_plain SortItem = e:expr (ws d:asc_desc)? (ws n:nulls_order)? => SortItem{Expr: $e, Direction: text($d), Nulls: text($n)}
+rule asc_desc = ASC / DESC
+rule nulls_order node[string] = (NULLS ws (FIRST / LAST)) #atomic
+rule qual_all_op node[string] = all_op / operator_call
+
+rule limit_clause LimitClause = limit_comma / limit_all / limit_percent / limit_plain / limit_percent_sign / fetch_value_clause / fetch_clause
+rule limit_comma LimitClause = k:LIMIT ws v:expr ws "," ws o:expr => LimitClause{Keyword: text($k), Value: $v, Offset: $o}
+rule limit_all LimitClause = k:LIMIT ws ALL => LimitClause{Keyword: text($k), All: true}
+rule limit_percent LimitClause = k:LIMIT ws p:number ws pc:PERCENT => LimitClause{Keyword: text($k), Value: $p, Percent: text($pc)}
+rule limit_percent_sign LimitClause = k:LIMIT ws !(NOT / qual_op) v:level(expr, lv_mul) ws pc:op_percent => LimitClause{Keyword: text($k), Value: $v, Percent: text($pc)}
+rule limit_plain LimitClause = k:LIMIT ws v:expr !(ws op_percent) => LimitClause{Keyword: text($k), Value: $v}
+rule fetch_value_clause LimitClause = k:FETCH ws (FIRST / NEXT) ws v:fetch_value ws (ROW / ROWS) ws ONLY => LimitClause{Keyword: text($k), Value: $v}
+rule fetch_clause LimitClause = k:FETCH ws (FIRST / NEXT) ws (ROW / ROWS) ws ONLY => LimitClause{Keyword: text($k)}
+rule fetch_value Expr = fetch_signed / c_expr
+rule fetch_signed Number = (op_plus / op_minus) ws n:number => $n
+rule offset_clause OffsetClause = offset_rows / offset_plain
+rule offset_plain OffsetClause = OFFSET ws v:expr => OffsetClause{Value: $v}
+rule offset_rows OffsetClause = OFFSET ws v:fetch_value ws r:(ROW / ROWS) => OffsetClause{Value: $v, Rows: text($r)}
+
+rule locking_clauses []LockClause = first:locking_clause rest:(-ws c:locking_clause)* => concat(list($first), map($rest, (r) => r.$c))
+rule locking_clause LockClause = lock_read_only / lock_for
+rule lock_read_only LockClause = s:(FOR ws READ ws ONLY) #atomic => LockClause{Strength: text($s)}
+rule lock_for LockClause = (
+    s:(FOR ws (UPDATE / NO ws KEY ws UPDATE / SHARE / KEY ws SHARE)) #atomic (ws OF ws os:qualified_name_list)? (ws w:(NOWAIT / (SKIP ws LOCKED) #atomic))?
+) => LockClause{Strength: text($s), Of: concat($os), Wait: text($w)}
+rule qualified_name_list []Name = first:qualified_name rest:(-ws -"," -ws n:qualified_name)* => concat(list($first), map($rest, (r) => r.$n))
+
+// ---- SAMPLE ----
+
+rule sample_clause SampleClause = USING ws SAMPLE ws s:tablesample_entry => $s
+rule tablesample_clause SampleClause = TABLESAMPLE ws s:tablesample_entry => $s
+rule sample_value Expr = number / param
+// opt_sample_func '(' sample_count ')' opt_repeatable_clause | sample_count | sample_count '(' ColId [, ICONST] ')'
+rule tablesample_entry SampleClause = sample_func / sample_seeded / sample_count
+rule sample_func SampleClause = (
+    (f:col_id ws)? "(" ws v:sample_value (ws u:sample_unit)? ws ")" (ws REPEATABLE ws "(" ws r:iconst ws ")")?
+) => SampleClause{Method: $f, Value: $v, Unit: text($u), Repeatable: $r}
+rule sample_seeded SampleClause = v:sample_value (ws u:sample_unit)? ws "(" ws f:col_id (ws "," ws sd:iconst)? ws ")" => SampleClause{Method: $f, Value: $v, Unit: text($u), Seed: $sd}
+rule sample_count SampleClause = v:sample_value (ws u:sample_unit)? => SampleClause{Value: $v, Unit: text($u)}
+rule sample_unit = op_percent / PERCENT / ROWS
+
+// ---- Table references ----
+
+rule from_list []TableRef = first:table_ref rest:(-ws -"," -ws t:table_ref)* => concat(list($first), map($rest, (r) => r.$t))
+rule from_list_opt_comma []TableRef = first:table_ref rest:(-ws -"," -ws t:table_ref)* (ws ",")? => concat(list($first), map($rest, (r) => r.$t))
+
+// table_ref and its joins: a join is left associative unless it needs a qualification that comes after its
+// right side (a JOIN b JOIN c ON x ON y), so the right side of a qualified join is a table_ref of its own. The
+// joins that need none take only a table without joins, which makes them left associative.
+rule table_ref TableRef = #operators {
+    skip ws
+    operand table_primary
+
+    level lv_join {
+        postfix k:CROSS #atomic ws JOIN ws r:table_primary => Join{Left: $lhs, Kind: text($k), Right: $r}
+        postfix k:(NATURAL ws (join_type ws)?) #atomic JOIN ws r:table_primary => Join{Left: $lhs, Kind: text($k), Right: $r}
+        postfix k:POSITIONAL #atomic ws JOIN ws r:table_primary => Join{Left: $lhs, Kind: text($k), Right: $r}
+        postfix k:(ASOF ws (join_type ws)?) #atomic JOIN ws r:table_ref ws q:join_qual_on => Join{Left: $lhs, Kind: text($k), Right: $r, On: $q}
+        postfix k:(ASOF ws (join_type ws)?) #atomic JOIN ws r:table_ref ws q:join_qual_using => Join{Left: $lhs, Kind: text($k), Right: $r, Using: $q}
+        postfix k:(join_type ws)? #atomic JOIN ws r:table_ref ws q:join_qual_on => Join{Left: $lhs, Kind: text($k), Right: $r, On: $q}
+        postfix k:(join_type ws)? #atomic JOIN ws r:table_ref ws q:join_qual_using => Join{Left: $lhs, Kind: text($k), Right: $r, Using: $q}
+        postfix PIVOT ws "(" ws as:target_list_opt_comma ws FOR ws vs:pivot_value_list (ws GROUP ws BY ws g:name_list_opt_comma)? ws ")" (ws a:alias_clause)? => PivotRef{Source: $lhs, Aggregates: $as, Values: $vs, GroupBy: concat($g), Alias: $a}
+        postfix UNPIVOT (ws n:include_nulls)? ws "(" ws h:unpivot_header ws FOR ws vs:unpivot_value_list ws ")" (ws a:alias_clause)? => UnpivotRef{Source: $lhs, IncludeNulls: $n, Header: $h, Values: $vs, Alias: $a}
+    }
+}
+rule join_type node[string] = (FULL (ws OUTER)? / LEFT (ws OUTER)? / RIGHT (ws OUTER)? / SEMI / ANTI / INNER) #atomic
+rule join_qual_on Expr = ON ws e:expr => $e
+rule join_qual_using []Ident = USING ws "(" ws l:name_list_opt_comma ws ")" => $l
+rule include_nulls node[string] = ((INCLUDE / EXCLUDE) ws NULLS) #atomic
+rule unpivot_header []Ident = bracketed_names / unpivot_single
+rule unpivot_single []Ident = n:col_id_or_string => list($n)
+rule unpivot_value_list []UnpivotValue = first:unpivot_value rest:(-ws v:unpivot_value)* => concat(list($first), map($rest, (r) => r.$v))
+rule unpivot_value UnpivotValue = h:unpivot_header ws IN ws "(" ws is:target_list_opt_comma ws ")" => UnpivotValue{Header: $h, Items: $is}
+rule pivot_value_list []PivotValue = first:pivot_value rest:(-ws v:pivot_value)* => concat(list($first), map($rest, (r) => r.$v))
+rule pivot_value PivotValue = h:pivot_header ws IN ws ("(" ws is:target_list_opt_comma ws ")" / n:col_id_or_string) => PivotValue{Header: $h, Items: concat($is), Enum: $n}
+rule pivot_header []Expr = pivot_header_list / pivot_header_single
+rule pivot_header_list []Expr = "(" ws l:c_expr_list_opt_comma ws ")" => $l
+rule pivot_header_single []Expr = e:c_expr => list($e)
+rule c_expr_list_opt_comma []Expr = first:c_expr rest:(-ws -"," -ws e:c_expr)* (ws ",")? => concat(list($first), map($rest, (r) => r.$e))
+
+rule table_primary TableRef = values_ref / subquery_ref / paren_table / rows_from_ref / func_ref / base_ref
+
+// alias_prefix_colon_clause: ColIdOrString ':' (the alias comes first)
+rule alias_prefix Ident = n:col_id_or_string ws colon => $n
+
+rule base_ref BaseTable = (
+    (pa:alias_prefix ws)? (n:qualified_name st:(ws op_star)? / o:ONLY ws "(" ws n:qualified_name ws ")" / o:ONLY ws n:qualified_name) (ws a:alias_clause {$pa == nil})? (ws at:at_clause)? (ws s:tablesample_clause)?
+) => BaseTable{Prefix: $pa, Name: $n, Only: len($o) > 0, Star: len($st) > 0, Alias: $a, At: $at, Sample: $s}
+rule at_clause AtClause = AT ws "(" ws u:(TIMESTAMP / VERSION) #atomic ws op_eq_gt ws v:expr ws ")" => AtClause{Unit: text($u), Value: $v}
+
+rule subquery_ref SubqueryRef = (
+    (pa:alias_prefix ws)? (l:LATERAL ws)? q:select_with_parens (ws a:alias_clause {$pa == nil})? (ws s:tablesample_clause)?
+) => SubqueryRef{Prefix: $pa, Query: $q, Lateral: len($l) > 0, Alias: $a, Sample: $s}
+// a table in parentheses must be a join
+rule paren_table ParenTable = (
+    (pa:alias_prefix ws)? "(" ws &(table_primary ws join_start) t:table_ref ws ")" (ws a:alias_clause {$pa == nil})?
+) => ParenTable{Prefix: $pa, Table: $t, Alias: $a}
+rule join_start = CROSS / NATURAL / POSITIONAL / ASOF / FULL / LEFT / RIGHT / SEMI / ANTI / INNER / JOIN
+rule values_ref ValuesRef = (
+    (pa:alias_prefix ws)? v:values_clause ws a:alias_clause (ws s:tablesample_clause)?
+) => ValuesRef{Prefix: $pa, Values: $v, Alias: $a, Sample: $s}
+
+rule func_ref FuncTable = (
+    (pa:alias_prefix ws)? (l:LATERAL ws)? f:func_expr_windowless (ws WITH ws o:ORDINALITY)? (ws a:func_alias_clause {$pa == nil})? (ws s:tablesample_clause)?
+) => FuncTable{Prefix: $pa, Func: $f, Lateral: len($l) > 0, Ordinality: len($o) > 0, Alias: $a, Sample: $s}
+rule rows_from_ref FuncTable = (
+    (pa:alias_prefix ws)? ROWS ws FROM ws "(" ws first:rowsfrom_item rest:(-ws -"," -ws i:rowsfrom_item)* ws ")" (ws WITH ws o:ORDINALITY)? (ws a:func_alias_clause {$pa == nil})? (ws s:tablesample_clause)?
+) => FuncTable{Prefix: $pa, RowsFrom: concat(list($first), map($rest, (r) => r.$i)), Ordinality: len($o) > 0, Alias: $a, Sample: $s}
+rule rowsfrom_item RowsFromItem = f:func_expr_windowless (ws AS ws "(" ws cd:table_func_element_list ws ")")? => RowsFromItem{Func: $f, ColDefs: concat($cd)}
+rule func_expr_windowless Expr = cast_expr / special_call / func_call_bare
+rule func_call_bare FuncCall = (
+    n:func_name ws "(" ws
+    (q:(ALL / DISTINCT) ws a:func_arg_list (ws "," ws VARIADIC ws v:func_arg_expr)? / a:func_arg_list (ws "," ws VARIADIC ws v:func_arg_expr)? / VARIADIC ws v:func_arg_expr)?
+    (ws o:sort_clause)? (ws nl:opt_ignore_nulls)? ws ")"
+) => FuncCall{Name: $n, Quantifier: text($q), Args: concat($a), Variadic: $v, OrderBy: $o, Nulls: text($nl)}
+
+rule alias_clause TableAlias = alias_as_cols / alias_as / alias_cols / alias_bare
+rule alias_as_cols TableAlias = AS ws n:col_id_or_string ws "(" ws cs:name_list_opt_comma ws ")" => TableAlias{Name: $n, Columns: $cs, As: true}
+rule alias_as TableAlias = AS ws n:col_id_or_string => TableAlias{Name: $n, As: true}
+rule alias_cols TableAlias = n:col_id ws "(" ws cs:name_list_opt_comma ws ")" => TableAlias{Name: $n, Columns: $cs}
+rule alias_bare TableAlias = n:col_id => TableAlias{Name: $n}
+// func_alias_clause: the alias may name the columns with their types
+rule func_alias_clause TableAlias = alias_as_cols / falias_as_defs / falias_defs_only / alias_cols / falias_defs / alias_as / alias_bare
+rule falias_as_defs TableAlias = AS ws n:col_id_or_string ws "(" ws cd:table_func_element_list ws ")" => TableAlias{Name: $n, ColDefs: $cd, As: true}
+rule falias_defs_only TableAlias = AS ws "(" ws cd:table_func_element_list ws ")" => TableAlias{ColDefs: $cd, As: true}
+rule falias_defs TableAlias = n:col_id ws "(" ws cd:table_func_element_list ws ")" => TableAlias{Name: $n, ColDefs: $cd}
+rule table_func_element_list []ColDef = first:table_func_element rest:(-ws -"," -ws e:table_func_element)* => concat(list($first), map($rest, (r) => r.$e))
+rule table_func_element ColDef = n:col_id_or_string ws t:typename (ws COLLATE ws c:any_name)? => ColDef{Name: $n, Type: $t, Collate: $c}
+// ===================================================================================================
+// INSERT, UPDATE, DELETE, MERGE (insert.y, update.y, delete.y, merge_into.y)
+// ===================================================================================================
+
+rule target_list []SelectItem = first:select_item rest:(-ws -"," -ws i:select_item)* => concat(list($first), map($rest, (r) => r.$i))
+
+rule insert_stmt InsertStmt = (
+    (w:with_clause ws)? INSERT (ws oa:(OR ws (REPLACE / IGNORE)) #atomic)? ws INTO ws n:qualified_name (ws AS ws al:col_id)?
+    (ws by:(BY ws (NAME / POSITION)) #atomic)?
+    ws (dv:(DEFAULT ws VALUES) #atomic / (cs:insert_columns ws)? (ov:overriding ws)? q:select_stmt)
+    (ws oc:on_conflict)?
+    (ws RETURNING ws r:target_list)?
+) => InsertStmt{With: $w, OrAction: text($oa), Table: $n, Alias: $al, By: text($by), Columns: concat($cs), Overriding: text($ov), Query: $q, DefaultValues: len($dv) > 0, OnConflict: $oc, Returning: concat($r)}
+rule insert_columns []Name = "(" ws l:insert_column_list ws ")" => $l
+rule insert_column_list []Name = first:set_target rest:(-ws -"," -ws c:set_target)* => concat(list($first), map($rest, (r) => r.$c))
+rule set_target Name = any_name
+rule overriding node[string] = (OVERRIDING ws (USER / SYSTEM) ws VALUE) #atomic
+
+rule on_conflict OnConflict = (
+    ON ws CONFLICT
+    (ws "(" ws ip:index_params ws ")" (ws WHERE ws tw:expr)? / ws ON ws CONSTRAINT ws c:name)?
+    ws DO ws (UPDATE ws SET ws st:set_clause_list_opt_comma (ws WHERE ws w:expr)? / nothing:NOTHING)
+) => OnConflict{Target: concat($ip), TargetWhere: $tw, Constraint: $c, Nothing: len($nothing) > 0, Set: concat($st), Where: $w}
+rule index_params []IndexElem = first:index_elem rest:(-ws -"," -ws e:index_elem)* => concat(list($first), map($rest, (r) => r.$e))
+rule index_elem IndexElem = index_elem_func / index_elem_col / index_elem_expr
+rule index_elem_col IndexElem = (
+    c:col_id (ws COLLATE ws co:any_name)? (ws cl:opt_class)? (ws d:asc_desc)? (ws n:nulls_order)?
+) => IndexElem{Expr: ColumnRef{Parts: list($c)}, Collate: $co, Class: $cl, Direction: text($d), Nulls: text($n)}
+rule index_elem_func IndexElem = (
+    f:func_expr_windowless (ws COLLATE ws co:any_name)? (ws cl:opt_class)? (ws d:asc_desc)? (ws n:nulls_order)?
+) => IndexElem{Expr: $f, Collate: $co, Class: $cl, Direction: text($d), Nulls: text($n)}
+rule index_elem_expr IndexElem = (
+    "(" ws e:expr ws ")" (ws COLLATE ws co:any_name)? (ws cl:opt_class)? (ws d:asc_desc)? (ws n:nulls_order)?
+) => IndexElem{Expr: $e, Collate: $co, Class: $cl, Direction: text($d), Nulls: text($n)}
+rule opt_class Name = !(NULLS ws (FIRST / LAST)) n:any_name => $n
+
+rule set_clause_list_opt_comma []SetClause = first:set_clause rest:(-ws -"," -ws c:set_clause)* (ws ",")? => concat(list($first), map($rest, (r) => r.$c))
+rule set_clause SetClause = set_clause_paren / set_clause_one
+rule set_clause_one SetClause = t:set_target ws op_eq ws v:expr => SetClause{Targets: list($t), Value: $v}
+rule set_clause_paren SetClause = (
+    "(" ws first:set_target rest:(-ws -"," -ws c:set_target)* ws ")" ws op_eq ws v:expr
+) => SetClause{Targets: concat(list($first), map($rest, (r) => r.$c)), Value: $v, Paren: true}
+
+// relation_expr_opt_alias. SET is an unreserved keyword that follows the table of UPDATE.
+rule target_table TargetTable = (
+    (n:qualified_name st:(ws op_star)? / o:ONLY ws "(" ws n:qualified_name ws ")" / o:ONLY ws n:qualified_name) (ws kw:AS ws al:col_id / ws !SET al:col_id)?
+) => TargetTable{Name: $n, Only: len($o) > 0, Star: len($st) > 0, Alias: $al, As: len($kw) > 0}
+
+rule update_stmt UpdateStmt = (
+    (w:with_clause ws)? UPDATE ws t:target_table ws SET ws s:set_clause_list_opt_comma
+    (ws FROM ws f:from_list_opt_comma)? (ws WHERE ws wh:expr)? (ws RETURNING ws r:target_list)?
+) => UpdateStmt{With: $w, Table: $t, Set: $s, From: concat($f), Where: $wh, Returning: concat($r)}
+
+rule delete_stmt DeleteStmt = (
+    (w:with_clause ws)? DELETE ws FROM ws t:target_table (ws USING ws u:from_list_opt_comma)? (ws WHERE ws wh:expr)? (ws RETURNING ws r:target_list)?
+) => DeleteStmt{With: $w, Table: $t, Using: concat($u), Where: $wh, Returning: concat($r)}
+rule truncate_stmt DeleteStmt = TRUNCATE (ws TABLE)? ws t:target_table => DeleteStmt{Table: $t, Truncate: true}
+
+rule merge_stmt MergeStmt = (
+    (w:with_clause ws)? MERGE ws INTO ws t:target_table ws USING ws s:table_ref
+    ws (ON ws on:expr / USING ws "(" ws us:name_list_opt_comma ws ")")
+    ws first:merge_when rest:(-ws m:merge_when)* (ws RETURNING ws r:target_list)?
+) => MergeStmt{With: $w, Target: $t, Source: $s, On: $on, Using: concat($us), Whens: concat(list($first), map($rest, (x) => x.$m)), Returning: concat($r)}
+rule merge_when MergeWhen = merge_when_matched / merge_when_not
+rule merge_when_matched MergeWhen = WHEN ws MATCHED (ws AND ws c:expr)? ws THEN ws a:merge_action => MergeWhen{Not: false, Cond: $c, Action: $a}
+rule merge_when_not MergeWhen = (
+    WHEN ws NOT ws MATCHED (ws by:(BY ws (SOURCE / TARGET)) #atomic)? (ws AND ws c:expr)? ws THEN ws a:merge_action
+) => MergeWhen{Not: true, By: text($by), Cond: $c, Action: $a}
+rule merge_action MergeAction = ma_update_set / ma_update_star / ma_update / ma_delete / ma_insert_values / ma_insert_default / ma_insert / ma_nothing / ma_error
+rule ma_update_set MergeAction = k:UPDATE ws SET ws s:set_clause_list_opt_comma => MergeAction{Kind: text($k), Set: $s}
+rule ma_update_star MergeAction = k:UPDATE ws SET ws op_star => MergeAction{Kind: text($k), Star: true}
+rule ma_update MergeAction = k:UPDATE (ws by:(BY ws (NAME / POSITION)) #atomic)? => MergeAction{Kind: text($k), ByName: text($by)}
+rule ma_delete MergeAction = k:DELETE => MergeAction{Kind: text($k)}
+rule ma_insert_values MergeAction = (
+    k:INSERT (ws "(" ws cs:insert_column_ident_list ws ")")? ws VALUES ws "(" ws vs:expr_list_opt_comma ws ")"
+) => MergeAction{Kind: text($k), Columns: concat($cs), Values: $vs}
+rule insert_column_ident_list []Ident = first:col_id rest:(-ws -"," -ws c:col_id)* => concat(list($first), map($rest, (r) => r.$c))
+rule ma_insert_default MergeAction = k:INSERT ws DEFAULT ws VALUES => MergeAction{Kind: text($k), DefaultValues: true}
+rule ma_insert MergeAction = k:INSERT (ws by:(BY ws (NAME / POSITION)) #atomic)? (ws st:op_star)? => MergeAction{Kind: text($k), ByName: text($by), Star: len($st) > 0}
+rule ma_nothing MergeAction = k:(DO ws NOTHING) #atomic => MergeAction{Kind: text($k)}
+rule ma_error MergeAction = k:ERROR (ws m:expr)? => MergeAction{Kind: text($k), Message: $m}
+// ===================================================================================================
+// CREATE (create.y, create_as.y, view.y, index.y, create_schema.y, create_sequence.y, create_type.y,
+// create_function.y, create_secret.y)
+// ===================================================================================================
+
+rule opt_temp node[string] = (TEMPORARY / TEMP / LOCAL ws (TEMPORARY / TEMP) / GLOBAL ws (TEMPORARY / TEMP) / UNLOGGED) #atomic
+rule if_not_exists node[string] = (IF ws NOT ws EXISTS) #atomic
+rule if_exists node[string] = (IF ws EXISTS) #atomic
+rule or_replace node[string] = (OR ws REPLACE) #atomic
+
+// ---- CREATE TABLE ----
+
+rule create_table_stmt CreateTableStmt = (
+    CREATE (ws orr:or_replace)? (ws t:opt_temp)? ws TABLE (ws ine:if_not_exists {len($orr) == 0})? ws n:qualified_name
+    ws "(" ws els:table_element_list ws ")"
+    ps:(-ws p:partition_sorted_option)* (ws wo:opt_with_options)? (ws oc:on_commit_option)?
+) => CreateTableStmt{OrReplace: len($orr) > 0, Temp: text($t), IfNotExists: len($ine) > 0, Name: $n, Elements: $els, PartitionSorted: map($ps, (x) => x.$p), With: concat($wo), OnCommit: text($oc)}
+rule table_element_list []TableElement = first:table_element rest:(-ws -"," -ws e:table_element)* (ws ",")? => concat(list($first), map($rest, (r) => r.$e))
+rule table_element TableElement = table_constraint / table_like / column_def
+rule partition_sorted_option PartitionSorted = k:(PARTITIONED / SORTED) #atomic ws BY ws "(" ws xs:expr_list_opt_comma ws ")" => PartitionSorted{Kind: $k, Exprs: $xs}
+// OptWith: WITH reloptions | WITH OIDS | WITHOUT OIDS
+rule opt_with_options []Reloption = with_reloptions / with_oids
+rule with_reloptions []Reloption = WITH ws "(" ws l:reloption_list ws ")" => $l
+rule with_oids []Reloption = WITH ws OIDS / WITHOUT ws OIDS => list()
+rule on_commit_option node[string] = (ON ws COMMIT ws (DROP / DELETE ws ROWS / PRESERVE ws ROWS)) #atomic
+
+rule reloption_list []Reloption = first:reloption_elem rest:(-ws -"," -ws e:reloption_elem)* => concat(list($first), map($rest, (r) => r.$e))
+rule reloption_elem Reloption = reloption_def / reloption_expr
+rule reloption_def Reloption = a:col_label ws "." ws b:col_label (ws op_eq ws v:def_arg)? => Reloption{Name: Name{Parts: list($a, $b)}, Arg: $v}
+rule reloption_expr Reloption = n:reloption_name (ws op_eq ws v:expr)? => Reloption{Name: $n, Value: $v}
+rule reloption_name Name = c:col_label_or_string => Name{Parts: list($c)}
+// def_arg: func_type | reserved_keyword | qual_all_Op | NumericOnly | Sconst | NONE
+rule def_arg node[string] = (typename / &kw_reserved word / qual_all_op / numeric_only / sconst / NONE) #atomic
+rule numeric_only node[string] = ((op_plus / op_minus)? ws number) #atomic
+rule def_list []DefElem = first:def_elem rest:(-ws -"," -ws e:def_elem)* => concat(list($first), map($rest, (r) => r.$e))
+rule def_elem DefElem = n:col_label (ws op_eq ws v:def_arg)? => DefElem{Name: $n, Value: text($v)}
+rule definition []DefElem = "(" ws l:def_list ws ")" => $l
+rule opt_definition []DefElem = WITH ws d:definition => $d
+
+// ---- Table elements ----
+
+rule column_def ColumnDef = column_def_generated / column_def_regular
+rule column_def_regular ColumnDef = n:col_id ws t:typename cs:(-ws c:col_constraint)* => ColumnDef{Name: $n, Type: $t, Constraints: map($cs, (x) => x.$c)}
+rule column_def_generated ColumnDef = (
+    n:col_id (ws t:typename)? ws g:generated_constraint cs:(-ws c:col_constraint)*
+) => ColumnDef{Name: $n, Type: $t, Generated: $g, Constraints: map($cs, (x) => x.$c)}
+rule generated_constraint GeneratedColumn = gen_identity / gen_expr / gen_as
+rule gen_identity GeneratedColumn = GENERATED ws w:generated_when ws AS ws IDENTITY (ws "(" ws so:seq_opt_list ws ")")? => GeneratedColumn{When: text($w), Identity: true, SeqOptions: concat($so)}
+rule gen_expr GeneratedColumn = GENERATED ws w:generated_when ws AS ws "(" ws e:expr ws ")" (ws st:generated_storage)? => GeneratedColumn{When: text($w), Expr: $e, Storage: text($st)}
+rule gen_as GeneratedColumn = AS ws "(" ws e:expr ws ")" (ws st:generated_storage)? => GeneratedColumn{Expr: $e, Storage: text($st)}
+rule generated_when node[string] = (ALWAYS / BY ws DEFAULT) #atomic
+rule generated_storage = VIRTUAL / STORED
+
+rule constraint_name Ident = CONSTRAINT ws n:name => $n
+rule col_constraint ColumnConstraint = cc_not_null / cc_null / cc_unique / cc_primary / cc_check / cc_compression / cc_default / cc_references / cc_attr / cc_collate
+rule cc_not_null ColumnConstraint = (cn:constraint_name ws)? k:(NOT ws NULL) #atomic => ColumnConstraint{Name: $cn, Kind: text($k)}
+rule cc_null ColumnConstraint = (cn:constraint_name ws)? k:NULL => ColumnConstraint{Name: $cn, Kind: text($k)}
+rule cc_unique ColumnConstraint = (cn:constraint_name ws)? k:UNIQUE (ws o:opt_definition)? => ColumnConstraint{Name: $cn, Kind: text($k), Options: concat($o)}
+rule cc_primary ColumnConstraint = (cn:constraint_name ws)? k:(PRIMARY ws KEY) #atomic (ws o:opt_definition)? => ColumnConstraint{Name: $cn, Kind: text($k), Options: concat($o)}
+rule cc_check ColumnConstraint = (cn:constraint_name ws)? k:CHECK ws "(" ws e:expr ws ")" (ws NO ws INHERIT)? => ColumnConstraint{Name: $cn, Kind: text($k), Expr: $e}
+rule cc_compression ColumnConstraint = (cn:constraint_name ws)? k:(USING ws COMPRESSION) #atomic ws c:name => ColumnConstraint{Name: $cn, Kind: text($k), Compression: $c}
+rule cc_default ColumnConstraint = (cn:constraint_name ws)? k:DEFAULT ws e:b_expr => ColumnConstraint{Name: $cn, Kind: text($k), Expr: $e}
+rule cc_references ColumnConstraint = (cn:constraint_name ws)? k:REFERENCES ws r:reference => ColumnConstraint{Name: $cn, Kind: text($k), Reference: $r}
+rule cc_attr ColumnConstraint = k:constraint_attr => ColumnConstraint{Kind: text($k)}
+rule cc_collate ColumnConstraint = k:COLLATE ws c:any_name => ColumnConstraint{Kind: text($k), Collation: $c}
+rule constraint_attr node[string] = (DEFERRABLE / NOT ws DEFERRABLE / INITIALLY ws (DEFERRED / IMMEDIATE)) #atomic
+
+rule reference Reference = (
+    t:qualified_name (ws "(" ws cs:column_list ws ")")? (ws m:key_match)?
+    (ws (ku:key_update (ws kd:key_delete)? / kd:key_delete (ws ku:key_update)?))?
+) => Reference{Table: $t, Columns: concat($cs), Match: $m, OnUpdate: $ku, OnDelete: $kd}
+rule column_list []Ident = col_id_list
+rule column_list_opt_comma []Ident = l:col_id_list (ws ",")? => $l
+rule key_match node[string] = (MATCH ws (FULL / PARTIAL / SIMPLE)) #atomic
+rule key_update node[string] = (ON ws UPDATE ws key_action) #atomic
+rule key_delete node[string] = (ON ws DELETE ws key_action) #atomic
+rule key_action = NO ws ACTION / RESTRICT / CASCADE / SET ws NULL / SET ws DEFAULT
+
+rule table_constraint TableConstraint = tc_check / tc_unique / tc_unique_index / tc_primary / tc_primary_index / tc_foreign
+rule constraint_attrs []node[string] = as:(-ws a:constraint_attribute)* => map($as, (x) => x.$a)
+rule constraint_attribute node[string] = (NOT ws DEFERRABLE / DEFERRABLE / INITIALLY ws IMMEDIATE / INITIALLY ws DEFERRED / NOT ws VALID / NO ws INHERIT) #atomic
+rule tc_check TableConstraint = (cn:constraint_name ws)? k:CHECK ws "(" ws e:expr ws ")" at:constraint_attrs => TableConstraint{Name: $cn, Kind: text($k), Expr: $e, Attributes: $at}
+rule tc_unique TableConstraint = (
+    (cn:constraint_name ws)? k:UNIQUE ws "(" ws cs:column_list_opt_comma ws ")" (ws o:opt_definition)? at:constraint_attrs
+) => TableConstraint{Name: $cn, Kind: text($k), Columns: $cs, Options: concat($o), Attributes: $at}
+rule tc_unique_index TableConstraint = (cn:constraint_name ws)? k:UNIQUE ws USING ws INDEX ws i:col_id at:constraint_attrs => TableConstraint{Name: $cn, Kind: text($k), Index: $i, Attributes: $at}
+rule tc_primary TableConstraint = (
+    (cn:constraint_name ws)? k:(PRIMARY ws KEY) #atomic ws "(" ws cs:column_list_opt_comma ws ")" (ws o:opt_definition)? at:constraint_attrs
+) => TableConstraint{Name: $cn, Kind: text($k), Columns: $cs, Options: concat($o), Attributes: $at}
+rule tc_primary_index TableConstraint = (cn:constraint_name ws)? k:(PRIMARY ws KEY) #atomic ws USING ws INDEX ws i:col_id at:constraint_attrs => TableConstraint{Name: $cn, Kind: text($k), Index: $i, Attributes: $at}
+rule tc_foreign TableConstraint = (
+    (cn:constraint_name ws)? k:(FOREIGN ws KEY) #atomic ws "(" ws cs:column_list_opt_comma ws ")" ws REFERENCES ws r:reference at:constraint_attrs
+) => TableConstraint{Name: $cn, Kind: text($k), Columns: $cs, Reference: $r, Attributes: $at}
+
+rule table_like TableLike = LIKE ws t:qualified_name os:(-ws o:table_like_option)* => TableLike{Table: $t, Options: map($os, (x) => x.$o)}
+rule table_like_option node[string] = ((INCLUDING / EXCLUDING) ws (COMMENTS / CONSTRAINTS / DEFAULTS / IDENTITY / INDEXES / STATISTICS / STORAGE / ALL)) #atomic
+
+// ---- CREATE TABLE AS ----
+
+rule create_table_as_stmt CreateTableAsStmt = (
+    CREATE (ws orr:or_replace)? (ws t:opt_temp)? ws TABLE (ws ine:if_not_exists {len($orr) == 0})? ws n:qualified_name
+    (ws "(" ws cs:column_list ws ")")?
+    ps:(-ws p:partition_sorted_option)* (ws wo:opt_with_options)? (ws oc:on_commit_option)?
+    ws AS ws src:(select_stmt / execute_stmt) (ws wd:with_data)?
+) => CreateTableAsStmt{OrReplace: len($orr) > 0, Temp: text($t), IfNotExists: len($ine) > 0, Name: $n, Columns: concat($cs), PartitionSorted: map($ps, (x) => x.$p), With: concat($wo), OnCommit: text($oc), Source: $src, WithData: text($wd)}
+rule with_data node[string] = (WITH ws (NO ws)? DATA) #atomic
+
+// ---- CREATE VIEW ----
+
+rule create_view_stmt CreateViewStmt = (
+    CREATE (ws orr:or_replace)? (ws t:opt_temp)? (ws r:RECURSIVE)? ws VIEW (ws ine:if_not_exists {len($orr) == 0})? ws n:qualified_name
+    (ws "(" ws cs:column_list ws ")")? (ws WITH ws "(" ws o:reloption_list ws ")")? ws AS ws q:select_stmt (ws co:check_option)?
+) => CreateViewStmt{OrReplace: len($orr) > 0, Temp: text($t), Recursive: len($r) > 0, IfNotExists: len($ine) > 0, Name: $n, Columns: concat($cs), Options: concat($o), Query: $q, CheckOption: text($co)}
+rule check_option node[string] = (WITH ws (CASCADED ws / LOCAL ws)? CHECK ws OPTION) #atomic
+
+// ---- CREATE INDEX ----
+
+rule create_index_stmt CreateIndexStmt = (
+    CREATE (ws u:UNIQUE)? ws INDEX (ws cc:CONCURRENTLY)? (ws ine:if_not_exists ws n:col_id / ws n:col_id)? ws ON ws t:qualified_name
+    (ws USING ws m:col_id)? ws "(" ws ps:index_params ws ")" (ws WITH ws "(" ws o:reloption_list ws ")")? (ws WHERE ws w:expr)?
+) => CreateIndexStmt{Unique: len($u) > 0, Concurrently: len($cc) > 0, IfNotExists: len($ine) > 0, Name: $n, Table: $t, Method: $m, Params: $ps, Options: concat($o), Where: $w}
+
+// ---- CREATE SCHEMA, SEQUENCE, TYPE ----
+
+rule create_schema_stmt CreateSchemaStmt = (
+    CREATE (ws orr:or_replace)? ws SCHEMA (ws ine:if_not_exists {len($orr) == 0})? ws n:qualified_name es:(-ws e:schema_stmt)*
+) => CreateSchemaStmt{OrReplace: len($orr) > 0, IfNotExists: len($ine) > 0, Name: $n, Elements: map($es, (x) => x.$e)}
+rule schema_stmt Statement = create_table_stmt / create_index_stmt / create_sequence_stmt / create_view_stmt
+
+rule create_sequence_stmt CreateSequenceStmt = (
+    CREATE (ws orr:or_replace)? (ws t:opt_temp)? ws SEQUENCE (ws ine:if_not_exists {len($orr) == 0})? ws n:qualified_name (ws os:seq_opt_list)?
+) => CreateSequenceStmt{OrReplace: len($orr) > 0, Temp: text($t), IfNotExists: len($ine) > 0, Name: $n, Options: concat($os)}
+rule seq_opt_list []SeqOption = first:seq_opt_elem rest:(-ws o:seq_opt_elem)* => concat(list($first), map($rest, (r) => r.$o))
+rule seq_opt_elem SeqOption = so_as / so_num / so_flag / so_owned / so_seqname / so_restart
+rule so_as SeqOption = k:AS ws t:typename => SeqOption{Kind: text($k), Type: $t}
+rule so_num SeqOption = k:(CACHE / INCREMENT (ws BY)? / MAXVALUE / MINVALUE / START (ws WITH)?) #atomic ws v:numeric_only => SeqOption{Kind: text($k), Value: text($v)}
+rule so_flag SeqOption = k:(CYCLE / NO ws (CYCLE / MAXVALUE / MINVALUE)) #atomic => SeqOption{Kind: text($k)}
+rule so_owned SeqOption = k:(OWNED ws BY) #atomic ws o:any_name => SeqOption{Kind: text($k), Owner: $o}
+rule so_seqname SeqOption = k:(SEQUENCE ws NAME) #atomic ws o:any_name => SeqOption{Kind: text($k), Owner: $o}
+rule so_restart SeqOption = k:RESTART (ws (WITH ws)? v:numeric_only)? => SeqOption{Kind: text($k), Value: text($v)}
+
+rule create_type_stmt CreateTypeStmt = (
+    CREATE (ws orr:or_replace)? (ws t:opt_temp)? ws TYPE (ws ine:if_not_exists {len($orr) == 0})? ws n:qualified_name ws AS ws
+    (en:ENUM ws (q:select_with_parens / "(" ws vs:enum_val_list? ws ")") / !(ENUM ws "(") ty:typename)
+) => CreateTypeStmt{OrReplace: len($orr) > 0, Temp: text($t), IfNotExists: len($ine) > 0, Name: $n, Enum: len($en) > 0, Values: concat($vs), Query: $q, Type: $ty}
+rule enum_val_list []StringLit = first:sconst rest:(-ws -"," -ws s:sconst)* => concat(list($first), map($rest, (r) => r.$s))
+
+// ---- CREATE MACRO ----
+
+rule create_macro_stmt CreateMacroStmt = (
+    CREATE (ws orr:or_replace)? (ws t:opt_temp)? ws (f:FUNCTION / MACRO) (ws ine:if_not_exists {len($orr) == 0})? ws n:qualified_name ws ds:macro_definitions
+) => CreateMacroStmt{OrReplace: len($orr) > 0, Temp: text($t), Function: len($f) > 0, IfNotExists: len($ine) > 0, Name: $n, Definitions: $ds}
+rule macro_definitions []MacroDef = macro_table_list / macro_expr_list
+rule macro_expr_list []MacroDef = first:macro_expr_def rest:(-ws -"," -ws d:macro_expr_def)* => concat(list($first), map($rest, (r) => r.$d))
+rule macro_expr_def MacroDef = ps:param_list ws AS ws e:expr => MacroDef{Params: $ps, Expr: $e}
+rule macro_table_list []MacroDef = macro_table_one_end / macro_table_many
+rule macro_table_one_end []MacroDef = l:macro_table_one &stmt_end => $l
+rule macro_table_one []MacroDef = ps:param_list ws AS ws TABLE ws q:select_no_parens => list(MacroDef{Params: $ps, Query: $q})
+rule macro_table_many []MacroDef = first:macro_table_paren rest:(-ws -"," -ws d:macro_table_paren)* => concat(list($first), map($rest, (r) => r.$d))
+rule macro_table_paren MacroDef = ps:param_list ws AS ws TABLE ws q:select_with_parens => MacroDef{Params: $ps, Query: $q}
+rule param_list []MacroParam = "(" ws ps:macro_params? ws ")" => concat($ps)
+rule macro_params []MacroParam = first:macro_param rest:(-ws -"," -ws p:macro_param)* (ws ",")? => concat(list($first), map($rest, (r) => r.$p))
+rule macro_param MacroParam = n:param_name (ws t:typename)? (ws (":=" / ar:op_eq_gt) ws d:expr)? => MacroParam{Name: $n, Type: $t, Default: $d, Arrow: len($ar) > 0}
+
+// ---- CREATE SECRET ----
+
+rule create_secret_stmt CreateSecretStmt = (
+    CREATE (ws orr:or_replace)? (ws p:(TEMPORARY / PERSISTENT) #atomic)? ws SECRET (ws ine:if_not_exists {len($orr) == 0})? (ws n:col_id)? (ws IN ws st:ident_only)? ws "(" ws os:secret_options ws ")"
+) => CreateSecretStmt{OrReplace: len($orr) > 0, Persist: text($p), IfNotExists: len($ine) > 0, Name: $n, Storage: $st, Options: $os}
+rule secret_options []SecretOption = first:secret_option rest:(-ws -"," -ws o:secret_option)* => concat(list($first), map($rest, (r) => r.$o))
+rule secret_option SecretOption = n:col_label ws v:expr => SecretOption{Name: $n, Value: $v}
+// ===================================================================================================
+// ALTER, RENAME, DROP (alter_table.y, alter_sequence.y, alter_database.y, alter_schema.y, rename.y, drop.y)
+// ===================================================================================================
+
+rule alter_table_stmt AlterTableStmt = alter_relation_stmt / alter_name_stmt
+rule alter_relation_stmt AlterTableStmt = (
+    ALTER ws k:TABLE (ws ie:if_exists)? ws (n:qualified_name st:(ws op_star)? / o:ONLY ws "(" ws n:qualified_name ws ")" / o:ONLY ws n:qualified_name) ws cs:alter_table_cmds
+) => AlterTableStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, Only: len($o) > 0, Star: len($st) > 0, Commands: $cs}
+rule alter_name_stmt AlterTableStmt = (
+    ALTER ws k:(INDEX / SEQUENCE / VIEW) (ws ie:if_exists)? ws n:qualified_name ws cs:alter_table_cmds
+) => AlterTableStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, Commands: $cs}
+rule alter_table_cmds []AlterCmd = first:alter_table_cmd rest:(-ws -"," -ws c:alter_table_cmd)* => concat(list($first), map($rest, (r) => r.$c))
+
+// a column that may be a path into a struct: a.b.c
+rule qualified_column Name = n:any_name => $n
+
+rule alter_table_cmd AlterCmd = (
+    ac_add_constraint / ac_add_generated / ac_add_column / ac_set_partitioned / ac_reset_partitioned / ac_set_sorted / ac_reset_sorted
+    / ac_alter_column / ac_drop_column / ac_alter_constraint / ac_validate / ac_drop_constraint
+    / ac_set_logged / ac_set_options / ac_reset_options / ac_generic
+)
+rule ac_add_constraint AlterCmd = k:ADD ws c:table_constraint => AlterCmd{Kind: text($k), Constraint: $c}
+rule ac_add_column AlterCmd = (
+    k:(ADD (ws COLUMN)?) #atomic (ws ine:if_not_exists)? ws q:qualified_column ws t:typename cs:(-ws c:col_constraint)*
+) => AlterCmd{Kind: text($k), IfNotExists: len($ine) > 0, Column: $q, Type: $t, Constraints: map($cs, (x) => x.$c)}
+rule ac_add_generated AlterCmd = (
+    k:(ADD (ws COLUMN)?) #atomic (ws ine:if_not_exists)? ws q:qualified_column (ws t:typename)? ws g:generated_constraint cs:(-ws c:col_constraint)*
+) => AlterCmd{Kind: text($k), IfNotExists: len($ine) > 0, Column: $q, Type: $t, Generated: $g, Constraints: map($cs, (x) => x.$c)}
+rule ac_set_partitioned AlterCmd = k:(SET ws PARTITIONED ws BY) #atomic ws "(" ws xs:expr_list_opt_comma ws ")" => AlterCmd{Kind: text($k), Exprs: $xs}
+rule ac_reset_partitioned AlterCmd = k:(RESET ws PARTITIONED ws BY) #atomic => AlterCmd{Kind: text($k)}
+rule ac_set_sorted AlterCmd = k:(SET ws SORTED ws BY) #atomic ws "(" ws l:sortby_list ws ")" => AlterCmd{Kind: text($k), SortBy: $l}
+rule ac_reset_sorted AlterCmd = k:(RESET ws SORTED ws BY) #atomic => AlterCmd{Kind: text($k)}
+rule sortby_list []SortItem = first:sortby rest:(-ws -"," -ws s:sortby)* => concat(list($first), map($rest, (r) => r.$s))
+
+rule ac_alter_column AlterCmd = (
+    ac_col_default / ac_col_drop_default / ac_col_not_null / ac_col_statistics / ac_col_set_options / ac_col_reset_options
+    / ac_col_storage / ac_col_add_identity / ac_col_drop_identity / ac_col_identity / ac_col_type / ac_col_generic
+)
+rule alter_column_head node[string] = (ALTER (ws COLUMN)?) #atomic
+rule ac_col_default AlterCmd = k:alter_column_head ws c:col_id ws SET ws DEFAULT ws e:expr => AlterCmd{Kind: text($k), Name: $c, Expr: $e}
+rule ac_col_drop_default AlterCmd = k:alter_column_head ws c:col_id ws DROP ws DEFAULT => AlterCmd{Kind: text($k), Name: $c}
+rule ac_col_not_null AlterCmd = k:alter_column_head ws c:col_id ws (DROP / SET) ws NOT ws NULL => AlterCmd{Kind: text($k), Name: $c}
+rule ac_col_statistics AlterCmd = k:alter_column_head ws c:col_id ws SET ws STATISTICS ws v:signed_iconst => AlterCmd{Kind: text($k), Name: $c, Value: text($v)}
+rule ac_col_set_options AlterCmd = k:alter_column_head ws c:col_id ws SET ws "(" ws o:reloption_list ws ")" => AlterCmd{Kind: text($k), Name: $c, Options: $o}
+rule ac_col_reset_options AlterCmd = k:alter_column_head ws c:col_id ws RESET ws "(" ws o:reloption_list ws ")" => AlterCmd{Kind: text($k), Name: $c, Options: $o}
+rule ac_col_storage AlterCmd = k:alter_column_head ws c:col_id ws SET ws STORAGE ws v:col_id #atomic => AlterCmd{Kind: text($k), Name: $c, Value: text($v)}
+rule ac_col_add_identity AlterCmd = (
+    k:alter_column_head ws c:col_id ws ADD ws GENERATED ws w:generated_when ws AS ws IDENTITY (ws "(" ws so:seq_opt_list ws ")")?
+) => AlterCmd{Kind: text($k), Name: $c, When: text($w), Identity: concat($so)}
+rule ac_col_drop_identity AlterCmd = k:alter_column_head ws c:col_id ws DROP ws IDENTITY (ws ie:if_exists)? => AlterCmd{Kind: text($k), Name: $c, IfExists: len($ie) > 0}
+rule ac_col_identity AlterCmd = k:alter_column_head ws c:col_id ws is:identity_options => AlterCmd{Kind: text($k), Name: $c, Identity: $is}
+rule identity_options []SeqOption = first:identity_option rest:(-ws o:identity_option)* => concat(list($first), map($rest, (r) => r.$o))
+rule identity_option SeqOption = so_restart / io_set / io_generated
+rule io_set SeqOption = SET ws o:seq_opt_elem => $o
+rule io_generated SeqOption = k:(SET ws GENERATED) #atomic ws w:generated_when => SeqOption{Kind: text($k), Value: text($w)}
+rule ac_col_type AlterCmd = (
+    k:alter_column_head ws c:col_id ws (SET ws DATA ws / SET ws)? TYPE (ws t:typename)? (ws COLLATE ws co:any_name)? (ws USING ws u:expr)?
+) => AlterCmd{Kind: text($k), Name: $c, Type: $t, Collate: $co, Using: $u}
+rule ac_col_generic AlterCmd = k:alter_column_head ws c:col_id ws g:alter_generic_options => AlterCmd{Kind: text($k), Name: $c, Generic: $g}
+rule signed_iconst node[string] = ((op_plus / op_minus)? ws iconst) #atomic
+
+rule ac_drop_column AlterCmd = k:(DROP (ws COLUMN)?) #atomic (ws ie:if_exists)? ws q:qualified_column (ws b:drop_behavior)? => AlterCmd{Kind: text($k), IfExists: len($ie) > 0, Column: $q, Behavior: text($b)}
+rule ac_alter_constraint AlterCmd = k:(ALTER ws CONSTRAINT) #atomic ws n:name constraint_attrs => AlterCmd{Kind: text($k), Name: $n}
+rule ac_validate AlterCmd = k:(VALIDATE ws CONSTRAINT) #atomic ws n:name => AlterCmd{Kind: text($k), Name: $n}
+rule ac_drop_constraint AlterCmd = k:(DROP ws CONSTRAINT) #atomic (ws ie:if_exists)? ws n:name (ws b:drop_behavior)? => AlterCmd{Kind: text($k), IfExists: len($ie) > 0, Name: $n, Behavior: text($b)}
+rule ac_set_logged AlterCmd = k:(SET ws (LOGGED / UNLOGGED)) #atomic => AlterCmd{Kind: text($k)}
+rule ac_set_options AlterCmd = k:SET ws "(" ws o:reloption_list ws ")" => AlterCmd{Kind: text($k), Options: $o}
+rule ac_reset_options AlterCmd = k:RESET ws "(" ws o:reloption_list ws ")" => AlterCmd{Kind: text($k), Options: $o}
+rule ac_generic AlterCmd = k:OPTIONS ws g:alter_generic_list => AlterCmd{Kind: text($k), Generic: $g}
+rule alter_generic_options []GenericAlterOption = OPTIONS ws g:alter_generic_list => $g
+rule alter_generic_list []GenericAlterOption = "(" ws first:alter_generic_option rest:(-ws -"," -ws o:alter_generic_option)* ws ")" => concat(list($first), map($rest, (r) => r.$o))
+rule alter_generic_option GenericAlterOption = ago_value / ago_drop
+rule ago_value GenericAlterOption = (a:(SET / ADD) ws)? n:col_label ws v:sconst => GenericAlterOption{Action: text($a), Name: $n, Value: $v}
+rule ago_drop GenericAlterOption = a:DROP ws n:col_label => GenericAlterOption{Action: text($a), Name: $n}
+rule drop_behavior = CASCADE / RESTRICT
+
+rule alter_sequence_stmt AlterSequenceStmt = ALTER ws SEQUENCE (ws ie:if_exists)? ws n:qualified_name ws os:seq_opt_list => AlterSequenceStmt{IfExists: len($ie) > 0, Name: $n, Options: $os}
+rule alter_database_stmt AlterDatabaseStmt = ALTER ws DATABASE (ws ie:if_exists)? ws n:col_id ws SET ws s:ident_only ws TO ws v:col_id => AlterDatabaseStmt{IfExists: len($ie) > 0, Name: $n, Setting: $s, Value: $v}
+rule alter_object_schema_stmt AlterObjectSchemaStmt = alter_schema_relation / alter_schema_name
+rule alter_schema_relation AlterObjectSchemaStmt = (
+    ALTER ws k:TABLE (ws ie:if_exists)? ws (ONLY ws "(" ws n:qualified_name ws ")" / ONLY ws n:qualified_name / n:qualified_name (ws op_star)?) ws SET ws SCHEMA ws s:name
+) => AlterObjectSchemaStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, Schema: $s}
+rule alter_schema_name AlterObjectSchemaStmt = (
+    ALTER ws k:(SEQUENCE / VIEW) (ws ie:if_exists)? ws n:qualified_name ws SET ws SCHEMA ws s:name
+) => AlterObjectSchemaStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, Schema: $s}
+
+rule rename_stmt RenameStmt = rename_schema / rename_column / rename_constraint / rename_object
+rule rename_schema RenameStmt = k:(ALTER ws SCHEMA) #atomic ws n:name ws RENAME ws TO ws t:name => RenameStmt{Object: text($k), Name: Name{Parts: list($n)}, NewName: $t}
+rule rename_object RenameStmt = rename_relation / rename_name
+rule rename_relation RenameStmt = (
+    ALTER ws k:TABLE (ws ie:if_exists)? ws (ONLY ws "(" ws n:qualified_name ws ")" / ONLY ws n:qualified_name / n:qualified_name (ws op_star)?) ws RENAME ws TO ws t:name
+) => RenameStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, NewName: $t}
+rule rename_name RenameStmt = (
+    ALTER ws k:(SEQUENCE / VIEW / INDEX) (ws ie:if_exists)? ws n:qualified_name ws RENAME ws TO ws t:name
+) => RenameStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, NewName: $t}
+rule rename_column RenameStmt = (
+    ALTER ws k:TABLE (ws ie:if_exists)? ws (ONLY ws "(" ws n:qualified_name ws ")" / ONLY ws n:qualified_name / n:qualified_name (ws op_star)?) ws RENAME (ws COLUMN)? ws c:qualified_column ws TO ws t:name
+) => RenameStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, Column: $c, NewName: $t}
+rule rename_constraint RenameStmt = (
+    ALTER ws k:TABLE (ws ie:if_exists)? ws (ONLY ws "(" ws n:qualified_name ws ")" / ONLY ws n:qualified_name / n:qualified_name (ws op_star)?) ws RENAME ws CONSTRAINT ws c:name ws TO ws t:name
+) => RenameStmt{Object: text($k), IfExists: len($ie) > 0, Name: $n, Constraint: $c, NewName: $t}
+
+// ---- DROP ----
+
+rule drop_stmt DropStmt = drop_any_name / drop_name / drop_on
+rule drop_any_name DropStmt = DROP ws k:drop_type_any_name (ws ie:if_exists)? ws ns:any_name_list (ws b:drop_behavior)? => DropStmt{Type: text($k), IfExists: len($ie) > 0, Names: $ns, Behavior: text($b)}
+rule drop_name DropStmt = DROP ws k:drop_type_name (ws ie:if_exists)? ws ns:name_as_name_list (ws b:drop_behavior)? => DropStmt{Type: text($k), IfExists: len($ie) > 0, Names: $ns, Behavior: text($b)}
+rule drop_on DropStmt = (
+    DROP ws k:(POLICY / RULE / TRIGGER) #atomic (ws ie:if_exists)? ws n:name ws ON ws o:any_name (ws b:drop_behavior)?
+) => DropStmt{Type: text($k), IfExists: len($ie) > 0, Names: list(Name{Parts: list($n)}), On: $o, Behavior: text($b)}
+rule drop_type_any_name node[string] = (TABLE / SEQUENCE / FUNCTION / MACRO (ws TABLE)? / VIEW / MATERIALIZED ws VIEW / INDEX / FOREIGN ws TABLE / COLLATION / CONVERSION / SCHEMA / STATISTICS / TEXT ws SEARCH ws (PARSER / DICTIONARY / TEMPLATE / CONFIGURATION) / TYPE) #atomic
+rule drop_type_name node[string] = (ACCESS ws METHOD / EVENT ws TRIGGER / EXTENSION / FOREIGN ws DATA ws WRAPPER / PUBLICATION / SERVER) #atomic
+rule any_name_list []Name = first:any_name rest:(-ws -"," -ws n:any_name)* => concat(list($first), map($rest, (r) => r.$n))
+rule name_as_name_list []Name = first:name rest:(-ws -"," -ws n:name)* => concat(list(Name{Parts: list($first)}), map($rest, (r) => Name{Parts: list(r.$n)}))
+rule drop_secret_stmt DropSecretStmt = (
+    DROP (ws p:(TEMPORARY / PERSISTENT) #atomic)? ws SECRET (ws ie:if_exists)? ws n:col_id (ws FROM ws st:ident_only)?
+) => DropSecretStmt{Persist: text($p), IfExists: len($ie) > 0, Name: $n, Storage: $st}
+// ===================================================================================================
+// COPY, EXPORT, ATTACH, SET, SHOW, EXPLAIN, ... (copy.y, export.y, attach.y, load.y, pragma.y, ...)
+// ===================================================================================================
+
+// ---- COPY ----
+
+rule copy_stmt Statement = copy_table / copy_query / copy_database
+rule copy_table CopyStmt = (
+    COPY (ws b:BINARY)? ws t:qualified_name (ws "(" ws cs:column_list ws ")")? (ws WITH ws OIDS)?
+    ws d:(FROM / TO) (ws pr:PROGRAM)? ws (f:copy_file / s:(STDIN / STDOUT) #atomic)
+    (ws (USING ws)? DELIMITERS ws dl:sconst)? (ws WITH)?
+    (ws g:generic_opt_list / ls:(-ws o:copy_opt_item)*)
+) => CopyStmt{Binary: len($b) > 0, Table: $t, Columns: concat($cs), Direction: text($d), Program: len($pr) > 0, File: $f, Std: text($s), Delimiters: $dl, Legacy: map($ls, (x) => x.$o), Options: concat($g)}
+rule copy_query CopyStmt = (
+    COPY ws "(" ws q:select_stmt ws ")" ws d:TO (ws pr:PROGRAM)? ws (f:copy_file / s:(STDIN / STDOUT) #atomic) (ws WITH)?
+    (ws g:generic_opt_list / ls:(-ws o:copy_opt_item)*)
+) => CopyStmt{Query: $q, Direction: text($d), Program: len($pr) > 0, File: $f, Std: text($s), Legacy: map($ls, (x) => x.$o), Options: concat($g)}
+rule copy_database CopyDatabaseStmt = COPY ws FROM ws DATABASE ws f:col_id ws TO ws t:col_id (ws fl:copy_database_flag)? => CopyDatabaseStmt{From: $f, To: $t, Flag: text($fl)}
+rule copy_database_flag node[string] = ("(" ws (SCHEMA / DATA) ws ")") #atomic
+// Sconst | IDENT '.' ColId | IDENT | '(' a_expr ')' | param_expr
+rule copy_file Expr = sconst / copy_ident_file / paren_expr / param
+rule copy_ident_file ColumnRef = a:ident_only bs:(-ws -"." -ws c:col_id) #repeat(,1) => ColumnRef{Parts: concat(list($a), map($bs, (x) => x.$c))}
+rule generic_opt_list []GenericOption = "(" ws first:generic_opt_elem rest:(-ws -"," -ws o:generic_opt_elem)* ws ")" => concat(list($first), map($rest, (r) => r.$o))
+rule generic_opt_elem GenericOption = n:col_label (ws v:expr)? => GenericOption{Name: $n, Value: $v}
+rule copy_opt_item CopyOption = co_flag / co_string / co_force_cols / co_force_star / co_partition_cols / co_partition_star
+rule co_flag CopyOption = k:(BINARY / OIDS / FREEZE / CSV / HEADER) => CopyOption{Name: text($k)}
+rule co_string CopyOption = k:(DELIMITER / NULL / QUOTE / ESCAPE / ENCODING) (ws AS)? ws v:sconst #atomic => CopyOption{Name: text($k), Value: text($v)}
+rule co_force_cols CopyOption = k:(FORCE ws (QUOTE / NOT ws NULL / NULL)) #atomic ws cs:column_list => CopyOption{Name: text($k), Columns: $cs}
+rule co_force_star CopyOption = k:(FORCE ws QUOTE) #atomic ws v:op_star => CopyOption{Name: text($k), Value: text($v)}
+rule co_partition_cols CopyOption = k:(PARTITION ws BY) #atomic ws cs:column_list => CopyOption{Name: text($k), Columns: $cs}
+rule co_partition_star CopyOption = k:(PARTITION ws BY) #atomic ws v:op_star => CopyOption{Name: text($k), Value: text($v)}
+
+rule export_stmt ExportStmt = (
+    EXPORT ws DATABASE (ws d:col_id ws TO)? ws p:sconst (ws g:generic_opt_list / ls:(-ws o:copy_opt_item)*)
+) => ExportStmt{Database: $d, Path: $p, Legacy: map($ls, (x) => x.$o), Options: concat($g)}
+rule import_stmt ImportStmt = IMPORT ws DATABASE ws p:sconst => ImportStmt{Path: $p}
+
+// ---- ATTACH, DETACH, USE, LOAD ----
+
+rule attach_stmt AttachStmt = (
+    ATTACH (ws ine:if_not_exists / ws orr:or_replace)? (ws db:DATABASE)? ws p:sconst (ws AS ws a:col_id)? (ws o:generic_opt_list)?
+) => AttachStmt{OrReplace: len($orr) > 0, IfNotExists: len($ine) > 0, Database: len($db) > 0, Path: $p, Alias: $a, Options: concat($o)}
+rule detach_stmt DetachStmt = detach_database / detach_plain
+rule detach_database DetachStmt = DETACH ws DATABASE (ws ie:if_exists)? ws n:col_label => DetachStmt{Database: true, IfExists: len($ie) > 0, Name: $n}
+rule detach_plain DetachStmt = DETACH ws n:col_label => DetachStmt{Name: $n}
+rule use_stmt UseStmt = USE ws n:qualified_name => UseStmt{Name: $n}
+rule load_stmt LoadStmt = load_install / load_load
+rule load_load LoadStmt = LOAD ws n:col_id_or_string => LoadStmt{Name: $n}
+rule load_install LoadStmt = (
+    (f:FORCE ws)? INSTALL ws n:col_id_or_string (ws FROM ws s:col_id_or_string)? (ws VERSION ws v:col_id_or_string)?
+) => LoadStmt{Install: true, Force: len($f) > 0, Name: $n, Source: $s, Version: $v}
+
+// ---- PRAGMA, SET, RESET, SHOW ----
+
+rule pragma_stmt PragmaStmt = pragma_call / pragma_set / pragma_plain
+rule pragma_call PragmaStmt = PRAGMA ws n:col_id ws "(" ws a:func_arg_list ws ")" => PragmaStmt{Name: $n, Args: $a, Call: true}
+rule pragma_set PragmaStmt = PRAGMA ws n:col_id ws op_eq ws v:expr_list => PragmaStmt{Name: $n, Values: $v}
+rule pragma_plain PragmaStmt = PRAGMA ws n:col_id => PragmaStmt{Name: $n}
+
+rule var_name Name = first:col_id rest:(-ws -"." -ws c:col_id)* => Name{Parts: concat(list($first), map($rest, (r) => r.$c))}
+rule set_scope = LOCAL / SESSION / GLOBAL / VARIABLE
+rule set_stmt SetStmt = set_scoped / set_unscoped
+rule set_scoped SetStmt = (
+    SET ws sc:set_scope ws
+    (n:var_name ws (TO / op_eq) ws v:expr_list / n:var_name ws fc:(FROM ws CURRENT) #atomic / TIME ws ZONE ws z:zone_value / SCHEMA ws s:sconst)
+) => SetStmt{Scope: text($sc), Name: $n, Values: concat($v), TimeZone: text($z), FromCurrent: len($fc) > 0, Schema: $s}
+rule set_unscoped SetStmt = (
+    SET ws
+    (n:var_name ws (TO / op_eq) ws v:expr_list / n:var_name ws fc:(FROM ws CURRENT) #atomic / TIME ws ZONE ws z:zone_value / SCHEMA ws s:sconst)
+) => SetStmt{Name: $n, Values: concat($v), TimeZone: text($z), FromCurrent: len($fc) > 0, Schema: $s}
+rule zone_value node[string] = (sconst / ident_only / INTERVAL ws sconst (ws interval_unit)? / INTERVAL ws "(" ws iconst ws ")" ws sconst / numeric_only / DEFAULT / LOCAL) #atomic
+
+rule reset_stmt ResetStmt = reset_scoped / reset_unscoped
+rule reset_scoped ResetStmt = (
+    RESET ws sc:set_scope ws (a:ALL / sp:(TIME ws ZONE / TRANSACTION ws ISOLATION ws LEVEL) #atomic / n:var_name)
+) => ResetStmt{Scope: text($sc), Name: $n, All: len($a) > 0, Special: text($sp)}
+rule reset_unscoped ResetStmt = (
+    RESET ws (a:ALL / sp:(TIME ws ZONE / TRANSACTION ws ISOLATION ws LEVEL) #atomic / n:var_name)
+) => ResetStmt{Name: $n, All: len($a) > 0, Special: text($sp)}
+
+rule show_stmt ShowStmt = show_query / summarize_query / summarize_table / show_tables / show_time_zone / show_isolation / show_all / show_name / show_bare
+rule show_word = SHOW / DESCRIBE / DESC
+rule show_query ShowStmt = k:show_word ws q:select_stmt => ShowStmt{Kind: text($k), Query: $q}
+rule summarize_query ShowStmt = k:SUMMARIZE ws q:select_stmt => ShowStmt{Kind: text($k), Query: $q}
+rule summarize_table ShowStmt = k:SUMMARIZE ws n:qualified_name => ShowStmt{Kind: text($k), Name: $n}
+rule show_tables ShowStmt = k:show_word ws TABLES ws FROM ws n:qualified_name => ShowStmt{Kind: text($k), Tables: true, From: $n}
+rule show_time_zone ShowStmt = k:show_word ws s:(TIME ws ZONE) #atomic => ShowStmt{Kind: text($k), Special: text($s)}
+rule show_isolation ShowStmt = k:show_word ws s:(TRANSACTION ws ISOLATION ws LEVEL) #atomic => ShowStmt{Kind: text($k), Special: text($s)}
+rule show_all ShowStmt = k:show_word ws ALL (ws t:TABLES)? => ShowStmt{Kind: text($k), All: true, Tables: len($t) > 0}
+rule show_name ShowStmt = k:show_word ws n:qualified_name => ShowStmt{Kind: text($k), Name: $n}
+rule show_bare ShowStmt = k:show_word => ShowStmt{Kind: text($k)}
+
+// ---- EXPLAIN, PREPARE, EXECUTE ----
+
+rule explain_stmt ExplainStmt = explain_options / explain_analyze / explain_verbose / explain_plain
+rule explain_options ExplainStmt = EXPLAIN ws "(" ws os:explain_option_list ws ")" ws s:explainable => ExplainStmt{Options: $os, Stmt: $s}
+rule explain_analyze ExplainStmt = EXPLAIN ws a:(ANALYZE / ANALYSE) (ws v:VERBOSE)? ws s:explainable => ExplainStmt{Analyze: text($a), Verbose: len($v) > 0, Stmt: $s}
+rule explain_verbose ExplainStmt = EXPLAIN ws VERBOSE ws s:explainable => ExplainStmt{Verbose: true, Stmt: $s}
+rule explain_plain ExplainStmt = EXPLAIN ws s:explainable => ExplainStmt{Stmt: $s}
+rule explain_option_list []ExplainOption = first:explain_option rest:(-ws -"," -ws o:explain_option)* => concat(list($first), map($rest, (r) => r.$o))
+rule explain_option ExplainOption = n:(non_reserved_word / ANALYZE / ANALYSE) #atomic (ws v:(TRUE / FALSE / ON / non_reserved_word / sconst / numeric_only) #atomic)? => ExplainOption{Name: text($n), Value: text($v)}
+// ExplainableStmt: everything but EXPLAIN, ANALYZE, USE, ATTACH, DETACH, EXPORT, IMPORT, COMMENT, DROP SECRET, CREATE SECRET...
+rule explainable Statement = (
+    alter_table_stmt / alter_sequence_stmt / alter_object_schema_stmt / rename_stmt / call_stmt / checkpoint_stmt / copy_stmt
+    / create_table_stmt / create_table_as_stmt / create_macro_stmt / create_schema_stmt / create_sequence_stmt / create_type_stmt / create_index_stmt / create_view_stmt
+    / deallocate_stmt / delete_stmt / drop_stmt / execute_stmt / insert_stmt / load_stmt / merge_stmt / pragma_stmt / prepare_stmt / select_stmt / truncate_stmt
+    / transaction_stmt / update_stmt / update_extensions_stmt / vacuum_stmt / reset_stmt / set_stmt / show_stmt
+)
+
+rule prepare_stmt PrepareStmt = PREPARE ws n:name (ws "(" ws ts:type_list ws ")")? ws AS ws s:preparable => PrepareStmt{Name: $n, Types: concat($ts), Stmt: $s}
+rule preparable Statement = select_stmt / insert_stmt / update_stmt / copy_stmt / delete_stmt / show_stmt / truncate_stmt
+rule execute_stmt ExecuteStmt = EXECUTE ws n:name (ws "(" ws ps:execute_params ws ")")? => ExecuteStmt{Name: $n, Params: concat($ps)}
+rule execute_params []Expr = first:execute_param rest:(-ws -"," -ws p:execute_param)* => concat(list($first), map($rest, (r) => r.$p))
+rule execute_param Expr = named_arg / expr
+rule deallocate_stmt DeallocateStmt = deallocate_prepare / deallocate_plain
+rule deallocate_prepare DeallocateStmt = DEALLOCATE ws PREPARE ws (a:ALL / n:name) => DeallocateStmt{Name: $n, All: len($a) > 0}
+rule deallocate_plain DeallocateStmt = DEALLOCATE ws (a:ALL / n:name) => DeallocateStmt{Name: $n, All: len($a) > 0}
+
+// ---- Transactions, maintenance, ... ----
+
+rule transaction_stmt TransactionStmt = tx_start / tx_end
+rule tx_start TransactionStmt = k:(BEGIN / START) (ws w:(WORK / TRANSACTION))? (ws m:(READ ws (ONLY / WRITE)) #atomic)? => TransactionStmt{Kind: text($k), Work: text($w), Mode: text($m)}
+rule tx_end TransactionStmt = k:(ABORT / COMMIT / END / ROLLBACK) (ws w:(WORK / TRANSACTION))? => TransactionStmt{Kind: text($k), Work: text($w)}
+
+rule vacuum_stmt VacuumStmt = vacuum_options / vacuum_plain
+rule vacuum_options VacuumStmt = VACUUM ws "(" ws os:vacuum_option_list ws ")" (ws t:qualified_name (ws "(" ws cs:name_list_opt_comma ws ")")?)? => VacuumStmt{Options: $os, Table: $t, Columns: concat($cs)}
+rule vacuum_option_list []node[string] = first:vacuum_option rest:(-ws -"," -ws o:vacuum_option)* => concat(list($first), map($rest, (r) => r.$o))
+rule vacuum_option node[string] = (ANALYZE / ANALYSE / VERBOSE / FREEZE / FULL / ident_only) #atomic
+rule vacuum_plain VacuumStmt = (
+    VACUUM (ws f:FULL)? (ws fr:FREEZE)? (ws v:VERBOSE)? (ws (a:analyze_stmt / t:qualified_name (ws "(" ws cs:name_list_opt_comma ws ")")?))?
+) => VacuumStmt{Full: len($f) > 0, Freeze: len($fr) > 0, Verbose: len($v) > 0, Analyze: $a, Table: $t, Columns: concat($cs)}
+rule analyze_stmt AnalyzeStmt = (ANALYZE / ANALYSE) (ws v:VERBOSE)? (ws t:qualified_name (ws "(" ws cs:name_list_opt_comma ws ")")?)? => AnalyzeStmt{Verbose: len($v) > 0, Table: $t, Columns: concat($cs)}
+rule checkpoint_stmt CheckpointStmt = (f:FORCE ws)? CHECKPOINT (ws d:col_id)? => CheckpointStmt{Force: len($f) > 0, Database: $d}
+rule call_stmt CallStmt = CALL ws f:func_call => CallStmt{Func: $f}
+rule comment_stmt CommentStmt = comment_column / comment_object
+rule comment_column CommentStmt = k:(COMMENT ws ON ws COLUMN) #atomic ws c:c_expr ws IS ws v:comment_value => CommentStmt{Object: text($k), Column: $c, Comment: $v}
+rule comment_object CommentStmt = (
+    COMMENT ws ON ws k:(TABLE / SEQUENCE / FUNCTION / MACRO (ws TABLE)? / VIEW / DATABASE / INDEX / SCHEMA / TYPE) #atomic ws n:qualified_name ws IS ws v:comment_value
+) => CommentStmt{Object: text($k), Name: $n, Comment: $v}
+rule comment_value StringLit = (sconst / null_text) #atomic
+rule null_text StringLit = (NULL) #atomic
+rule update_extensions_stmt UpdateExtensionsStmt = (w:with_clause ws)? UPDATE ws EXTENSIONS (ws "(" ws ns:column_list ws ")")? => UpdateExtensionsStmt{With: $w, Names: concat($ns)}
+
+// ===================================================================================================
+// Scripts
+// ===================================================================================================
+
+rule stmt_end = ws (";" / $$)
+
+@start
+rule main Script = (
+    ws (";" ws)* first:statement #repeat(,1) rest:(-ws -";" -ws (-";" -ws)* s:statement)* ws (";" ws)* $$
+) => Script{Statements: concat($first, map($rest, (r) => r.$s))}
+
+rule statement Statement = (
+    select_stmt / insert_stmt / update_stmt / delete_stmt / merge_stmt
+    / create_table_stmt / create_table_as_stmt / create_view_stmt / create_index_stmt / create_schema_stmt / create_sequence_stmt / create_type_stmt / create_macro_stmt / create_secret_stmt
+    / drop_secret_stmt / drop_stmt / alter_table_stmt / alter_sequence_stmt / alter_database_stmt / alter_object_schema_stmt / rename_stmt
+    / copy_stmt / export_stmt / import_stmt / attach_stmt / detach_stmt / use_stmt / load_stmt
+    / set_stmt / reset_stmt / pragma_stmt / show_stmt / explain_stmt / prepare_stmt / execute_stmt / deallocate_stmt
+    / transaction_stmt / vacuum_stmt / analyze_stmt / checkpoint_stmt / call_stmt / comment_stmt / update_extensions_stmt / truncate_stmt
+)
+
+// BEGIN GENERATED KEYWORDS (internal/refgen/keywords.py; do not edit)
+
+// The keywords are matched without regard to ASCII case, and only as whole words.
+
+rule ABORT = [aA] [bB] [oO] [rR] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ACCESS = [aA] [cC] [cC] [eE] [sS] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ACTION = [aA] [cC] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ADD = [aA] [dD] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ALL = [aA] [lL] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ALTER = [aA] [lL] [tT] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ALWAYS = [aA] [lL] [wW] [aA] [yY] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ANALYSE = [aA] [nN] [aA] [lL] [yY] [sS] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ANALYZE = [aA] [nN] [aA] [lL] [yY] [zZ] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule AND = [aA] [nN] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ANTI = [aA] [nN] [tT] [iI] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ANY = [aA] [nN] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ARRAY = [aA] [rR] [rR] [aA] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule AS = [aA] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ASC = [aA] [sS] [cC] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ASOF = [aA] [sS] [oO] [fF] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ASYMMETRIC = [aA] [sS] [yY] [mM] [mM] [eE] [tT] [rR] [iI] [cC] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule AT = [aA] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ATTACH = [aA] [tT] [tT] [aA] [cC] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BEGIN = [bB] [eE] [gG] [iI] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BETWEEN = [bB] [eE] [tT] [wW] [eE] [eE] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BIGINT = [bB] [iI] [gG] [iI] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BINARY = [bB] [iI] [nN] [aA] [rR] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BIT = [bB] [iI] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BOOLEAN = [bB] [oO] [oO] [lL] [eE] [aA] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BOTH = [bB] [oO] [tT] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule BY = [bB] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CACHE = [cC] [aA] [cC] [hH] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CALL = [cC] [aA] [lL] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CASCADE = [cC] [aA] [sS] [cC] [aA] [dD] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CASCADED = [cC] [aA] [sS] [cC] [aA] [dD] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CASE = [cC] [aA] [sS] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CAST = [cC] [aA] [sS] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CENTURIES = [cC] [eE] [nN] [tT] [uU] [rR] [iI] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CENTURY = [cC] [eE] [nN] [tT] [uU] [rR] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CHAR = [cC] [hH] [aA] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CHARACTER = [cC] [hH] [aA] [rR] [aA] [cC] [tT] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CHECK = [cC] [hH] [eE] [cC] [kK] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CHECKPOINT = [cC] [hH] [eE] [cC] [kK] [pP] [oO] [iI] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COALESCE = [cC] [oO] [aA] [lL] [eE] [sS] [cC] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COLLATE = [cC] [oO] [lL] [lL] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COLLATION = [cC] [oO] [lL] [lL] [aA] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COLUMN = [cC] [oO] [lL] [uU] [mM] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COLUMNS = [cC] [oO] [lL] [uU] [mM] [nN] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COMMENT = [cC] [oO] [mM] [mM] [eE] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COMMENTS = [cC] [oO] [mM] [mM] [eE] [nN] [tT] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COMMIT = [cC] [oO] [mM] [mM] [iI] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COMPRESSION = [cC] [oO] [mM] [pP] [rR] [eE] [sS] [sS] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CONCURRENTLY = [cC] [oO] [nN] [cC] [uU] [rR] [rR] [eE] [nN] [tT] [lL] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CONFIGURATION = [cC] [oO] [nN] [fF] [iI] [gG] [uU] [rR] [aA] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CONFLICT = [cC] [oO] [nN] [fF] [lL] [iI] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CONSTRAINT = [cC] [oO] [nN] [sS] [tT] [rR] [aA] [iI] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CONSTRAINTS = [cC] [oO] [nN] [sS] [tT] [rR] [aA] [iI] [nN] [tT] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CONVERSION = [cC] [oO] [nN] [vV] [eE] [rR] [sS] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule COPY = [cC] [oO] [pP] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CREATE = [cC] [rR] [eE] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CROSS = [cC] [rR] [oO] [sS] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CSV = [cC] [sS] [vV] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CUBE = [cC] [uU] [bB] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CURRENT = [cC] [uU] [rR] [rR] [eE] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule CYCLE = [cC] [yY] [cC] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DATA = [dD] [aA] [tT] [aA] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DATABASE = [dD] [aA] [tT] [aA] [bB] [aA] [sS] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DAY = [dD] [aA] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DAYS = [dD] [aA] [yY] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DEALLOCATE = [dD] [eE] [aA] [lL] [lL] [oO] [cC] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DEC = [dD] [eE] [cC] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DECADE = [dD] [eE] [cC] [aA] [dD] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DECADES = [dD] [eE] [cC] [aA] [dD] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DECIMAL = [dD] [eE] [cC] [iI] [mM] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DEFAULT = [dD] [eE] [fF] [aA] [uU] [lL] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DEFAULTS = [dD] [eE] [fF] [aA] [uU] [lL] [tT] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DEFERRABLE = [dD] [eE] [fF] [eE] [rR] [rR] [aA] [bB] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DEFERRED = [dD] [eE] [fF] [eE] [rR] [rR] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DELETE = [dD] [eE] [lL] [eE] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DELIMITER = [dD] [eE] [lL] [iI] [mM] [iI] [tT] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DELIMITERS = [dD] [eE] [lL] [iI] [mM] [iI] [tT] [eE] [rR] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DESC = [dD] [eE] [sS] [cC] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DESCRIBE = [dD] [eE] [sS] [cC] [rR] [iI] [bB] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DETACH = [dD] [eE] [tT] [aA] [cC] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DICTIONARY = [dD] [iI] [cC] [tT] [iI] [oO] [nN] [aA] [rR] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DISTINCT = [dD] [iI] [sS] [tT] [iI] [nN] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DO = [dD] [oO] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DOUBLE = [dD] [oO] [uU] [bB] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule DROP = [dD] [rR] [oO] [pP] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ELSE = [eE] [lL] [sS] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ENCODING = [eE] [nN] [cC] [oO] [dD] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule END = [eE] [nN] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ENUM = [eE] [nN] [uU] [mM] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ERROR = [eE] [rR] [rR] [oO] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ESCAPE = [eE] [sS] [cC] [aA] [pP] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EVENT = [eE] [vV] [eE] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXCEPT = [eE] [xX] [cC] [eE] [pP] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXCLUDE = [eE] [xX] [cC] [lL] [uU] [dD] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXCLUDING = [eE] [xX] [cC] [lL] [uU] [dD] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXECUTE = [eE] [xX] [eE] [cC] [uU] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXISTS = [eE] [xX] [iI] [sS] [tT] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXPLAIN = [eE] [xX] [pP] [lL] [aA] [iI] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXPORT = [eE] [xX] [pP] [oO] [rR] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXPORT_STATE = [eE] [xX] [pP] [oO] [rR] [tT] "_" [sS] [tT] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXTENSION = [eE] [xX] [tT] [eE] [nN] [sS] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXTENSIONS = [eE] [xX] [tT] [eE] [nN] [sS] [iI] [oO] [nN] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule EXTRACT = [eE] [xX] [tT] [rR] [aA] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FALSE = [fF] [aA] [lL] [sS] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FETCH = [fF] [eE] [tT] [cC] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FILTER = [fF] [iI] [lL] [tT] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FIRST = [fF] [iI] [rR] [sS] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FLOAT = [fF] [lL] [oO] [aA] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FOLLOWING = [fF] [oO] [lL] [lL] [oO] [wW] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FOR = [fF] [oO] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FORCE = [fF] [oO] [rR] [cC] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FOREIGN = [fF] [oO] [rR] [eE] [iI] [gG] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FREEZE = [fF] [rR] [eE] [eE] [zZ] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FROM = [fF] [rR] [oO] [mM] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FULL = [fF] [uU] [lL] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule FUNCTION = [fF] [uU] [nN] [cC] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule GENERATED = [gG] [eE] [nN] [eE] [rR] [aA] [tT] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule GLOB = [gG] [lL] [oO] [bB] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule GLOBAL = [gG] [lL] [oO] [bB] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule GROUP = [gG] [rR] [oO] [uU] [pP] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule GROUPING = [gG] [rR] [oO] [uU] [pP] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule GROUPING_ID = [gG] [rR] [oO] [uU] [pP] [iI] [nN] [gG] "_" [iI] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule GROUPS = [gG] [rR] [oO] [uU] [pP] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule HAVING = [hH] [aA] [vV] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule HEADER = [hH] [eE] [aA] [dD] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule HOUR = [hH] [oO] [uU] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule HOURS = [hH] [oO] [uU] [rR] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule IDENTITY = [iI] [dD] [eE] [nN] [tT] [iI] [tT] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule IF = [iI] [fF] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule IGNORE = [iI] [gG] [nN] [oO] [rR] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ILIKE = [iI] [lL] [iI] [kK] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule IMMEDIATE = [iI] [mM] [mM] [eE] [dD] [iI] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule IMPORT = [iI] [mM] [pP] [oO] [rR] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule IN = [iI] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INCLUDE = [iI] [nN] [cC] [lL] [uU] [dD] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INCLUDING = [iI] [nN] [cC] [lL] [uU] [dD] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INCREMENT = [iI] [nN] [cC] [rR] [eE] [mM] [eE] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INDEX = [iI] [nN] [dD] [eE] [xX] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INDEXES = [iI] [nN] [dD] [eE] [xX] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INHERIT = [iI] [nN] [hH] [eE] [rR] [iI] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INITIALLY = [iI] [nN] [iI] [tT] [iI] [aA] [lL] [lL] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INNER = [iI] [nN] [nN] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INSERT = [iI] [nN] [sS] [eE] [rR] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INSTALL = [iI] [nN] [sS] [tT] [aA] [lL] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INT = [iI] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INTEGER = [iI] [nN] [tT] [eE] [gG] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INTERSECT = [iI] [nN] [tT] [eE] [rR] [sS] [eE] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INTERVAL = [iI] [nN] [tT] [eE] [rR] [vV] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule INTO = [iI] [nN] [tT] [oO] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule IS = [iI] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ISNULL = [iI] [sS] [nN] [uU] [lL] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ISOLATION = [iI] [sS] [oO] [lL] [aA] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule JOIN = [jJ] [oO] [iI] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule KEY = [kK] [eE] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LAMBDA = [lL] [aA] [mM] [bB] [dD] [aA] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LAST = [lL] [aA] [sS] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LATERAL = [lL] [aA] [tT] [eE] [rR] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LEADING = [lL] [eE] [aA] [dD] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LEFT = [lL] [eE] [fF] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LEVEL = [lL] [eE] [vV] [eE] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LIKE = [lL] [iI] [kK] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LIMIT = [lL] [iI] [mM] [iI] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LOAD = [lL] [oO] [aA] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LOCAL = [lL] [oO] [cC] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LOCKED = [lL] [oO] [cC] [kK] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule LOGGED = [lL] [oO] [gG] [gG] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MACRO = [mM] [aA] [cC] [rR] [oO] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MAP = [mM] [aA] [pP] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MATCH = [mM] [aA] [tT] [cC] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MATCHED = [mM] [aA] [tT] [cC] [hH] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MATERIALIZED = [mM] [aA] [tT] [eE] [rR] [iI] [aA] [lL] [iI] [zZ] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MAXVALUE = [mM] [aA] [xX] [vV] [aA] [lL] [uU] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MERGE = [mM] [eE] [rR] [gG] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule METHOD = [mM] [eE] [tT] [hH] [oO] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MICROSECOND = [mM] [iI] [cC] [rR] [oO] [sS] [eE] [cC] [oO] [nN] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MICROSECONDS = [mM] [iI] [cC] [rR] [oO] [sS] [eE] [cC] [oO] [nN] [dD] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MILLENNIA = [mM] [iI] [lL] [lL] [eE] [nN] [nN] [iI] [aA] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MILLENNIUM = [mM] [iI] [lL] [lL] [eE] [nN] [nN] [iI] [uU] [mM] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MILLISECOND = [mM] [iI] [lL] [lL] [iI] [sS] [eE] [cC] [oO] [nN] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MILLISECONDS = [mM] [iI] [lL] [lL] [iI] [sS] [eE] [cC] [oO] [nN] [dD] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MINUTE = [mM] [iI] [nN] [uU] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MINUTES = [mM] [iI] [nN] [uU] [tT] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MINVALUE = [mM] [iI] [nN] [vV] [aA] [lL] [uU] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MONTH = [mM] [oO] [nN] [tT] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule MONTHS = [mM] [oO] [nN] [tT] [hH] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NAME = [nN] [aA] [mM] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NATIONAL = [nN] [aA] [tT] [iI] [oO] [nN] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NATURAL = [nN] [aA] [tT] [uU] [rR] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NCHAR = [nN] [cC] [hH] [aA] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NEXT = [nN] [eE] [xX] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NO = [nN] [oO] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NONE = [nN] [oO] [nN] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NOT = [nN] [oO] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NOTHING = [nN] [oO] [tT] [hH] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NOTNULL = [nN] [oO] [tT] [nN] [uU] [lL] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NOWAIT = [nN] [oO] [wW] [aA] [iI] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NULL = [nN] [uU] [lL] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NULLIF = [nN] [uU] [lL] [lL] [iI] [fF] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NULLS = [nN] [uU] [lL] [lL] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule NUMERIC = [nN] [uU] [mM] [eE] [rR] [iI] [cC] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OF = [oO] [fF] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OFFSET = [oO] [fF] [fF] [sS] [eE] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OIDS = [oO] [iI] [dD] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ON = [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ONLY = [oO] [nN] [lL] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OPERATOR = [oO] [pP] [eE] [rR] [aA] [tT] [oO] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OPTION = [oO] [pP] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OPTIONS = [oO] [pP] [tT] [iI] [oO] [nN] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OR = [oO] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ORDER = [oO] [rR] [dD] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ORDINALITY = [oO] [rR] [dD] [iI] [nN] [aA] [lL] [iI] [tT] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OTHERS = [oO] [tT] [hH] [eE] [rR] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OUTER = [oO] [uU] [tT] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OVER = [oO] [vV] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OVERLAY = [oO] [vV] [eE] [rR] [lL] [aA] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OVERRIDING = [oO] [vV] [eE] [rR] [rR] [iI] [dD] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule OWNED = [oO] [wW] [nN] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PARSER = [pP] [aA] [rR] [sS] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PARTIAL = [pP] [aA] [rR] [tT] [iI] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PARTITION = [pP] [aA] [rR] [tT] [iI] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PARTITIONED = [pP] [aA] [rR] [tT] [iI] [tT] [iI] [oO] [nN] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PERCENT = [pP] [eE] [rR] [cC] [eE] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PERSISTENT = [pP] [eE] [rR] [sS] [iI] [sS] [tT] [eE] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PIVOT = [pP] [iI] [vV] [oO] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PIVOT_LONGER = [pP] [iI] [vV] [oO] [tT] "_" [lL] [oO] [nN] [gG] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PIVOT_WIDER = [pP] [iI] [vV] [oO] [tT] "_" [wW] [iI] [dD] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PLACING = [pP] [lL] [aA] [cC] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule POLICY = [pP] [oO] [lL] [iI] [cC] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule POSITION = [pP] [oO] [sS] [iI] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule POSITIONAL = [pP] [oO] [sS] [iI] [tT] [iI] [oO] [nN] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PRAGMA = [pP] [rR] [aA] [gG] [mM] [aA] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PRECEDING = [pP] [rR] [eE] [cC] [eE] [dD] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PRECISION = [pP] [rR] [eE] [cC] [iI] [sS] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PREPARE = [pP] [rR] [eE] [pP] [aA] [rR] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PRESERVE = [pP] [rR] [eE] [sS] [eE] [rR] [vV] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PRIMARY = [pP] [rR] [iI] [mM] [aA] [rR] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PROGRAM = [pP] [rR] [oO] [gG] [rR] [aA] [mM] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule PUBLICATION = [pP] [uU] [bB] [lL] [iI] [cC] [aA] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule QUALIFY = [qQ] [uU] [aA] [lL] [iI] [fF] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule QUARTER = [qQ] [uU] [aA] [rR] [tT] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule QUARTERS = [qQ] [uU] [aA] [rR] [tT] [eE] [rR] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule QUOTE = [qQ] [uU] [oO] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RANGE = [rR] [aA] [nN] [gG] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule READ = [rR] [eE] [aA] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule REAL = [rR] [eE] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RECURSIVE = [rR] [eE] [cC] [uU] [rR] [sS] [iI] [vV] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule REFERENCES = [rR] [eE] [fF] [eE] [rR] [eE] [nN] [cC] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RENAME = [rR] [eE] [nN] [aA] [mM] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule REPEATABLE = [rR] [eE] [pP] [eE] [aA] [tT] [aA] [bB] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule REPLACE = [rR] [eE] [pP] [lL] [aA] [cC] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RESET = [rR] [eE] [sS] [eE] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RESPECT = [rR] [eE] [sS] [pP] [eE] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RESTART = [rR] [eE] [sS] [tT] [aA] [rR] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RESTRICT = [rR] [eE] [sS] [tT] [rR] [iI] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RETURNING = [rR] [eE] [tT] [uU] [rR] [nN] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RIGHT = [rR] [iI] [gG] [hH] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ROLLBACK = [rR] [oO] [lL] [lL] [bB] [aA] [cC] [kK] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ROLLUP = [rR] [oO] [lL] [lL] [uU] [pP] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ROW = [rR] [oO] [wW] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ROWS = [rR] [oO] [wW] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule RULE = [rR] [uU] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SAMPLE = [sS] [aA] [mM] [pP] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SCHEMA = [sS] [cC] [hH] [eE] [mM] [aA] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SEARCH = [sS] [eE] [aA] [rR] [cC] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SECOND = [sS] [eE] [cC] [oO] [nN] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SECONDS = [sS] [eE] [cC] [oO] [nN] [dD] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SECRET = [sS] [eE] [cC] [rR] [eE] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SELECT = [sS] [eE] [lL] [eE] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SEMI = [sS] [eE] [mM] [iI] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SEQUENCE = [sS] [eE] [qQ] [uU] [eE] [nN] [cC] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SERVER = [sS] [eE] [rR] [vV] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SESSION = [sS] [eE] [sS] [sS] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SET = [sS] [eE] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SETOF = [sS] [eE] [tT] [oO] [fF] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SETS = [sS] [eE] [tT] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SHARE = [sS] [hH] [aA] [rR] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SHOW = [sS] [hH] [oO] [wW] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SIMILAR = [sS] [iI] [mM] [iI] [lL] [aA] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SIMPLE = [sS] [iI] [mM] [pP] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SKIP = [sS] [kK] [iI] [pP] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SMALLINT = [sS] [mM] [aA] [lL] [lL] [iI] [nN] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SOME = [sS] [oO] [mM] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SORTED = [sS] [oO] [rR] [tT] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SOURCE = [sS] [oO] [uU] [rR] [cC] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule START = [sS] [tT] [aA] [rR] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule STATISTICS = [sS] [tT] [aA] [tT] [iI] [sS] [tT] [iI] [cC] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule STDIN = [sS] [tT] [dD] [iI] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule STDOUT = [sS] [tT] [dD] [oO] [uU] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule STORAGE = [sS] [tT] [oO] [rR] [aA] [gG] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule STORED = [sS] [tT] [oO] [rR] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule STRUCT = [sS] [tT] [rR] [uU] [cC] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SUBSTRING = [sS] [uU] [bB] [sS] [tT] [rR] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SUMMARIZE = [sS] [uU] [mM] [mM] [aA] [rR] [iI] [zZ] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SYMMETRIC = [sS] [yY] [mM] [mM] [eE] [tT] [rR] [iI] [cC] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule SYSTEM = [sS] [yY] [sS] [tT] [eE] [mM] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TABLE = [tT] [aA] [bB] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TABLES = [tT] [aA] [bB] [lL] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TABLESAMPLE = [tT] [aA] [bB] [lL] [eE] [sS] [aA] [mM] [pP] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TARGET = [tT] [aA] [rR] [gG] [eE] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TEMP = [tT] [eE] [mM] [pP] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TEMPLATE = [tT] [eE] [mM] [pP] [lL] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TEMPORARY = [tT] [eE] [mM] [pP] [oO] [rR] [aA] [rR] [yY] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TEXT = [tT] [eE] [xX] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule THEN = [tT] [hH] [eE] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TIES = [tT] [iI] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TIME = [tT] [iI] [mM] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TIMESTAMP = [tT] [iI] [mM] [eE] [sS] [tT] [aA] [mM] [pP] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TO = [tT] [oO] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TRAILING = [tT] [rR] [aA] [iI] [lL] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TRANSACTION = [tT] [rR] [aA] [nN] [sS] [aA] [cC] [tT] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TREAT = [tT] [rR] [eE] [aA] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TRIGGER = [tT] [rR] [iI] [gG] [gG] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TRIM = [tT] [rR] [iI] [mM] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TRUE = [tT] [rR] [uU] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TRUNCATE = [tT] [rR] [uU] [nN] [cC] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TRY_CAST = [tT] [rR] [yY] "_" [cC] [aA] [sS] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule TYPE = [tT] [yY] [pP] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UNBOUNDED = [uU] [nN] [bB] [oO] [uU] [nN] [dD] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UNION = [uU] [nN] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UNIQUE = [uU] [nN] [iI] [qQ] [uU] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UNKNOWN = [uU] [nN] [kK] [nN] [oO] [wW] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UNLOGGED = [uU] [nN] [lL] [oO] [gG] [gG] [eE] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UNPACK = [uU] [nN] [pP] [aA] [cC] [kK] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UNPIVOT = [uU] [nN] [pP] [iI] [vV] [oO] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule UPDATE = [uU] [pP] [dD] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule USE = [uU] [sS] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule USER = [uU] [sS] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule USING = [uU] [sS] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VACUUM = [vV] [aA] [cC] [uU] [uU] [mM] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VALID = [vV] [aA] [lL] [iI] [dD] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VALIDATE = [vV] [aA] [lL] [iI] [dD] [aA] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VALUE = [vV] [aA] [lL] [uU] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VALUES = [vV] [aA] [lL] [uU] [eE] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VARCHAR = [vV] [aA] [rR] [cC] [hH] [aA] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VARIABLE = [vV] [aA] [rR] [iI] [aA] [bB] [lL] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VARIADIC = [vV] [aA] [rR] [iI] [aA] [dD] [iI] [cC] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VARYING = [vV] [aA] [rR] [yY] [iI] [nN] [gG] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VERBOSE = [vV] [eE] [rR] [bB] [oO] [sS] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VERSION = [vV] [eE] [rR] [sS] [iI] [oO] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VIEW = [vV] [iI] [eE] [wW] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule VIRTUAL = [vV] [iI] [rR] [tT] [uU] [aA] [lL] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WEEK = [wW] [eE] [eE] [kK] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WEEKS = [wW] [eE] [eE] [kK] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WHEN = [wW] [hH] [eE] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WHERE = [wW] [hH] [eE] [rR] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WINDOW = [wW] [iI] [nN] [dD] [oO] [wW] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WITH = [wW] [iI] [tT] [hH] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WITHIN = [wW] [iI] [tT] [hH] [iI] [nN] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WITHOUT = [wW] [iI] [tT] [hH] [oO] [uU] [tT] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WORK = [wW] [oO] [rR] [kK] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WRAPPER = [wW] [rR] [aA] [pP] [pP] [eE] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule WRITE = [wW] [rR] [iI] [tT] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule YEAR = [yY] [eE] [aA] [rR] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule YEARS = [yY] [eE] [aA] [rR] [sS] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+rule ZONE = [zZ] [oO] [nN] [eE] ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+
+// reserved
+rule kw_r = (
+    ([aA] ([lL] [lL] / [nN] ([aA] [lL] [yY] ([sS] [eE] / [zZ] [eE]) / [dD] / [yY]) / [rR] [rR] [aA] [yY] / [sS] ([cC] / [yY] [mM] [mM] [eE] [tT] [rR] [iI] [cC])?) / [bB] [oO] [tT] [hH] / [cC] ([aA] [sS] ([eE] / [tT]) / [hH] [eE] [cC] [kK] / [oO] ([lL] ([lL] [aA] [tT] [eE] / [uU] [mM] [nN]) / [nN] [sS] [tT] [rR] [aA] [iI] [nN] [tT]) / [rR] [eE] [aA] [tT] [eE]) / [dD] ([eE] ([fF] ([aA] [uU] [lL] [tT] / [eE] [rR] [rR] [aA] [bB] [lL] [eE]) / [sS] [cC] ([rR] [iI] [bB] [eE])?) / [iI] [sS] [tT] [iI] [nN] [cC] [tT] / [oO]) / [eE] ([lL] [sS] [eE] / [nN] [dD] / [xX] [cC] [eE] [pP] [tT]) / [fF] ([aA] [lL] [sS] [eE] / [eE] [tT] [cC] [hH] / [oO] [rR] ([eE] [iI] [gG] [nN])? / [rR] [oO] [mM]) / [gG] [rR] [oO] [uU] [pP] / [hH] [aA] [vV] [iI] [nN] [gG] / [iI] [nN] ([iI] [tT] [iI] [aA] [lL] [lL] [yY] / [tT] ([eE] [rR] [sS] [eE] [cC] [tT] / [oO]))? / [lL] ([aA] ([mM] [bB] [dD] [aA] / [tT] [eE] [rR] [aA] [lL]) / [eE] [aA] [dD] [iI] [nN] [gG] / [iI] [mM] [iI] [tT]) / [nN] ([oO] [tT] / [uU] [lL] [lL]) / [oO] ([fF] [fF] [sS] [eE] [tT] / [nN] ([lL] [yY])? / [rR] ([dD] [eE] [rR])?) / [pP] ([iI] [vV] [oO] [tT] ("_" ([lL] [oO] [nN] [gG] [eE] [rR] / [wW] [iI] [dD] [eE] [rR]))? / [lL] [aA] [cC] [iI] [nN] [gG] / [rR] [iI] [mM] [aA] [rR] [yY]) / [qQ] [uU] [aA] [lL] [iI] [fF] [yY] / [rR] [eE] ([fF] [eE] [rR] [eE] [nN] [cC] [eE] [sS] / [tT] [uU] [rR] [nN] [iI] [nN] [gG]) / [sS] ([eE] [lL] [eE] [cC] [tT] / [hH] [oO] [wW] / [oO] [mM] [eE] / [uU] [mM] [mM] [aA] [rR] [iI] [zZ] [eE] / [yY] [mM] [mM] [eE] [tT] [rR] [iI] [cC]) / [tT] ([aA] [bB] [lL] [eE] / [hH] [eE] [nN] / [oO] / [rR] ([aA] [iI] [lL] [iI] [nN] [gG] / [uU] [eE])) / [uU] ([nN] ([iI] ([oO] [nN] / [qQ] [uU] [eE]) / [pP] [iI] [vV] [oO] [tT]) / [sS] [iI] [nN] [gG]) / [vV] [aA] [rR] [iI] [aA] [dD] [iI] [cC] / [wW] ([hH] [eE] ([nN] / [rR] [eE]) / [iI] ([nN] [dD] [oO] [wW] / [tT] [hH])))
+    ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+)
+
+// column_name only
+rule kw_c = (
+    ([bB] ([eE] [tT] [wW] [eE] [eE] [nN] / [iI] ([gG] [iI] [nN] [tT] / [tT]) / [oO] [oO] [lL] [eE] [aA] [nN]) / [cC] ([hH] [aA] [rR] ([aA] [cC] [tT] [eE] [rR])? / [oO] [aA] [lL] [eE] [sS] [cC] [eE]) / [dD] [eE] [cC] ([iI] [mM] [aA] [lL])? / [eE] [xX] ([iI] [sS] [tT] [sS] / [tT] [rR] [aA] [cC] [tT]) / [fF] [lL] [oO] [aA] [tT] / [gG] [rR] [oO] [uU] [pP] [iI] [nN] [gG] ("_" [iI] [dD])? / [iI] [nN] ([oO] [uU] [tT] / [tT] ([eE] ([gG] [eE] [rR] / [rR] [vV] [aA] [lL]))?) / [nN] ([aA] [tT] [iI] [oO] [nN] [aA] [lL] / [cC] [hH] [aA] [rR] / [oO] [nN] [eE] / [uU] ([lL] [lL] [iI] [fF] / [mM] [eE] [rR] [iI] [cC])) / [oO] ([uU] [tT] / [vV] [eE] [rR] [lL] [aA] [yY]) / [pP] ([oO] [sS] [iI] [tT] [iI] [oO] [nN] / [rR] [eE] [cC] [iI] [sS] [iI] [oO] [nN]) / [rR] ([eE] [aA] [lL] / [oO] [wW]) / [sS] ([eE] [tT] [oO] [fF] / [mM] [aA] [lL] [lL] [iI] [nN] [tT] / [uU] [bB] [sS] [tT] [rR] [iI] [nN] [gG]) / [tT] ([iI] [mM] [eE] ([sS] [tT] [aA] [mM] [pP])? / [rR] ([eE] [aA] [tT] / [iI] [mM])) / [vV] [aA] ([lL] [uU] [eE] [sS] / [rR] [cC] [hH] [aA] [rR]) / [xX] [mM] [lL] ([aA] [tT] [tT] [rR] [iI] [bB] [uU] [tT] [eE] [sS] / [cC] [oO] [nN] [cC] [aA] [tT] / [eE] ([lL] [eE] [mM] [eE] [nN] [tT] / [xX] [iI] [sS] [tT] [sS]) / [fF] [oO] [rR] [eE] [sS] [tT] / [nN] [aA] [mM] [eE] [sS] [pP] [aA] [cC] [eE] [sS] / [pP] ([aA] [rR] [sS] [eE] / [iI]) / [rR] [oO] [oO] [tT] / [sS] [eE] [rR] [iI] [aA] [lL] [iI] [zZ] [eE] / [tT] [aA] [bB] [lL] [eE]))
+    ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+)
+
+// column_name and func_name
+rule kw_cf = (
+    ([gG] [eE] [nN] [eE] [rR] [aA] [tT] [eE] [dD] / [mM] [aA] [pP] / [sS] [tT] [rR] [uU] [cC] [tT])
+    ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+)
+
+// column_name and type_name
+rule kw_ct = (
+    ([cC] [oO] [lL] [uU] [mM] [nN] [sS] / [tT] [rR] [yY] "_" [cC] [aA] [sS] [tT])
+    ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+)
+
+// type_name only
+rule kw_t = (
+    ([aA] [nN] [tT] [iI] / [bB] [yY] / [sS] [eE] [mM] [iI] / [uU] [nN] [pP] [aA] [cC] [kK])
+    ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+)
+
+// type_name and func_name
+rule kw_tf = (
+    ([aA] ([sS] [oO] [fF] / [tT] / [uU] [tT] [hH] [oO] [rR] [iI] [zZ] [aA] [tT] [iI] [oO] [nN]) / [bB] [iI] [nN] [aA] [rR] [yY] / [cC] ([oO] ([lL] [lL] [aA] [tT] [iI] [oO] [nN] / [nN] [cC] [uU] [rR] [rR] [eE] [nN] [tT] [lL] [yY]) / [rR] [oO] [sS] [sS]) / [fF] ([rR] [eE] [eE] [zZ] [eE] / [uU] [lL] [lL]) / [gG] [lL] [oO] [bB] / [iI] ([lL] [iI] [kK] [eE] / [nN] [nN] [eE] [rR] / [sS] ([nN] [uU] [lL] [lL])?) / [jJ] [oO] [iI] [nN] / [lL] ([eE] [fF] [tT] / [iI] [kK] [eE]) / [nN] ([aA] [tT] [uU] [rR] [aA] [lL] / [oO] [tT] [nN] [uU] [lL] [lL]) / [oO] ([uU] [tT] [eE] [rR] / [vV] [eE] [rR] [lL] [aA] [pP] [sS]) / [pP] [oO] [sS] [iI] [tT] [iI] [oO] [nN] [aA] [lL] / [rR] [iI] [gG] [hH] [tT] / [sS] [iI] [mM] [iI] [lL] [aA] [rR] / [tT] [aA] [bB] [lL] [eE] [sS] [aA] [mM] [pP] [lL] [eE] / [vV] [eE] [rR] [bB] [oO] [sS] [eE])
+    ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+)
+
+// the unreserved keywords, without regard to ASCII case
+rule kw_u = (
+    ([aA] ([bB] ([oO] [rR] [tT] / [sS] [oO] [lL] [uU] [tT] [eE]) / [cC] ([cC] [eE] [sS] [sS] / [tT] [iI] [oO] [nN]) / [dD] ([dD] / [mM] [iI] [nN]) / [fF] [tT] [eE] [rR] / [gG] [gG] [rR] [eE] [gG] [aA] [tT] [eE] / [lL] ([sS] [oO] / [tT] [eE] [rR] / [wW] [aA] [yY] [sS]) / [sS] [sS] ([eE] [rR] [tT] [iI] [oO] [nN] / [iI] [gG] [nN] [mM] [eE] [nN] [tT]) / [tT] [tT] ([aA] [cC] [hH] / [rR] [iI] [bB] [uU] [tT] [eE])) / [bB] ([aA] [cC] [kK] [wW] [aA] [rR] [dD] / [eE] ([fF] [oO] [rR] [eE] / [gG] [iI] [nN])) / [cC] ([aA] ([cC] [hH] [eE] / [lL] [lL] ([eE] [dD])? / [sS] [cC] [aA] [dD] [eE] [dD]? / [tT] [aA] [lL] [oO] [gG]) / [eE] [nN] [tT] [uU] [rR] ([iI] [eE] [sS] / [yY]) / [hH] ([aA] ([iI] [nN] / [rR] [aA] [cC] [tT] [eE] [rR] [iI] [sS] [tT] [iI] [cC] [sS]) / [eE] [cC] [kK] [pP] [oO] [iI] [nN] [tT]) / [lL] ([aA] [sS] [sS] / [oO] [sS] [eE] / [uU] [sS] [tT] [eE] [rR]) / [oO] ([mM] ([mM] ([eE] [nN] [tT] [sS]? / [iI] [tT] ([tT] [eE] [dD])?) / [pP] [rR] [eE] [sS] [sS] [iI] [oO] [nN]) / [nN] ([fF] ([iI] [gG] [uU] [rR] [aA] [tT] [iI] [oO] [nN] / [lL] [iI] [cC] [tT]) / [nN] [eE] [cC] [tT] [iI] [oO] [nN] / [sS] [tT] [rR] [aA] [iI] [nN] [tT] [sS] / [tT] ([eE] [nN] [tT] / [iI] [nN] [uU] [eE]) / [vV] [eE] [rR] [sS] [iI] [oO] [nN]) / [pP] [yY] / [sS] [tT]) / [sS] [vV] / [uU] ([bB] [eE] / [rR] ([rR] [eE] [nN] [tT] / [sS] [oO] [rR])) / [yY] [cC] [lL] [eE]) / [dD] ([aA] ([tT] [aA] ([bB] [aA] [sS] [eE])? / [yY] [sS]?) / [eE] ([aA] [lL] [lL] [oO] [cC] [aA] [tT] [eE] / [cC] ([aA] [dD] [eE] [sS]? / [lL] [aA] [rR] [eE]) / [fF] ([aA] [uU] [lL] [tT] [sS] / [eE] [rR] [rR] [eE] [dD] / [iI] [nN] [eE] [rR]) / [lL] ([eE] [tT] [eE] / [iI] [mM] [iI] [tT] [eE] [rR] [sS]?) / [pP] [eE] [nN] [dD] [sS] / [tT] [aA] [cC] [hH]) / [iI] ([cC] [tT] [iI] [oO] [nN] [aA] [rR] [yY] / [sS] ([aA] [bB] [lL] [eE] / [cC] [aA] [rR] [dD])) / [oO] ([cC] [uU] [mM] [eE] [nN] [tT] / [mM] [aA] [iI] [nN] / [uU] [bB] [lL] [eE]) / [rR] [oO] [pP]) / [eE] ([aA] [cC] [hH] / [nN] ([aA] [bB] [lL] [eE] / [cC] ([oO] [dD] [iI] [nN] [gG] / [rR] [yY] [pP] [tT] [eE] [dD]) / [uU] [mM]) / [rR] [rR] [oO] [rR] / [sS] [cC] [aA] [pP] [eE] / [vV] [eE] [nN] [tT] / [xX] ([cC] [lL] [uU] ([dD] ([eE] / [iI] [nN] [gG]) / [sS] [iI] [vV] [eE]) / [eE] [cC] [uU] [tT] [eE] / [pP] ([lL] [aA] [iI] [nN] / [oO] [rR] [tT] ("_" [sS] [tT] [aA] [tT] [eE])?) / [tT] [eE] ([nN] [sS] [iI] [oO] [nN] [sS]? / [rR] [nN] [aA] [lL]))) / [fF] ([aA] [mM] [iI] [lL] [yY] / [iI] ([lL] [tT] [eE] [rR] / [rR] [sS] [tT]) / [oO] ([lL] [lL] [oO] [wW] [iI] [nN] [gG] / [rR] ([cC] [eE] / [wW] [aA] [rR] [dD])) / [uU] [nN] [cC] [tT] [iI] [oO] [nN] [sS]?) / [gG] ([lL] [oO] [bB] [aA] [lL] / [rR] ([aA] [nN] [tT] ([eE] [dD])? / [oO] [uU] [pP] [sS])) / [hH] ([aA] [nN] [dD] [lL] [eE] [rR] / [eE] [aA] [dD] [eE] [rR] / [oO] ([lL] [dD] / [uU] [rR] [sS]?)) / [iI] ([dD] [eE] [nN] [tT] [iI] [tT] [yY] / [fF] / [gG] [nN] [oO] [rR] [eE] / [mM] ([mM] ([eE] [dD] [iI] [aA] [tT] [eE] / [uU] [tT] [aA] [bB] [lL] [eE]) / [pP] ([lL] [iI] [cC] [iI] [tT] / [oO] [rR] [tT])) / [nN] ([cC] ([lL] [uU] [dD] ([eE] / [iI] [nN] [gG]) / [rR] [eE] [mM] [eE] [nN] [tT]) / [dD] [eE] [xX] ([eE] [sS])? / [hH] [eE] [rR] [iI] [tT] [sS]? / [lL] [iI] [nN] [eE] / [pP] [uU] [tT] / [sS] ([eE] ([nN] [sS] [iI] [tT] [iI] [vV] [eE] / [rR] [tT]) / [tT] ([aA] [lL] [lL] / [eE] [aA] [dD])) / [vV] [oO] [kK] [eE] [rR]) / [sS] [oO] [lL] [aA] [tT] [iI] [oO] [nN]) / [jJ] [sS] [oO] [nN] / [kK] [eE] [yY] / [lL] ([aA] ([bB] [eE] [lL] / [nN] [gG] [uU] [aA] [gG] [eE] / [rR] [gG] [eE] / [sS] [tT]) / [eE] ([aA] [kK] [pP] [rR] [oO] [oO] [fF] / [vV] [eE] [lL]) / [iI] [sS] [tT] [eE] [nN] / [oO] ([aA] [dD] / [cC] ([aA] ([lL] / [tT] [iI] [oO] [nN]) / [kK] ([eE] [dD])?) / [gG] [gG] [eE] [dD])) / [mM] ([aA] ([cC] [rR] [oO] / [pP] [pP] [iI] [nN] [gG] / [tT] ([cC] [hH] ([eE] [dD])? / [eE] [rR] [iI] [aA] [lL] [iI] [zZ] [eE] [dD]) / [xX] [vV] [aA] [lL] [uU] [eE]) / [eE] ([rR] [gG] [eE] / [tT] [hH] [oO] [dD]) / [iI] ([cC] [rR] [oO] [sS] [eE] [cC] [oO] [nN] [dD] [sS]? / [lL] [lL] ([eE] [nN] [nN] [iI] ([aA] / [uU] [mM]) / [iI] [sS] [eE] [cC] [oO] [nN] [dD] [sS]?) / [nN] ([uU] [tT] [eE] [sS]? / [vV] [aA] [lL] [uU] [eE])) / [oO] ([dD] [eE] / [nN] [tT] [hH] [sS]? / [vV] [eE])) / [nN] ([aA] [mM] [eE] [sS]? / [eE] ([wW] / [xX] [tT]) / [oO] ([tT] ([hH] [iI] [nN] [gG] / [iI] [fF] [yY]) / [wW] [aA] [iI] [tT])? / [uU] [lL] [lL] [sS]) / [oO] ([bB] [jJ] [eE] [cC] [tT] / [fF] [fF]? / [iI] [dD] [sS] / [lL] [dD] / [pP] ([eE] [rR] [aA] [tT] [oO] [rR] / [tT] [iI] [oO] [nN] [sS]?) / [rR] [dD] [iI] [nN] [aA] [lL] [iI] [tT] [yY] / [tT] [hH] [eE] [rR] [sS] / [vV] [eE] [rR] ([rR] [iI] [dD] [iI] [nN] [gG])? / [wW] [nN] [eE] ([dD] / [rR])) / [pP] ([aA] ([rR] ([aA] [lL] [lL] [eE] [lL] / [sS] [eE] [rR] / [tT] [iI] ([aA] [lL] / [tT] [iI] [oO] [nN] ([eE] [dD])?)) / [sS] [sS] ([iI] [nN] [gG] / [wW] [oO] [rR] [dD])) / [eE] [rR] ([cC] [eE] [nN] [tT] / [sS] [iI] [sS] [tT] [eE] [nN] [tT]) / [lL] [aA] [nN] [sS] / [oO] [lL] [iI] [cC] [yY] / [rR] ([aA] [gG] [mM] [aA] / [eE] ([cC] [eE] [dD] [iI] [nN] [gG] / [pP] [aA] [rR] [eE] [dD]? / [sS] [eE] [rR] [vV] [eE]) / [iI] ([oO] [rR] / [vV] [iI] [lL] [eE] [gG] [eE] [sS]) / [oO] ([cC] [eE] [dD] [uU] [rR] ([aA] [lL] / [eE]) / [gG] [rR] [aA] [mM])) / [uU] [bB] [lL] [iI] [cC] [aA] [tT] [iI] [oO] [nN]) / [qQ] [uU] ([aA] [rR] [tT] [eE] [rR] [sS]? / [oO] [tT] [eE]) / [rR] ([aA] [nN] [gG] [eE] / [eE] ([aA] ([dD] / [sS] [sS] [iI] [gG] [nN]) / [cC] ([hH] [eE] [cC] [kK] / [uU] [rR] [sS] [iI] [vV] [eE]) / [fF] ([eE] [rR] [eE] [nN] [cC] [iI] [nN] [gG] / [rR] [eE] [sS] [hH])? / [iI] [nN] [dD] [eE] [xX] / [lL] ([aA] [tT] [iI] [vV] [eE] / [eE] [aA] [sS] [eE]) / [nN] [aA] [mM] [eE] / [pP] ([eE] [aA] [tT] [aA] [bB] [lL] [eE] / [lL] ([aA] [cC] [eE] / [iI] [cC] [aA])) / [sS] ([eE] [tT] / [pP] [eE] [cC] [tT] / [tT] ([aA] [rR] [tT] / [rR] [iI] [cC] [tT])) / [tT] [uU] [rR] [nN] [sS] / [vV] [oO] [kK] [eE]) / [oO] ([lL] ([eE] / [lL] ([bB] [aA] [cC] [kK] / [uU] [pP])) / [wW] [sS]) / [uU] [lL] [eE]) / [sS] ([aA] ([mM] [pP] [lL] [eE] / [vV] [eE] [pP] [oO] [iI] [nN] [tT]) / [cC] ([hH] [eE] [mM] [aA] [sS]? / [oO] [pP] [eE] / [rR] [oO] [lL] [lL]) / [eE] ([aA] [rR] [cC] [hH] / [cC] ([oO] [nN] [dD] [sS]? / [rR] [eE] [tT] / [uU] [rR] [iI] [tT] [yY]) / [qQ] [uU] [eE] [nN] [cC] [eE] [sS]? / [rR] ([iI] [aA] [lL] [iI] [zZ] [aA] [bB] [lL] [eE] / [vV] [eE] [rR]) / [sS] [sS] [iI] [oO] [nN] / [tT] [sS]?) / [hH] [aA] [rR] [eE] / [iI] [mM] [pP] [lL] [eE] / [kK] [iI] [pP] / [nN] [aA] [pP] [sS] [hH] [oO] [tT] / [oO] ([rR] [tT] [eE] [dD] / [uU] [rR] [cC] [eE]) / [qQ] [lL] / [tT] ([aA] ([bB] [lL] [eE] / [nN] [dD] [aA] [lL] [oO] [nN] [eE] / [rR] [tT] / [tT] ([eE] [mM] [eE] [nN] [tT] / [iI] [sS] [tT] [iI] [cC] [sS])) / [dD] ([iI] [nN] / [oO] [uU] [tT]) / [oO] [rR] ([aA] [gG] [eE] / [eE] [dD]) / [rR] [iI] ([cC] [tT] / [pP])) / [uU] [bB] [sS] [cC] [rR] [iI] [pP] [tT] [iI] [oO] [nN] / [yY] [sS] ([iI] [dD] / [tT] [eE] [mM])) / [tT] ([aA] ([bB] [lL] [eE] [sS] ([pP] [aA] [cC] [eE])? / [rR] [gG] [eE] [tT]) / [eE] ([mM] [pP] ([lL] [aA] [tT] [eE] / [oO] [rR] [aA] [rR] [yY])? / [xX] [tT]) / [iI] [eE] [sS] / [rR] ([aA] [nN] [sS] ([aA] [cC] [tT] [iI] [oO] [nN] / [fF] [oO] [rR] [mM]) / [iI] [gG] [gG] [eE] [rR] / [uU] ([nN] [cC] [aA] [tT] [eE] / [sS] [tT] [eE] [dD])) / [yY] [pP] [eE] [sS]?) / [uU] ([nN] ([bB] [oO] [uU] [nN] [dD] [eE] [dD] / [cC] [oO] [mM] [mM] [iI] [tT] [tT] [eE] [dD] / [eE] [nN] [cC] [rR] [yY] [pP] [tT] [eE] [dD] / [kK] [nN] [oO] [wW] [nN] / [lL] ([iI] [sS] [tT] [eE] [nN] / [oO] [gG] [gG] [eE] [dD]) / [tT] [iI] [lL]) / [pP] [dD] [aA] [tT] [eE] / [sS] [eE] [rR]?) / [vV] ([aA] ([cC] [uU] [uU] [mM] / [lL] ([iI] [dD] ([aA] [tT] ([eE] / [oO] [rR]))? / [uU] [eE]) / [rR] ([iI] [aA] [bB] [lL] [eE] / [yY] [iI] [nN] [gG])) / [eE] [rR] [sS] [iI] [oO] [nN] / [iI] ([eE] [wW] [sS]? / [rR] [tT] [uU] [aA] [lL]) / [oO] [lL] [aA] [tT] [iI] [lL] [eE]) / [wW] ([eE] [eE] [kK] [sS]? / [hH] [iI] [tT] [eE] [sS] [pP] [aA] [cC] [eE] / [iI] [tT] [hH] ([iI] [nN] / [oO] [uU] [tT]) / [oO] [rR] [kK] / [rR] ([aA] [pP] [pP] [eE] [rR] / [iI] [tT] [eE])) / [xX] [mM] [lL] / [yY] [eE] ([aA] [rR] [sS]? / [sS]) / [zZ] [oO] [nN] [eE])
+    ![a-zA-Z0-9_$\u{80}-\u{9f}¡-\u{1fff}\u{200c}-\u{202e}‰-⁞\u{2061}-⿿、-\u{fefe}\u{ff00}-\u{10ffff}]
+)
+
+// ColId may not be one of these keywords
+rule kw_not_col_id = kw_r / kw_t / kw_tf
+
+// function_name_token may not be one of these
+rule kw_not_func_name = kw_r / kw_c / kw_ct / kw_t
+
+// type_name_token may not be one of these
+rule kw_not_type_name = kw_r / kw_c / kw_cf
+
+// type_function_name may not be one of these
+rule kw_not_type_func = kw_r / kw_c
+
+// the reserved keywords
+rule kw_reserved = kw_r
+
+// every keyword, without regard to ASCII case
+rule kw_any = kw_r / kw_c / kw_cf / kw_ct / kw_t / kw_tf / kw_u
+
+// END GENERATED KEYWORDS

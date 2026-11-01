@@ -1,0 +1,1 @@
+Object{Members: [Member{Key: String("name"), Value: String("pg")} Member{Key: String("tags"), Value: Array{Elements: [String("peg") String("pratt")]}} Member{Key: String("nested"), Value: Object{Members: [Member{Key: String("ok"), Value: Bool("true")} Member{Key: String("n"), Value: Null("null")} Member{Key: String("v"), Value: Number("-1.5e3")}]}}]}

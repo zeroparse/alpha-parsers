@@ -1,0 +1,1 @@
+ListLit{Elems: [IntLit("1") UintLit("2u") IntLit("0x1F") IntLit("-3") DoubleLit("1.5e3") StringLit("\"s\\n\"") StringLit("r\"\\d+\"") BytesLit("b\"\\xff\"") StringLit("\"\"\"a\nb\"\"\"") BoolLit("true") NullLit("null")]}

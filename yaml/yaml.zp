@@ -1,0 +1,523 @@
+// YAML 1.2.2 (https://yaml.org/spec/1.2.2/), parsed into a typed AST.
+//
+// The rules follow the productions of the specification, whose numbers are given in brackets. A
+// production with parameters, such as s-l+block-node(n,c), is a rule that reads the variables n
+// (the indentation, an int) and c (the context: "block-out", "block-in", "flow-out", "flow-in",
+// "block-key" or "flow-key"); a call with other arguments defines them first, in a rule of its own
+// where the caller's values must stay in effect. A production whose parameter takes only one or two
+// values in practice is written once per value (ns_plain_one_out for ns-plain-one-line(c) with
+// c = block-key, ...). Scalars keep their source text; folding, escapes and chomping are decoded by
+// the Go code of the package (Scalar.Value), and tags are resolved by Events and Load.
+//
+// Where a PEG needs it (an ordered choice does not try the next alternative once one matched), and where
+// it measurably pays, the rules differ from the productions; a comment says why at each place. The
+// changes made for speed try an alternative only where its first characters can match, define the
+// context only where it changes, and read the common plain scalars without it: together they made
+// ParseAST about four times as fast on the benchmark of Kubernetes-like manifests (39 ms to 9.2 ms for
+// 256 KB), and a differential test against the version without them found no difference.
+package yaml
+
+// n is the indentation of the block being read, and c is the context of the production being read.
+var n int
+var c string
+
+type Stream = { Documents []Document }
+type Document = { Directives []Directive; Start *Marker; Root Value; End *Marker }
+type Directive = { Name Word; Params []Word }
+type Word = node[string]
+type Marker = node[string]
+
+type Mapping = { Props *Properties; Flow bool; Pairs []Pair }
+type Pair = { Key Value; Value Value }
+type Sequence = { Props *Properties; Flow bool; Items []Value }
+type Scalar = { Props *Properties; Style int; Indent int; Text string }
+type Alias = node[string]
+type Value ~ Mapping | Sequence | Scalar | Alias
+
+type Properties = { Tag *Tag; Anchor *Anchor }
+type Tag = node[string]
+type Anchor = node[string]
+
+@start
+rule main Stream = l_yaml_stream
+
+// ---- Streams and documents (chapter 9) ----
+
+// [211] l-yaml-stream ::= l-document-prefix* l-any-document?
+//   ( ( l-document-suffix+ l-document-prefix* l-any-document? ) | ( l-document-prefix* l-explicit-document? ) )*
+// Rewritten so that every iteration yields a document; what remains is prefixes and suffixes.
+rule l_yaml_stream Stream = (
+    -l_document_prefix* first:l_any_document #repeat(,1)
+    rest:(-(l_document_suffix+ l_document_prefix*)+ d:l_any_document / -l_document_prefix* d:l_explicit_document)*
+    -(l_document_suffix / l_document_prefix)* $$
+) => Stream{Documents: concat($first, map($rest, (r) => r.$d))}
+
+// [202] l-document-prefix ::= c-byte-order-mark? l-comment*, which must not match the empty string
+// here, where it is repeated.
+rule l_document_prefix = "\u{feff}" l_comment* / l_comment+
+// [205] l-document-suffix ::= c-document-end s-l-comments
+rule l_document_suffix = c_document_end s_l_comments
+// [203] c-directives-end, [204] c-document-end
+rule c_directives_end Marker = ("---") #atomic
+rule c_document_end Marker = ("...") #atomic
+// [206] c-forbidden ::= <start-of-line> ( c-directives-end | c-document-end ) ( b-char | s-white | <end-of-input> )
+rule c_forbidden = ^ ("---" / "...") ([\r\n \t] / $$)
+
+// [210] l-any-document ::= l-directive-document | l-explicit-document | l-bare-document
+rule l_any_document Document = l_directive_document / l_explicit_document / l_bare_document
+// [209] l-directive-document ::= l-directive+ l-explicit-document
+rule l_directive_document Document = (
+    ds:l_directive+ m:c_directives_end r:explicit_root e:document_end?
+) => Document{Directives: $ds.Value, Start: $m, Root: $r, End: $e}
+// [208] l-explicit-document ::= c-directives-end ( l-bare-document | ( e-node s-l-comments ) )
+rule l_explicit_document Document = (
+    m:c_directives_end r:explicit_root e:document_end?
+) => Document{Directives: list(), Start: $m, Root: $r, End: $e}
+rule explicit_root Value = bare_root / e_node_comments
+// [207] l-bare-document ::= s-l+block-node(-1,block-in)
+rule l_bare_document Document = (
+    r:bare_root e:document_end?
+) => Document{Directives: list(), Root: $r, End: $e}
+rule bare_root Value = {n := -1} {c := "block-in"} r:s_l_block_node => $r
+// The document end marker that follows a document, which the stream consumes as a suffix.
+rule document_end Marker = &m:c_document_end => $m
+
+// ---- Directives (6.8) ----
+
+// [82] l-directive ::= "%" ( ns-yaml-directive | ns-tag-directive | ns-reserved-directive ) s-l-comments
+rule l_directive Directive = "%" d:(ns_yaml_directive / ns_tag_directive / ns_reserved_directive) s_l_comments => $d
+// [86] ns-yaml-directive ::= "YAML" s-separate-in-line ns-yaml-version
+rule ns_yaml_directive Directive = (
+    name:yaml_name s_separate_in_line v:ns_yaml_version
+) => Directive{Name: $name, Params: list($v)}
+rule yaml_name Word = ("YAML") #atomic
+// [87] ns-yaml-version ::= ns-dec-digit+ "." ns-dec-digit+
+rule ns_yaml_version Word = ([0-9]+ "." [0-9]+) #atomic
+// [88] ns-tag-directive ::= "TAG" s-separate-in-line c-tag-handle s-separate-in-line ns-tag-prefix
+rule ns_tag_directive Directive = (
+    name:tag_name s_separate_in_line h:tag_handle s_separate_in_line p:ns_tag_prefix
+) => Directive{Name: $name, Params: list($h, $p)}
+rule tag_name Word = ("TAG") #atomic
+rule tag_handle Word = (c_tag_handle) #atomic
+// [93] ns-tag-prefix ::= c-ns-local-tag-prefix | ns-global-tag-prefix
+rule ns_tag_prefix Word = ("!" ns_uri_char* / ns_tag_char ns_uri_char*) #atomic
+// [83] ns-reserved-directive ::= ns-directive-name ( s-separate-in-line ns-directive-parameter )*
+// A parameter does not start with "#", which starts the comment after the directive instead.
+// Known names must satisfy their own syntax; longer unknown names remain reserved directives.
+rule ns_reserved_directive Directive = (
+    !("YAML" !ns_char / "TAG" !ns_char) name:ns_directive_name ps:(-s_separate_in_line !"#" p:ns_directive_parameter)*
+) => Directive{Name: $name, Params: map($ps, (x) => x.$p)}
+rule ns_directive_name Word = (ns_char+) #atomic
+rule ns_directive_parameter Word = (ns_char+) #atomic
+
+// ---- Node properties and aliases (6.9, 7.1) ----
+
+// [96] c-ns-properties(n,c) ::= ( c-ns-tag-property ( s-separate(n,c) c-ns-anchor-property )? )
+//                             | ( c-ns-anchor-property ( s-separate(n,c) c-ns-tag-property )? )
+rule c_ns_properties Properties = (
+    t:c_ns_tag_property (-s_separate a:c_ns_anchor_property)? / a:c_ns_anchor_property (-s_separate t:c_ns_tag_property)?
+) => Properties{Tag: $t, Anchor: $a}
+// [97] c-ns-tag-property ::= c-verbatim-tag | c-ns-shorthand-tag | c-non-specific-tag
+rule c_ns_tag_property Tag = ("!<" ns_uri_char+ ">" / c_tag_handle ns_tag_char+ / "!") #atomic
+// [89] c-tag-handle ::= c-named-tag-handle | c-secondary-tag-handle | c-primary-tag-handle
+rule c_tag_handle = "!" [0-9a-zA-Z\-]+ "!" / "!!" / "!"
+// [101] c-ns-anchor-property ::= "&" ns-anchor-name
+rule c_ns_anchor_property Anchor = ("&" ns_anchor_char+) #atomic
+// [104] c-ns-alias-node ::= "*" ns-anchor-name
+rule c_ns_alias_node Alias = ("*" ns_anchor_char+) #atomic
+// [102] ns-anchor-char ::= ns-char - c-flow-indicator
+rule ns_anchor_char = [^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff},\[\]{}]
+// [39] ns-uri-char, [40] ns-tag-char ::= ns-uri-char - c-tag - c-flow-indicator
+rule ns_uri_char = "%" ns_hex_digit ns_hex_digit / [0-9a-zA-Z\-#;/?:@&=+$,_.!~*'()\[\]]
+rule ns_tag_char = "%" ns_hex_digit ns_hex_digit / [0-9a-zA-Z\-#;/?:@&=+$_.~*'()]
+rule ns_hex_digit = [0-9a-fA-F]
+
+// ---- Block nodes (chapter 8) ----
+
+// [196] s-l+block-node(n,c) ::= s-l+block-in-block(n,c) | s-l+flow-in-block(n)
+// [197] s-l+flow-in-block(n), [198] s-l+block-in-block(n,c) ::= s-l+block-scalar(n,c) | s-l+block-collection(n,c)
+// The alternatives are tried only where they can match: a block scalar needs an indicator (| or >)
+// after the separation and the properties, which may be on a later line, a block collection the end of
+// the line after them (or the start of a line). At the end of a line, the collection is tried before
+// the block scalar, which is the common case and the same thing: they cannot both match.
+rule s_l_block_node Value = (
+    &([ \t]* [|>!&]) v:(s_l_block_scalar / s_l_block_collection / s_l_flow_in_block) / &(^ / [ \t]* ([#\r\n] / $$)) v:(s_l_block_collection / s_l_block_scalar / s_l_flow_in_block) / v:s_l_flow_in_block
+) => $v
+
+// [197] s-l+flow-in-block(n) ::= s-separate(n+1,flow-out) ns-flow-node(n+1,flow-out) s-l-comments
+// s-separate(n+1,flow-out) is s-separate-lines(n+1), whose common case comes first here.
+// A plain scalar without properties, the common case, is read without defining c, and the common case
+// of s-l-comments, a line break before a line of content, is read without calling the rule.
+rule s_l_flow_in_block Value = (
+    {n := n + 1} ([ \t]+ ![#\r\n] !$$ / s_separate_lines)
+    v:(plain_out_node / flow_out_node) ([ \t]* b_break &([ \t]* [^#\r\n]) / s_l_comments)
+) => $v
+rule flow_out_node Value = {c := "flow-out"} v:ns_flow_node => $v
+// ns-flow-node(n,flow-out) where it is a plain scalar without properties: nothing else starts with a
+// character that can start a plain scalar.
+rule plain_out_node Scalar = t:ns_plain_multi_out #atomic => Scalar{Props: nil, Text: text($t)}
+
+// [200] s-l+block-collection(n,c) ::= ( s-separate(n+1,c) c-ns-properties(n+1,c) )? s-l-comments
+//   ( seq-space(n,c) | l+block-mapping(n) )
+// The properties are optional in s-l+block-collection, but a PEG does not try again without them if
+// the comments fail after them (when the properties belong to an implicit key: "&a a: b").
+rule s_l_block_collection Value = block_sequence_node / block_mapping_node
+rule block_sequence_node Sequence = (
+    p:block_sequence_start items:seq_space
+) => Sequence{Props: $p, Items: $items}
+rule block_mapping_node Mapping = (
+    p:block_collection_start pairs:l_block_mapping
+) => Mapping{Props: $p, Pairs: $pairs}
+// The first alternative is the common case: no property on this line, nor at the start of the next line
+// with content. The sequence has a copy of the rule, so that each is called once at a position: a rule
+// called again at a position is memoized, which costs more here than parsing the comments again.
+rule block_collection_start = (
+    s_l_comments &([ \t]* [^!&]) / p:block_collection_properties s_l_comments / p:block_collection_property s_l_comments / s_l_comments
+) => $p
+rule block_sequence_start = (
+    s_l_comments &([ \t]* [^!&]) / p:block_collection_properties s_l_comments / p:block_collection_property s_l_comments / s_l_comments
+) => $p
+// s-separate(n+1,c) is s-separate-lines(n+1) for c = block-out and block-in, the contexts of block nodes.
+rule block_collection_properties Properties = {n := n + 1} s_separate_lines p:c_ns_properties => $p
+// One property, when the next line starts with a property that belongs to an implicit key:
+// "!!map\n&a8 !!str key8: value7".
+rule block_collection_property Properties = (
+    {n := n + 1} s_separate_lines (t:c_ns_tag_property / a:c_ns_anchor_property)
+) => Properties{Tag: $t, Anchor: $a}
+// [201] seq-space(n,block-out) ::= l+block-sequence(n-1), seq-space(n,block-in) ::= l+block-sequence(n)
+// The lookahead skips the rule where no entry starts.
+rule seq_space = &(" "* #atomic "-" !ns_char) ({c == "block-out"} {n := n - 1} / {c == "block-in"}) s:l_block_sequence => $s
+
+// [183] l+block-sequence(n) ::= ( s-indent(n+m) c-l-block-seq-entry(n+m) )+ for some m > 0
+// The lookahead reads the indentation n+m of the first entry.
+rule l_block_sequence = (
+    &s:" "* #atomic {len($s) > n} {n := len($s)} es:(-s_indent e:c_l_block_seq_entry)+
+) => map($es, (x) => x.$e)
+// [184] c-l-block-seq-entry(n) ::= "-" <not followed by an ns-char> s-l+block-indented(n,block-in)
+rule c_l_block_seq_entry Value = "-" !ns_char {c := "block-in"} v:s_l_block_indented => $v
+// [185] s-l+block-indented(n,c) ::= ( s-indent(m) ( ns-l-compact-sequence(n+1+m) | ns-l-compact-mapping(n+1+m) ) )
+//   | s-l+block-node(n,c) | ( e-node s-l-comments )
+rule s_l_block_indented Value = compact_collection / s_l_block_node / e_node_comments
+rule compact_collection Value = s:" "* #atomic {n := n + 1 + len($s)} v:(ns_l_compact_sequence / ns_l_compact_mapping) => $v
+// [186] ns-l-compact-sequence(n) ::= c-l-block-seq-entry(n) ( s-indent(n) c-l-block-seq-entry(n) )*
+rule ns_l_compact_sequence Sequence = (
+    first:c_l_block_seq_entry rest:(-s_indent e:c_l_block_seq_entry)*
+) => Sequence{Items: concat(list($first), map($rest, (r) => r.$e))}
+
+// [187] l+block-mapping(n) ::= ( s-indent(n+m) ns-l-block-map-entry(n+m) )+ for some m > 0
+rule l_block_mapping = (
+    &s:" "* #atomic {len($s) > n} {n := len($s)} es:(-s_indent e:ns_l_block_map_entry)+
+) => map($es, (x) => x.$e)
+// [195] ns-l-compact-mapping(n) ::= ns-l-block-map-entry(n) ( s-indent(n) ns-l-block-map-entry(n) )*
+rule ns_l_compact_mapping Mapping = (
+    first:ns_l_block_map_entry rest:(-s_indent e:ns_l_block_map_entry)*
+) => Mapping{Pairs: concat(list($first), map($rest, (r) => r.$e))}
+// [188] ns-l-block-map-entry(n) ::= c-l-block-map-explicit-entry(n) | ns-l-block-map-implicit-entry(n)
+rule ns_l_block_map_entry Pair = c_l_block_map_explicit_entry / ns_l_block_map_implicit_entry
+// [189] c-l-block-map-explicit-entry(n) ::= c-l-block-map-explicit-key(n) ( l-block-map-explicit-value(n) | e-node )
+rule c_l_block_map_explicit_entry Pair = (
+    k:c_l_block_map_explicit_key v:(l_block_map_explicit_value / e_node)
+) => Pair{Key: $k, Value: $v}
+// [190] c-l-block-map-explicit-key(n) ::= "?" s-l+block-indented(n,block-out)
+// "?" and ":" must be followed by white space here, as "-" is in c-l-block-seq-entry; otherwise they
+// start a plain scalar.
+rule c_l_block_map_explicit_key Value = "?" !ns_char {c := "block-out"} v:s_l_block_indented => $v
+// [191] l-block-map-explicit-value(n) ::= s-indent(n) ":" s-l+block-indented(n,block-out)
+rule l_block_map_explicit_value Value = s_indent ":" !ns_char {c := "block-out"} v:s_l_block_indented => $v
+// [192] ns-l-block-map-implicit-entry(n) ::= ( ns-s-block-map-implicit-key | e-node ) c-l-block-map-implicit-value(n)
+rule ns_l_block_map_implicit_entry Pair = (
+    k:(ns_s_block_map_implicit_key / e_node) v:c_l_block_map_implicit_value
+) => Pair{Key: $k, Value: $v}
+// [193] ns-s-block-map-implicit-key ::= c-s-implicit-json-key(block-key) | ns-s-implicit-yaml-key(block-key)
+// [154] ns-s-implicit-yaml-key(c) ::= ns-flow-yaml-node(0,c) s-separate-in-line?
+// [155] c-s-implicit-json-key(c) ::= c-flow-json-node(0,c) s-separate-in-line?
+// A plain key without properties, the common case, is read without defining c.
+rule ns_s_block_map_implicit_key Value = (
+    (k:plain_key_node / {c := "block-key"} (&[\[{'"!&] k:c_flow_json_node / k:ns_flow_yaml_node))
+    s_separate_in_line?
+) => $k
+rule plain_key_node Scalar = t:ns_plain_one_out #atomic => Scalar{Props: nil, Text: text($t)}
+// [194] c-l-block-map-implicit-value(n) ::= ":" ( s-l+block-node(n,block-out) | ( e-node s-l-comments ) )
+rule c_l_block_map_implicit_value Value = ":" v:(block_out_node / e_node_comments) => $v
+// s-l+block-node(n,block-out), whose flow node, the common case, is read without defining c, which it
+// does not read (see s_l_block_node).
+rule block_out_node Value = (
+    &([ \t]+ [^|>!&#\r\n]) v:s_l_flow_in_block / {c := "block-out"} v:s_l_block_node
+) => $v
+
+// ---- Block scalars (8.1) ----
+
+// [199] s-l+block-scalar(n,c) ::= s-separate(n+1,c) ( c-ns-properties(n+1,c) s-separate(n+1,c) )?
+//   ( c-l+literal(n) | c-l+folded(n) )
+// [170] c-l+literal(n) ::= "|" c-b-block-header(t) l-literal-content(n+m,t)
+// [174] c-l+folded(n) ::= ">" c-b-block-header(t) l-folded-content(n+m,t)
+// [162] c-b-block-header(t) ::= ( ( c-indentation-indicator c-chomping-indicator(t) )
+//   | ( c-chomping-indicator(t) c-indentation-indicator ) ) s-b-comment
+// Both contents accept the same lines: a line indented by at least n+m spaces with something after
+// them, or an empty line. They differ in how the lines are folded, which Scalar.Value decodes; the
+// rule records the content indentation n+m in Indent and the text from the indicator on in Text.
+// The rule defines n as n+m once it knows m, and reads no other variable: a variable that a rule reads
+// becomes part of the memoization key of every rule that calls it, even if the rule defines it first.
+rule s_l_block_scalar Scalar = (
+    s_separate_n1 p:block_scalar_properties?
+    // [164] c-chomping-indicator(t), before or after [163] c-indentation-indicator, which is a
+    // digit m or nothing (auto-detection).
+    // Auto-detection (8.1.1.1): the indentation of the first non-empty line, which no empty line
+    // before it may exceed; without a non-empty line, that of the longest empty line.
+    // n becomes the running maximum of n+1 and the lengths of the empty lines.
+    t:(("|" / f:">") c1:[+\-]? ("1" {n := n + 1} / "2" {n := n + 2} / "3" {n := n + 3} / "4" {n := n + 4} / "5" {n := n + 5} / "6" {n := n + 6} / "7" {n := n + 7} / "8" {n := n + 8} / "9" {n := n + 9} / &(s_b_comment -(" "* #atomic b_break)* s:" "* #atomic) ({len($s) > n} {n := len($s)} &(s_b_comment (e:" "* #atomic {len($e) <= n} b_break)* " "* #atomic !b_break) / {len($s) <= n} {n := n + 1} &(s_b_comment (!$$ e:" "* #atomic (b_break / $$) ({len($e) > n} {n := len($e)})?)*))) c2:[+\-]? {len($c1) + len($c2) <= 1} s_b_comment l_block_content)
+    l_trail_comments?
+) => Scalar{Props: $p, Style: 3 + len($f), Indent: n, Text: text($t)}
+rule s_separate_n1 = {n := n + 1} s_separate_lines
+rule block_scalar_properties Properties = {n := n + 1} p:c_ns_properties s_separate_lines => $p
+
+// [173] l-literal-content(n,t) ::= ( l-nb-literal-text(n) b-nb-literal-next(n)* b-chomped-last(t) )? l-chomped-empty(n,t)
+// [182] l-folded-content(n,t) ::= ( l-nb-diff-lines(n) b-chomped-last(t) )? l-chomped-empty(n,t)
+// [165] b-chomped-last(t) ::= b-break | <end-of-input>, [166] l-chomped-empty(n,t): l-empty(n,block-in)*
+rule l_block_content = (l_nb_literal_text (b_break l_nb_literal_text)* (b_break / $$))? l_empty_block*
+// [171] l-nb-literal-text(n) ::= l-empty(n,block-in)* s-indent(n) nb-char+
+// (and [176] s-nb-folded-text, [179] s-nb-spaced-text, which together accept the same lines)
+rule l_nb_literal_text = l_empty_block* !c_forbidden sp:" "* #atomic ({len($sp) > n} / {len($sp) == n} nb_char) nb_char*
+// [70] l-empty(n,block-in) ::= ( s-indent(n) | s-indent(<n) ) b-as-line-feed
+// A last line of spaces without a line break is an empty line too, as in the reference parser.
+rule l_empty_block = !$$ sp:" "* #atomic {len($sp) <= n} (b_break / $$)
+// [169] l-trail-comments(n) ::= s-indent(<n) c-nb-comment-text b-comment l-comment*
+rule l_trail_comments = sp:" "* #atomic {len($sp) < n} c_nb_comment_text b_comment l_comment*
+
+// ---- Flow nodes (chapter 7) ----
+
+// [161] ns-flow-node(n,c) ::= c-ns-alias-node | ns-flow-content(n,c)
+//   | ( c-ns-properties(n,c) ( ( s-separate(n,c) ns-flow-content(n,c) ) | e-scalar ) )
+// Each content rule reads the properties before it, so that the node carries them.
+// The JSON-like content comes first, where it can start, then the rest of ns-flow-yaml-node: the order
+// of the specification but for the properties alone, which are the last alternative in both.
+rule ns_flow_node Value = &[\[{'"!&] v:c_flow_json_node / v:ns_flow_yaml_node => $v
+// [159] ns-flow-yaml-node(n,c) ::= c-ns-alias-node | ns-flow-yaml-content(n,c)
+//   | ( c-ns-properties(n,c) ( ( s-separate(n,c) ns-flow-yaml-content(n,c) ) | e-scalar ) )
+rule ns_flow_yaml_node Value = c_ns_alias_node / plain_node / properties_node
+// [160] c-flow-json-node(n,c) ::= ( c-ns-properties(n,c) s-separate(n,c) )? c-flow-json-content(n,c)
+rule c_flow_json_node Value = c_flow_sequence / c_flow_mapping / c_single_quoted / c_double_quoted
+rule properties_node Scalar = &[!&] p:c_ns_properties => Scalar{Props: $p}
+rule properties_separate Properties = p:c_ns_properties s_separate => $p
+
+// [105] e-scalar, [106] e-node: an empty plain scalar.
+rule e_node Scalar = _ => Scalar{}
+rule e_node_comments Scalar = v:e_node s_l_comments => $v
+
+// [137] c-flow-sequence(n,c) ::= "[" s-separate(n,c)? ns-s-flow-seq-entries(n,in-flow(c))? "]"
+// [136] in-flow(c): flow-in for flow-out and flow-in, flow-key for block-key and flow-key.
+// The context is defined only where it changes: reading a variable takes longer the more definitions
+// were made since it was defined, so that defining c at every level of nested flow collections made
+// reading n quadratic in the depth.
+rule c_flow_sequence Sequence = (
+    (&[!&] p:properties_separate)? "[" s_separate?
+    ({c == "flow-in" || c == "flow-key"} / {c == "flow-out"} {c := "flow-in"} / {c := "flow-key"})
+    es:ns_s_flow_seq_entries? "]"
+) => Sequence{Props: $p, Flow: true, Items: concat($es)}
+// [138] ns-s-flow-seq-entries(n,c) ::= ns-flow-seq-entry(n,c) s-separate(n,c)? ( "," s-separate(n,c)? ns-s-flow-seq-entries(n,c)? )?
+rule ns_s_flow_seq_entries = (
+    first:ns_flow_seq_entry -s_separate? rest:(-"," -s_separate? e:ns_flow_seq_entry -s_separate?)*
+    -("," s_separate?)?
+) => concat(list($first), map($rest, (r) => r.$e))
+// [139] ns-flow-seq-entry(n,c) ::= ns-flow-pair(n,c) | ns-flow-node(n,c)
+rule ns_flow_seq_entry Value = ns_flow_pair / ns_flow_node
+
+// [140] c-flow-mapping(n,c) ::= "{" s-separate(n,c)? ns-s-flow-map-entries(n,in-flow(c))? "}"
+rule c_flow_mapping Mapping = (
+    (&[!&] p:properties_separate)? "{" s_separate?
+    ({c == "flow-in" || c == "flow-key"} / {c == "flow-out"} {c := "flow-in"} / {c := "flow-key"})
+    es:ns_s_flow_map_entries? "}"
+) => Mapping{Props: $p, Flow: true, Pairs: concat($es)}
+// [141] ns-s-flow-map-entries(n,c) ::= ns-flow-map-entry(n,c) s-separate(n,c)? ( "," s-separate(n,c)? ns-s-flow-map-entries(n,c)? )?
+rule ns_s_flow_map_entries = (
+    first:ns_flow_map_entry -s_separate? rest:(-"," -s_separate? e:ns_flow_map_entry -s_separate?)*
+    -("," s_separate?)?
+) => concat(list($first), map($rest, (r) => r.$e))
+// [142] ns-flow-map-entry(n,c) ::= ( "?" s-separate(n,c) ns-flow-map-explicit-entry(n,c) ) | ns-flow-map-implicit-entry(n,c)
+rule ns_flow_map_entry Pair = flow_map_explicit / ns_flow_map_implicit_entry
+rule flow_map_explicit Pair = "?" s_separate e:ns_flow_map_explicit_entry => $e
+// [143] ns-flow-map-explicit-entry(n,c) ::= ns-flow-map-implicit-entry(n,c) | ( e-node e-node )
+rule ns_flow_map_explicit_entry Pair = ns_flow_map_implicit_entry / empty_pair
+rule empty_pair Pair = k:e_node v:e_node => Pair{Key: $k, Value: $v}
+// [144] ns-flow-map-implicit-entry(n,c) ::= ns-flow-map-yaml-key-entry(n,c) | c-ns-flow-map-empty-key-entry(n,c)
+//   | c-ns-flow-map-json-key-entry(n,c)
+// The JSON-like key comes first: a YAML key may be just properties with an empty value, which a PEG
+// would take for the entry, where the properties belong to a JSON-like key ("{ &a [a]: b }").
+rule ns_flow_map_implicit_entry Pair = c_ns_flow_map_json_key_entry / ns_flow_map_yaml_key_entry / c_ns_flow_map_empty_key_entry
+// [145] ns-flow-map-yaml-key-entry(n,c) ::= ns-flow-yaml-node(n,c) ( ( s-separate(n,c)? c-ns-flow-map-separate-value(n,c) ) | e-node )
+rule ns_flow_map_yaml_key_entry Pair = k:ns_flow_yaml_node v:(separate_value / e_node) => Pair{Key: $k, Value: $v}
+rule separate_value Value = s_separate? v:c_ns_flow_map_separate_value => $v
+// [146] c-ns-flow-map-empty-key-entry(n,c) ::= e-node c-ns-flow-map-separate-value(n,c)
+rule c_ns_flow_map_empty_key_entry Pair = k:e_node v:c_ns_flow_map_separate_value => Pair{Key: $k, Value: $v}
+// [147] c-ns-flow-map-separate-value(n,c) ::= ":" <not followed by an ns-plain-safe(c)>
+//   ( ( s-separate(n,c) ns-flow-node(n,c) ) | e-node )
+rule c_ns_flow_map_separate_value Value = ":" !ns_plain_safe v:(separated_flow_node / e_node) => $v
+rule separated_flow_node Value = s_separate v:ns_flow_node => $v
+// [148] c-ns-flow-map-json-key-entry(n,c) ::= c-flow-json-node(n,c) ( ( s-separate(n,c)? c-ns-flow-map-adjacent-value(n,c) ) | e-node )
+rule c_ns_flow_map_json_key_entry Pair = &[\[{'"!&] k:c_flow_json_node v:(adjacent_value / e_node) => Pair{Key: $k, Value: $v}
+rule adjacent_value Value = s_separate? v:c_ns_flow_map_adjacent_value => $v
+// [149] c-ns-flow-map-adjacent-value(n,c) ::= ":" ( ( s-separate(n,c)? ns-flow-node(n,c) ) | e-node )
+rule c_ns_flow_map_adjacent_value Value = ":" v:(optionally_separated_flow_node / e_node) => $v
+rule optionally_separated_flow_node Value = s_separate? v:ns_flow_node => $v
+
+// [150] ns-flow-pair(n,c) ::= ( "?" s-separate(n,c) ns-flow-map-explicit-entry(n,c) ) | ns-flow-pair-entry(n,c)
+// A pair in a flow sequence is a mapping of one entry.
+rule ns_flow_pair Mapping = e:(flow_map_explicit / ns_flow_pair_entry) => Mapping{Flow: true, Pairs: list($e)}
+// [151] ns-flow-pair-entry(n,c) ::= ns-flow-pair-yaml-key-entry(n,c) | c-ns-flow-map-empty-key-entry(n,c)
+//   | c-ns-flow-pair-json-key-entry(n,c)
+rule ns_flow_pair_entry Pair = ns_flow_pair_yaml_key_entry / c_ns_flow_map_empty_key_entry / c_ns_flow_pair_json_key_entry
+// [152] ns-flow-pair-yaml-key-entry(n,c) ::= ns-s-implicit-yaml-key(flow-key) c-ns-flow-map-separate-value(n,c)
+rule ns_flow_pair_yaml_key_entry Pair = k:flow_pair_yaml_key v:c_ns_flow_map_separate_value => Pair{Key: $k, Value: $v}
+rule flow_pair_yaml_key Value = ({c == "flow-key"} / {c := "flow-key"}) k:ns_flow_yaml_node s_separate_in_line? => $k
+// [153] c-ns-flow-pair-json-key-entry(n,c) ::= c-s-implicit-json-key(flow-key) c-ns-flow-map-adjacent-value(n,c)
+rule c_ns_flow_pair_json_key_entry Pair = k:flow_pair_json_key v:c_ns_flow_map_adjacent_value => Pair{Key: $k, Value: $v}
+rule flow_pair_json_key Value = &[\[{'"!&] ({c == "flow-key"} / {c := "flow-key"}) k:c_flow_json_node s_separate_in_line? => $k
+
+// ---- Plain scalars (7.3.3) ----
+
+// [131] ns-plain(n,c): ns-plain-multi-line(n,c) for flow-out and flow-in, ns-plain-one-line(c) for the keys.
+rule plain_node Scalar = (&[!&] p:properties_separate)? t:ns_plain #atomic => Scalar{Props: $p, Text: text($t)}
+rule ns_plain = (
+    {c == "flow-out"} ns_plain_multi_out
+    / {c == "block-key"} ns_plain_one_out
+    / {c == "flow-in"} ns_plain_multi_in
+    / {c == "flow-key"} ns_plain_one_in
+)
+// [128] ns-plain-safe(c): ns-char outside flow collections, ns-char - c-flow-indicator inside them.
+rule ns_plain_safe = {c == "flow-out" || c == "block-key"} ns_char / {c == "flow-in" || c == "flow-key"} ns_plain_safe_in
+rule ns_plain_safe_in = [^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff},\[\]{}]
+
+// [133] ns-plain-one-line(c) ::= ns-plain-first(c) nb-ns-plain-in-line(c), outside flow collections.
+// [126] ns-plain-first(c) ::= ( ns-char - c-indicator ) | ( ( "?" | ":" | "-" ) <followed by an ns-plain-safe(c)> )
+// [132] nb-ns-plain-in-line(c) ::= ( s-white* ns-plain-char(c) )*
+// [130] ns-plain-char(c) ::= ( ns-plain-safe(c) - ":" - "#" ) | ( <an ns-char preceding> "#" ) | ( ":" <followed by an ns-plain-safe(c)> )
+// A "#" is a plain character only right after another one, so the in-line part reads runs of
+// characters that may include "#", and after white space a character that is not "#".
+rule ns_plain_one_out = (
+    !c_forbidden
+    ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}\-?:,\[\]{}#&*!|>'"%@`] / [\-?:] &ns_char)
+    nb_ns_plain_in_line_out
+)
+rule nb_ns_plain_in_line_out = (
+    ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}:]+ / ":" &ns_char / [ \t]+ ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}:#] / ":" &ns_char))*
+)
+// [135] ns-plain-multi-line(n,c) ::= ns-plain-one-line(c) s-ns-plain-next-line(n,c)*
+// [134] s-ns-plain-next-line(n,c) ::= s-flow-folded(n) ns-plain-char(c) nb-ns-plain-in-line(c)
+rule ns_plain_multi_out = (
+    ns_plain_one_out
+    (s_flow_folded !c_forbidden ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}:#] / ":" &ns_char) nb_ns_plain_in_line_out)*
+)
+
+// The same inside flow collections, where the flow indicators end a plain scalar.
+rule ns_plain_one_in = (
+    !c_forbidden
+    ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}\-?:,\[\]{}#&*!|>'"%@`] / [\-?:] &ns_plain_safe_in)
+    nb_ns_plain_in_line_in
+)
+rule nb_ns_plain_in_line_in = (
+    ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}:,\[\]{}]+ / ":" &ns_plain_safe_in / [ \t]+ ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}:#,\[\]{}] / ":" &ns_plain_safe_in))*
+)
+rule ns_plain_multi_in = (
+    ns_plain_one_in
+    (s_flow_folded !c_forbidden ([^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}:#,\[\]{}] / ":" &ns_plain_safe_in) nb_ns_plain_in_line_in)*
+)
+
+// ---- Quoted scalars (7.3.1, 7.3.2) ----
+
+// [109] c-double-quoted(n,c) ::= '"' nb-double-text(n,c) '"'
+// [110] nb-double-text(n,c): nb-double-multi-line(n) for flow-out and flow-in, nb-double-one-line for the keys.
+rule c_double_quoted Scalar = (&[!&] p:properties_separate)? t:double_quoted #atomic => Scalar{Props: $p, Style: 2, Text: text($t)}
+rule double_quoted = (
+    "\""
+    ({c == "flow-out" || c == "flow-in"} nb_double_multi_line / {c == "block-key" || c == "flow-key"} nb_double_one_line) "\""
+)
+// [111] nb-double-one-line ::= nb-double-char*
+// [107] nb-double-char ::= c-ns-esc-char | ( nb-json - "\" - '"' )
+rule nb_double_one_line = ([^\u{0}-\u{8}\n-\u{1f}"\\]+ / c_ns_esc_char)*
+// [62] c-ns-esc-char ::= "\" ( ns-esc-null | ... | ns-esc-32-bit )
+rule c_ns_esc_char = "\\" ([0abt\tnvfre "/\\N_LP] / "x" ns_hex_digit #repeat(2) / "u" ns_hex_digit #repeat(4) / "U" ns_hex_digit #repeat(8))
+// [116] nb-double-multi-line(n) ::= nb-ns-double-in-line ( s-double-next-line(n) | s-white* )
+// [115] s-double-next-line(n) ::= s-double-break(n) ( ns-double-char nb-ns-double-in-line ( s-double-next-line(n) | s-white* ) )?
+// The recursion of s-double-next-line is unrolled into a repetition. A last break must be followed by
+// the closing quote; testing that in the repetition reads each break once.
+rule nb_double_multi_line = (
+    nb_ns_double_in_line
+    (s_double_break (!c_forbidden ns_double_char nb_ns_double_in_line / &"\""))*
+    [ \t]*
+)
+// [114] nb-ns-double-in-line ::= ( s-white* ns-double-char )*
+rule nb_ns_double_in_line = ([^\u{0}- "\\]+ / c_ns_esc_char / [ \t]+ &ns_double_char)*
+// [108] ns-double-char ::= nb-double-char - s-white
+rule ns_double_char = [^\u{0}- "\\] / c_ns_esc_char
+// [113] s-double-break(n) ::= s-double-escaped(n) | s-flow-folded(n)
+// [112] s-double-escaped(n) ::= s-white* "\" b-non-content l-empty(n,flow-in)* s-flow-line-prefix(n)
+rule s_double_break = [ \t]* "\\" b_break l_empty_flow* s_flow_line_prefix / s_flow_folded
+
+// [120] c-single-quoted(n,c) ::= "'" nb-single-text(n,c) "'"
+rule c_single_quoted Scalar = (&[!&] p:properties_separate)? t:single_quoted #atomic => Scalar{Props: $p, Style: 1, Text: text($t)}
+rule single_quoted = (
+    "'"
+    ({c == "flow-out" || c == "flow-in"} nb_single_multi_line / {c == "block-key" || c == "flow-key"} nb_single_one_line) "'"
+)
+// [122] nb-single-one-line ::= nb-single-char*
+// [118] nb-single-char ::= c-quoted-quote | ( nb-json - "'" )
+rule nb_single_one_line = ([^\u{0}-\u{8}\n-\u{1f}']+ / "''")*
+// [125] nb-single-multi-line(n) ::= nb-ns-single-in-line ( s-single-next-line(n) | s-white* )
+// [124] s-single-next-line(n) ::= s-flow-folded(n) ( ns-single-char nb-ns-single-in-line ( s-single-next-line(n) | s-white* ) )?
+rule nb_single_multi_line = (
+    nb_ns_single_in_line
+    (s_flow_folded (!c_forbidden ns_single_char nb_ns_single_in_line / &"'"))*
+    [ \t]*
+)
+// [123] nb-ns-single-in-line ::= ( s-white* ns-single-char )*
+rule nb_ns_single_in_line = ([^\u{0}- ']+ / "''" / [ \t]+ &ns_single_char)*
+// [119] ns-single-char ::= nb-single-char - s-white
+rule ns_single_char = [^\u{0}- '] / "''"
+
+// ---- Line folding, separation, comments and indentation (chapter 6) ----
+
+// [74] s-flow-folded(n) ::= s-separate-in-line? b-l-folded(n,flow-in) s-flow-line-prefix(n)
+// [73] b-l-folded(n,c) ::= b-l-trimmed(n,c) | b-as-space, [71] b-l-trimmed(n,c) ::= b-non-content l-empty(n,c)+
+rule s_flow_folded = [ \t]* b_break l_empty_flow* s_flow_line_prefix
+// [70] l-empty(n,flow-in) ::= ( s-flow-line-prefix(n) | s-indent(<n) ) b-as-line-feed
+rule l_empty_flow = sp:" "* #atomic ({len($sp) >= n} [ \t]* / {len($sp) < n}) b_break
+// [69] s-flow-line-prefix(n) ::= s-indent(n) s-separate-in-line?
+rule s_flow_line_prefix = sp:" "* #atomic {len($sp) >= n} [ \t]*
+
+// [80] s-separate(n,c): s-separate-lines(n) in block and flow contexts, s-separate-in-line in the keys.
+rule s_separate = (
+    {c == "block-key" || c == "flow-key"} s_separate_in_line
+    / {c != "block-key" && c != "flow-key"} s_separate_lines
+)
+// [81] s-separate-lines(n) ::= ( s-l-comments s-flow-line-prefix(n) ) | s-separate-in-line
+// The first alternative is the common case of white space before content, where s-l-comments fails.
+rule s_separate_lines = [ \t]+ ![#\r\n] !$$ / s_l_comments s_flow_line_prefix / s_separate_in_line
+// [66] s-separate-in-line ::= s-white+ | <start-of-line>
+rule s_separate_in_line = [ \t]+ / ^
+
+// [79] s-l-comments ::= ( s-b-comment | <start-of-line> ) l-comment*
+// The first alternative is the common case of a line break followed by a line of content.
+rule s_l_comments = [ \t]* b_break &([ \t]* [^#\r\n]) / (s_b_comment / ^) l_comment*
+// [77] s-b-comment ::= ( s-separate-in-line c-nb-comment-text? )? b-comment
+rule s_b_comment = (s_separate_in_line c_nb_comment_text?)? b_comment
+// [78] l-comment ::= s-separate-in-line c-nb-comment-text? b-comment, except an empty one at the end of
+// the input, which would end the repetitions of l-comment without consuming anything.
+rule l_comment = !$$ s_separate_in_line c_nb_comment_text? b_comment
+// [75] c-nb-comment-text ::= "#" nb-char*
+rule c_nb_comment_text = "#" [^\u{0}-\u{8}\n-\u{1f}\u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}]*
+// [76] b-comment ::= b-non-content | <end-of-input>
+rule b_comment = "\r\n" / "\r" / "\n" / $$
+
+// [63] s-indent(n) ::= s-space{n}. The spaces are read greedily: every use of s-indent(n) is followed
+// by something other than a space.
+rule s_indent = s:" "* #atomic {len($s) == n}
+
+// ---- Characters (chapter 5) ----
+// UTF-8 decoding yields only Unicode scalar values, so character classes need
+// no explicit surrogate exclusions.
+
+// [28] b-break ::= ( b-carriage-return b-line-feed ) | b-carriage-return | b-line-feed
+rule b_break = "\r\n" / "\r" / "\n"
+// [34] ns-char ::= nb-char - s-white, where [27] nb-char ::= c-printable - b-char - c-byte-order-mark
+rule ns_char = [^\u{0}- \u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}]
+rule nb_char = [^\u{0}-\u{8}\n-\u{1f}\u{7f}-\u{84}\u{86}-\u{9f}\u{feff}\u{fffe}\u{ffff}]

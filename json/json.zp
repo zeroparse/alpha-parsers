@@ -1,0 +1,44 @@
+// JSON (RFC 8259), parsed into a typed AST.
+package json
+
+type Object = { Members []Member }
+type Member = { Key String; Value Value }
+type Array = { Elements []Value }
+type String = node[string] // the raw string without quotes, escapes included
+type Number = node[string]
+type Bool = node[string]
+type Null = node[string]
+type Value ~ Object | Array | String | Number | Bool | Null
+
+@start
+rule main Value = ws v:value ws $$ => $v
+
+rule value Value = object / array / string / number / bool / null
+
+rule object Object = "{" ws ms:members? ws "}" => Object{Members: concat($ms)}
+rule members = (
+    first:member rest:(-ws -"," -ws m:member)*
+) => concat(list($first), map($rest, (r) => r.$m))
+rule member Member = k:string ws ":" ws v:value => Member{Key: $k, Value: $v}
+
+rule array Array = "[" ws es:elements? ws "]" => Array{Elements: concat($es)}
+rule elements = (
+    first:value rest:(-ws -"," -ws v:value)*
+) => concat(list($first), map($rest, (r) => r.$v))
+
+rule string = "\"" s:chars "\"" => $s
+// Runs of unescaped characters are matched by an inline class: calling a rule for each character
+// makes the generated Recognize about a quarter slower and ParseAST about a tenth.
+rule chars String = (([^"\\\u{0}-\u{1f}]+ / escape)*) #atomic
+rule escape = "\\" (["\\/bfnrt] / "u" hex hex hex hex)
+rule hex = [0-9a-fA-F]
+
+rule number Number = ("-"? int frac? exp?) #atomic
+rule int = "0" / [1-9] [0-9]*
+rule frac = "." [0-9]+
+rule exp = [eE] [+\-]? [0-9]+
+
+rule bool Bool = ("true" / "false") #atomic
+rule null Null = ("null") #atomic
+
+rule ws = [ \t\r\n]*
