@@ -1,2 +1,4 @@
-zeroparse.dev/zp v0.0.0-20261101064814-ab3edcf5b7ff h1:u1ur2azhJ0wu9q+urLVJ2N7P6H2wrbZJCOwlSGVFHPo=
-zeroparse.dev/zp v0.0.0-20261101064814-ab3edcf5b7ff/go.mod h1:oPBj0Js6AU+N8MQM+h0/h9JshVpJIeTKp8efoV5TLDI=
+zeroparse.dev/zp v0.0.0-20261101161431-398c93421309 h1:z+wcDp87cQrBKdV6NxriMr4/D/ygqjV/nEVBn80/4ps=
+zeroparse.dev/zp v0.0.0-20261101161431-398c93421309/go.mod h1:LTNxxtlvtsvvSygNiXR7Rdi3iml14P3habEoWlyo9S8=
+zeroparse.dev/zp/runtime v0.0.0-20261101161227-aec81ac4980f h1:cn8CJayPejGL97hnWdZ5OAtNyOP1JxWDEZDSZaAPHuI=
+zeroparse.dev/zp/runtime v0.0.0-20261101161227-aec81ac4980f/go.mod h1:AYKSHAwpa9r98T0t5KiFHCpl7b+nhGiOMqgePBPMhkY=
