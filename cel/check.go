@@ -25,20 +25,20 @@ func (e *CheckError) Error() string {
 type Option func(*checkOptions)
 
 type checkOptions struct {
-	limits Limits
+	limits ExprLimits
 	macros bool
 }
 
-// WithLimits checks against l instead of DefaultLimits. A limit of zero or less is not checked: WithLimits(Limits{})
+// WithExprLimits checks against l instead of DefaultExprLimits. A limit of zero or less is not checked: WithExprLimits(ExprLimits{})
 // turns the checks of size and depth off.
-func WithLimits(l Limits) Option { return func(o *checkOptions) { o.limits = l } }
+func WithExprLimits(l ExprLimits) Option { return func(o *checkOptions) { o.limits = l } }
 
 // WithMacros also checks the calls of the standard macros as cel-go's parser does when it expands them (see
 // CheckMacros).
 func WithMacros() Option { return func(o *checkOptions) { o.macros = true } }
 
 func newCheckOptions(opts []Option) checkOptions {
-	o := checkOptions{limits: DefaultLimits}
+	o := checkOptions{limits: DefaultExprLimits}
 	for _, opt := range opts {
 		opt(&o)
 	}

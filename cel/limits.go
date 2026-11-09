@@ -7,17 +7,17 @@ import (
 	"zeroparse.dev/alpha-parsers/cel/types"
 )
 
-// Limits are limits on an expression, which a CEL implementation is free to choose (the specification only requires
+// ExprLimits are limits on an expression, which a CEL implementation is free to choose (the specification only requires
 // that a few levels of nesting and 32 repetitions work). A limit of zero or less is not checked.
-type Limits struct {
+type ExprLimits struct {
 	// MaxDepth is the depth of recursion that the parser of cel-go allows; see CheckLimits for how it is measured.
 	MaxDepth int
 	// MaxSize is the size of an expression in code points.
 	MaxSize int
 }
 
-// DefaultLimits are the defaults of cel-go's parser: a depth of 250 and 100,000 code points.
-var DefaultLimits = Limits{MaxDepth: 250, MaxSize: 100_000}
+// DefaultExprLimits are the defaults of cel-go's parser: a depth of 250 and 100,000 code points.
+var DefaultExprLimits = ExprLimits{MaxDepth: 250, MaxSize: 100_000}
 
 // CheckLimits reports whether the expression is within the limits, measuring its depth as cel-go does.
 //
@@ -27,7 +27,7 @@ var DefaultLimits = Limits{MaxDepth: 250, MaxSize: 100_000}
 // and index operations are visited. Nested expressions in parentheses, lists, maps, messages, calls and
 // indexes count against the first; a chain of selections or operators, which ANTLR builds without recursion,
 // against the second; and a run of ! or - against neither. CheckLimits computes both from the AST.
-func CheckLimits(e types.Expr, l Limits) error {
+func CheckLimits(e types.Expr, l ExprLimits) error {
 	if l.MaxDepth <= 0 {
 		return nil
 	}
@@ -322,7 +322,7 @@ func visitDepth(e types.Expr) int {
 }
 
 // checkSize reports whether the input is within the size limit.
-func checkSize(input string, l Limits) error {
+func checkSize(input string, l ExprLimits) error {
 	if l.MaxSize <= 0 {
 		return nil
 	}

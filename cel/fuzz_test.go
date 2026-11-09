@@ -33,7 +33,7 @@ func FuzzParse(f *testing.F) {
 			f.Add(src)
 		}
 	}
-	nolimits := cel.WithLimits(cel.Limits{})
+	nolimits := cel.WithExprLimits(cel.ExprLimits{})
 	f.Fuzz(func(t *testing.T, src string) {
 		e, aerr := cel.ParseAST(src)
 		_, berr := cel.ParseAST(src, cel.WithUnit(cel.Bytes))

@@ -29,15 +29,15 @@ func TestBudgetErrorsAreDeterministic(t *testing.T) {
 	describe := func(ok bool, err error) string { return fmt.Sprintf("ok=%v err=%v", ok, err) }
 	runs := map[string]func(in string, b uint64) string{
 		"Parse": func(in string, b uint64) string {
-			n, err := yaml.Parse(in, yaml.WithLimits(yaml.Limits{Budget: b}))
+			n, err := yaml.Parse(in, yaml.WithLimits(yaml.Limits{Compute: b}))
 			return describe(n != nil, err)
 		},
 		"ParseAST": func(in string, b uint64) string {
-			v, err := yaml.ParseAST(in, yaml.WithLimits(yaml.Limits{Budget: b}))
+			v, err := yaml.ParseAST(in, yaml.WithLimits(yaml.Limits{Compute: b}))
 			return describe(v != nil, err)
 		},
 		"Recognize": func(in string, b uint64) string {
-			return describe(true, yaml.Recognize(in, yaml.WithLimits(yaml.Limits{Budget: b})))
+			return describe(true, yaml.Recognize(in, yaml.WithLimits(yaml.Limits{Compute: b})))
 		},
 	}
 	for name, run := range runs {

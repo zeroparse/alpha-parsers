@@ -56,9 +56,9 @@ ok := cel.Valid(`1 +`) // false
 | `ParseExpr(input, opts...) (types.Expr, error)` | `ParseAST`, then `Check`; the size of the input is checked first. It returns a `*SyntaxError` or a `*CheckError` |
 | `Valid(input, opts...) bool` | Only check the input, as `ParseExpr` does |
 | `Check(e, opts...) error` | What the grammar does not check: literals out of range, the limits of depth, and with `WithMacros` the macros |
-| `CheckLimits(e, Limits) error`, `DefaultLimits` | The depth of recursion and the size that cel-go allows (250 and 100,000 code points) |
+| `CheckLimits(e, ExprLimits) error`, `DefaultExprLimits` | The depth of recursion and the size that cel-go allows (250 and 100,000 code points) |
 | `CheckMacros(e) error`, `IsMacroCall(*types.Call) bool` | The calls of the standard macros that cel-go rejects, and the calls that are macros |
-| `WithLimits(Limits)`, `WithMacros()` | Options of `ParseExpr`, `Valid` and `Check` |
+| `WithExprLimits(ExprLimits)`, `WithMacros()` | Options of `ParseExpr`, `Valid` and `Check` |
 | `Format(e) string` | The expression as source, with the parentheses its precedence needs |
 | `Inspect(e, f)`, `Children(e, f)`, `SpanOf(e)` | Walk the tree; the range of any node |
 | `Constant(e) (any, bool)` | The Go value of a literal, or a list or map of literals |
@@ -189,7 +189,7 @@ conditional, the `:` of an entry and a field, the first operator of a run of `!`
   the first closing triple quote.
 - **Invalid UTF-8** in the input is read as U+FFFD, one for each invalid byte, in names, literals and anywhere else, as
   cel-go reads it (the source is converted to runes first). `Value` of a literal decodes the same way.
-- Expressions are limited as cel-go does by default (`DefaultLimits`); its other limits (the number of syntax errors
+- Expressions are limited as cel-go does by default (`DefaultExprLimits`); its other limits (the number of syntax errors
   it reports, the size of error recovery, and the number of nodes created by macros) are not modeled.
 
 ## Grammar

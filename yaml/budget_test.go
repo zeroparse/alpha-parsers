@@ -8,16 +8,16 @@ import (
 	"zeroparse.dev/alpha-parsers/yaml"
 )
 
-// TestBudgetControls checks that the parser, generated with budget controls, stops at a budget limit
+// TestBudgetControls checks that the parser, generated with limit controls, stops at a Compute limit
 // and at a cancelled context, and that the same input parses without them.
 func TestBudgetControls(t *testing.T) {
 	const input = "a: 1\nb: 2\n"
 	if _, err := yaml.Parse(input); err != nil {
 		t.Fatal(err)
 	}
-	_, err := yaml.Parse(input, yaml.WithLimits(yaml.Limits{Budget: 1}))
+	_, err := yaml.Parse(input, yaml.WithLimits(yaml.Limits{Compute: 1}))
 	var limit *yaml.LimitError
-	if !errors.Is(err, yaml.ErrLimit) || !errors.As(err, &limit) || limit.Kind != yaml.LimitBudget {
+	if !errors.Is(err, yaml.ErrLimit) || !errors.As(err, &limit) || limit.Kind != yaml.LimitCompute {
 		t.Fatalf("budget limit: got %v", err)
 	}
 	ctx, cancel := context.WithCancel(context.Background())

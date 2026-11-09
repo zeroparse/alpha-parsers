@@ -14,7 +14,7 @@ var stripPos = regexp.MustCompile(`@[0-9]+`)
 // TestFormat checks that Format prints every accepted expression of the reference corpora as text that parses to the
 // same expression (without the positions), and that formatting is stable.
 func TestFormat(t *testing.T) {
-	nolimits := cel.WithLimits(cel.Limits{})
+	nolimits := cel.WithExprLimits(cel.ExprLimits{})
 	n := 0
 	for _, src := range refSources(t) {
 		e, err := cel.ParseExpr(src, nolimits)

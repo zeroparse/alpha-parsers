@@ -8,16 +8,16 @@ import (
 	"zeroparse.dev/alpha-parsers/csv"
 )
 
-// TestBudgetControls checks that the parser, generated with budget controls, stops at a budget limit
+// TestBudgetControls checks that the parser, generated with limit controls, stops at a Compute limit
 // and at a cancelled context, and that the same input parses without them.
 func TestBudgetControls(t *testing.T) {
 	const input = "a,b\n1,2\n"
 	if _, err := csv.Parse(input); err != nil {
 		t.Fatal(err)
 	}
-	_, err := csv.Parse(input, csv.WithLimits(csv.Limits{Budget: 1}))
+	_, err := csv.Parse(input, csv.WithLimits(csv.Limits{Compute: 1}))
 	var limit *csv.LimitError
-	if !errors.Is(err, csv.ErrLimit) || !errors.As(err, &limit) || limit.Kind != csv.LimitBudget {
+	if !errors.Is(err, csv.ErrLimit) || !errors.As(err, &limit) || limit.Kind != csv.LimitCompute {
 		t.Fatalf("budget limit: got %v", err)
 	}
 	ctx, cancel := context.WithCancel(context.Background())

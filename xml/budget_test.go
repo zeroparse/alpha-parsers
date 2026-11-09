@@ -8,16 +8,16 @@ import (
 	"zeroparse.dev/alpha-parsers/xml"
 )
 
-// TestBudgetControls checks that the parser, generated with budget controls, stops at a budget limit
+// TestBudgetControls checks that the parser, generated with limit controls, stops at a Compute limit
 // and at a cancelled context, and that the same input parses without them.
 func TestBudgetControls(t *testing.T) {
 	const input = "<a><b/></a>"
 	if _, err := xml.Parse(input); err != nil {
 		t.Fatal(err)
 	}
-	_, err := xml.Parse(input, xml.WithLimits(xml.Limits{Budget: 1}))
+	_, err := xml.Parse(input, xml.WithLimits(xml.Limits{Compute: 1}))
 	var limit *xml.LimitError
-	if !errors.Is(err, xml.ErrLimit) || !errors.As(err, &limit) || limit.Kind != xml.LimitBudget {
+	if !errors.Is(err, xml.ErrLimit) || !errors.As(err, &limit) || limit.Kind != xml.LimitCompute {
 		t.Fatalf("budget limit: got %v", err)
 	}
 	ctx, cancel := context.WithCancel(context.Background())
