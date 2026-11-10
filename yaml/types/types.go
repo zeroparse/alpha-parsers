@@ -130,6 +130,9 @@ func (v *Directive) TField(name string) (any, bool) {
 	case "Name":
 		return tb0(v.Name), true
 	case "Params":
+		if v.Params == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Params == nil {
 				return nil
@@ -149,6 +152,9 @@ func (v *Directive) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	case "Name":
 		return tb0(v.Name), true
 	case "Params":
+		if v.Params == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Params == nil {
 				return nil
@@ -164,6 +170,14 @@ func (v *Directive) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Directive) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Params":
+		return c.NewList(nil), true
+	}
+	return nil, false
+}
+
 func (v *Document) TName() string         { return "Document" }
 func (v *Document) TText() (string, bool) { return "", false }
 func (v *Document) TKids() []any          { return nil }
@@ -173,6 +187,9 @@ func (v *Document) TSetFresh(bool)        {}
 func (v *Document) TField(name string) (any, bool) {
 	switch name {
 	case "Directives":
+		if v.Directives == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Directives == nil {
 				return nil
@@ -196,6 +213,9 @@ func (v *Document) TField(name string) (any, bool) {
 func (v *Document) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Directives":
+		if v.Directives == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Directives == nil {
 				return nil
@@ -217,6 +237,14 @@ func (v *Document) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Document) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Directives":
+		return c.NewList(nil), true
+	}
+	return nil, false
+}
+
 func (v *Mapping) TName() string         { return "Mapping" }
 func (v *Mapping) TText() (string, bool) { return "", false }
 func (v *Mapping) TKids() []any          { return nil }
@@ -230,6 +258,9 @@ func (v *Mapping) TField(name string) (any, bool) {
 	case "Flow":
 		return any(v.Flow), true
 	case "Pairs":
+		if v.Pairs == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Pairs == nil {
 				return nil
@@ -251,6 +282,9 @@ func (v *Mapping) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	case "Flow":
 		return any(v.Flow), true
 	case "Pairs":
+		if v.Pairs == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Pairs == nil {
 				return nil
@@ -262,6 +296,14 @@ func (v *Mapping) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			}
 			return p.ListField(kids)
 		}(), true
+	}
+	return nil, false
+}
+
+func (v *Mapping) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Pairs":
+		return c.NewList(nil), true
 	}
 	return nil, false
 }
@@ -292,6 +334,12 @@ func (v *Pair) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Pair) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *Properties) TName() string         { return "Properties" }
 func (v *Properties) TText() (string, bool) { return "", false }
 func (v *Properties) TKids() []any          { return nil }
@@ -314,6 +362,12 @@ func (v *Properties) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 		return tb2(v.Tag), true
 	case "Anchor":
 		return tb3(v.Anchor), true
+	}
+	return nil, false
+}
+
+func (v *Properties) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
 	}
 	return nil, false
 }
@@ -360,6 +414,12 @@ func (v *Scalar) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Scalar) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *Sequence) TName() string         { return "Sequence" }
 func (v *Sequence) TText() (string, bool) { return "", false }
 func (v *Sequence) TKids() []any          { return nil }
@@ -373,6 +433,9 @@ func (v *Sequence) TField(name string) (any, bool) {
 	case "Flow":
 		return any(v.Flow), true
 	case "Items":
+		if v.Items == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Items == nil {
 				return nil
@@ -394,6 +457,9 @@ func (v *Sequence) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	case "Flow":
 		return any(v.Flow), true
 	case "Items":
+		if v.Items == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Items == nil {
 				return nil
@@ -409,6 +475,14 @@ func (v *Sequence) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Sequence) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Items":
+		return c.NewList(nil), true
+	}
+	return nil, false
+}
+
 func (v *Stream) TName() string         { return "Stream" }
 func (v *Stream) TText() (string, bool) { return "", false }
 func (v *Stream) TKids() []any          { return nil }
@@ -418,6 +492,9 @@ func (v *Stream) TSetFresh(bool)        {}
 func (v *Stream) TField(name string) (any, bool) {
 	switch name {
 	case "Documents":
+		if v.Documents == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Documents == nil {
 				return nil
@@ -435,6 +512,9 @@ func (v *Stream) TField(name string) (any, bool) {
 func (v *Stream) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Documents":
+		if v.Documents == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Documents == nil {
 				return nil
@@ -446,6 +526,14 @@ func (v *Stream) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			}
 			return p.ListField(kids)
 		}(), true
+	}
+	return nil, false
+}
+
+func (v *Stream) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Documents":
+		return c.NewList(nil), true
 	}
 	return nil, false
 }
@@ -482,7 +570,7 @@ func tb3(v *Anchor) any {
 // is no named node type. It is for generated parsers.
 var ZPNodeTypes [6]uint16
 
-// ZPSchema_2eae69bb7de43eff ties the parser package to this package: the parser refers to it once, so a
+// ZPSchema_404558e36b26d371 ties the parser package to this package: the parser refers to it once, so a
 // parser and a types package generated from different schemas do not compile together.
 // It is for generated parsers; not a stable API.
-const ZPSchema_2eae69bb7de43eff = 0
+const ZPSchema_404558e36b26d371 = 0

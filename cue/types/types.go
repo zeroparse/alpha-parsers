@@ -344,6 +344,12 @@ func (v *Alias) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Alias) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *BinaryExpr) TName() string         { return "BinaryExpr" }
 func (v *BinaryExpr) TText() (string, bool) { return "", false }
 func (v *BinaryExpr) TKids() []any          { return nil }
@@ -374,6 +380,12 @@ func (v *BinaryExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *BinaryExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *CallExpr) TName() string         { return "CallExpr" }
 func (v *CallExpr) TText() (string, bool) { return "", false }
 func (v *CallExpr) TKids() []any          { return nil }
@@ -385,6 +397,9 @@ func (v *CallExpr) TField(name string) (any, bool) {
 	case "Fun":
 		return rt.TBack(ZPHooks, v.Fun), true
 	case "Args":
+		if v.Args == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Args == nil {
 				return nil
@@ -404,6 +419,9 @@ func (v *CallExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	case "Fun":
 		return rt.TBack(ZPHooks, v.Fun), true
 	case "Args":
+		if v.Args == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Args == nil {
 				return nil
@@ -418,6 +436,14 @@ func (v *CallExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *CallExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Args":
+		return c.NewList(nil), true
+	}
+	return nil, false
+}
+
 func (v *Comprehension) TName() string         { return "Comprehension" }
 func (v *Comprehension) TText() (string, bool) { return "", false }
 func (v *Comprehension) TKids() []any          { return nil }
@@ -427,6 +453,9 @@ func (v *Comprehension) TSetFresh(bool)        {}
 func (v *Comprehension) TField(name string) (any, bool) {
 	switch name {
 	case "Clauses":
+		if v.Clauses == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Clauses == nil {
 				return nil
@@ -438,6 +467,9 @@ func (v *Comprehension) TField(name string) (any, bool) {
 			return rt.TListOf(kids)
 		}(), true
 	case "Value":
+		if v.Value == nil {
+			return nil, false
+		}
 		return rt.TPtr(v.Value), true
 	case "Fallback":
 		return rt.TPtr(v.Fallback), true
@@ -448,6 +480,9 @@ func (v *Comprehension) TField(name string) (any, bool) {
 func (v *Comprehension) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Clauses":
+		if v.Clauses == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Clauses == nil {
 				return nil
@@ -459,9 +494,22 @@ func (v *Comprehension) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			return p.ListField(kids)
 		}(), true
 	case "Value":
+		if v.Value == nil {
+			return nil, false
+		}
 		return rt.TPtr(v.Value), true
 	case "Fallback":
 		return rt.TPtr(v.Fallback), true
+	}
+	return nil, false
+}
+
+func (v *Comprehension) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Clauses":
+		return c.NewList(nil), true
+	case "Value":
+		return c.MadeOf(new(StructLit)), true
 	}
 	return nil, false
 }
@@ -484,6 +532,12 @@ func (v *Ellipsis) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Type":
 		return rt.TBack(ZPHooks, v.Type), true
+	}
+	return nil, false
+}
+
+func (v *Ellipsis) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
 	}
 	return nil, false
 }
@@ -514,6 +568,12 @@ func (v *EmbedDecl) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *EmbedDecl) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *FallbackClause) TName() string         { return "FallbackClause" }
 func (v *FallbackClause) TText() (string, bool) { return "", false }
 func (v *FallbackClause) TKids() []any          { return nil }
@@ -523,6 +583,9 @@ func (v *FallbackClause) TSetFresh(bool)        {}
 func (v *FallbackClause) TField(name string) (any, bool) {
 	switch name {
 	case "Body":
+		if v.Body == nil {
+			return nil, false
+		}
 		return rt.TPtr(v.Body), true
 	}
 	return nil, false
@@ -531,7 +594,18 @@ func (v *FallbackClause) TField(name string) (any, bool) {
 func (v *FallbackClause) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Body":
+		if v.Body == nil {
+			return nil, false
+		}
 		return rt.TPtr(v.Body), true
+	}
+	return nil, false
+}
+
+func (v *FallbackClause) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Body":
+		return c.MadeOf(new(StructLit)), true
 	}
 	return nil, false
 }
@@ -553,6 +627,9 @@ func (v *Field) TField(name string) (any, bool) {
 	case "Value":
 		return rt.TBack(ZPHooks, v.Value), true
 	case "Attrs":
+		if v.Attrs == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Attrs == nil {
 				return nil
@@ -578,6 +655,9 @@ func (v *Field) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	case "Value":
 		return rt.TBack(ZPHooks, v.Value), true
 	case "Attrs":
+		if v.Attrs == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Attrs == nil {
 				return nil
@@ -592,6 +672,14 @@ func (v *Field) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Field) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Attrs":
+		return c.NewList(nil), true
+	}
+	return nil, false
+}
+
 func (v *File) TName() string         { return "File" }
 func (v *File) TText() (string, bool) { return "", false }
 func (v *File) TKids() []any          { return nil }
@@ -601,6 +689,9 @@ func (v *File) TSetFresh(bool)        {}
 func (v *File) TField(name string) (any, bool) {
 	switch name {
 	case "Decls":
+		if v.Decls == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Decls == nil {
 				return nil
@@ -618,6 +709,9 @@ func (v *File) TField(name string) (any, bool) {
 func (v *File) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Decls":
+		if v.Decls == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Decls == nil {
 				return nil
@@ -628,6 +722,14 @@ func (v *File) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			}
 			return p.ListField(kids)
 		}(), true
+	}
+	return nil, false
+}
+
+func (v *File) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Decls":
+		return c.NewList(nil), true
 	}
 	return nil, false
 }
@@ -662,6 +764,12 @@ func (v *ForClause) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *ForClause) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *IfClause) TName() string         { return "IfClause" }
 func (v *IfClause) TText() (string, bool) { return "", false }
 func (v *IfClause) TKids() []any          { return nil }
@@ -684,6 +792,12 @@ func (v *IfClause) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *IfClause) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *ImportDecl) TName() string         { return "ImportDecl" }
 func (v *ImportDecl) TText() (string, bool) { return "", false }
 func (v *ImportDecl) TKids() []any          { return nil }
@@ -695,6 +809,9 @@ func (v *ImportDecl) TField(name string) (any, bool) {
 	case "Lparen":
 		return rt.TBack(ZPHooks, v.Lparen), true
 	case "Specs":
+		if v.Specs == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Specs == nil {
 				return nil
@@ -714,6 +831,9 @@ func (v *ImportDecl) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	case "Lparen":
 		return rt.TBack(ZPHooks, v.Lparen), true
 	case "Specs":
+		if v.Specs == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Specs == nil {
 				return nil
@@ -724,6 +844,14 @@ func (v *ImportDecl) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			}
 			return p.ListField(kids)
 		}(), true
+	}
+	return nil, false
+}
+
+func (v *ImportDecl) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Specs":
+		return c.NewList(nil), true
 	}
 	return nil, false
 }
@@ -739,6 +867,9 @@ func (v *ImportSpec) TField(name string) (any, bool) {
 	case "Name":
 		return tb0(v.Name), true
 	case "Path":
+		if v.Path == nil {
+			return nil, false
+		}
 		return rt.TPtr(v.Path), true
 	}
 	return nil, false
@@ -749,7 +880,18 @@ func (v *ImportSpec) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	case "Name":
 		return tb0(v.Name), true
 	case "Path":
+		if v.Path == nil {
+			return nil, false
+		}
 		return rt.TPtr(v.Path), true
+	}
+	return nil, false
+}
+
+func (v *ImportSpec) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Path":
+		return c.MadeOf(new(String)), true
 	}
 	return nil, false
 }
@@ -784,6 +926,12 @@ func (v *IndexExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *IndexExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *Interpolation) TName() string         { return "Interpolation" }
 func (v *Interpolation) TText() (string, bool) { return "", false }
 func (v *Interpolation) TKids() []any          { return nil }
@@ -793,6 +941,9 @@ func (v *Interpolation) TSetFresh(bool)        {}
 func (v *Interpolation) TField(name string) (any, bool) {
 	switch name {
 	case "Elts":
+		if v.Elts == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Elts == nil {
 				return nil
@@ -810,6 +961,9 @@ func (v *Interpolation) TField(name string) (any, bool) {
 func (v *Interpolation) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Elts":
+		if v.Elts == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Elts == nil {
 				return nil
@@ -820,6 +974,14 @@ func (v *Interpolation) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			}
 			return p.ListField(kids)
 		}(), true
+	}
+	return nil, false
+}
+
+func (v *Interpolation) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Elts":
+		return c.NewList(nil), true
 	}
 	return nil, false
 }
@@ -850,6 +1012,12 @@ func (v *LetClause) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *LetClause) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *ListLit) TName() string         { return "ListLit" }
 func (v *ListLit) TText() (string, bool) { return "", false }
 func (v *ListLit) TKids() []any          { return nil }
@@ -859,6 +1027,9 @@ func (v *ListLit) TSetFresh(bool)        {}
 func (v *ListLit) TField(name string) (any, bool) {
 	switch name {
 	case "Elts":
+		if v.Elts == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Elts == nil {
 				return nil
@@ -876,6 +1047,9 @@ func (v *ListLit) TField(name string) (any, bool) {
 func (v *ListLit) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Elts":
+		if v.Elts == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Elts == nil {
 				return nil
@@ -886,6 +1060,14 @@ func (v *ListLit) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			}
 			return p.ListField(kids)
 		}(), true
+	}
+	return nil, false
+}
+
+func (v *ListLit) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Elts":
+		return c.NewList(nil), true
 	}
 	return nil, false
 }
@@ -912,6 +1094,12 @@ func (v *Package) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *Package) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *ParenExpr) TName() string         { return "ParenExpr" }
 func (v *ParenExpr) TText() (string, bool) { return "", false }
 func (v *ParenExpr) TKids() []any          { return nil }
@@ -930,6 +1118,12 @@ func (v *ParenExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "X":
 		return rt.TBack(ZPHooks, v.X), true
+	}
+	return nil, false
+}
+
+func (v *ParenExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
 	}
 	return nil, false
 }
@@ -960,6 +1154,12 @@ func (v *PostfixAlias) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *PostfixAlias) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *PostfixExpr) TName() string         { return "PostfixExpr" }
 func (v *PostfixExpr) TText() (string, bool) { return "", false }
 func (v *PostfixExpr) TKids() []any          { return nil }
@@ -986,6 +1186,12 @@ func (v *PostfixExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *PostfixExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *SelectorExpr) TName() string         { return "SelectorExpr" }
 func (v *SelectorExpr) TText() (string, bool) { return "", false }
 func (v *SelectorExpr) TKids() []any          { return nil }
@@ -1008,6 +1214,12 @@ func (v *SelectorExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 		return rt.TBack(ZPHooks, v.X), true
 	case "Sel":
 		return rt.TBack(ZPHooks, v.Sel), true
+	}
+	return nil, false
+}
+
+func (v *SelectorExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
 	}
 	return nil, false
 }
@@ -1042,6 +1254,12 @@ func (v *SliceExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *SliceExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *String) TName() string         { return "String" }
 func (v *String) TText() (string, bool) { return "", false }
 func (v *String) TKids() []any          { return nil }
@@ -1072,6 +1290,12 @@ func (v *String) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *String) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *StructLit) TName() string         { return "StructLit" }
 func (v *StructLit) TText() (string, bool) { return "", false }
 func (v *StructLit) TKids() []any          { return nil }
@@ -1081,6 +1305,9 @@ func (v *StructLit) TSetFresh(bool)        {}
 func (v *StructLit) TField(name string) (any, bool) {
 	switch name {
 	case "Elts":
+		if v.Elts == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Elts == nil {
 				return nil
@@ -1098,6 +1325,9 @@ func (v *StructLit) TField(name string) (any, bool) {
 func (v *StructLit) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	switch name {
 	case "Elts":
+		if v.Elts == nil {
+			return nil, false
+		}
 		return func() any {
 			if v.Elts == nil {
 				return nil
@@ -1108,6 +1338,14 @@ func (v *StructLit) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 			}
 			return p.ListField(kids)
 		}(), true
+	}
+	return nil, false
+}
+
+func (v *StructLit) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	case "Elts":
+		return c.NewList(nil), true
 	}
 	return nil, false
 }
@@ -1138,6 +1376,12 @@ func (v *TryClause) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *TryClause) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func (v *UnaryExpr) TName() string         { return "UnaryExpr" }
 func (v *UnaryExpr) TText() (string, bool) { return "", false }
 func (v *UnaryExpr) TKids() []any          { return nil }
@@ -1164,6 +1408,12 @@ func (v *UnaryExpr) TFieldSpend(p *rt.TParser, name string) (any, bool) {
 	return nil, false
 }
 
+func (v *UnaryExpr) TZeroField(c *rt.TActCtx, name string) (any, bool) {
+	switch name {
+	}
+	return nil, false
+}
+
 func tb0(v *Ident) any {
 	if v == nil {
 		return nil
@@ -1182,7 +1432,7 @@ func tb1(v *Attribute) any {
 // is no named node type. It is for generated parsers.
 var ZPNodeTypes [8]uint16
 
-// ZPSchema_3e95144d70b939ef ties the parser package to this package: the parser refers to it once, so a
+// ZPSchema_3a23d499ebcb9ac4 ties the parser package to this package: the parser refers to it once, so a
 // parser and a types package generated from different schemas do not compile together.
 // It is for generated parsers; not a stable API.
-const ZPSchema_3e95144d70b939ef = 0
+const ZPSchema_3a23d499ebcb9ac4 = 0

@@ -28373,6 +28373,6 @@ fail:
 	return nil, false
 }
 
-const _ = types.ZPSchema_cd94827b8899379a
+const _ = types.ZPSchema_e96c8ded1bc55a34
 
 const _ = rt.Protocol5
