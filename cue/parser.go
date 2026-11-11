@@ -1863,12 +1863,12 @@ fail:
 }
 
 func s12(p *rt.TParser) (any, bool) {
-	var start, x1, x2, x4, size, x6 int
+	var start, x1, x2, x3, x4, size, x6 int
 	var v, v7, v8, v9 any
 	var ch rune
 	var ok bool
 	start = p.Pos
-	x1, x2 = p.Pos, len(p.KidStack)
+	x1, x3, x2 = p.Pos, len(p.KidStack), 0
 	for {
 		x4 = p.Pos
 		ch, size, ok = p.NextOrdinary()
@@ -1881,15 +1881,16 @@ func s12(p *rt.TParser) (any, bool) {
 		v7 = p.NewMatchOrdinary(x6, p.Pos, p.Text(x6, p.Pos), true)
 		v8 = p.ScopeValue(sh27, v7, x4)
 		p.PushKid(v8)
-		if p.Pos == x4 {
-			break
+		x2++
+		if x2 == 16 {
+			x2 = p.ScanReach(40, x1, x2)
 		}
 		continue
 	L5:
 		p.Pos = x4
 		break
 	}
-	v9 = p.NewNodeOrdinary("list", x1, p.Pos, p.Kids(x2))
+	v9 = p.NewNodeOrdinary("list", x1, p.Pos, p.ScanKids(40, x1, x3, x2))
 	v = p.ScopeValue(sh27, v9, start)
 	if n := rt.AsTval(v); n != nil {
 		n.TSetFresh(false)
@@ -1898,12 +1899,12 @@ func s12(p *rt.TParser) (any, bool) {
 }
 
 func s13(p *rt.TParser) (any, bool) {
-	var start, x1, x2, x4, size, x6 int
+	var start, x1, x2, x3, x4, size, x6 int
 	var v, v7, v8, v9 any
 	var ch rune
 	var ok bool
 	start = p.Pos
-	x1, x2 = p.Pos, len(p.KidStack)
+	x1, x3, x2 = p.Pos, len(p.KidStack), 0
 	for {
 		x4 = p.Pos
 		ch, size, ok = p.NextOrdinary()
@@ -1916,15 +1917,16 @@ func s13(p *rt.TParser) (any, bool) {
 		v7 = p.NewMatchOrdinary(x6, p.Pos, p.Text(x6, p.Pos), true)
 		v8 = p.ScopeValue(sh27, v7, x4)
 		p.PushKid(v8)
-		if p.Pos == x4 {
-			break
+		x2++
+		if x2 == 16 {
+			x2 = p.ScanReach(42, x1, x2)
 		}
 		continue
 	L5:
 		p.Pos = x4
 		break
 	}
-	v9 = p.NewNodeOrdinary("list", x1, p.Pos, p.Kids(x2))
+	v9 = p.NewNodeOrdinary("list", x1, p.Pos, p.ScanKids(42, x1, x3, x2))
 	v = p.ScopeValue(sh27, v9, start)
 	if n := rt.AsTval(v); n != nil {
 		n.TSetFresh(false)
@@ -2016,7 +2018,7 @@ func v14(p *rt.TParser) (any, bool) {
 }
 
 func s15(p *rt.TParser) (any, bool) {
-	var start, x1, x3, x5, x6, x8, size, x10 int
+	var start, x1, x3, x5, x6, x7, x8, size, x10 int
 	var v, v4, v11, v12, v13, v14 any
 	var x2 []any
 	var ok bool
@@ -2032,7 +2034,7 @@ func s15(p *rt.TParser) (any, bool) {
 	}
 	v4 = p.NewMatchOrdinary(x3, p.Pos, "//", true)
 	x2 = append(x2, v4)
-	x5, x6 = p.Pos, len(p.KidStack)
+	x5, x7, x6 = p.Pos, len(p.KidStack), 0
 	for {
 		x8 = p.Pos
 		ch, size, ok = p.NextOrdinary()
@@ -2045,15 +2047,16 @@ func s15(p *rt.TParser) (any, bool) {
 		v11 = p.NewMatchOrdinary(x10, p.Pos, p.Text(x10, p.Pos), true)
 		v12 = p.ScopeValue(sh27, v11, x8)
 		p.PushKid(v12)
-		if p.Pos == x8 {
-			break
+		x6++
+		if x6 == 16 {
+			x6 = p.ScanReach(44, x5, x6)
 		}
 		continue
 	L9:
 		p.Pos = x8
 		break
 	}
-	v13 = p.NewNodeOrdinary("list", x5, p.Pos, p.Kids(x6))
+	v13 = p.NewNodeOrdinary("list", x5, p.Pos, p.ScanKids(44, x5, x7, x6))
 	x2 = append(x2, v13)
 	v14 = p.NewNodeOrdinary("tuple", x1, p.Pos, x2)
 	v = p.ScopeValue(sh5, v14, start)
@@ -13363,8 +13366,10 @@ fail:
 func s220(p *rt.TParser) (any, bool) {
 	var v any
 	var ch rune
-	var size int
+	var size, x1, x2 int
 	var ok bool
+	x1 = p.Pos
+	x2 = 0
 	for {
 		ch, size, ok = p.NextOrdinary()
 		if !ok || !(ch == 32 || ch == 9 || ch == 13) {
@@ -13372,6 +13377,13 @@ func s220(p *rt.TParser) (any, bool) {
 			break
 		}
 		p.Pos += size
+		x2++
+		if x2 == 16 {
+			x2 = p.ScanReach(39, x1, x2)
+		}
+	}
+	if 15 < x2 {
+		p.ScanEnd(39, x1, x2)
 	}
 	v = nil
 	return v, true
@@ -17205,7 +17217,7 @@ func v268(p *rt.TParser) (any, bool) {
 }
 
 func s269(p *rt.TParser) (any, bool) {
-	var start, size int
+	var start, size, x1, x2 int
 	var v any
 	var ok bool
 	var ch rune
@@ -17215,6 +17227,8 @@ func s269(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit31, "//", 15, false); !ok {
 		goto fail
 	}
+	x1 = p.Pos
+	x2 = 0
 	for {
 		ch, size, ok = p.NextOrdinary()
 		if !ok || (ch == 10 || ch == 0 || ch == 65279) {
@@ -17222,6 +17236,13 @@ func s269(p *rt.TParser) (any, bool) {
 			break
 		}
 		p.Pos += size
+		x2++
+		if x2 == 16 {
+			x2 = p.ScanReach(43, x1, x2)
+		}
+	}
+	if 15 < x2 {
+		p.ScanEnd(43, x1, x2)
 	}
 	v = nil
 	return v, true
@@ -17445,8 +17466,10 @@ fail:
 func s273(p *rt.TParser) (any, bool) {
 	var v any
 	var ch rune
-	var size int
+	var size, x1, x2 int
 	var ok bool
+	x1 = p.Pos
+	x2 = 0
 	for {
 		ch, size, ok = p.NextOrdinary()
 		if !ok || !(ch == 32 || ch == 9 || ch == 13 || ch == 10) {
@@ -17454,6 +17477,13 @@ func s273(p *rt.TParser) (any, bool) {
 			break
 		}
 		p.Pos += size
+		x2++
+		if x2 == 16 {
+			x2 = p.ScanReach(41, x1, x2)
+		}
+	}
+	if 15 < x2 {
+		p.ScanEnd(41, x1, x2)
 	}
 	v = nil
 	return v, true
@@ -18875,4 +18905,4 @@ fail:
 
 const _ = types.ZPSchema_3a23d499ebcb9ac4
 
-const _ = rt.Protocol5
+const _ = rt.Protocol6
