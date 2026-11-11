@@ -2161,7 +2161,13 @@ L10:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "importName"
-	v = k2
+	{
+		var tr65 any
+		{
+			tr65 = k2
+		}
+		v = tr65
+	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[6], v)
 	return v, true
@@ -2453,7 +2459,13 @@ func i12(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeSp"
-	v = k1
+	{
+		var tr66 any
+		{
+			tr66 = k1
+		}
+		v = tr66
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -2582,7 +2594,13 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "valuesSp"
-	v = k3
+	{
+		var tr67 any
+		{
+			tr67 = k3
+		}
+		v = tr67
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -3340,7 +3358,13 @@ L5:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "aliasEq"
-	v = k1
+	{
+		var tr68 any
+		{
+			tr68 = k1
+		}
+		v = tr68
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -3442,7 +3466,13 @@ L17:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "genericParams"
-	v = k2
+	{
+		var tr69 any
+		{
+			tr69 = k2
+		}
+		v = tr69
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -3920,7 +3950,13 @@ L25:
 L26:
 	k21 = v24
 	x28 = p.Pos
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpNe, k21, any(nil)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1, tf1 := c.P.TermBinary(rt.OpNe, k21, any(nil))
+		if tf1 != nil {
+			panic(tf1)
+		}
+		return tv1
+	}) {
 		goto L30
 	}
 	goto L29
@@ -3993,7 +4029,13 @@ func i44(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "recvSp"
-	v = k1
+	{
+		var tr71 any
+		{
+			tr71 = k1
+		}
+		v = tr71
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -4025,7 +4067,13 @@ func i45(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeParamsSp"
-	v = k1
+	{
+		var tr72 any
+		{
+			tr72 = k1
+		}
+		v = tr72
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -4057,7 +4105,13 @@ func i46(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "bodySp"
-	v = k1
+	{
+		var tr73 any
+		{
+			tr73 = k1
+		}
+		v = tr73
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -4322,7 +4376,13 @@ L14:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paramGroup"
-	v = k2
+	{
+		var tr74 any
+		{
+			tr74 = k2
+		}
+		v = tr74
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -4488,7 +4548,13 @@ L11:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "namedParamType"
-	v = k2
+	{
+		var tr75 any
+		{
+			tr75 = k2
+		}
+		v = tr75
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -4836,7 +4902,13 @@ L27:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unnamedType"
-	v = k2
+	{
+		var tr76 any
+		{
+			tr76 = k2
+		}
+		v = tr76
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -4874,7 +4946,13 @@ func i58(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "resultsSp"
-	v = k1
+	{
+		var tr77 any
+		{
+			tr77 = k1
+		}
+		v = tr77
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -5565,7 +5643,13 @@ L15:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "constraintFirst"
-	v = k2
+	{
+		var tr78 any
+		{
+			tr78 = k2
+		}
+		v = tr78
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -5756,7 +5840,13 @@ func i73(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "exprSp"
-	v = k1
+	{
+		var tr79 any
+		{
+			tr79 = k1
+		}
+		v = tr79
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -6094,7 +6184,13 @@ L37:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typ"
-	v = k2
+	{
+		var tr80 any
+		{
+			tr80 = k2
+		}
+		v = tr80
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -6266,7 +6362,13 @@ L8:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeName"
-	v = k2
+	{
+		var tr81 any
+		{
+			tr81 = k2
+		}
+		v = tr81
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -6579,7 +6681,13 @@ L8:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "qualifiedIdent"
-	v = k2
+	{
+		var tr82 any
+		{
+			tr82 = k2
+		}
+		v = tr82
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -6758,7 +6866,13 @@ L11:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "arrayLen"
-	v = k2
+	{
+		var tr83 any
+		{
+			tr83 = k2
+		}
+		v = tr83
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -7105,7 +7219,13 @@ L8:
 L9:
 	k4 = v7
 	x11 = p.Pos
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpNe, k4, any(nil)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1, tf1 := c.P.TermBinary(rt.OpNe, k4, any(nil))
+		if tf1 != nil {
+			panic(tf1)
+		}
+		return tv1
+	}) {
 		goto L13
 	}
 	goto L12
@@ -7827,7 +7947,13 @@ func i106(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tagSp"
-	v = k1
+	{
+		var tr85 any
+		{
+			tr85 = k1
+		}
+		v = tr85
+	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[106], v)
 	return v, true
@@ -8049,7 +8175,13 @@ L8:
 L9:
 	k4 = v7
 	x11 = p.Pos
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpNe, k4, any(nil)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1, tf1 := c.P.TermBinary(rt.OpNe, k4, any(nil))
+		if tf1 != nil {
+			panic(tf1)
+		}
+		return tv1
+	}) {
 		goto L13
 	}
 	goto L12
@@ -8570,7 +8702,13 @@ L5:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "terminatedStmt"
-	v = k1
+	{
+		var tr87 any
+		{
+			tr87 = k1
+		}
+		v = tr87
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -8953,7 +9091,13 @@ L16:
 L17:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "clauseStmt"
-	v = k1
+	{
+		var tr88 any
+		{
+			tr88 = k1
+		}
+		v = tr88
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -9005,7 +9149,13 @@ L5:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "clauseTerminated"
-	v = k1
+	{
+		var tr89 any
+		{
+			tr89 = k1
+		}
+		v = tr89
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -9133,7 +9283,13 @@ L11:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lastClauseTerminated"
-	v = k1
+	{
+		var tr90 any
+		{
+			tr90 = k1
+		}
+		v = tr90
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -9320,7 +9476,13 @@ L44:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "plainStmt"
-	v = k2
+	{
+		var tr91 any
+		{
+			tr91 = k2
+		}
+		v = tr91
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -10104,7 +10266,13 @@ func i146(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "dotsWs"
-	v = k1
+	{
+		var tr92 any
+		{
+			tr92 = k1
+		}
+		v = tr92
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -10178,7 +10346,13 @@ func i148(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "returnValues"
-	v = k1
+	{
+		var tr93 any
+		{
+			tr93 = k1
+		}
+		v = tr93
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -10411,7 +10585,13 @@ func i154(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "labelSp"
-	v = k1
+	{
+		var tr94 any
+		{
+			tr94 = k1
+		}
+		v = tr94
+	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[154], v)
 	return v, true
@@ -10547,7 +10727,13 @@ func i156(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hsimpleSemi"
-	v = k1
+	{
+		var tr95 any
+		{
+			tr95 = k1
+		}
+		v = tr95
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -10614,7 +10800,13 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "elseSp"
-	v = k1
+	{
+		var tr96 any
+		{
+			tr96 = k1
+		}
+		v = tr96
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -10712,7 +10904,13 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "switchInit"
-	v = k1
+	{
+		var tr97 any
+		{
+			tr97 = k1
+		}
+		v = tr97
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -12125,7 +12323,13 @@ func i182(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rangeValue"
-	v = k1
+	{
+		var tr98 any
+		{
+			tr98 = k1
+		}
+		v = tr98
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -12193,7 +12397,13 @@ L10:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "expr"
-	v = k2
+	{
+		var tr99 any
+		{
+			tr99 = k2
+		}
+		v = tr99
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -12760,7 +12970,13 @@ L26:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unaryExpr"
-	v = k2
+	{
+		var tr100 any
+		{
+			tr100 = k2
+		}
+		v = tr100
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -12816,7 +13032,13 @@ L5:
 	p.Pos = x4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "recvChanType"
-	v = k1
+	{
+		var tr101 any
+		{
+			tr101 = k1
+		}
+		v = tr101
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -13052,7 +13274,13 @@ L10:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "primaryExpr"
-	v = k2
+	{
+		var tr102 any
+		{
+			tr102 = k2
+		}
+		v = tr102
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -13862,7 +14090,13 @@ L23:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "primaryOperand"
-	v = k2
+	{
+		var tr103 any
+		{
+			tr103 = k2
+		}
+		v = tr103
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -15129,7 +15363,13 @@ L10:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hexpr"
-	v = k2
+	{
+		var tr104 any
+		{
+			tr104 = k2
+		}
+		v = tr104
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -15696,7 +15936,13 @@ L26:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hunaryExpr"
-	v = k2
+	{
+		var tr105 any
+		{
+			tr105 = k2
+		}
+		v = tr105
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -15932,7 +16178,13 @@ L10:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hprimaryExpr"
-	v = k2
+	{
+		var tr106 any
+		{
+			tr106 = k2
+		}
+		v = tr106
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -16574,7 +16826,13 @@ L50:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hoperand"
-	v = k2
+	{
+		var tr107 any
+		{
+			tr107 = k2
+		}
+		v = tr107
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -19043,7 +19301,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v70 = p.NewMatchOrdinary(x69, p.Pos, p.LiteralText(x69, "�"), true)
 			k46 = v70
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k46), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k46)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L67
 			}
 			goto L50
@@ -19364,7 +19632,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v156 = p.NewMatchOrdinary(x155, p.Pos, p.LiteralText(x155, "�"), true)
 			k87 = v156
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k87), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k87)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L153
 			}
 			goto L146
@@ -19441,13 +19719,135 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L161
 	L170:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k3), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k3), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k3), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k3), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k3), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k3), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k3), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k3)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k3)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k3)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k3)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k3)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k3)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k3)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L161
 		}
@@ -19507,9 +19907,55 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L171
 	L180:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Binary(rt.OpGt, c.Length(k4), any(20)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k4), any(20)), func() any { return c.Binary(rt.OpGt, c.Text(k4), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(20))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k4)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(20))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k4)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpGt, any(ts9), any("18446744073709551615"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			return tv4
 		}) {
 			goto L171
 		}
@@ -19631,7 +20077,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v211 = p.NewMatchOrdinary(x210, p.Pos, p.LiteralText(x210, "�"), true)
 			k187 = v211
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k187), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k187)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L208
 			}
 			goto L191
@@ -19741,13 +20197,135 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L84
 	L223:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k5), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k5), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k5), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k5), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k5), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k5), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k5), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k5)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k5)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k5)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k5)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k5)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k5)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L84
 		}
@@ -19842,7 +20420,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v258 = p.NewMatchOrdinary(x257, p.Pos, p.LiteralText(x257, "�"), true)
 			k234 = v258
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k234), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k234)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L255
 			}
 			goto L238
@@ -19945,13 +20533,135 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L231
 	L270:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k6), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k6), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k6), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k6), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k6), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k6), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k6), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k6)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k6)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k6)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k6)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k6)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k6)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k6)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L231
 		}
@@ -20033,7 +20743,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v296 = p.NewMatchOrdinary(x295, p.Pos, p.LiteralText(x295, "�"), true)
 			k283 = v296
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k283), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k283)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L293
 			}
 			goto L287
@@ -20154,7 +20874,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v335 = p.NewMatchOrdinary(x334, p.Pos, p.LiteralText(x334, "�"), true)
 			k318 = v335
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k318), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k318)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L332
 			}
 			goto L322
@@ -20396,7 +21126,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v388 = p.NewMatchOrdinary(x387, p.Pos, p.LiteralText(x387, "�"), true)
 			k342 = v388
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k342), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k342)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L385
 			}
 			goto L374
@@ -20473,13 +21213,135 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L393
 	L402:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k7), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k7), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k7), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k7), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k7), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k7), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k7), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k7)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k7)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k7)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k7)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k7)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k7)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k7)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L393
 		}
@@ -20539,9 +21401,55 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L403
 	L412:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Binary(rt.OpGt, c.Length(k8), any(20)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k8), any(20)), func() any { return c.Binary(rt.OpGt, c.Text(k8), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(20))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k8)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(20))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k8)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpGt, any(ts9), any("18446744073709551615"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			return tv4
 		}) {
 			goto L403
 		}
@@ -20644,7 +21552,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v436 = p.NewMatchOrdinary(x435, p.Pos, p.LiteralText(x435, "�"), true)
 			k419 = v436
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k419), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k419)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L433
 			}
 			goto L423
@@ -20725,13 +21643,135 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L339
 	L445:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k9), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k9), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k9), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k9), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k9), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k9), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k9), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k9)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k9)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k9)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k9)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k9)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k9)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k9)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L339
 		}
@@ -20807,7 +21847,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v466 = p.NewMatchOrdinary(x465, p.Pos, p.LiteralText(x465, "�"), true)
 			k449 = v466
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k449), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k449)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L463
 			}
 			goto L453
@@ -20881,13 +21931,135 @@ func s305(p *rt.TParser) (any, bool) {
 		goto L446
 	L475:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k10), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k10), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k10), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k10), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k10), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k10), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k10), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k10)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k10)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k10)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k10)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k10)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k10)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k10)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L446
 		}
@@ -20987,7 +22159,17 @@ func s305(p *rt.TParser) (any, bool) {
 			}
 			v498 = p.NewMatchOrdinary(x497, p.Pos, p.LiteralText(x497, "�"), true)
 			k481 = v498
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k481), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k481)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L495
 			}
 			goto L485
@@ -21196,7 +22378,17 @@ func s307(p *rt.TParser) (any, bool) {
 			}
 			v45 = p.NewMatchOrdinary(x44, p.Pos, p.LiteralText(x44, "�"), true)
 			k32 = v45
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k32), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k32)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L42
 			}
 			goto L36
@@ -21363,7 +22555,17 @@ func s307(p *rt.TParser) (any, bool) {
 			}
 			v90 = p.NewMatchOrdinary(x89, p.Pos, p.LiteralText(x89, "�"), true)
 			k73 = v90
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k73), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k73)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L87
 			}
 			goto L77
@@ -21605,7 +22807,17 @@ func s307(p *rt.TParser) (any, bool) {
 			}
 			v143 = p.NewMatchOrdinary(x142, p.Pos, p.LiteralText(x142, "�"), true)
 			k97 = v143
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k97), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k97)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L140
 			}
 			goto L129
@@ -21682,13 +22894,135 @@ func s307(p *rt.TParser) (any, bool) {
 		goto L148
 	L157:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k3), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k3), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k3), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k3), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k3), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k3), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k3), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k3)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k3)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k3)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k3)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k3)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k3)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k3)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L148
 		}
@@ -21748,9 +23082,55 @@ func s307(p *rt.TParser) (any, bool) {
 		goto L158
 	L167:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Binary(rt.OpGt, c.Length(k4), any(20)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k4), any(20)), func() any { return c.Binary(rt.OpGt, c.Text(k4), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(20))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k4)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(20))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k4)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpGt, any(ts9), any("18446744073709551615"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			return tv4
 		}) {
 			goto L158
 		}
@@ -21853,7 +23233,17 @@ func s307(p *rt.TParser) (any, bool) {
 			}
 			v191 = p.NewMatchOrdinary(x190, p.Pos, p.LiteralText(x190, "�"), true)
 			k174 = v191
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k174), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k174)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L188
 			}
 			goto L178
@@ -21934,13 +23324,135 @@ func s307(p *rt.TParser) (any, bool) {
 		goto L94
 	L200:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k5), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k5), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k5), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k5), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k5), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k5), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k5), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k5)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k5)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k5)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k5)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k5)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k5)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L94
 		}
@@ -22016,7 +23528,17 @@ func s307(p *rt.TParser) (any, bool) {
 			}
 			v221 = p.NewMatchOrdinary(x220, p.Pos, p.LiteralText(x220, "�"), true)
 			k204 = v221
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k204), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k204)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L218
 			}
 			goto L208
@@ -22090,13 +23612,135 @@ func s307(p *rt.TParser) (any, bool) {
 		goto L201
 	L230:
 		if !p.Predicate(func(c *rt.TActCtx) any {
-			return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k6), any(10)), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k6), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k6), any("1073741824")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k6), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k6), any("9223372036854775808")) })
-			}), func() any {
-				return c.And(c.Binary(rt.OpEq, c.Length(k6), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k6), any("18446744073709551615")) })
-			})
+			tv1, tf1 := c.P.TermLength(k6)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := any(true)
+			if !tb3 {
+				tv5, tf5 := c.P.TermLength(k6)
+				if tf5 != nil {
+					panic(tf5)
+				}
+				tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+				if tf6 != nil {
+					panic(tf6)
+				}
+				tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+				if tf7 != nil {
+					panic(tf7)
+				}
+				tv8 := any(false)
+				if tb7 {
+					ts9, tf9 := c.P.TermText(k6)
+					if tf9 != nil {
+						panic(tf9)
+					}
+					tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+					if tf10 != nil {
+						panic(tf10)
+					}
+					tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+					if tf11 != nil {
+						panic(tf11)
+					}
+					tv8 = any(tb11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv4 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := any(true)
+			if !tb13 {
+				tv15, tf15 := c.P.TermLength(k6)
+				if tf15 != nil {
+					panic(tf15)
+				}
+				tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+				if tf16 != nil {
+					panic(tf16)
+				}
+				tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+				if tf17 != nil {
+					panic(tf17)
+				}
+				tv18 := any(false)
+				if tb17 {
+					ts19, tf19 := c.P.TermText(k6)
+					if tf19 != nil {
+						panic(tf19)
+					}
+					tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+					if tf20 != nil {
+						panic(tf20)
+					}
+					tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+					if tf21 != nil {
+						panic(tf21)
+					}
+					tv18 = any(tb21)
+				}
+				tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+				if tf22 != nil {
+					panic(tf22)
+				}
+				tv14 = any(tb22)
+			}
+			tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+			if tf23 != nil {
+				panic(tf23)
+			}
+			tv24 := any(true)
+			if !tb23 {
+				tv25, tf25 := c.P.TermLength(k6)
+				if tf25 != nil {
+					panic(tf25)
+				}
+				tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+				if tf26 != nil {
+					panic(tf26)
+				}
+				tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+				if tf27 != nil {
+					panic(tf27)
+				}
+				tv28 := any(false)
+				if tb27 {
+					ts29, tf29 := c.P.TermText(k6)
+					if tf29 != nil {
+						panic(tf29)
+					}
+					tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+					if tf30 != nil {
+						panic(tf30)
+					}
+					tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+					if tf31 != nil {
+						panic(tf31)
+					}
+					tv28 = any(tb31)
+				}
+				tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+				if tf32 != nil {
+					panic(tf32)
+				}
+				tv24 = any(tb32)
+			}
+			return tv24
 		}) {
 			goto L201
 		}
@@ -22196,7 +23840,17 @@ func s307(p *rt.TParser) (any, bool) {
 			}
 			v253 = p.NewMatchOrdinary(x252, p.Pos, p.LiteralText(x252, "�"), true)
 			k236 = v253
-			if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k236), any("�")) }) {
+			if !p.Predicate(func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(k236)
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				return tv2
+			}) {
 				goto L250
 			}
 			goto L240
@@ -25056,9 +26710,55 @@ L12:
 	v13 = p.NewMatchOrdinary(x9, p.Pos, p.Text(x9, p.Pos), true)
 	k7 = v13
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpLt, c.Length(k7), any(20)), func() any {
-			return c.And(c.Binary(rt.OpEq, c.Length(k7), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k7), any("18446744073709551615")) })
-		})
+		tv1, tf1 := c.P.TermLength(k7)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(20))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k7)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(20))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8 := any(false)
+			if tb7 {
+				ts9, tf9 := c.P.TermText(k7)
+				if tf9 != nil {
+					panic(tf9)
+				}
+				tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("18446744073709551615"))
+				if tf10 != nil {
+					panic(tf10)
+				}
+				tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+				if tf11 != nil {
+					panic(tf11)
+				}
+				tv8 = any(tb11)
+			}
+			tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+			if tf12 != nil {
+				panic(tf12)
+			}
+			tv4 = any(tb12)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -25795,7 +27495,17 @@ func i368(p *rt.TParser) (any, bool) {
 	}
 	v4 = p.NewMatchOrdinary(x3, p.Pos, p.LiteralText(x3, "�"), true)
 	k1 = v4
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Text(k1), any("�")) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		ts1, tf1 := c.P.TermText(k1)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, any(ts1), any("�"))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		return tv2
+	}) {
 		goto fail
 	}
 	v = nil
@@ -27547,13 +29257,135 @@ func i387(p *rt.TParser) (any, bool) {
 	v7 = p.NewMatchOrdinary(x6, p.Pos, p.Text(x6, p.Pos), true)
 	k4 = v7
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Or(c.Or(c.Binary(rt.OpLt, c.Length(k4), any(10)), func() any {
-			return c.And(c.Binary(rt.OpEq, c.Length(k4), any(10)), func() any { return c.Binary(rt.OpLe, c.Text(k4), any("1073741824")) })
-		}), func() any {
-			return c.And(c.Binary(rt.OpEq, c.Length(k4), any(19)), func() any { return c.Binary(rt.OpGe, c.Text(k4), any("9223372036854775808")) })
-		}), func() any {
-			return c.And(c.Binary(rt.OpEq, c.Length(k4), any(20)), func() any { return c.Binary(rt.OpLe, c.Text(k4), any("18446744073709551615")) })
-		})
+		tv1, tf1 := c.P.TermLength(k4)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpLt, tv1, any(10))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k4)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(10))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tb7, tf7 := c.P.TermLogic(rt.OpAnd, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8 := any(false)
+			if tb7 {
+				ts9, tf9 := c.P.TermText(k4)
+				if tf9 != nil {
+					panic(tf9)
+				}
+				tv10, tf10 := c.P.TermBinary(rt.OpLe, any(ts9), any("1073741824"))
+				if tf10 != nil {
+					panic(tf10)
+				}
+				tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+				if tf11 != nil {
+					panic(tf11)
+				}
+				tv8 = any(tb11)
+			}
+			tb12, tf12 := c.P.TermLogic(rt.OpOr, tv8)
+			if tf12 != nil {
+				panic(tf12)
+			}
+			tv4 = any(tb12)
+		}
+		tb13, tf13 := c.P.TermLogic(rt.OpOr, tv4)
+		if tf13 != nil {
+			panic(tf13)
+		}
+		tv14 := any(true)
+		if !tb13 {
+			tv15, tf15 := c.P.TermLength(k4)
+			if tf15 != nil {
+				panic(tf15)
+			}
+			tv16, tf16 := c.P.TermBinary(rt.OpEq, tv15, any(19))
+			if tf16 != nil {
+				panic(tf16)
+			}
+			tb17, tf17 := c.P.TermLogic(rt.OpAnd, tv16)
+			if tf17 != nil {
+				panic(tf17)
+			}
+			tv18 := any(false)
+			if tb17 {
+				ts19, tf19 := c.P.TermText(k4)
+				if tf19 != nil {
+					panic(tf19)
+				}
+				tv20, tf20 := c.P.TermBinary(rt.OpGe, any(ts19), any("9223372036854775808"))
+				if tf20 != nil {
+					panic(tf20)
+				}
+				tb21, tf21 := c.P.TermLogic(rt.OpAnd, tv20)
+				if tf21 != nil {
+					panic(tf21)
+				}
+				tv18 = any(tb21)
+			}
+			tb22, tf22 := c.P.TermLogic(rt.OpOr, tv18)
+			if tf22 != nil {
+				panic(tf22)
+			}
+			tv14 = any(tb22)
+		}
+		tb23, tf23 := c.P.TermLogic(rt.OpOr, tv14)
+		if tf23 != nil {
+			panic(tf23)
+		}
+		tv24 := any(true)
+		if !tb23 {
+			tv25, tf25 := c.P.TermLength(k4)
+			if tf25 != nil {
+				panic(tf25)
+			}
+			tv26, tf26 := c.P.TermBinary(rt.OpEq, tv25, any(20))
+			if tf26 != nil {
+				panic(tf26)
+			}
+			tb27, tf27 := c.P.TermLogic(rt.OpAnd, tv26)
+			if tf27 != nil {
+				panic(tf27)
+			}
+			tv28 := any(false)
+			if tb27 {
+				ts29, tf29 := c.P.TermText(k4)
+				if tf29 != nil {
+					panic(tf29)
+				}
+				tv30, tf30 := c.P.TermBinary(rt.OpLe, any(ts29), any("18446744073709551615"))
+				if tf30 != nil {
+					panic(tf30)
+				}
+				tb31, tf31 := c.P.TermLogic(rt.OpAnd, tv30)
+				if tf31 != nil {
+					panic(tf31)
+				}
+				tv28 = any(tb31)
+			}
+			tb32, tf32 := c.P.TermLogic(rt.OpOr, tv28)
+			if tf32 != nil {
+				panic(tf32)
+			}
+			tv24 = any(tb32)
+		}
+		return tv24
 	}) {
 		goto fail
 	}
@@ -27565,4 +29397,4 @@ fail:
 
 const _ = types.ZPSchema_96397c5170989fa0
 
-const _ = rt.Protocol5
+const _ = rt.Protocol6

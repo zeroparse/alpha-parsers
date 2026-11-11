@@ -2387,7 +2387,9 @@ func init() {
 	trules[239].OperatorsRule = &rt.TOperatorsRule{
 		Skip: e890,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{"a"}, M: e912, Action: func(c *rt.TActCtx) any { return c.Cap(0) }, Value: sh14},
+			&rt.TOperatorsRuleLine{Scope: []string{"a"}, M: e912, Action: func(c *rt.TActCtx) any {
+				return c.Cap(0)
+			}, Value: sh14},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
 		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n"}, M: e913, Action: func(c *rt.TActCtx) any { return tmk_Attribute(c, true, (c.Lhs), c.Text(c.Cap(0)), any("Load")) }, Value: sh9}},
@@ -2424,10 +2426,14 @@ func i0(p *rt.TParser) (any, bool) {
 	var x13 []rt.ExpID
 	start = p.Pos
 	prevEnv = p.Env
-	if !p.Bind(1, func(c *rt.TActCtx) any { return any(0) }) {
+	if !p.Bind(1, func(c *rt.TActCtx) any {
+		return any(0)
+	}) {
 		goto fail
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return any(0) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		return any(0)
+	}) {
 		goto fail
 	}
 	for {
@@ -2541,7 +2547,13 @@ L13:
 L14:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "first_stmts"
-	v = k9
+	{
+		var tr135 any
+		{
+			tr135 = k9
+		}
+		v = tr135
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -2695,7 +2707,13 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "block"
-	v = k1
+	{
+		var tr136 any
+		{
+			tr136 = k1
+		}
+		v = tr136
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -2767,7 +2785,20 @@ L10:
 L11:
 	x12 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpLt, c.Binary(rt.OpQuo, c.Var(1), c.Binary(rt.OpMul, any(4194304), any(4194304))), any(99))
+		tv1 := c.Var(1)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(4194304), any(4194304))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpQuo, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpLt, tv3, any(99))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L15
 	}
@@ -2794,7 +2825,13 @@ L16:
 	k17 = v19
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "indented_block"
-	v = k17
+	{
+		var tr138 any
+		{
+			tr138 = k17
+		}
+		v = tr138
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -3219,7 +3256,18 @@ func s14(p *rt.TParser) (any, bool) {
 		p.Pos = x48
 		goto L45
 	L50:
-		if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpGe, c.Binary(rt.OpRem, c.Var(0), any(512)), any(2)) }) {
+		if !p.Predicate(func(c *rt.TActCtx) any {
+			tv1 := c.Var(0)
+			tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGe, tv2, any(2))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			return tv3
+		}) {
 			goto L45
 		}
 		x51 = p.Pos
@@ -5316,7 +5364,35 @@ func i40(p *rt.TParser) (any, bool) {
 	}
 	k29 = v31
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpGt, c.Length(k1), any(0)), func() any { return c.Binary(rt.OpNe, c.Member(k29, "$f"), any(nil)) })
+		tv1, tf1 := c.P.TermLength(k1)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermMember(c, rt.MemberCapture, k29, "$f", "f")
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpNe, tv5, any(nil))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tb7, tf7 := c.P.TermLogic(rt.OpOr, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv4 = any(tb7)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -5505,11 +5581,35 @@ func i43(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -6136,7 +6236,13 @@ func i52(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "else_part"
-	v = k1
+	{
+		var tr143 any
+		{
+			tr143 = k1
+		}
+		v = tr143
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -6531,11 +6637,35 @@ func i59(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -6944,15 +7074,89 @@ L47:
 L48:
 	k43 = v46
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, c.Length(k4), any(0)), func() any { return c.Binary(rt.OpEq, c.Length(k20), any(0)) })
+		tv1, tf1 := c.P.TermLength(k4)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k20)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tb7, tf7 := c.P.TermLogic(rt.OpOr, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv4 = any(tb7)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
 	x50 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpGt, c.Binary(rt.OpAdd, c.Length(k4), c.Length(k20)), any(0)), func() any {
-			return c.And(c.Binary(rt.OpNe, k43, any(nil)), func() any { return c.Binary(rt.OpEq, k36, any(nil)) })
-		})
+		tv1, tf1 := c.P.TermLength(k4)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermLength(k20)
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		tb5, tf5 := c.P.TermLogic(rt.OpOr, tv4)
+		if tf5 != nil {
+			panic(tf5)
+		}
+		tv6 := any(true)
+		if !tb5 {
+			tv7, tf7 := c.P.TermBinary(rt.OpNe, k43, any(nil))
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tb8, tf8 := c.P.TermLogic(rt.OpAnd, tv7)
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tv9 := any(false)
+			if tb8 {
+				tv10, tf10 := c.P.TermBinary(rt.OpEq, k36, any(nil))
+				if tf10 != nil {
+					panic(tf10)
+				}
+				tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv10)
+				if tf11 != nil {
+					panic(tf11)
+				}
+				tv9 = any(tb11)
+			}
+			tb12, tf12 := c.P.TermLogic(rt.OpOr, tv9)
+			if tf12 != nil {
+				panic(tf12)
+			}
+			tv6 = any(tb12)
+		}
+		return tv6
 	}) {
 		goto L53
 	}
@@ -7014,7 +7218,13 @@ func i65(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "finally_part"
-	v = k1
+	{
+		var tr148 any
+		{
+			tr148 = k1
+		}
+		v = tr148
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -7699,11 +7909,35 @@ func i77(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -7724,7 +7958,13 @@ func i77(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "def_params"
-	v = k1
+	{
+		var tr151 any
+		{
+			tr151 = k1
+		}
+		v = tr151
+	}
 	v = c.Finish(v)
 	p.Env = prevEnv
 	return v, true
@@ -8163,7 +8403,20 @@ L10:
 L11:
 	x12 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpLt, c.Binary(rt.OpQuo, c.Var(1), c.Binary(rt.OpMul, any(4194304), any(4194304))), any(99))
+		tv1 := c.Var(1)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(4194304), any(4194304))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpQuo, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpLt, tv3, any(99))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L15
 	}
@@ -9139,7 +9392,13 @@ L5:
 	p.Pos = x4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "signed_number_lit"
-	v = k1
+	{
+		var tr153 any
+		{
+			tr153 = k1
+		}
+		v = tr153
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -9645,7 +9904,13 @@ L9:
 	p.Pos = x8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "capture_name"
-	v = k5
+	{
+		var tr154 any
+		{
+			tr154 = k5
+		}
+		v = tr154
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -9953,11 +10218,35 @@ func i114(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -9978,7 +10267,13 @@ func i114(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "group_pattern"
-	v = k1
+	{
+		var tr157 any
+		{
+			tr157 = k1
+		}
+		v = tr157
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -10061,11 +10356,35 @@ func s116(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -10112,11 +10431,35 @@ func i117(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -10265,11 +10608,35 @@ func i119(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -10455,11 +10822,35 @@ func i122(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit228, "{", 68, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -10746,11 +11137,35 @@ func i125(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -11089,11 +11504,35 @@ func i129(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -11596,7 +12035,43 @@ func i134(p *rt.TParser) (any, bool) {
 	k52 = v54
 	x55 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, c.Length(k21), any(0)), func() any { return c.Binary(rt.OpGt, c.Binary(rt.OpAdd, c.Length(k1), c.Length(k11)), any(0)) })
+		tv1, tf1 := c.P.TermLength(k21)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k1)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k11)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpAdd, tv5, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermBinary(rt.OpGt, tv7, any(0))
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tb9, tf9 := c.P.TermLogic(rt.OpOr, tv8)
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tv4 = any(tb9)
+		}
+		return tv4
 	}) {
 		goto L58
 	}
@@ -11609,13 +12084,77 @@ L58:
 	goto fail
 L59:
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpGt, c.Length(k21), any(0)), func() any { return c.Binary(rt.OpEq, c.Binary(rt.OpAdd, c.Length(k32), c.Length(k42)), any(0)) })
+		tv1, tf1 := c.P.TermLength(k21)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k32)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k42)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpAdd, tv5, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermBinary(rt.OpEq, tv7, any(0))
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tb9, tf9 := c.P.TermLogic(rt.OpOr, tv8)
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tv4 = any(tb9)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
 	x60 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, c.Length(k11), any(0)), func() any { return c.Binary(rt.OpEq, c.Length(k32), any(0)) })
+		tv1, tf1 := c.P.TermLength(k11)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k32)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tb7, tf7 := c.P.TermLogic(rt.OpOr, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv4 = any(tb7)
+		}
+		return tv4
 	}) {
 		goto L63
 	}
@@ -11676,7 +12215,13 @@ func i135(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "param_nd"
-	v = k1
+	{
+		var tr173 any
+		{
+			tr173 = k1
+		}
+		v = tr173
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -11982,7 +12527,31 @@ L20:
 	x12 = append(x12, v68)
 	x69 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpNe, k4, any(nil)), func() any { return c.Binary(rt.OpGt, c.Length(k6), any(0)) })
+		tv1, tf1 := c.P.TermBinary(rt.OpNe, k4, any(nil))
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tb2, tf2 := c.P.TermLogic(rt.OpOr, tv1)
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3 := any(true)
+		if !tb2 {
+			tv4, tf4 := c.P.TermLength(k6)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tb6, tf6 := c.P.TermLogic(rt.OpOr, tv5)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv3 = any(tb6)
+		}
+		return tv3
 	}) {
 		goto L72
 	}
@@ -12061,7 +12630,13 @@ func i139(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "kwds"
-	v = k1
+	{
+		var tr175 any
+		{
+			tr175 = k1
+		}
+		v = tr175
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -12817,7 +13392,13 @@ L5:
 	p.Pos = x4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "plain_named_expression"
-	v = k1
+	{
+		var tr176 any
+		{
+			tr176 = k1
+		}
+		v = tr176
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -13034,7 +13615,18 @@ func i154(p *rt.TParser) (any, bool) {
 		goto fail
 	}
 	x1 = p.Isolate(p.Pos)
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Var(0), any(2)), any(0)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpEq, tv2, any(0))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L4
 	}
 	x2, x3 = p.Unisolate(x1)
@@ -13208,7 +13800,43 @@ func i155(p *rt.TParser) (any, bool) {
 	k52 = v54
 	x55 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, c.Length(k21), any(0)), func() any { return c.Binary(rt.OpGt, c.Binary(rt.OpAdd, c.Length(k1), c.Length(k11)), any(0)) })
+		tv1, tf1 := c.P.TermLength(k21)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k1)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k11)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpAdd, tv5, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermBinary(rt.OpGt, tv7, any(0))
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tb9, tf9 := c.P.TermLogic(rt.OpOr, tv8)
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tv4 = any(tb9)
+		}
+		return tv4
 	}) {
 		goto L58
 	}
@@ -13221,13 +13849,77 @@ L58:
 	goto fail
 L59:
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpGt, c.Length(k21), any(0)), func() any { return c.Binary(rt.OpEq, c.Binary(rt.OpAdd, c.Length(k32), c.Length(k42)), any(0)) })
+		tv1, tf1 := c.P.TermLength(k21)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k32)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k42)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpAdd, tv5, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermBinary(rt.OpEq, tv7, any(0))
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tb9, tf9 := c.P.TermLogic(rt.OpOr, tv8)
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tv4 = any(tb9)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
 	x60 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, c.Length(k11), any(0)), func() any { return c.Binary(rt.OpEq, c.Length(k32), any(0)) })
+		tv1, tf1 := c.P.TermLength(k11)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k32)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpEq, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tb7, tf7 := c.P.TermLogic(rt.OpOr, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv4 = any(tb7)
+		}
+		return tv4
 	}) {
 		goto L63
 	}
@@ -13290,7 +13982,13 @@ func i156(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lparam_nd"
-	v = k1
+	{
+		var tr181 any
+		{
+			tr181 = k1
+		}
+		v = tr181
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -13600,7 +14298,31 @@ L20:
 	x12 = append(x12, v68)
 	x69 = p.Isolate(p.Pos)
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpNe, k4, any(nil)), func() any { return c.Binary(rt.OpGt, c.Length(k6), any(0)) })
+		tv1, tf1 := c.P.TermBinary(rt.OpNe, k4, any(nil))
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tb2, tf2 := c.P.TermLogic(rt.OpOr, tv1)
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3 := any(true)
+		if !tb2 {
+			tv4, tf4 := c.P.TermLength(k6)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tb6, tf6 := c.P.TermLogic(rt.OpOr, tv5)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv3 = any(tb6)
+		}
+		return tv3
 	}) {
 		goto L72
 	}
@@ -13680,7 +14402,13 @@ func i160(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lkwds"
-	v = k1
+	{
+		var tr183 any
+		{
+			tr183 = k1
+		}
+		v = tr183
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -15584,7 +16312,13 @@ L5:
 	p.Pos = x4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "atom_only"
-	v = k1
+	{
+		var tr184 any
+		{
+			tr184 = k1
+		}
+		v = tr184
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -15719,11 +16453,35 @@ func i188(p *rt.TParser) (any, bool) {
 	}
 	v4 = p.NewMatchOrdinary(x3, p.Pos, "(", true)
 	x2 = append(x2, v4)
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -15988,7 +16746,13 @@ L5:
 	p.Pos = x4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "positional_named"
-	v = k1
+	{
+		var tr187 any
+		{
+			tr187 = k1
+		}
+		v = tr187
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -16192,11 +16956,35 @@ func i196(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -16261,11 +17049,35 @@ func i197(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -16286,7 +17098,13 @@ func i197(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "subscript"
-	v = k1
+	{
+		var tr192 any
+		{
+			tr192 = k1
+		}
+		v = tr192
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -17268,11 +18086,35 @@ func s211(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17319,11 +18161,35 @@ func i212(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17344,7 +18210,13 @@ func i212(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "yield_group"
-	v = k1
+	{
+		var tr197 any
+		{
+			tr197 = k1
+		}
+		v = tr197
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -17380,11 +18252,35 @@ func i213(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17463,7 +18359,31 @@ L25:
 		goto fail
 	}
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpGt, c.Length(k4), any(0)), func() any { return c.Binary(rt.OpNe, k20, any(nil)) })
+		tv1, tf1 := c.P.TermLength(k4)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermBinary(rt.OpNe, k20, any(nil))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tb6, tf6 := c.P.TermLogic(rt.OpOr, tv5)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv4 = any(tb6)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17509,11 +18429,35 @@ func i214(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17676,7 +18620,23 @@ func i214(p *rt.TParser) (any, bool) {
 		goto fail
 	}
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpLe, c.Binary(rt.OpAdd, c.Length(k4), c.Length(k58)), any(1))
+		tv1, tf1 := c.P.TermLength(k4)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermLength(k58)
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpLe, tv3, any(1))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17758,11 +18718,35 @@ func s216(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17811,11 +18795,35 @@ func i217(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -17946,9 +18954,67 @@ L37:
 		goto fail
 	}
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, c.Length(k44), any(0)), func() any {
-			return c.And(c.And(c.Binary(rt.OpEq, k4, any(nil)), func() any { return c.Binary(rt.OpEq, c.Length(k16), any(0)) }), func() any { return c.Binary(rt.OpEq, k32, any(nil)) })
-		})
+		tv1, tf1 := c.P.TermLength(k44)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermBinary(rt.OpEq, k4, any(nil))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tb6, tf6 := c.P.TermLogic(rt.OpAnd, tv5)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7 := any(false)
+			if tb6 {
+				tv8, tf8 := c.P.TermLength(k16)
+				if tf8 != nil {
+					panic(tf8)
+				}
+				tv9, tf9 := c.P.TermBinary(rt.OpEq, tv8, any(0))
+				if tf9 != nil {
+					panic(tf9)
+				}
+				tb10, tf10 := c.P.TermLogic(rt.OpAnd, tv9)
+				if tf10 != nil {
+					panic(tf10)
+				}
+				tv7 = any(tb10)
+			}
+			tb11, tf11 := c.P.TermLogic(rt.OpAnd, tv7)
+			if tf11 != nil {
+				panic(tf11)
+			}
+			tv12 := any(false)
+			if tb11 {
+				tv13, tf13 := c.P.TermBinary(rt.OpEq, k32, any(nil))
+				if tf13 != nil {
+					panic(tf13)
+				}
+				tb14, tf14 := c.P.TermLogic(rt.OpAnd, tv13)
+				if tf14 != nil {
+					panic(tf14)
+				}
+				tv12 = any(tb14)
+			}
+			tb15, tf15 := c.P.TermLogic(rt.OpOr, tv12)
+			if tf15 != nil {
+				panic(tf15)
+			}
+			tv4 = any(tb15)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -18054,11 +19120,35 @@ func s219(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit228, "{", 68, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -18107,11 +19197,35 @@ func i220(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit228, "{", 68, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -18311,11 +19425,35 @@ func i221(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit228, "{", 68, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -18426,11 +19564,35 @@ func i222(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit228, "{", 68, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -18514,11 +19676,42 @@ L7:
 	}
 	v33 = p.NewNodeOrdinary("list", x15, p.Pos, p.Kids(x16))
 	k13 = v33
-	if !p.Bind(2, func(c *rt.TActCtx) any { return c.Binary(rt.OpGt, c.Length(k13), any(0)) }) {
+	if !p.Bind(2, func(c *rt.TActCtx) any {
+		tv1, tf1 := c.P.TermLength(k13)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		return tv2
+	}) {
 		goto fail
 	}
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, k4, any(nil)), func() any { return c.Unary(rt.OpNot, c.Var(2)) })
+		tv1, tf1 := c.P.TermBinary(rt.OpEq, k4, any(nil))
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tb2, tf2 := c.P.TermLogic(rt.OpOr, tv1)
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3 := any(true)
+		if !tb2 {
+			tv4 := c.Var(2)
+			tv5, tf5 := c.P.TermUnary(rt.OpNot, tv4)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tb6, tf6 := c.P.TermLogic(rt.OpOr, tv5)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv3 = any(tb6)
+		}
+		return tv3
 	}) {
 		goto fail
 	}
@@ -18557,7 +19750,10 @@ L7:
 		k58 = nil
 		x60 = p.Pos
 		x61 = p.NewVals(1)[:0]
-		if !p.Predicate(func(c *rt.TActCtx) any { return c.Var(2) }) {
+		if !p.Predicate(func(c *rt.TActCtx) any {
+			tv1 := c.Var(2)
+			return tv1
+		}) {
 			goto L59
 		}
 		if _, ok = s339(p); !ok {
@@ -18673,7 +19869,14 @@ L7:
 		k98 = nil
 		x100 = p.Pos
 		x101 = p.NewVals(1)[:0]
-		if !p.Predicate(func(c *rt.TActCtx) any { return c.Unary(rt.OpNot, c.Var(2)) }) {
+		if !p.Predicate(func(c *rt.TActCtx) any {
+			tv1 := c.Var(2)
+			tv2, tf2 := c.P.TermUnary(rt.OpNot, tv1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			return tv2
+		}) {
 			goto L99
 		}
 		if _, ok = s339(p); !ok {
@@ -18738,9 +19941,59 @@ L113:
 		goto fail
 	}
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpEq, c.Length(k34), any(0)), func() any {
-			return c.And(c.Binary(rt.OpEq, c.Binary(rt.OpAdd, c.Length(k51), c.Length(k92)), any(0)), func() any { return c.Binary(rt.OpEq, k108, any(nil)) })
-		})
+		tv1, tf1 := c.P.TermLength(k34)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpEq, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermLength(k51)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k92)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpAdd, tv5, tv6)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermBinary(rt.OpEq, tv7, any(0))
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tb9, tf9 := c.P.TermLogic(rt.OpAnd, tv8)
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tv10 := any(false)
+			if tb9 {
+				tv11, tf11 := c.P.TermBinary(rt.OpEq, k108, any(nil))
+				if tf11 != nil {
+					panic(tf11)
+				}
+				tb12, tf12 := c.P.TermLogic(rt.OpAnd, tv11)
+				if tf12 != nil {
+					panic(tf12)
+				}
+				tv10 = any(tb12)
+			}
+			tb13, tf13 := c.P.TermLogic(rt.OpOr, tv10)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv4 = any(tb13)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19358,11 +20611,35 @@ func i230(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19383,7 +20660,13 @@ func i230(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paren_target"
-	v = k1
+	{
+		var tr224 any
+		{
+			tr224 = k1
+		}
+		v = tr224
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -19407,11 +20690,35 @@ func s231(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19459,11 +20766,35 @@ func i232(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19542,7 +20873,31 @@ L25:
 		goto fail
 	}
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Or(c.Binary(rt.OpGt, c.Length(k4), any(0)), func() any { return c.Binary(rt.OpNe, k20, any(nil)) })
+		tv1, tf1 := c.P.TermLength(k4)
+		if tf1 != nil {
+			panic(tf1)
+		}
+		tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4 := any(true)
+		if !tb3 {
+			tv5, tf5 := c.P.TermBinary(rt.OpNe, k20, any(nil))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tb6, tf6 := c.P.TermLogic(rt.OpOr, tv5)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv4 = any(tb6)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19576,11 +20931,35 @@ func s233(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19627,11 +21006,35 @@ func i234(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19834,11 +21237,35 @@ func i237(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -19859,7 +21286,13 @@ func i237(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paren_single_target"
-	v = k1
+	{
+		var tr236 any
+		{
+			tr236 = k1
+		}
+		v = tr236
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -20377,11 +21810,35 @@ func i245(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -20402,7 +21859,13 @@ func i245(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paren_del_target"
-	v = k1
+	{
+		var tr239 any
+		{
+			tr239 = k1
+		}
+		v = tr239
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -20437,11 +21900,35 @@ func i246(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit106, "(", 35, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -20503,11 +21990,35 @@ func i247(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit220, "[", 77, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -20698,7 +22209,13 @@ L8:
 	k4 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "strings"
-	v = k4
+	{
+		var tr244 any
+		{
+			tr244 = k4
+		}
+		v = tr244
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -21101,7 +22618,18 @@ func i267(p *rt.TParser) (any, bool) {
 		goto L8
 	}
 	p.Pos += size
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Binary(rt.OpRem, c.Var(0), any(512)), any(4096)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv2, any(4096))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L8
 	}
 	goto L3
@@ -21120,7 +22648,18 @@ L7:
 		goto L10
 	}
 	p.Pos += size
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Binary(rt.OpRem, c.Var(0), any(512)), any(4096)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv2, any(4096))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L10
 	}
 	goto L3
@@ -21133,7 +22672,14 @@ L9:
 		goto L11
 	}
 	p.Pos += x4
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpRem, c.Var(0), any(512)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		return tv2
+	}) {
 		goto L12
 	}
 	goto L3
@@ -21155,7 +22701,18 @@ L3:
 	} else if _, ok = p.Parser.MatchLiteral(lit427, "'''", 118, false); !ok {
 		goto L19
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), c.Binary(rt.OpMul, any(3), any(512))) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(3), any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L19
 	}
 	goto L15
@@ -21172,7 +22729,18 @@ L18:
 	} else if _, ok = p.Parser.MatchLiteral(lit429, "\"\"\"", 121, false); !ok {
 		goto L21
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), c.Binary(rt.OpMul, any(4), any(512))) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(4), any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L21
 	}
 	goto L15
@@ -21189,7 +22757,14 @@ L20:
 	} else if _, ok = p.Parser.MatchLiteral(lit428, "'", 120, false); !ok {
 		goto L23
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), any(512)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpAdd, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		return tv2
+	}) {
 		goto L23
 	}
 	goto L15
@@ -21206,7 +22781,18 @@ L22:
 	} else if _, ok = p.Parser.MatchLiteral(lit430, "\"", 123, false); !ok {
 		goto L25
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), c.Binary(rt.OpMul, any(2), any(512))) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(2), any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L25
 	}
 	goto L15
@@ -21248,7 +22834,17 @@ L39:
 L40:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fstring"
-	v = c.Member(k26, "Value")
+	{
+		var tr252 any
+		{
+			tv1, tf1 := c.P.TermMember(c, rt.MemberValue, k26, "Value", "Value")
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tr252 = tv1
+		}
+		v = tr252
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -21298,7 +22894,18 @@ func i268(p *rt.TParser) (any, bool) {
 		goto L8
 	}
 	p.Pos += size
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Binary(rt.OpRem, c.Var(0), any(512)), any(4096)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv2, any(4096))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L8
 	}
 	goto L3
@@ -21317,7 +22924,18 @@ L7:
 		goto L10
 	}
 	p.Pos += size
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Binary(rt.OpRem, c.Var(0), any(512)), any(4096)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv2, any(4096))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L10
 	}
 	goto L3
@@ -21330,7 +22948,14 @@ L9:
 		goto L11
 	}
 	p.Pos += x4
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpRem, c.Var(0), any(512)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		return tv2
+	}) {
 		goto L12
 	}
 	goto L3
@@ -21352,7 +22977,18 @@ L3:
 	} else if _, ok = p.Parser.MatchLiteral(lit427, "'''", 118, false); !ok {
 		goto L19
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), c.Binary(rt.OpMul, any(3), any(512))) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(3), any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L19
 	}
 	goto L15
@@ -21369,7 +23005,18 @@ L18:
 	} else if _, ok = p.Parser.MatchLiteral(lit429, "\"\"\"", 121, false); !ok {
 		goto L21
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), c.Binary(rt.OpMul, any(4), any(512))) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(4), any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L21
 	}
 	goto L15
@@ -21386,7 +23033,14 @@ L20:
 	} else if _, ok = p.Parser.MatchLiteral(lit428, "'", 120, false); !ok {
 		goto L23
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), any(512)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpAdd, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		return tv2
+	}) {
 		goto L23
 	}
 	goto L15
@@ -21403,7 +23057,18 @@ L22:
 	} else if _, ok = p.Parser.MatchLiteral(lit430, "\"", 123, false); !ok {
 		goto L25
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), c.Binary(rt.OpMul, any(2), any(512))) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpMul, any(2), any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpAdd, tv1, tv2)
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L25
 	}
 	goto L15
@@ -21445,7 +23110,17 @@ L39:
 L40:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tstring"
-	v = c.Member(k26, "Value")
+	{
+		var tr260 any
+		{
+			tv1, tf1 := c.P.TermMember(c, rt.MemberValue, k26, "Value", "Value")
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tr260 = tv1
+		}
+		v = tr260
+	}
 	v = c.Finish(v)
 	p.Depth--
 	p.Env = prevEnv
@@ -21570,7 +23245,20 @@ func v272(p *rt.TParser) (any, bool) {
 	start = p.Pos
 	x1 = p.Pos
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(4096)), any(2)), any(0))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(4096))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(0))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -21681,7 +23369,20 @@ func v273(p *rt.TParser) (any, bool) {
 	start = p.Pos
 	x1 = p.Pos
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(4096)), any(2)), any(1))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(4096))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(1))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -21806,16 +23507,51 @@ func i277(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit228, "{", 68, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(3))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(3))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
 	x1 = p.Isolate(p.Pos)
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLe, c.Binary(rt.OpQuo, c.Var(0), any(8192)), any(2)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(8192))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLe, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L4
 	}
 	x2, x3 = p.Unisolate(x1)
@@ -21928,16 +23664,51 @@ func i278(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit228, "{", 68, false); !ok {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLt, c.Binary(rt.OpRem, c.Var(0), any(512)), any(400)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLt, tv2, any(400))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	if !p.Bind(0, func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpAdd, c.Binary(rt.OpMul, c.Binary(rt.OpQuo, c.Var(0), any(2)), any(2)), any(3))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(2))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpMul, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpAdd, tv3, any(3))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
 	x1 = p.Isolate(p.Pos)
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLe, c.Binary(rt.OpQuo, c.Var(0), any(8192)), any(2)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(8192))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLe, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto L4
 	}
 	x2, x3 = p.Unisolate(x1)
@@ -22119,7 +23890,13 @@ L6:
 	p.Pos = x5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fconv"
-	v = k1
+	{
+		var tr269 any
+		{
+			tr269 = k1
+		}
+		v = tr269
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -22153,10 +23930,28 @@ func i281(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit55, ":", 34, false); !ok {
 		goto fail
 	}
-	if !p.Bind(0, func(c *rt.TActCtx) any { return c.Binary(rt.OpAdd, c.Var(0), any(8192)) }) {
+	if !p.Bind(0, func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpAdd, tv1, any(8192))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		return tv2
+	}) {
 		goto fail
 	}
-	if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpLe, c.Binary(rt.OpQuo, c.Var(0), any(8192)), any(3)) }) {
+	if !p.Predicate(func(c *rt.TActCtx) any {
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(8192))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpLe, tv2, any(3))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		return tv3
+	}) {
 		goto fail
 	}
 	x3, x4 = p.Pos, len(p.KidStack)
@@ -22246,7 +24041,20 @@ func s283(p *rt.TParser) (any, bool) {
 	start = p.Pos
 	x1 = p.Pos
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(4096)), any(2)), any(0))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(4096))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(0))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -22323,7 +24131,20 @@ func s284(p *rt.TParser) (any, bool) {
 	start = p.Pos
 	x1 = p.Pos
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(4096)), any(2)), any(1))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(4096))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(2))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(1))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto fail
 	}
@@ -23117,7 +24938,18 @@ func s339(p *rt.TParser) (any, bool) {
 		p.Pos = x24
 		goto L23
 	L26:
-		if !p.Predicate(func(c *rt.TActCtx) any { return c.Binary(rt.OpGe, c.Binary(rt.OpRem, c.Var(0), any(512)), any(2)) }) {
+		if !p.Predicate(func(c *rt.TActCtx) any {
+			tv1 := c.Var(0)
+			tv2, tf2 := c.P.TermBinary(rt.OpRem, tv1, any(512))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGe, tv2, any(2))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			return tv3
+		}) {
 			goto L23
 		}
 		x27 = p.Pos
@@ -25237,7 +27069,20 @@ func s387(p *rt.TParser) (any, bool) {
 	start = p.Pos
 	x1 = p.Pos
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(1))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(1))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L3
 	}
@@ -25250,7 +27095,20 @@ func s387(p *rt.TParser) (any, bool) {
 L3:
 	p.Pos = x1
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L4
 	}
@@ -25263,7 +27121,20 @@ L3:
 L4:
 	p.Pos = x1
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(3))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(3))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L5
 	}
@@ -25276,7 +27147,20 @@ L4:
 L5:
 	p.Pos = x1
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(4))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(4))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L6
 	}
@@ -25313,7 +27197,20 @@ func v388(p *rt.TParser) (any, bool) {
 	start = p.Pos
 	x1 = p.Pos
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(1))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(1))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L3
 	}
@@ -25326,7 +27223,20 @@ func v388(p *rt.TParser) (any, bool) {
 L3:
 	p.Pos = x1
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(2))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(2))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L4
 	}
@@ -25339,7 +27249,20 @@ L3:
 L4:
 	p.Pos = x1
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(3))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(3))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L5
 	}
@@ -25394,7 +27317,20 @@ L7:
 L5:
 	p.Pos = x1
 	if !p.Predicate(func(c *rt.TActCtx) any {
-		return c.Binary(rt.OpEq, c.Binary(rt.OpRem, c.Binary(rt.OpQuo, c.Var(0), any(512)), any(8)), any(4))
+		tv1 := c.Var(0)
+		tv2, tf2 := c.P.TermBinary(rt.OpQuo, tv1, any(512))
+		if tf2 != nil {
+			panic(tf2)
+		}
+		tv3, tf3 := c.P.TermBinary(rt.OpRem, tv2, any(8))
+		if tf3 != nil {
+			panic(tf3)
+		}
+		tv4, tf4 := c.P.TermBinary(rt.OpEq, tv3, any(4))
+		if tf4 != nil {
+			panic(tf4)
+		}
+		return tv4
 	}) {
 		goto L16
 	}
@@ -28375,4 +30311,4 @@ fail:
 
 const _ = types.ZPSchema_e96c8ded1bc55a34
 
-const _ = rt.Protocol5
+const _ = rt.Protocol6

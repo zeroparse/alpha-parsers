@@ -728,7 +728,13 @@ func i0(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "main"
-	v = k1
+	{
+		var tr0 any
+		{
+			tr0 = k1
+		}
+		v = tr0
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -1771,7 +1777,13 @@ L71:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "primary"
-	v = k2
+	{
+		var tr1 any
+		{
+			tr1 = k2
+		}
+		v = tr1
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -2059,7 +2071,13 @@ L23:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "word_lit"
-	v = k2
+	{
+		var tr2 any
+		{
+			tr2 = k2
+		}
+		v = tr2
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -2154,7 +2172,13 @@ L5:
 	p.Pos = x4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ident_only"
-	v = k1
+	{
+		var tr3 any
+		{
+			tr3 = k1
+		}
+		v = tr3
+	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[10], v)
 	return v, true
@@ -5511,4 +5535,4 @@ fail:
 
 const _ = types.ZPSchema_e4eec6991b5d883e
 
-const _ = rt.Protocol5
+const _ = rt.Protocol6
