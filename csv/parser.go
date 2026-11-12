@@ -236,10 +236,10 @@ func init() {
 	rules = rt.NewRules(rulesSpec[:], rulesStrs[:], rulesExtras[:])
 	zpGrammar.SetRules(rules, 0)
 	rules[0].Body = e3
-	rules[0].Action = func(c *rt.ActCtx) any {
+	rules[0].Action = func(c *rt.ActCtx) (any, any) {
 		tv1, tf1 := c.P.TermMember(c, rt.MemberValue, c.Cap(0), "Value", "Value")
 		if tf1 != nil {
-			panic(tf1)
+			return nil, tf1
 		}
 		tn2 := c.TermStruct("File", 1)
 		tfirst3 := true
@@ -247,14 +247,29 @@ func init() {
 		c.TermSetField(tn2, "Records", tv1)
 		tfirst3 = c.P.TermCover(tn2, tv1, tfirst3)
 		c.P.TermMade(c, tn2, tfirst3)
-		return any(tn2)
+		return any(tn2), nil
 	}
 	rules[1].Body = e6
-	rules[1].Action = func(c *rt.ActCtx) any {
-		b_15 := len(c.P.KidStack)
-		c.PushList(c.Cap(0))
-		c.PushItems(c.Cap(1))
-		return c.NewStruct("Record", "Fields", c.EndList(b_15))
+	rules[1].Action = func(c *rt.ActCtx) (any, any) {
+		tm1 := len(c.P.KidStack)
+		c.P.Spend()
+		tf2 := c.P.TermPush(c, "list", c.Cap(0))
+		if tf2 != nil {
+			return nil, tf2
+		}
+		tf3 := c.P.TermPushItems(c, "concat", c.Cap(1))
+		if tf3 != nil {
+			return nil, tf3
+		}
+		tk4 := c.P.Kids(tm1)
+		tn5 := c.P.TermHull(c, false, tk4)
+		tn6 := c.TermStruct("Record", 1)
+		tfirst7 := true
+		c.P.Spend()
+		c.TermSetField(tn6, "Fields", any(tn5))
+		tfirst7 = c.P.TermCover(tn6, any(tn5), tfirst7)
+		c.P.TermMade(c, tn6, tfirst7)
+		return any(tn6), nil
 	}
 	zpGrammar.DeclareStruct("File", "Records", "l")
 	zpGrammar.TypeKinds["File"] = rt.KindOf("File", "")
@@ -263,7 +278,7 @@ func init() {
 	zpGrammar.NodeTypes["Field"] = rt.NewNodeTypeKinds("Field")
 	recRules = rt.NewRules(recRulesSpec[:], recRulesStrs[:], recRulesExtras[:])
 	zpRecGrammar.SetRules(recRules, 0)
-	recRules[0].Body = e16
+	recRules[0].Body = e15
 	zpGrammar.Starts = []string{"main"}
 	zpGrammar.DefaultStart = "main"
 	zpRecGrammar.Share(zpGrammar)
@@ -651,7 +666,7 @@ fail:
 	return nil, false
 }
 
-func e16(p *rt.Parser, _ int) (*rt.Node, bool) {
+func e15(p *rt.Parser, _ int) (*rt.Node, bool) {
 	p.Spend()
 	var v *rt.Node
 	var x1, x5 int
@@ -1050,16 +1065,16 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "main"
 	{
-		var tr1 any
+		var tr2 any
 		{
 			tv1, tf1 := c.P.TermMember(c, rt.MemberValue, k6, "Value", "Value")
 			if tf1 != nil {
-				panic(tf1)
+				c.TermRaise(tf1)
 			}
 			tv2 := tmk_File(c, true, tv1)
-			tr1 = tv2
+			tr2 = tv2
 		}
-		v = tr1
+		v = tr2
 	}
 	return v, true
 fail:
@@ -1133,10 +1148,24 @@ L2:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "record"
 	{
-		b_17 := len(c.P.KidStack)
-		c.PushList(k3)
-		c.PushItems(k6)
-		v = tmk_Record(c, true, c.EndList(b_17))
+		var tr3 any
+		{
+			tm1 := len(c.P.KidStack)
+			c.P.Spend()
+			tf2 := c.P.TermPush(c, "list", k3)
+			if tf2 != nil {
+				c.TermRaise(tf2)
+			}
+			tf3 := c.P.TermPushItems(c, "concat", k6)
+			if tf3 != nil {
+				c.TermRaise(tf3)
+			}
+			tk4 := c.P.Kids(tm1)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Record(c, true, any(tn5))
+			tr3 = tv6
+		}
+		v = tr3
 	}
 	return v, true
 fail:
@@ -1400,4 +1429,4 @@ fail:
 
 const _ = types.ZPSchema_e70ab694b3604300
 
-const _ = rt.Protocol8
+const _ = rt.Protocol12

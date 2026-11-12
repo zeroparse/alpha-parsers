@@ -582,42 +582,42 @@ var rulesExtras = [...]ruleExtra{
 }
 
 var scope115 = []string{"o"}
-var scope118 = []string{"o"}
-var scope121 = []string{"x"}
-var scope124 = []string{"x"}
-var cls129 = rt.Class{ASCII: [2]uint64{0x0, 0x10000000000000}}
-var cls130 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000000}}
-var cls131 = rt.Class{ASCII: [2]uint64{0x0, 0x400000000000}}
-var cls132 = rt.Class{ASCII: [2]uint64{0x0, 0x20000000000}}
-var cls133 = rt.Class{ASCII: [2]uint64{0x0, 0x200000000}}
-var cls134 = rt.Class{ASCII: [2]uint64{0x0, 0x400000000}}
-var cls135 = rt.Class{ASCII: [2]uint64{0x0, 0x800000000}}
-var cls136 = rt.Class{ASCII: [2]uint64{0x0, 0x2000000000}}
-var cls137 = rt.Class{ASCII: [2]uint64{0x0, 0x100000000000}}
-var cls138 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000000000}}
-var cls139 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000000000}}
-var cls140 = rt.Class{ASCII: [2]uint64{0x0, 0x40000000000000}}
-var cls141 = rt.Class{ASCII: [2]uint64{0x0, 0x80000000000000}}
-var cls142 = rt.Class{ASCII: [2]uint64{0x3ff000000000000, 0x7fffffe87fffffe}}
-var term143Data = rt.TerminalProgram{Code: []uint16{5, 181, 2, 179, 3, 171, 0, 6, 8, 0, 25, 1, 4, 0, 25, 6, 8, 1, 26, 1, 4, 1, 26, 6, 8, 2, 27, 1, 4, 2, 27, 6, 8, 3, 59, 1, 4, 3, 59, 6, 8, 4, 60, 1, 4, 4, 60, 6, 8, 5, 61, 1, 4, 5, 61, 6, 8, 6, 62, 1, 4, 6, 62, 6, 8, 6, 63, 1, 4, 7, 63, 6, 8, 7, 64, 1, 4, 8, 64, 6, 8, 1, 65, 1, 4, 9, 65, 6, 8, 1, 66, 1, 4, 10, 66, 6, 8, 3, 67, 1, 4, 11, 67, 6, 8, 3, 68, 1, 4, 12, 68, 6, 8, 8, 69, 1, 4, 13, 69, 6, 8, 8, 70, 1, 4, 14, 70, 6, 8, 9, 71, 1, 4, 15, 71, 6, 8, 2, 72, 1, 4, 16, 72, 6, 8, 10, 73, 1, 4, 17, 73, 6, 8, 11, 74, 1, 4, 18, 74, 6, 8, 11, 75, 1, 4, 19, 75, 6, 8, 12, 76, 1, 4, 20, 76, 5, 6, 0, 4, 13, 24}, Classes: []*rt.Class{&cls129, &cls130, &cls131, &cls132, &cls133, &cls134, &cls135, &cls136, &cls137, &cls138, &cls139, &cls140, &cls141, &cls142}, Literals: []rt.TerminalText{{Runes: lit48, Text: "true"}, {Runes: lit49, Text: "false"}, {Runes: lit51, Text: "null"}, {Runes: lit85, Text: "in"}, {Runes: lit87, Text: "as"}, {Runes: lit88, Text: "break"}, {Runes: lit89, Text: "const"}, {Runes: lit90, Text: "continue"}, {Runes: lit91, Text: "else"}, {Runes: lit92, Text: "for"}, {Runes: lit93, Text: "function"}, {Runes: lit94, Text: "if"}, {Runes: lit95, Text: "import"}, {Runes: lit96, Text: "let"}, {Runes: lit97, Text: "loop"}, {Runes: lit98, Text: "package"}, {Runes: lit99, Text: "namespace"}, {Runes: lit100, Text: "return"}, {Runes: lit101, Text: "var"}, {Runes: lit102, Text: "void"}, {Runes: lit103, Text: "while"}}}
-var term143 = term143Data.Prepare()
-var cls144 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000010}}
-var cls145 = rt.Class{ASCII: [2]uint64{0x300000000000000, 0x7e0000007e}}
-var steps146 = []rt.ClassStep{{C: &cls144, ID: 52}, {C: &cls145, ID: 53}}
-var cls147 = rt.Class{ASCII: [2]uint64{0xff000000000000, 0x0}}
-var steps148 = []rt.ClassStep{{C: &cls147, ID: 49}, {C: &cls147, ID: 49}}
-var lit152 = []rune("||")
-var lit154 = []rune("&&")
-var lit156 = []rune("<=")
-var lit157 = []rune("<")
-var lit158 = []rune(">=")
-var lit159 = []rune(">")
-var lit160 = []rune("==")
-var lit161 = []rune("!=")
-var lit163 = []rune("+")
-var lit165 = []rune("*")
-var lit166 = []rune("/")
-var lit167 = []rune("%")
+var scope116 = []string{"o"}
+var scope117 = []string{"x"}
+var scope118 = []string{"x"}
+var cls119 = rt.Class{ASCII: [2]uint64{0x0, 0x10000000000000}}
+var cls120 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000000}}
+var cls121 = rt.Class{ASCII: [2]uint64{0x0, 0x400000000000}}
+var cls122 = rt.Class{ASCII: [2]uint64{0x0, 0x20000000000}}
+var cls123 = rt.Class{ASCII: [2]uint64{0x0, 0x200000000}}
+var cls124 = rt.Class{ASCII: [2]uint64{0x0, 0x400000000}}
+var cls125 = rt.Class{ASCII: [2]uint64{0x0, 0x800000000}}
+var cls126 = rt.Class{ASCII: [2]uint64{0x0, 0x2000000000}}
+var cls127 = rt.Class{ASCII: [2]uint64{0x0, 0x100000000000}}
+var cls128 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000000000}}
+var cls129 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000000000}}
+var cls130 = rt.Class{ASCII: [2]uint64{0x0, 0x40000000000000}}
+var cls131 = rt.Class{ASCII: [2]uint64{0x0, 0x80000000000000}}
+var cls132 = rt.Class{ASCII: [2]uint64{0x3ff000000000000, 0x7fffffe87fffffe}}
+var term133Data = rt.TerminalProgram{Code: []uint16{5, 181, 2, 179, 3, 171, 0, 6, 8, 0, 25, 1, 4, 0, 25, 6, 8, 1, 26, 1, 4, 1, 26, 6, 8, 2, 27, 1, 4, 2, 27, 6, 8, 3, 59, 1, 4, 3, 59, 6, 8, 4, 60, 1, 4, 4, 60, 6, 8, 5, 61, 1, 4, 5, 61, 6, 8, 6, 62, 1, 4, 6, 62, 6, 8, 6, 63, 1, 4, 7, 63, 6, 8, 7, 64, 1, 4, 8, 64, 6, 8, 1, 65, 1, 4, 9, 65, 6, 8, 1, 66, 1, 4, 10, 66, 6, 8, 3, 67, 1, 4, 11, 67, 6, 8, 3, 68, 1, 4, 12, 68, 6, 8, 8, 69, 1, 4, 13, 69, 6, 8, 8, 70, 1, 4, 14, 70, 6, 8, 9, 71, 1, 4, 15, 71, 6, 8, 2, 72, 1, 4, 16, 72, 6, 8, 10, 73, 1, 4, 17, 73, 6, 8, 11, 74, 1, 4, 18, 74, 6, 8, 11, 75, 1, 4, 19, 75, 6, 8, 12, 76, 1, 4, 20, 76, 5, 6, 0, 4, 13, 24}, Classes: []*rt.Class{&cls119, &cls120, &cls121, &cls122, &cls123, &cls124, &cls125, &cls126, &cls127, &cls128, &cls129, &cls130, &cls131, &cls132}, Literals: []rt.TerminalText{{Runes: lit48, Text: "true"}, {Runes: lit49, Text: "false"}, {Runes: lit51, Text: "null"}, {Runes: lit85, Text: "in"}, {Runes: lit87, Text: "as"}, {Runes: lit88, Text: "break"}, {Runes: lit89, Text: "const"}, {Runes: lit90, Text: "continue"}, {Runes: lit91, Text: "else"}, {Runes: lit92, Text: "for"}, {Runes: lit93, Text: "function"}, {Runes: lit94, Text: "if"}, {Runes: lit95, Text: "import"}, {Runes: lit96, Text: "let"}, {Runes: lit97, Text: "loop"}, {Runes: lit98, Text: "package"}, {Runes: lit99, Text: "namespace"}, {Runes: lit100, Text: "return"}, {Runes: lit101, Text: "var"}, {Runes: lit102, Text: "void"}, {Runes: lit103, Text: "while"}}}
+var term133 = term133Data.Prepare()
+var cls134 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000010}}
+var cls135 = rt.Class{ASCII: [2]uint64{0x300000000000000, 0x7e0000007e}}
+var steps136 = []rt.ClassStep{{C: &cls134, ID: 52}, {C: &cls135, ID: 53}}
+var cls137 = rt.Class{ASCII: [2]uint64{0xff000000000000, 0x0}}
+var steps138 = []rt.ClassStep{{C: &cls137, ID: 49}, {C: &cls137, ID: 49}}
+var lit142 = []rune("||")
+var lit144 = []rune("&&")
+var lit146 = []rune("<=")
+var lit147 = []rune("<")
+var lit148 = []rune(">=")
+var lit149 = []rune(">")
+var lit150 = []rune("==")
+var lit151 = []rune("!=")
+var lit153 = []rune("+")
+var lit155 = []rune("*")
+var lit156 = []rune("/")
+var lit157 = []rune("%")
 
 func init() {
 	rules = rt.NewRules(rulesSpec[:], rulesStrs[:], rulesExtras[:])
@@ -664,77 +664,77 @@ func init() {
 	defer tinit()
 	trules[0].Entry = u0
 	trules[1].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e149,
+		Skip: e139,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e150, Action: nil, Value: sh56},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e140, Action: nil, Value: sh56},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "infix", Assoc: "right", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"then"}, M: e151, Action: func(c *rt.TActCtx) any {
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "infix", Assoc: "right", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"then"}, M: e141, Action: func(c *rt.TActCtx) (any, any) {
 			tv1 := tmk_Conditional(c, true, (c.Lhs), c.Cap(0), (c.Rhs))
-			return tv1
+			return tv1, nil
 		}, Value: sh77}},
-			{Id: 1, Kind: "infix", Assoc: "left", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e153, Action: func(c *rt.TActCtx) any {
+			{Id: 1, Kind: "infix", Assoc: "left", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e143, Action: func(c *rt.TActCtx) (any, any) {
 				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
-				return tv1
+				return tv1, nil
 			}, Value: sh56}},
-			{Id: 2, Kind: "infix", Assoc: "left", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e155, Action: func(c *rt.TActCtx) any {
+			{Id: 2, Kind: "infix", Assoc: "left", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e145, Action: func(c *rt.TActCtx) (any, any) {
 				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
-				return tv1
+				return tv1, nil
 			}, Value: sh56}},
-			{Id: 3, Kind: "infix", Assoc: "left", Level: 4, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e162, Action: func(c *rt.TActCtx) any {
+			{Id: 3, Kind: "infix", Assoc: "left", Level: 4, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e152, Action: func(c *rt.TActCtx) (any, any) {
 				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
-				return tv1
+				return tv1, nil
 			}, Value: sh56}},
-			{Id: 4, Kind: "infix", Assoc: "left", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e164, Action: func(c *rt.TActCtx) any {
+			{Id: 4, Kind: "infix", Assoc: "left", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e154, Action: func(c *rt.TActCtx) (any, any) {
 				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
-				return tv1
+				return tv1, nil
 			}, Value: sh56}},
-			{Id: 5, Kind: "infix", Assoc: "left", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e168, Action: func(c *rt.TActCtx) any {
+			{Id: 5, Kind: "infix", Assoc: "left", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e158, Action: func(c *rt.TActCtx) (any, any) {
 				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
-				return tv1
+				return tv1, nil
 			}, Value: sh56}}},
 	}
 	trules[1].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[1], min) }
 	trules[5].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e149,
+		Skip: e139,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e169, Action: nil, Value: sh56},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e159, Action: nil, Value: sh56},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"q", "f"}, M: e170, Action: func(c *rt.TActCtx) any {
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"q", "f"}, M: e160, Action: func(c *rt.TActCtx) (any, any) {
 			tv1, tf1 := c.P.TermLength(c.Cap(0))
 			if tf1 != nil {
-				panic(tf1)
+				return nil, tf1
 			}
 			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
 			if tf2 != nil {
-				panic(tf2)
+				return nil, tf2
 			}
 			tv3 := tmk_Select(c, true, (c.Lhs), c.Cap(1), tv2)
-			return tv3
+			return tv3, nil
 		}, Value: sh77}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"f", "as"}, M: e171, Action: func(c *rt.TActCtx) any {
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"f", "as"}, M: e161, Action: func(c *rt.TActCtx) (any, any) {
 				tm1 := len(c.P.KidStack)
 				tf2 := c.P.TermPushItems(c, "concat", c.Cap(1))
 				if tf2 != nil {
-					panic(tf2)
+					return nil, tf2
 				}
 				tk3 := c.P.Kids(tm1)
 				tn4 := c.P.TermHull(c, false, tk3)
 				tv5 := tmk_Call(c, true, (c.Lhs), c.Cap(0), any(tn4))
-				return tv5
+				return tv5, nil
 			}, Value: sh114}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"q", "i"}, M: e172, Action: func(c *rt.TActCtx) any {
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"q", "i"}, M: e162, Action: func(c *rt.TActCtx) (any, any) {
 				tv1, tf1 := c.P.TermLength(c.Cap(0))
 				if tf1 != nil {
-					panic(tf1)
+					return nil, tf1
 				}
 				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
 				if tf2 != nil {
-					panic(tf2)
+					return nil, tf2
 				}
 				tv3 := tmk_Index(c, true, (c.Lhs), c.Cap(1), tv2)
-				return tv3
+				return tv3, nil
 			}, Value: sh113}}},
 	}
 	trules[5].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[5], min) }
@@ -787,7 +787,7 @@ fail:
 	return nil, false
 }
 
-func e149(p *rt.TParser) (any, bool) {
+func e139(p *rt.TParser) (any, bool) {
 	var ok bool
 	if _, ok = s49(p); !ok {
 		goto fail
@@ -797,7 +797,7 @@ fail:
 	return nil, false
 }
 
-func e150(p *rt.TParser) (any, bool) {
+func e140(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = s2(p); !ok {
@@ -808,7 +808,7 @@ fail:
 	return nil, false
 }
 
-func e151(p *rt.TParser) (any, bool) {
+func e141(p *rt.TParser) (any, bool) {
 	var x1, x3, x9 int
 	var x2 []any
 	var ok bool
@@ -850,14 +850,14 @@ fail:
 	return nil, false
 }
 
-func e153(p *rt.TParser) (any, bool) {
+func e143(p *rt.TParser) (any, bool) {
 	var x1 int
 	var ok bool
 	var v2 any
 	x1 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 124 && p.In[p.Pos+1] == 124 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit152, "||", 82, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit142, "||", 82, false); !ok {
 		goto fail
 	}
 	v2 = p.NewMatchOrdinary(x1, p.Pos, "||", true)
@@ -866,14 +866,14 @@ fail:
 	return nil, false
 }
 
-func e155(p *rt.TParser) (any, bool) {
+func e145(p *rt.TParser) (any, bool) {
 	var x1 int
 	var ok bool
 	var v2 any
 	x1 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 38 && p.In[p.Pos+1] == 38 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit154, "&&", 83, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit144, "&&", 83, false); !ok {
 		goto fail
 	}
 	v2 = p.NewMatchOrdinary(x1, p.Pos, "&&", true)
@@ -882,7 +882,7 @@ fail:
 	return nil, false
 }
 
-func e162(p *rt.TParser) (any, bool) {
+func e152(p *rt.TParser) (any, bool) {
 	var x1, x33 rt.Mark
 	var v2, v9, v13, v17, v21, v25, v29, v35 any
 	var x4, ch rune
@@ -897,7 +897,7 @@ func e162(p *rt.TParser) (any, bool) {
 	x8 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 60 && p.In[p.Pos+1] == 61 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit156, "<=", 84, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit146, "<=", 84, false); !ok {
 		goto L7
 	}
 	v9 = p.NewMatchOrdinary(x8, p.Pos, "<=", true)
@@ -913,7 +913,7 @@ L6:
 	x12 = p.Pos
 	if p.Pos < len(p.In) && p.In[p.Pos] == 60 {
 		p.Pos++
-	} else if _, ok = p.Parser.MatchLiteral(lit157, "<", 85, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit147, "<", 85, false); !ok {
 		goto L11
 	}
 	v13 = p.NewMatchOrdinary(x12, p.Pos, "<", true)
@@ -929,7 +929,7 @@ L10:
 	x16 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 62 && p.In[p.Pos+1] == 61 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit158, ">=", 86, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit148, ">=", 86, false); !ok {
 		goto L15
 	}
 	v17 = p.NewMatchOrdinary(x16, p.Pos, ">=", true)
@@ -945,7 +945,7 @@ L14:
 	x20 = p.Pos
 	if p.Pos < len(p.In) && p.In[p.Pos] == 62 {
 		p.Pos++
-	} else if _, ok = p.Parser.MatchLiteral(lit159, ">", 87, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit149, ">", 87, false); !ok {
 		goto L19
 	}
 	v21 = p.NewMatchOrdinary(x20, p.Pos, ">", true)
@@ -961,7 +961,7 @@ L18:
 	x24 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 61 && p.In[p.Pos+1] == 61 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit160, "==", 88, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit150, "==", 88, false); !ok {
 		goto L23
 	}
 	v25 = p.NewMatchOrdinary(x24, p.Pos, "==", true)
@@ -977,7 +977,7 @@ L22:
 	x28 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 33 && p.In[p.Pos+1] == 61 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit161, "!=", 89, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit151, "!=", 89, false); !ok {
 		goto L27
 	}
 	v29 = p.NewMatchOrdinary(x28, p.Pos, "!=", true)
@@ -1026,7 +1026,7 @@ fail:
 	return nil, false
 }
 
-func e164(p *rt.TParser) (any, bool) {
+func e154(p *rt.TParser) (any, bool) {
 	var x1 rt.Mark
 	var v2, v9, v13 any
 	var x4 rune
@@ -1041,7 +1041,7 @@ func e164(p *rt.TParser) (any, bool) {
 	x8 = p.Pos
 	if p.Pos < len(p.In) && p.In[p.Pos] == 43 {
 		p.Pos++
-	} else if _, ok = p.Parser.MatchLiteral(lit163, "+", 90, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit153, "+", 90, false); !ok {
 		goto L7
 	}
 	v9 = p.NewMatchOrdinary(x8, p.Pos, "+", true)
@@ -1073,7 +1073,7 @@ fail:
 	return nil, false
 }
 
-func e168(p *rt.TParser) (any, bool) {
+func e158(p *rt.TParser) (any, bool) {
 	var x1 rt.Mark
 	var v2, v9, v13, v17 any
 	var x4 rune
@@ -1088,7 +1088,7 @@ func e168(p *rt.TParser) (any, bool) {
 	x8 = p.Pos
 	if p.Pos < len(p.In) && p.In[p.Pos] == 42 {
 		p.Pos++
-	} else if _, ok = p.Parser.MatchLiteral(lit165, "*", 91, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit155, "*", 91, false); !ok {
 		goto L7
 	}
 	v9 = p.NewMatchOrdinary(x8, p.Pos, "*", true)
@@ -1104,7 +1104,7 @@ L6:
 	x12 = p.Pos
 	if p.Pos < len(p.In) && p.In[p.Pos] == 47 {
 		p.Pos++
-	} else if _, ok = p.Parser.MatchLiteral(lit166, "/", 92, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit156, "/", 92, false); !ok {
 		goto L11
 	}
 	v13 = p.NewMatchOrdinary(x12, p.Pos, "/", true)
@@ -1120,7 +1120,7 @@ L10:
 	x16 = p.Pos
 	if p.Pos < len(p.In) && p.In[p.Pos] == 37 {
 		p.Pos++
-	} else if _, ok = p.Parser.MatchLiteral(lit167, "%", 93, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit157, "%", 93, false); !ok {
 		goto L15
 	}
 	v17 = p.NewMatchOrdinary(x16, p.Pos, "%", true)
@@ -1240,7 +1240,30 @@ func i3(p *rt.TParser) (any, bool) {
 	k18 = v20
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "not_unary"
-	v = c.Fold("foldr", true, k18, k1, func(l_116, l_117 any) any { return tmk_Unary(c, false, c.Member((l_117), "$o"), (l_116)) })
+	{
+		var tr1 any
+		{
+			ti1, tf1 := c.P.TermItems("foldr", k1)
+			if tf1 != nil {
+				c.TermRaise(tf1)
+			}
+			ta2 := k18
+			tj3 := 0
+			for ; tj3 < len(ti1); tj3++ {
+				tp5 := ta2
+				tp6 := c.P.TermItemAt(ti1, tj3, true)
+				tv8, tf8 := c.P.TermMember(c, rt.MemberCapture, (tp6), "$o", "$o"[1:])
+				if tf8 != nil {
+					c.TermRaise(tf8)
+				}
+				tv9 := tmk_Unary(c, false, tv8, (tp5))
+				tv7 := tv9
+				ta2 = tv7
+			}
+			tr1 = ta2
+		}
+		v = tr1
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -1288,7 +1311,7 @@ func i4(p *rt.TParser) (any, bool) {
 		}
 		v14 = p.NewNodeOrdinary("tuple", x9, p.Pos, x10)
 		v15 = p.ScopeValue(sh5, v14, x6)
-		v16 = p.AttachCaptures(v15, scope118, []any{k7}, x6, p.Pos)
+		v16 = p.AttachCaptures(v15, scope116, []any{k7}, x6, p.Pos)
 		x5++
 		p.PushKid(v16)
 		if p.Pos == x6 {
@@ -1311,7 +1334,30 @@ func i4(p *rt.TParser) (any, bool) {
 	k18 = v20
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "neg_unary"
-	v = c.Fold("foldr", true, k18, k1, func(l_119, l_120 any) any { return tmk_Unary(c, false, c.Member((l_120), "$o"), (l_119)) })
+	{
+		var tr2 any
+		{
+			ti1, tf1 := c.P.TermItems("foldr", k1)
+			if tf1 != nil {
+				c.TermRaise(tf1)
+			}
+			ta2 := k18
+			tj3 := 0
+			for ; tj3 < len(ti1); tj3++ {
+				tp5 := ta2
+				tp6 := c.P.TermItemAt(ti1, tj3, true)
+				tv8, tf8 := c.P.TermMember(c, rt.MemberCapture, (tp6), "$o", "$o"[1:])
+				if tf8 != nil {
+					c.TermRaise(tf8)
+				}
+				tv9 := tmk_Unary(c, false, tv8, (tp5))
+				tv7 := tv9
+				ta2 = tv7
+			}
+			tr2 = ta2
+		}
+		v = tr2
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -1320,7 +1366,7 @@ fail:
 	return nil, false
 }
 
-func e169(p *rt.TParser) (any, bool) {
+func e159(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u6(p); !ok {
@@ -1331,7 +1377,7 @@ fail:
 	return nil, false
 }
 
-func e170(p *rt.TParser) (any, bool) {
+func e160(p *rt.TParser) (any, bool) {
 	var x1, x3, x11 int
 	var x2 []any
 	var ok bool
@@ -1382,7 +1428,7 @@ fail:
 	return nil, false
 }
 
-func e171(p *rt.TParser) (any, bool) {
+func e161(p *rt.TParser) (any, bool) {
 	var x1, x3, x9, x19 int
 	var x2 []any
 	var ok bool
@@ -1453,7 +1499,7 @@ fail:
 	return nil, false
 }
 
-func e172(p *rt.TParser) (any, bool) {
+func e162(p *rt.TParser) (any, bool) {
 	var x1, x3, x11, x17 int
 	var x2 []any
 	var ok bool
@@ -1824,11 +1870,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "primary"
 	{
-		var tr1 any
+		var tr3 any
 		{
-			tr1 = k2
+			tr3 = k2
 		}
-		v = tr1
+		v = tr3
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2118,11 +2164,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "word_lit"
 	{
-		var tr2 any
+		var tr4 any
 		{
-			tr2 = k2
+			tr4 = k2
 		}
-		v = tr2
+		v = tr4
 	}
 	v = c.Finish(v)
 	return v, true
@@ -2170,12 +2216,12 @@ func i9(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paren"
 	{
-		var tr3 any
+		var tr5 any
 		{
 			tv1 := tmk_Paren(c, true, k1)
-			tr3 = tv1
+			tr5 = tv1
 		}
-		v = tr3
+		v = tr5
 	}
 	p.Depth--
 	return v, true
@@ -2226,11 +2272,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ident_only"
 	{
-		var tr4 any
+		var tr6 any
 		{
-			tr4 = k1
+			tr6 = k1
 		}
-		v = tr4
+		v = tr6
 	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[10], v)
@@ -2339,19 +2385,19 @@ L9:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "call"
 	{
-		var tr5 any
+		var tr7 any
 		{
 			tm1 := len(c.P.KidStack)
 			tf2 := c.P.TermPushItems(c, "concat", k4)
 			if tf2 != nil {
-				panic(tf2)
+				c.TermRaise(tf2)
 			}
 			tk3 := c.P.Kids(tm1)
 			tn4 := c.P.TermHull(c, false, tk3)
 			tv5 := tmk_Call(c, true, any(nil), k1, any(tn4))
-			tr5 = tv5
+			tr7 = tv5
 		}
-		v = tr5
+		v = tr7
 	}
 	p.Depth--
 	return v, true
@@ -2409,7 +2455,7 @@ func i13(p *rt.TParser) (any, bool) {
 		x13 = append(x13, v15)
 		v16 = p.NewNodeOrdinary("tuple", x12, p.Pos, x13)
 		v17 = p.ScopeValue(sh5, v16, x9)
-		v18 = p.AttachCaptures(v17, scope121, []any{k10}, x9, p.Pos)
+		v18 = p.AttachCaptures(v17, scope117, []any{k10}, x9, p.Pos)
 		p.PushKid(v18)
 		if p.Pos == x9 {
 			break
@@ -2424,10 +2470,35 @@ func i13(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "args"
 	{
-		b_122 := len(c.P.KidStack)
-		c.PushList(k1)
-		c.PushMap(k4, func(l_123 any) any { return c.Member((l_123), "$x") })
-		v = c.EndList(b_122)
+		var tr8 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				c.TermRaise(tf2)
+			}
+			ti3, tf3 := c.P.TermItems("map", k4)
+			if tf3 != nil {
+				c.TermRaise(tf3)
+			}
+			tj4 := 0
+			for ; tj4 < len(ti3); tj4++ {
+				tp6 := c.P.TermItemAt(ti3, tj4, false)
+				tv8, tf8 := c.P.TermMember(c, rt.MemberCapture, (tp6), "$x", "$x"[1:])
+				if tf8 != nil {
+					c.TermRaise(tf8)
+				}
+				tv7 := tv8
+				tf9 := c.P.TermPush(c, "map", tv7)
+				if tf9 != nil {
+					c.TermRaise(tf9)
+				}
+			}
+			tk10 := c.P.Kids(tm1)
+			tn11 := c.P.TermHull(c, false, tk10)
+			tr8 = any(tn11)
+		}
+		v = tr8
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2497,19 +2568,19 @@ L10:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "list"
 	{
-		var tr6 any
+		var tr9 any
 		{
 			tm1 := len(c.P.KidStack)
 			tf2 := c.P.TermPushItems(c, "concat", k1)
 			if tf2 != nil {
-				panic(tf2)
+				c.TermRaise(tf2)
 			}
 			tk3 := c.P.Kids(tm1)
 			tn4 := c.P.TermHull(c, false, tk3)
 			tv5 := tmk_ListLit(c, true, any(tn4))
-			tr6 = tv5
+			tr9 = tv5
 		}
-		v = tr6
+		v = tr9
 	}
 	p.Depth--
 	return v, true
@@ -2564,7 +2635,7 @@ func i15(p *rt.TParser) (any, bool) {
 		x13 = append(x13, v15)
 		v16 = p.NewNodeOrdinary("tuple", x12, p.Pos, x13)
 		v17 = p.ScopeValue(sh5, v16, x9)
-		v18 = p.AttachCaptures(v17, scope124, []any{k10}, x9, p.Pos)
+		v18 = p.AttachCaptures(v17, scope118, []any{k10}, x9, p.Pos)
 		p.PushKid(v18)
 		if p.Pos == x9 {
 			break
@@ -2579,10 +2650,35 @@ func i15(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "elems"
 	{
-		b_125 := len(c.P.KidStack)
-		c.PushList(k1)
-		c.PushMap(k4, func(l_126 any) any { return c.Member((l_126), "$x") })
-		v = c.EndList(b_125)
+		var tr10 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				c.TermRaise(tf2)
+			}
+			ti3, tf3 := c.P.TermItems("map", k4)
+			if tf3 != nil {
+				c.TermRaise(tf3)
+			}
+			tj4 := 0
+			for ; tj4 < len(ti3); tj4++ {
+				tp6 := c.P.TermItemAt(ti3, tj4, false)
+				tv8, tf8 := c.P.TermMember(c, rt.MemberCapture, (tp6), "$x", "$x"[1:])
+				if tf8 != nil {
+					c.TermRaise(tf8)
+				}
+				tv7 := tv8
+				tf9 := c.P.TermPush(c, "map", tv7)
+				if tf9 != nil {
+					c.TermRaise(tf9)
+				}
+			}
+			tk10 := c.P.Kids(tm1)
+			tn11 := c.P.TermHull(c, false, tk10)
+			tr10 = any(tn11)
+		}
+		v = tr10
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2674,12 +2770,12 @@ func i17(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "optional"
 	{
-		var tr7 any
+		var tr11 any
 		{
 			tv1 := tmk_Optional(c, true, k1)
-			tr7 = tv1
+			tr11 = tv1
 		}
-		v = tr7
+		v = tr11
 	}
 	p.Depth--
 	return v, true
@@ -2748,19 +2844,19 @@ L10:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "map"
 	{
-		var tr8 any
+		var tr12 any
 		{
 			tm1 := len(c.P.KidStack)
 			tf2 := c.P.TermPushItems(c, "concat", k1)
 			if tf2 != nil {
-				panic(tf2)
+				c.TermRaise(tf2)
 			}
 			tk3 := c.P.Kids(tm1)
 			tn4 := c.P.TermHull(c, false, tk3)
 			tv5 := tmk_MapLit(c, true, any(tn4))
-			tr8 = tv5
+			tr12 = tv5
 		}
-		v = tr8
+		v = tr12
 	}
 	p.Depth--
 	return v, true
@@ -2823,10 +2919,22 @@ func i19(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "entries"
 	{
-		b_127 := len(c.P.KidStack)
-		c.PushList(k1)
-		c.PushItems(k4)
-		v = c.EndList(b_127)
+		var tr13 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				c.TermRaise(tf2)
+			}
+			tf3 := c.P.TermPushItems(c, "concat", k4)
+			if tf3 != nil {
+				c.TermRaise(tf3)
+			}
+			tk4 := c.P.Kids(tm1)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tr13 = any(tn5)
+		}
+		v = tr13
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2933,12 +3041,12 @@ func i21(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "opt_entry"
 	{
-		var tr9 any
+		var tr14 any
 		{
 			tv1 := tmk_Entry(c, true, k1, k4, any(true))
-			tr9 = tv1
+			tr14 = tv1
 		}
-		v = tr9
+		v = tr14
 	}
 	p.Depth--
 	return v, true
@@ -2986,12 +3094,12 @@ func i22(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "plain_entry"
 	{
-		var tr10 any
+		var tr15 any
 		{
 			tv1 := tmk_Entry(c, true, k1, k4, any(false))
-			tr10 = tv1
+			tr15 = tv1
 		}
-		v = tr10
+		v = tr15
 	}
 	p.Depth--
 	return v, true
@@ -3154,19 +3262,19 @@ L22:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "message"
 	{
-		var tr11 any
+		var tr16 any
 		{
 			tm1 := len(c.P.KidStack)
 			tf2 := c.P.TermPushItems(c, "concat", k13)
 			if tf2 != nil {
-				panic(tf2)
+				c.TermRaise(tf2)
 			}
 			tk3 := c.P.Kids(tm1)
 			tn4 := c.P.TermHull(c, false, tk3)
 			tv5 := tmk_MessageLit(c, true, k10, any(tn4))
-			tr11 = tv5
+			tr16 = tv5
 		}
-		v = tr11
+		v = tr16
 	}
 	p.Depth--
 	return v, true
@@ -3288,10 +3396,22 @@ func i25(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fields"
 	{
-		b_128 := len(c.P.KidStack)
-		c.PushList(k1)
-		c.PushItems(k4)
-		v = c.EndList(b_128)
+		var tr17 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				c.TermRaise(tf2)
+			}
+			tf3 := c.P.TermPushItems(c, "concat", k4)
+			if tf3 != nil {
+				c.TermRaise(tf3)
+			}
+			tk4 := c.P.Kids(tm1)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tr17 = any(tn5)
+		}
+		v = tr17
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -3398,12 +3518,12 @@ func i27(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "opt_field"
 	{
-		var tr12 any
+		var tr18 any
 		{
 			tv1 := tmk_Field(c, true, k1, k4, any(true))
-			tr12 = tv1
+			tr18 = tv1
 		}
-		v = tr12
+		v = tr18
 	}
 	p.Depth--
 	return v, true
@@ -3451,12 +3571,12 @@ func i28(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "plain_field"
 	{
-		var tr13 any
+		var tr19 any
 		{
 			tv1 := tmk_Field(c, true, k1, k4, any(false))
-			tr13 = tv1
+			tr19 = tv1
 		}
-		v = tr13
+		v = tr19
 	}
 	p.Depth--
 	return v, true
@@ -4475,7 +4595,7 @@ func s50(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.SkipTerminal(term143) {
+	if !p.SkipTerminal(term133) {
 		goto fail
 	}
 	ch, size, ok = p.NextOrdinary()
@@ -5558,7 +5678,7 @@ L5:
 	x9 = p.Pos
 	p.Silent++
 	p.LookBegin(46)
-	if !p.ClassesSkip(steps146) {
+	if !p.ClassesSkip(steps136) {
 		goto L10
 	}
 	p.LookEnd(true)
@@ -5602,7 +5722,7 @@ L7:
 	} else if _, ok = p.Parser.MatchLiteral(lit79, "0000", 55, false); !ok {
 		goto L14
 	}
-	if !p.ClassesSkip(steps146) {
+	if !p.ClassesSkip(steps136) {
 		goto L14
 	}
 	p.LookEnd(true)
@@ -5730,7 +5850,7 @@ L6:
 		goto L8
 	}
 	p.Pos += x3
-	if !p.ClassesSkip(steps148) {
+	if !p.ClassesSkip(steps138) {
 		goto L9
 	}
 	goto L2
@@ -5782,4 +5902,4 @@ fail:
 
 const _ = types.ZPSchema_e4eec6991b5d883e
 
-const _ = rt.Protocol8
+const _ = rt.Protocol12

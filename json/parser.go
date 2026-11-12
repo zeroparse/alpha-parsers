@@ -336,17 +336,17 @@ func init() {
 	rules = rt.NewRules(rulesSpec[:], rulesStrs[:], rulesExtras[:])
 	zpGrammar.SetRules(rules, 3)
 	rules[0].Body = e1
-	rules[0].Action = func(c *rt.ActCtx) any {
-		return c.Cap(0)
+	rules[0].Action = func(c *rt.ActCtx) (any, any) {
+		return c.Cap(0), nil
 	}
 	rules[1].Body = e2
 	rules[2].Body = e5
-	rules[2].Action = func(c *rt.ActCtx) any {
+	rules[2].Action = func(c *rt.ActCtx) (any, any) {
 		tm1 := len(c.P.KidStack)
 		c.P.Spend()
 		tf2 := c.P.TermPushItems(c, "concat", c.Cap(0))
 		if tf2 != nil {
-			panic(tf2)
+			return nil, tf2
 		}
 		tk3 := c.P.Kids(tm1)
 		tn4 := c.P.TermHull(c, false, tk3)
@@ -356,17 +356,26 @@ func init() {
 		c.TermSetField(tn5, "Members", any(tn4))
 		tfirst6 = c.P.TermCover(tn5, any(tn4), tfirst6)
 		c.P.TermMade(c, tn5, tfirst6)
-		return any(tn5)
+		return any(tn5), nil
 	}
 	rules[3].Body = e8
-	rules[3].Action = func(c *rt.ActCtx) any {
-		b_35 := len(c.P.KidStack)
-		c.PushList(c.Cap(0))
-		c.PushItems(c.Cap(1))
-		return c.EndList(b_35)
+	rules[3].Action = func(c *rt.ActCtx) (any, any) {
+		tm1 := len(c.P.KidStack)
+		c.P.Spend()
+		tf2 := c.P.TermPush(c, "list", c.Cap(0))
+		if tf2 != nil {
+			return nil, tf2
+		}
+		tf3 := c.P.TermPushItems(c, "concat", c.Cap(1))
+		if tf3 != nil {
+			return nil, tf3
+		}
+		tk4 := c.P.Kids(tm1)
+		tn5 := c.P.TermHull(c, false, tk4)
+		return any(tn5), nil
 	}
 	rules[4].Body = e10
-	rules[4].Action = func(c *rt.ActCtx) any {
+	rules[4].Action = func(c *rt.ActCtx) (any, any) {
 		tn1 := c.TermStruct("Member", 2)
 		tfirst2 := true
 		c.P.Spend()
@@ -376,15 +385,15 @@ func init() {
 		c.TermSetField(tn1, "Value", c.Cap(1))
 		tfirst2 = c.P.TermCover(tn1, c.Cap(1), tfirst2)
 		c.P.TermMade(c, tn1, tfirst2)
-		return any(tn1)
+		return any(tn1), nil
 	}
 	rules[5].Body = e13
-	rules[5].Action = func(c *rt.ActCtx) any {
+	rules[5].Action = func(c *rt.ActCtx) (any, any) {
 		tm1 := len(c.P.KidStack)
 		c.P.Spend()
 		tf2 := c.P.TermPushItems(c, "concat", c.Cap(0))
 		if tf2 != nil {
-			panic(tf2)
+			return nil, tf2
 		}
 		tk3 := c.P.Kids(tm1)
 		tn4 := c.P.TermHull(c, false, tk3)
@@ -394,18 +403,27 @@ func init() {
 		c.TermSetField(tn5, "Elements", any(tn4))
 		tfirst6 = c.P.TermCover(tn5, any(tn4), tfirst6)
 		c.P.TermMade(c, tn5, tfirst6)
-		return any(tn5)
+		return any(tn5), nil
 	}
 	rules[6].Body = e15
-	rules[6].Action = func(c *rt.ActCtx) any {
-		b_36 := len(c.P.KidStack)
-		c.PushList(c.Cap(0))
-		c.PushItems(c.Cap(1))
-		return c.EndList(b_36)
+	rules[6].Action = func(c *rt.ActCtx) (any, any) {
+		tm1 := len(c.P.KidStack)
+		c.P.Spend()
+		tf2 := c.P.TermPush(c, "list", c.Cap(0))
+		if tf2 != nil {
+			return nil, tf2
+		}
+		tf3 := c.P.TermPushItems(c, "concat", c.Cap(1))
+		if tf3 != nil {
+			return nil, tf3
+		}
+		tk4 := c.P.Kids(tm1)
+		tn5 := c.P.TermHull(c, false, tk4)
+		return any(tn5), nil
 	}
 	rules[7].Body = e17
-	rules[7].Action = func(c *rt.ActCtx) any {
-		return c.Cap(0)
+	rules[7].Action = func(c *rt.ActCtx) (any, any) {
+		return c.Cap(0), nil
 	}
 	zpGrammar.DeclareStruct("Array", "Elements", "l")
 	zpGrammar.TypeKinds["Array"] = rt.KindOf("Array", "")
@@ -419,10 +437,10 @@ func init() {
 	zpGrammar.NodeTypes["String"] = rt.NewNodeTypeKinds("String")
 	recRules = rt.NewRules(recRulesSpec[:], recRulesStrs[:], recRulesExtras[:])
 	zpRecGrammar.SetRules(recRules, 3)
-	recRules[0].Body = e37
-	recRules[1].Body = e38
-	recRules[4].Body = e39
-	recRules[7].Body = e40
+	recRules[0].Body = e35
+	recRules[1].Body = e36
+	recRules[4].Body = e37
+	recRules[7].Body = e38
 	zpGrammar.Starts = []string{"main"}
 	zpGrammar.DefaultStart = "main"
 	zpRecGrammar.Share(zpGrammar)
@@ -1319,7 +1337,7 @@ fail:
 	return nil, false
 }
 
-func e37(p *rt.Parser, _ int) (*rt.Node, bool) {
+func e35(p *rt.Parser, _ int) (*rt.Node, bool) {
 	p.Spend()
 	var v *rt.Node
 	var ok bool
@@ -1342,7 +1360,7 @@ fail:
 	return nil, false
 }
 
-func e38(p *rt.Parser, _ int) (*rt.Node, bool) {
+func e36(p *rt.Parser, _ int) (*rt.Node, bool) {
 	p.Spend()
 	var x1 rt.Mark
 	var x3 rune
@@ -1417,7 +1435,7 @@ fail:
 	return nil, false
 }
 
-func e39(p *rt.Parser, _ int) (*rt.Node, bool) {
+func e37(p *rt.Parser, _ int) (*rt.Node, bool) {
 	p.Spend()
 	var ok bool
 	if _, ok = p.Call(recRules[7], 0); !ok {
@@ -1442,7 +1460,7 @@ fail:
 	return nil, false
 }
 
-func e40(p *rt.Parser, _ int) (*rt.Node, bool) {
+func e38(p *rt.Parser, _ int) (*rt.Node, bool) {
 	p.Spend()
 	var ok bool
 	if (p.Pos < len(p.In) && p.In[p.Pos] == 34) && p.Control.Take(1) {
@@ -2152,11 +2170,11 @@ func i0(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "main"
 	{
-		var tr5 any
+		var tr7 any
 		{
-			tr5 = k1
+			tr7 = k1
 		}
-		v = tr5
+		v = tr7
 	}
 	v = c.Finish(v)
 	return v, true
@@ -2311,20 +2329,20 @@ L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "object"
 	{
-		var tr6 any
+		var tr8 any
 		{
 			tm1 := len(c.P.KidStack)
 			c.P.Spend()
 			tf2 := c.P.TermPushItems(c, "concat", k1)
 			if tf2 != nil {
-				panic(tf2)
+				c.TermRaise(tf2)
 			}
 			tk3 := c.P.Kids(tm1)
 			tn4 := c.P.TermHull(c, false, tk3)
 			tv5 := tmk_Object(c, true, any(tn4))
-			tr6 = tv5
+			tr8 = tv5
 		}
-		v = tr6
+		v = tr8
 	}
 	p.Depth--
 	return v, true
@@ -2389,10 +2407,23 @@ func i3(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "members"
 	{
-		b_41 := len(c.P.KidStack)
-		c.PushList(k1)
-		c.PushItems(k4)
-		v = c.EndList(b_41)
+		var tr9 any
+		{
+			tm1 := len(c.P.KidStack)
+			c.P.Spend()
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				c.TermRaise(tf2)
+			}
+			tf3 := c.P.TermPushItems(c, "concat", k4)
+			if tf3 != nil {
+				c.TermRaise(tf3)
+			}
+			tk4 := c.P.Kids(tm1)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tr9 = any(tn5)
+		}
+		v = tr9
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2445,12 +2476,12 @@ func i4(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "member"
 	{
-		var tr7 any
+		var tr10 any
 		{
 			tv1 := tmk_Member(c, true, k1, k4)
-			tr7 = tv1
+			tr10 = tv1
 		}
-		v = tr7
+		v = tr10
 	}
 	p.Depth--
 	return v, true
@@ -2507,20 +2538,20 @@ L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "array"
 	{
-		var tr8 any
+		var tr11 any
 		{
 			tm1 := len(c.P.KidStack)
 			c.P.Spend()
 			tf2 := c.P.TermPushItems(c, "concat", k1)
 			if tf2 != nil {
-				panic(tf2)
+				c.TermRaise(tf2)
 			}
 			tk3 := c.P.Kids(tm1)
 			tn4 := c.P.TermHull(c, false, tk3)
 			tv5 := tmk_Array(c, true, any(tn4))
-			tr8 = tv5
+			tr11 = tv5
 		}
-		v = tr8
+		v = tr11
 	}
 	p.Depth--
 	return v, true
@@ -2585,10 +2616,23 @@ func i6(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "elements"
 	{
-		b_42 := len(c.P.KidStack)
-		c.PushList(k1)
-		c.PushItems(k4)
-		v = c.EndList(b_42)
+		var tr12 any
+		{
+			tm1 := len(c.P.KidStack)
+			c.P.Spend()
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				c.TermRaise(tf2)
+			}
+			tf3 := c.P.TermPushItems(c, "concat", k4)
+			if tf3 != nil {
+				c.TermRaise(tf3)
+			}
+			tk4 := c.P.Kids(tm1)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tr12 = any(tn5)
+		}
+		v = tr12
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2635,11 +2679,11 @@ func i7(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "string"
 	{
-		var tr9 any
+		var tr13 any
 		{
-			tr9 = k1
+			tr13 = k1
 		}
-		v = tr9
+		v = tr13
 	}
 	v = c.Finish(v)
 	return v, true
@@ -3163,4 +3207,4 @@ fail:
 
 const _ = types.ZPSchema_341a4aaa83c568ba
 
-const _ = rt.Protocol8
+const _ = rt.Protocol12
