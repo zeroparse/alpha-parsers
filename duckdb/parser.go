@@ -5087,363 +5087,363 @@ var rulesExtras = [...]ruleExtra{
 	{649, "", "StringLit", "", 0},
 }
 
-var scope1224 = []string{"t"}
-var scope1228 = []string{"n"}
-var scope1234 = []string{"n"}
-var scope1236 = []string{"n"}
-var scope1238 = []string{"n"}
-var scope1296 = []string{"n"}
-var cls1308 = rt.Class{ASCII: [2]uint64{0x0, 0x400000004000}}
-var cls1309 = rt.Class{ASCII: [2]uint64{0x0, 0x20000000200000}}
-var cls1310 = rt.Class{ASCII: [2]uint64{0x0, 0x100000001000}}
-var cls1311 = rt.Class{ASCII: [2]uint64{0x0, 0x8000000080000}}
-var steps1312 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1311, ID: 24}}
-var cls1313 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000040}}
-var cls1314 = rt.Class{ASCII: [2]uint64{0x0, 0x20000000200}}
-var cls1315 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000040000}}
-var cls1316 = rt.Class{ASCII: [2]uint64{0x0, 0x10000000100000}}
-var steps1317 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1314, ID: 30}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}}
-var cls1318 = rt.Class{ASCII: [2]uint64{0x0, 0x200000002}}
-var steps1319 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}}
-var cls1320 = rt.Class{ASCII: [2]uint64{0x0, 0x2000000020}}
-var cls1321 = rt.Class{ASCII: [2]uint64{0x0, 0x800000008}}
-var cls1322 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000010000}}
-var steps1323 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}}
-var cls1324 = rt.Class{ASCII: [2]uint64{0x0, 0x800000008000}}
-var steps1325 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1324, ID: 73}, {C: &cls1316, ID: 86}}
-var cls1326 = rt.Class{ASCII: [2]uint64{0x0, 0x400000004}}
-var cls1327 = rt.Class{ASCII: [2]uint64{0x0, 0x80000000800000}}
-var steps1328 = []rt.ClassStep{{C: &cls1326, ID: 29}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}, {C: &cls1327, ID: 89}, {C: &cls1320, ID: 23}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}}
-var steps1329 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}}
-var cls1330 = rt.Class{ASCII: [2]uint64{0x0, 0x80000000800}}
-var steps1331 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1330, ID: 92}, {C: &cls1320, ID: 23}}
-var steps1332 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1330, ID: 92}, {C: &cls1320, ID: 23}}
-var cls1333 = rt.Class{ASCII: [2]uint64{0x0, 0x200000002000}}
-var steps1334 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}}
-var steps1335 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}}
-var cls1336 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000010}}
-var steps1337 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}}
-var steps1338 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1324, ID: 73}}
-var steps1339 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}}
-var steps1340 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}}
-var steps1341 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}}
-var steps1342 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1326, ID: 29}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1343 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var cls1344 = rt.Class{ASCII: [2]uint64{0x0, 0x10000000100}}
-var steps1345 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1346 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}}
-var steps1347 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}}
-var steps1348 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1349 = []rt.ClassStep{{C: &cls1326, ID: 29}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}}
-var cls1350 = rt.Class{ASCII: [2]uint64{0x0, 0x40000000400000}}
-var cls1351 = rt.Class{ASCII: [2]uint64{0x0, 0x200000002000000}}
-var cls1352 = rt.Class{ASCII: [2]uint64{0x0, 0x8000000080}}
-var steps1353 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1351, ID: 87}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1354 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1355 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1351, ID: 87}}
-var steps1356 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1322, ID: 27}}
-var steps1357 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}}
-var steps1358 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1313, ID: 17}}
-var steps1359 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}}
-var steps1360 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}}
-var steps1361 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1310, ID: 18}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}}
-var steps1362 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}}
-var steps1363 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}}
-var steps1364 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1327, ID: 89}}
-var steps1365 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1313, ID: 17}, {C: &cls1318, ID: 26}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1316, ID: 86}}
-var steps1366 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1333, ID: 82}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}}
-var steps1367 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1322, ID: 27}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1330, ID: 92}}
-var steps1368 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1333, ID: 82}, {C: &cls1326, ID: 29}, {C: &cls1336, ID: 79}, {C: &cls1318, ID: 26}}
-var cls1369 = rt.Class{ASCII: [2]uint64{0x0, 0x100000001000000}}
-var steps1370 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1321, ID: 25}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}}
-var steps1371 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}}
-var steps1372 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1322, ID: 27}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}}
-var steps1373 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}}
-var steps1374 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1309, ID: 14}, {C: &cls1320, ID: 23}}
-var steps1375 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}}
-var steps1376 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}}
-var steps1377 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1311, ID: 24}}
-var steps1378 = []rt.ClassStep{{C: &cls1352, ID: 72}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1322, ID: 27}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1379 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1336, ID: 79}}
-var steps1380 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}}
-var steps1381 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1351, ID: 87}}
-var steps1382 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1333, ID: 82}}
-var steps1383 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1384 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1385 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}}
-var steps1386 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}}
-var steps1387 = []rt.ClassStep{{C: &cls1352, ID: 72}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1322, ID: 27}}
-var steps1388 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1352, ID: 72}, {C: &cls1308, ID: 16}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}}
-var steps1389 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}}
-var steps1390 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1314, ID: 30}, {C: &cls1310, ID: 18}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1391 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}}
-var steps1392 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1393 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1394 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}}
-var steps1395 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1327, ID: 89}, {C: &cls1311, ID: 24}}
-var steps1396 = []rt.ClassStep{{C: &cls1352, ID: 72}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1322, ID: 27}, {C: &cls1311, ID: 24}}
-var steps1397 = []rt.ClassStep{{C: &cls1326, ID: 29}, {C: &cls1351, ID: 87}}
-var steps1398 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1326, ID: 29}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1399 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1400 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1327, ID: 89}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1401 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1402 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1403 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1324, ID: 73}}
-var steps1404 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}}
-var steps1405 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}, {C: &cls1324, ID: 73}, {C: &cls1313, ID: 17}}
-var steps1406 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1309, ID: 14}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}}
-var steps1407 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1408 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}}
-var steps1409 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}}
-var steps1410 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}}
-var steps1411 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1316, ID: 86}}
-var cls1412 = rt.Class{ASCII: [2]uint64{0x0, 0x400000004000000}}
-var steps1413 = []rt.ClassStep{{C: &cls1412, ID: 95}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1320, ID: 23}}
-var steps1414 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}}
-var steps1415 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}}
-var steps1416 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1417 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}}
-var steps1418 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}}
-var steps1419 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1420 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1421 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1422 = []rt.ClassStep{{C: &cls1326, ID: 29}, {C: &cls1314, ID: 30}, {C: &cls1352, ID: 72}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1423 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1424 = []rt.ClassStep{{C: &cls1326, ID: 29}, {C: &cls1324, ID: 73}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1308, ID: 16}}
-var steps1425 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}}
-var steps1426 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1427 = []rt.ClassStep{{C: &cls1330, ID: 92}, {C: &cls1320, ID: 23}, {C: &cls1351, ID: 87}}
-var steps1428 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1412, ID: 95}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1429 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}}
-var steps1430 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}}
-var steps1431 = []rt.ClassStep{{C: &cls1344, ID: 88}, {C: &cls1318, ID: 26}, {C: &cls1350, ID: 80}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var cls1432 = rt.Class{ASCII: [2]uint64{0x0, 0x2000000020000}}
-var steps1433 = []rt.ClassStep{{C: &cls1432, ID: 90}, {C: &cls1309, ID: 14}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1313, ID: 17}, {C: &cls1351, ID: 87}}
-var steps1434 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}}
-var steps1435 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1436 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1324, ID: 73}}
-var steps1437 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1351, ID: 87}}
-var steps1438 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}}
-var steps1439 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1440 = []rt.ClassStep{{C: &cls1352, ID: 72}, {C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1326, ID: 29}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1441 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1352, ID: 72}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1442 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1326, ID: 29}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1443 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1309, ID: 14}, {C: &cls1326, ID: 29}, {C: &cls1320, ID: 23}}
-var steps1444 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1322, ID: 27}}
-var steps1445 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}, {C: &cls1311, ID: 24}}
-var steps1446 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}, {C: &cls1324, ID: 73}, {C: &cls1327, ID: 89}}
-var steps1447 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1448 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}}
-var steps1449 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1320, ID: 23}}
-var steps1450 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1451 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1316, ID: 86}}
-var steps1452 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1310, ID: 18}, {C: &cls1351, ID: 87}}
-var steps1453 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1313, ID: 17}, {C: &cls1313, ID: 17}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}}
-var steps1454 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}}
-var steps1455 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1322, ID: 27}, {C: &cls1336, ID: 79}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1456 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1344, ID: 88}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}}
-var steps1457 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1313, ID: 17}}
-var steps1458 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1330, ID: 92}, {C: &cls1314, ID: 30}, {C: &cls1322, ID: 27}}
-var steps1459 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1321, ID: 25}, {C: &cls1330, ID: 92}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1460 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1318, ID: 26}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1461 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1326, ID: 29}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1318, ID: 26}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1462 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1326, ID: 29}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1463 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1311, ID: 24}, {C: &cls1311, ID: 24}}
-var steps1464 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1465 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1324, ID: 73}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1466 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}, {C: &cls1324, ID: 73}, {C: &cls1313, ID: 17}}
-var steps1467 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}}
-var steps1468 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1469 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1313, ID: 17}, {C: &cls1316, ID: 86}}
-var steps1470 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1352, ID: 72}, {C: &cls1344, ID: 88}, {C: &cls1316, ID: 86}}
-var steps1471 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}}
-var steps1472 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}}
-var steps1473 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1308, ID: 16}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1474 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}}
-var steps1475 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1476 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1477 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}}
-var steps1478 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1324, ID: 73}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1479 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1308, ID: 16}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1480 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1481 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1482 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1351, ID: 87}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1333, ID: 82}}
-var steps1483 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1313, ID: 17}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}}
-var steps1484 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1485 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1324, ID: 73}}
-var steps1486 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}}
-var steps1487 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1488 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1489 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}}
-var steps1490 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1491 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}}
-var steps1492 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}}
-var steps1493 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1324, ID: 73}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1494 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1495 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1496 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1497 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1314, ID: 30}, {C: &cls1336, ID: 79}, {C: &cls1311, ID: 24}}
-var steps1498 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1333, ID: 82}, {C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}}
-var steps1499 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1322, ID: 27}}
-var steps1500 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}}
-var steps1501 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1320, ID: 23}}
-var steps1502 = []rt.ClassStep{{C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1503 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1351, ID: 87}}
-var steps1504 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1327, ID: 89}, {C: &cls1318, ID: 26}, {C: &cls1351, ID: 87}, {C: &cls1311, ID: 24}}
-var steps1505 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1351, ID: 87}}
-var steps1506 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}}
-var steps1507 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1508 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1313, ID: 17}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1326, ID: 29}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1509 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1351, ID: 87}}
-var steps1510 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1313, ID: 17}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1511 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1512 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}}
-var steps1513 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}}
-var steps1514 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1515 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1336, ID: 79}}
-var steps1516 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}}
-var steps1517 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1314, ID: 30}, {C: &cls1352, ID: 72}, {C: &cls1308, ID: 16}}
-var steps1518 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1313, ID: 17}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1519 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1520 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1321, ID: 25}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}}
-var steps1521 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1333, ID: 82}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1311, ID: 24}}
-var steps1522 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1311, ID: 24}}
-var steps1523 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1313, ID: 17}, {C: &cls1318, ID: 26}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1316, ID: 86}, {C: &cls1311, ID: 24}}
-var steps1524 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1525 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1311, ID: 24}}
-var steps1526 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}}
-var steps1527 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}}
-var steps1528 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1314, ID: 30}, {C: &cls1320, ID: 23}, {C: &cls1327, ID: 89}}
-var steps1529 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1530 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1330, ID: 92}}
-var steps1531 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1322, ID: 27}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1532 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}}
-var steps1533 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1432, ID: 90}, {C: &cls1309, ID: 14}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}}
-var steps1534 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}}
-var steps1535 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1536 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1369, ID: 96}, {C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1320, ID: 23}}
-var steps1537 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1320, ID: 23}}
-var steps1538 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}}
-var steps1539 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1351, ID: 87}, {C: &cls1321, ID: 25}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1540 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1327, ID: 89}, {C: &cls1308, ID: 16}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1541 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1351, ID: 87}, {C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}}
-var steps1542 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1333, ID: 82}}
-var steps1543 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}}
-var steps1544 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1545 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}}
-var steps1546 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1547 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}, {C: &cls1336, ID: 79}}
-var steps1548 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1309, ID: 14}, {C: &cls1333, ID: 82}, {C: &cls1308, ID: 16}}
-var steps1549 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}}
-var steps1550 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1336, ID: 79}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1551 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1352, ID: 72}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}, {C: &cls1336, ID: 79}}
-var steps1552 = []rt.ClassStep{{C: &cls1324, ID: 73}, {C: &cls1322, ID: 27}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}}
-var steps1553 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1326, ID: 29}, {C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}}
-var steps1554 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1351, ID: 87}}
-var steps1555 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}}
-var steps1556 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1352, ID: 72}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1557 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1558 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1559 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1316, ID: 86}}
-var steps1560 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}}
-var steps1561 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1562 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1351, ID: 87}}
-var steps1563 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1564 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1313, ID: 17}, {C: &cls1314, ID: 30}, {C: &cls1352, ID: 72}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1565 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1311, ID: 24}}
-var steps1566 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}, {C: &cls1324, ID: 73}, {C: &cls1336, ID: 79}}
-var steps1567 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1568 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1569 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1322, ID: 27}, {C: &cls1322, ID: 27}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1570 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1309, ID: 14}, {C: &cls1326, ID: 29}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1571 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1572 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1322, ID: 27}, {C: &cls1351, ID: 87}}
-var steps1573 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1336, ID: 79}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}}
-var steps1574 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1336, ID: 79}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1316, ID: 86}}
-var steps1575 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}}
-var steps1576 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}}
-var steps1577 = []rt.ClassStep{{C: &cls1432, ID: 90}, {C: &cls1309, ID: 14}, {C: &cls1324, ID: 73}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1578 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1322, ID: 27}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}}
-var steps1579 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1333, ID: 82}, {C: &cls1322, ID: 27}, {C: &cls1324, ID: 73}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}}
-var steps1580 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}}
-var steps1581 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}}
-var steps1582 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}}
-var steps1583 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}}
-var steps1584 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}}
-var steps1585 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1352, ID: 72}, {C: &cls1333, ID: 82}, {C: &cls1318, ID: 26}}
-var steps1586 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1318, ID: 26}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1587 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1324, ID: 73}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1588 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1310, ID: 18}}
-var steps1589 = []rt.ClassStep{{C: &cls1316, ID: 86}, {C: &cls1318, ID: 26}, {C: &cls1326, ID: 29}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1590 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1322, ID: 27}, {C: &cls1310, ID: 18}, {C: &cls1318, ID: 26}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}}
-var steps1591 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1326, ID: 29}, {C: &cls1324, ID: 73}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}}
-var steps1592 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1351, ID: 87}, {C: &cls1412, ID: 95}, {C: &cls1320, ID: 23}}
-var steps1593 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1308, ID: 16}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1351, ID: 87}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}}
-var steps1594 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1322, ID: 27}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}}
-var steps1595 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1309, ID: 14}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1596 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1597 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1598 = []rt.ClassStep{{C: &cls1350, ID: 80}, {C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1309, ID: 14}, {C: &cls1309, ID: 14}, {C: &cls1333, ID: 82}}
-var steps1599 = []rt.ClassStep{{C: &cls1313, ID: 17}, {C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1320, ID: 23}, {C: &cls1412, ID: 95}, {C: &cls1320, ID: 23}}
-var steps1600 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1344, ID: 88}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1330, ID: 92}, {C: &cls1322, ID: 27}, {C: &cls1324, ID: 73}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1601 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}}
-var steps1602 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1333, ID: 82}, {C: &cls1333, ID: 82}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}}
-var steps1603 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}}
-var steps1604 = []rt.ClassStep{{C: &cls1320, ID: 23}, {C: &cls1369, ID: 96}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1311, ID: 24}}
-var cls1605 = rt.Class{ASCII: [2]uint64{0x3ff001000000000, 0x7fffffe87fffffe}, Wide: []rune{128, 159, 161, 8191, 8204, 8238, 8240, 8286, 8289, 12287, 12289, 65278, 65280, 1114111}}
-var term1606Data = rt.TerminalProgram{Code: []uint16{2, 1424, 3, 1416, 0, 7, 122, 0, 26, 3, 118, 1, 7, 8, 1, 18, 0, 4, 1, 18, 7, 46, 2, 16, 3, 42, 65535, 7, 31, 0, 26, 0, 4, 1, 18, 0, 4, 3, 87, 3, 19, 65535, 7, 8, 4, 24, 0, 4, 5, 23, 7, 8, 6, 95, 0, 4, 5, 23, 7, 4, 7, 79, 7, 4, 3, 87, 7, 16, 8, 83, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 3, 87, 7, 45, 4, 24, 4, 41, 3, 39, 65535, 7, 4, 9, 25, 7, 32, 3, 87, 0, 4, 10, 82, 0, 4, 10, 82, 0, 4, 5, 23, 0, 4, 11, 86, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 9, 25, 7, 16, 13, 29, 0, 4, 14, 73, 0, 4, 11, 86, 0, 4, 15, 88, 7, 136, 9, 25, 3, 132, 2, 7, 19, 0, 26, 0, 4, 4, 24, 3, 11, 65535, 7, 4, 5, 23, 7, 4, 11, 86, 7, 16, 15, 88, 0, 4, 5, 23, 0, 4, 9, 25, 0, 4, 16, 92, 7, 74, 14, 73, 3, 70, 65535, 7, 35, 1, 18, 3, 31, 65535, 7, 16, 1, 18, 0, 4, 0, 26, 0, 4, 11, 86, 0, 4, 5, 23, 7, 12, 17, 14, 0, 4, 10, 82, 0, 4, 2, 16, 7, 32, 2, 16, 0, 4, 4, 24, 0, 4, 11, 86, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 11, 86, 7, 20, 8, 83, 0, 4, 5, 23, 0, 4, 0, 26, 0, 4, 11, 86, 0, 4, 5, 23, 7, 125, 7, 79, 3, 121, 65535, 7, 86, 5, 23, 3, 82, 65535, 7, 51, 18, 17, 3, 47, 65535, 7, 16, 0, 26, 0, 4, 17, 14, 0, 4, 1, 18, 0, 4, 11, 86, 7, 28, 5, 23, 0, 4, 8, 83, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 13, 29, 0, 4, 1, 18, 0, 4, 5, 23, 7, 28, 4, 24, 0, 4, 9, 25, 4, 20, 2, 18, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 13, 29, 0, 4, 5, 23, 7, 28, 12, 30, 0, 4, 4, 24, 0, 4, 11, 86, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 9, 25, 0, 4, 11, 86, 7, 4, 14, 73, 7, 47, 5, 23, 3, 43, 65535, 7, 12, 1, 18, 0, 4, 4, 24, 0, 4, 5, 23, 7, 8, 2, 16, 0, 4, 7, 79, 7, 20, 19, 96, 0, 4, 9, 25, 0, 4, 5, 23, 0, 4, 20, 27, 0, 4, 11, 86, 7, 79, 18, 17, 3, 75, 3, 7, 16, 0, 26, 0, 4, 1, 18, 0, 4, 4, 24, 0, 4, 5, 23, 7, 16, 5, 23, 0, 4, 11, 86, 0, 4, 9, 25, 0, 4, 15, 88, 7, 28, 14, 73, 0, 4, 8, 83, 4, 20, 2, 18, 0, 4, 5, 23, 0, 4, 12, 30, 0, 4, 21, 72, 0, 4, 2, 16, 7, 12, 8, 83, 0, 4, 14, 73, 0, 4, 10, 82, 7, 20, 21, 72, 0, 4, 8, 83, 0, 4, 14, 73, 0, 4, 17, 14, 0, 4, 20, 27, 7, 24, 15, 88, 0, 4, 0, 26, 0, 4, 22, 80, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 76, 12, 30, 0, 4, 2, 16, 4, 68, 3, 66, 65535, 7, 28, 12, 30, 0, 4, 11, 86, 0, 4, 12, 30, 0, 4, 0, 26, 0, 4, 1, 18, 0, 4, 1, 18, 0, 4, 3, 87, 7, 35, 11, 86, 3, 31, 65535, 7, 24, 5, 23, 0, 4, 8, 83, 0, 4, 4, 24, 0, 4, 5, 23, 0, 4, 9, 25, 0, 4, 11, 86, 7, 4, 14, 73, 7, 90, 1, 18, 3, 86, 65535, 7, 43, 0, 26, 3, 39, 65535, 7, 16, 10, 82, 0, 4, 13, 29, 0, 4, 7, 79, 0, 4, 0, 26, 7, 20, 11, 86, 0, 4, 5, 23, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 1, 18, 7, 24, 5, 23, 0, 4, 0, 26, 0, 4, 7, 79, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 16, 12, 30, 0, 4, 10, 82, 0, 4, 12, 30, 0, 4, 11, 86, 7, 27, 2, 16, 3, 23, 65535, 7, 8, 14, 73, 0, 4, 11, 86, 7, 12, 17, 14, 0, 4, 1, 18, 0, 4, 1, 18, 7, 63, 14, 73, 3, 59, 65535, 7, 20, 18, 17, 0, 4, 18, 17, 0, 4, 4, 24, 0, 4, 5, 23, 0, 4, 11, 86, 7, 16, 2, 16, 4, 12, 2, 10, 0, 4, 1, 18, 0, 4, 3, 87, 7, 20, 8, 83, 4, 16, 2, 14, 0, 4, 7, 79, 0, 4, 5, 23, 0, 4, 8, 83, 7, 126, 20, 27, 3, 122, 65535, 7, 71, 12, 30, 0, 4, 22, 80, 0, 4, 14, 73, 0, 4, 11, 86, 4, 55, 2, 53, 1, 4, 0, 44, 3, 47, 65535, 7, 24, 1, 18, 0, 4, 14, 73, 0, 4, 2, 16, 0, 4, 21, 72, 0, 4, 5, 23, 0, 4, 8, 83, 7, 20, 23, 89, 0, 4, 12, 30, 0, 4, 7, 79, 0, 4, 5, 23, 0, 4, 8, 83, 7, 24, 1, 18, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 24, 8, 83, 0, 4, 12, 30, 0, 4, 10, 82, 0, 4, 0, 26, 0, 4, 8, 83, 0, 4, 3, 87, 7, 28, 24, 90, 0, 4, 17, 14, 0, 4, 0, 26, 0, 4, 1, 18, 0, 4, 12, 30, 0, 4, 18, 17, 0, 4, 3, 87, 7, 71, 8, 83, 0, 4, 5, 23, 3, 63, 65535, 7, 32, 18, 17, 0, 4, 5, 23, 0, 4, 8, 83, 0, 4, 5, 23, 0, 4, 2, 16, 0, 4, 9, 25, 0, 4, 5, 23, 0, 4, 4, 24, 7, 28, 11, 86, 0, 4, 17, 14, 0, 4, 8, 83, 0, 4, 2, 16, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 115, 4, 24, 3, 111, 4, 7, 20, 5, 23, 0, 4, 1, 18, 0, 4, 5, 23, 0, 4, 9, 25, 0, 4, 11, 86, 7, 12, 15, 88, 0, 4, 14, 73, 0, 4, 23, 89, 7, 12, 14, 73, 0, 4, 10, 82, 0, 4, 5, 23, 7, 32, 17, 14, 0, 4, 10, 82, 0, 4, 10, 82, 0, 4, 0, 26, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 6, 95, 0, 4, 5, 23, 7, 32, 3, 87, 0, 4, 10, 82, 0, 4, 10, 82, 0, 4, 5, 23, 0, 4, 11, 86, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 9, 25, 7, 78, 11, 86, 3, 74, 5, 7, 16, 0, 26, 0, 4, 13, 29, 0, 4, 1, 18, 0, 4, 5, 23, 7, 12, 15, 88, 0, 4, 5, 23, 0, 4, 2, 16, 7, 4, 14, 73, 7, 39, 8, 83, 3, 35, 65535, 7, 24, 0, 26, 0, 4, 12, 30, 0, 4, 1, 18, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 8, 17, 14, 0, 4, 5, 23, 7, 77, 17, 14, 3, 73, 65535, 7, 54, 2, 16, 3, 50, 65535, 7, 27, 12, 30, 3, 23, 65535, 7, 8, 14, 73, 0, 4, 2, 16, 7, 12, 24, 90, 0, 4, 17, 14, 0, 4, 5, 23, 7, 20, 20, 27, 0, 4, 12, 30, 0, 4, 22, 80, 0, 4, 14, 73, 0, 4, 11, 86, 7, 16, 4, 24, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 32, 22, 80, 0, 4, 0, 26, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 0, 26, 0, 4, 7, 79, 0, 4, 12, 30, 0, 4, 9, 25, 7, 61, 23, 89, 3, 57, 65535, 7, 23, 15, 88, 0, 4, 5, 23, 3, 15, 65535, 7, 4, 2, 16, 7, 8, 8, 83, 0, 4, 5, 23, 7, 31, 12, 30, 3, 27, 65535, 7, 16, 2, 16, 0, 4, 7, 79, 0, 4, 14, 73, 0, 4, 23, 89, 7, 8, 11, 86, 0, 4, 15, 88, 5, 6, 0, 4, 25, 10}, Classes: []*rt.Class{&cls1318, &cls1310, &cls1308, &cls1351, &cls1311, &cls1320, &cls1412, &cls1336, &cls1315, &cls1321, &cls1333, &cls1316, &cls1314, &cls1326, &cls1324, &cls1344, &cls1330, &cls1309, &cls1313, &cls1369, &cls1322, &cls1352, &cls1350, &cls1327, &cls1432, &cls1605}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
-var term1606 = term1606Data.Prepare()
-var term1607Data = rt.TerminalProgram{Code: []uint16{2, 75, 3, 67, 0, 7, 16, 0, 26, 0, 4, 1, 16, 0, 4, 2, 86, 0, 4, 3, 30, 7, 8, 4, 29, 0, 4, 5, 87, 7, 16, 6, 24, 0, 4, 7, 23, 0, 4, 8, 82, 0, 4, 3, 30, 7, 24, 9, 14, 0, 4, 1, 16, 0, 4, 10, 27, 0, 4, 0, 26, 0, 4, 11, 25, 0, 4, 12, 92, 5, 6, 0, 4, 13, 10}, Classes: []*rt.Class{&cls1318, &cls1308, &cls1316, &cls1314, &cls1326, &cls1351, &cls1311, &cls1320, &cls1333, &cls1309, &cls1322, &cls1321, &cls1330, &cls1605}}
-var term1607 = term1607Data.Prepare()
-var cls1608 = rt.Class{ASCII: [2]uint64{0x0, 0x40000000400}}
-var term1609Data = rt.TerminalProgram{Code: []uint16{2, 635, 3, 627, 0, 7, 71, 0, 26, 3, 67, 65535, 7, 12, 1, 24, 0, 4, 2, 73, 0, 4, 3, 17, 7, 4, 4, 86, 7, 48, 5, 14, 0, 4, 4, 86, 0, 4, 6, 88, 0, 4, 2, 73, 0, 4, 7, 83, 0, 4, 8, 30, 0, 4, 9, 95, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 30, 0, 4, 2, 73, 0, 4, 10, 16, 7, 24, 11, 29, 0, 4, 8, 30, 0, 4, 10, 16, 0, 4, 0, 26, 0, 4, 7, 83, 0, 4, 12, 87, 7, 98, 13, 25, 3, 94, 65535, 7, 75, 2, 73, 3, 71, 65535, 7, 28, 14, 18, 0, 4, 14, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 30, 0, 4, 2, 73, 0, 4, 10, 16, 7, 40, 10, 16, 0, 4, 13, 25, 0, 4, 5, 14, 0, 4, 7, 83, 0, 4, 7, 83, 0, 4, 15, 23, 0, 4, 10, 16, 0, 4, 4, 86, 0, 4, 14, 18, 0, 4, 12, 87, 7, 16, 7, 83, 0, 4, 2, 73, 0, 4, 1, 24, 0, 4, 1, 24, 7, 39, 3, 17, 3, 35, 65535, 7, 20, 7, 83, 0, 4, 15, 23, 0, 4, 15, 23, 0, 4, 9, 95, 0, 4, 15, 23, 7, 12, 5, 14, 0, 4, 14, 18, 0, 4, 14, 18, 7, 16, 16, 72, 0, 4, 14, 18, 0, 4, 2, 73, 0, 4, 11, 29, 7, 63, 8, 30, 3, 59, 65535, 7, 16, 14, 18, 0, 4, 8, 30, 0, 4, 17, 92, 0, 4, 15, 23, 7, 16, 10, 16, 0, 4, 10, 16, 0, 4, 15, 23, 0, 4, 7, 83, 7, 24, 1, 24, 4, 20, 2, 18, 0, 4, 10, 16, 0, 4, 5, 14, 0, 4, 14, 18, 0, 4, 14, 18, 7, 16, 18, 93, 0, 4, 2, 73, 0, 4, 8, 30, 0, 4, 10, 16, 7, 31, 14, 18, 3, 27, 65535, 7, 12, 15, 23, 0, 4, 3, 17, 0, 4, 4, 86, 7, 12, 8, 30, 0, 4, 17, 92, 0, 4, 15, 23, 7, 55, 10, 16, 3, 51, 65535, 7, 24, 0, 26, 0, 4, 4, 86, 0, 4, 5, 14, 0, 4, 7, 83, 0, 4, 0, 26, 0, 4, 14, 18, 7, 24, 2, 73, 0, 4, 4, 86, 0, 4, 10, 16, 0, 4, 5, 14, 0, 4, 14, 18, 0, 4, 14, 18, 7, 51, 2, 73, 3, 47, 65535, 7, 16, 5, 14, 0, 4, 4, 86, 0, 4, 15, 23, 0, 4, 7, 83, 7, 28, 19, 80, 0, 4, 15, 23, 0, 4, 7, 83, 0, 4, 14, 18, 0, 4, 0, 26, 0, 4, 20, 27, 0, 4, 1, 24, 7, 40, 20, 27, 0, 4, 2, 73, 0, 4, 1, 24, 0, 4, 8, 30, 0, 4, 4, 86, 0, 4, 8, 30, 0, 4, 2, 73, 0, 4, 10, 16, 0, 4, 0, 26, 0, 4, 14, 18, 7, 20, 7, 83, 0, 4, 8, 30, 0, 4, 16, 72, 0, 4, 6, 88, 0, 4, 4, 86, 7, 28, 1, 24, 0, 4, 8, 30, 0, 4, 21, 82, 0, 4, 8, 30, 0, 4, 14, 18, 0, 4, 0, 26, 0, 4, 7, 83, 7, 44, 4, 86, 0, 4, 0, 26, 0, 4, 11, 29, 0, 4, 14, 18, 0, 4, 15, 23, 0, 4, 1, 24, 0, 4, 0, 26, 0, 4, 21, 82, 0, 4, 20, 27, 0, 4, 14, 18, 0, 4, 15, 23, 7, 28, 19, 80, 0, 4, 15, 23, 0, 4, 7, 83, 0, 4, 11, 29, 0, 4, 2, 73, 0, 4, 1, 24, 0, 4, 15, 23, 5, 6, 0, 4, 22, 10}, Classes: []*rt.Class{&cls1318, &cls1311, &cls1324, &cls1313, &cls1316, &cls1309, &cls1344, &cls1315, &cls1314, &cls1412, &cls1308, &cls1326, &cls1351, &cls1321, &cls1310, &cls1320, &cls1352, &cls1330, &cls1608, &cls1350, &cls1322, &cls1333, &cls1605}}
-var term1609 = term1609Data.Prepare()
-var term1610Data = rt.TerminalProgram{Code: []uint16{2, 1109, 3, 1101, 0, 7, 82, 0, 29, 3, 78, 65535, 7, 24, 1, 23, 0, 4, 2, 86, 0, 4, 3, 89, 0, 4, 1, 23, 0, 4, 1, 23, 0, 4, 4, 16, 7, 27, 5, 30, 3, 23, 65535, 7, 16, 6, 72, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 2, 86, 7, 4, 2, 86, 7, 24, 7, 73, 0, 4, 7, 73, 0, 4, 8, 18, 0, 4, 1, 23, 0, 4, 9, 26, 0, 4, 4, 16, 7, 71, 10, 25, 3, 67, 65535, 7, 36, 11, 88, 0, 4, 9, 26, 0, 4, 12, 83, 4, 24, 2, 22, 0, 4, 9, 26, 0, 4, 10, 25, 0, 4, 2, 86, 0, 4, 1, 23, 0, 4, 12, 83, 7, 28, 7, 73, 0, 4, 9, 26, 0, 4, 8, 18, 0, 4, 1, 23, 0, 4, 13, 24, 0, 4, 10, 25, 0, 4, 1, 23, 7, 32, 14, 79, 0, 4, 1, 23, 0, 4, 10, 25, 4, 20, 2, 18, 0, 4, 5, 30, 0, 4, 15, 82, 0, 4, 9, 26, 0, 4, 8, 18, 7, 47, 1, 23, 0, 4, 16, 96, 3, 39, 65535, 7, 16, 5, 30, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 13, 24, 7, 20, 2, 86, 0, 4, 12, 83, 0, 4, 9, 26, 0, 4, 10, 25, 0, 4, 2, 86, 7, 20, 17, 17, 0, 4, 8, 18, 0, 4, 7, 73, 0, 4, 9, 26, 0, 4, 2, 86, 7, 48, 6, 72, 0, 4, 12, 83, 0, 4, 7, 73, 0, 4, 18, 14, 0, 4, 19, 27, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 6, 72, 4, 16, 2, 14, 1, 4, 0, 44, 0, 4, 5, 30, 0, 4, 14, 79, 7, 66, 5, 30, 0, 4, 4, 16, 3, 58, 65535, 7, 12, 7, 73, 0, 4, 18, 14, 0, 4, 2, 86, 7, 43, 2, 86, 4, 39, 2, 37, 0, 4, 1, 23, 3, 31, 65535, 7, 12, 6, 72, 0, 4, 1, 23, 0, 4, 12, 83, 7, 16, 12, 83, 0, 4, 20, 80, 0, 4, 9, 26, 0, 4, 8, 18, 7, 106, 4, 16, 3, 102, 1, 7, 28, 9, 26, 0, 4, 2, 86, 0, 4, 5, 30, 0, 4, 7, 73, 0, 4, 4, 16, 0, 4, 9, 26, 0, 4, 8, 18, 7, 16, 10, 25, 0, 4, 11, 88, 0, 4, 9, 26, 0, 4, 12, 83, 7, 12, 7, 73, 0, 4, 4, 16, 0, 4, 1, 23, 7, 43, 18, 14, 3, 39, 65535, 7, 16, 8, 18, 0, 4, 8, 18, 0, 4, 5, 30, 0, 4, 17, 17, 7, 20, 15, 82, 0, 4, 1, 23, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 10, 25, 7, 39, 7, 73, 3, 35, 65535, 7, 8, 18, 14, 0, 4, 2, 86, 7, 24, 20, 80, 0, 4, 1, 23, 0, 4, 12, 83, 0, 4, 8, 18, 0, 4, 9, 26, 0, 4, 21, 87, 7, 67, 19, 27, 3, 63, 65535, 7, 28, 7, 73, 0, 4, 13, 24, 0, 4, 5, 30, 0, 4, 2, 86, 0, 4, 5, 30, 0, 4, 7, 73, 0, 4, 4, 16, 7, 32, 12, 83, 0, 4, 1, 23, 0, 4, 10, 25, 0, 4, 5, 30, 0, 4, 13, 24, 0, 4, 5, 30, 0, 4, 7, 73, 0, 4, 4, 16, 7, 27, 12, 83, 3, 23, 65535, 7, 12, 1, 23, 0, 4, 9, 26, 0, 4, 8, 18, 7, 8, 7, 73, 0, 4, 3, 89, 7, 83, 13, 24, 3, 79, 65535, 7, 16, 1, 23, 0, 4, 2, 86, 0, 4, 7, 73, 0, 4, 17, 17, 7, 28, 15, 82, 0, 4, 9, 26, 0, 4, 8, 18, 0, 4, 8, 18, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 2, 86, 7, 32, 18, 14, 0, 4, 0, 29, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 6, 72, 7, 70, 2, 86, 3, 66, 65535, 7, 36, 5, 30, 0, 4, 15, 82, 0, 4, 1, 23, 4, 24, 2, 22, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 9, 26, 0, 4, 15, 82, 0, 4, 19, 27, 7, 27, 12, 83, 3, 23, 65535, 7, 12, 1, 23, 0, 4, 9, 26, 0, 4, 2, 86, 7, 8, 5, 30, 0, 4, 15, 82, 7, 47, 20, 80, 0, 4, 9, 26, 3, 39, 65535, 7, 16, 8, 18, 0, 4, 18, 14, 0, 4, 1, 23, 0, 4, 13, 24, 7, 20, 12, 83, 0, 4, 10, 25, 0, 4, 11, 88, 0, 4, 9, 26, 0, 4, 12, 83, 7, 293, 16, 96, 0, 4, 15, 82, 0, 4, 8, 18, 3, 281, 2, 7, 40, 9, 26, 0, 4, 2, 86, 0, 4, 2, 86, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 0, 29, 0, 4, 18, 14, 0, 4, 2, 86, 0, 4, 1, 23, 0, 4, 13, 24, 7, 24, 10, 25, 0, 4, 7, 73, 0, 4, 4, 16, 0, 4, 10, 25, 0, 4, 9, 26, 0, 4, 2, 86, 7, 51, 1, 23, 3, 47, 65535, 7, 24, 8, 18, 0, 4, 1, 23, 0, 4, 15, 82, 0, 4, 1, 23, 0, 4, 4, 16, 0, 4, 2, 86, 7, 20, 16, 96, 0, 4, 5, 30, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 13, 24, 7, 24, 17, 17, 0, 4, 7, 73, 0, 4, 12, 83, 0, 4, 1, 23, 0, 4, 13, 24, 0, 4, 2, 86, 7, 40, 4, 16, 0, 4, 9, 26, 0, 4, 15, 82, 0, 4, 1, 23, 0, 4, 13, 24, 0, 4, 19, 27, 0, 4, 9, 26, 0, 4, 10, 25, 0, 4, 1, 23, 0, 4, 13, 24, 7, 27, 19, 27, 3, 23, 65535, 7, 16, 9, 26, 0, 4, 12, 83, 0, 4, 13, 24, 0, 4, 1, 23, 7, 4, 5, 30, 7, 16, 12, 83, 0, 4, 7, 73, 0, 4, 7, 73, 0, 4, 2, 86, 7, 36, 13, 24, 0, 4, 1, 23, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 9, 26, 0, 4, 8, 18, 0, 4, 5, 30, 0, 4, 22, 95, 0, 4, 1, 23, 7, 20, 2, 86, 0, 4, 9, 26, 0, 4, 0, 29, 0, 4, 8, 18, 0, 4, 1, 23, 5, 6, 0, 4, 23, 10}, Classes: []*rt.Class{&cls1326, &cls1320, &cls1316, &cls1327, &cls1308, &cls1314, &cls1352, &cls1324, &cls1310, &cls1318, &cls1321, &cls1344, &cls1315, &cls1311, &cls1336, &cls1333, &cls1369, &cls1313, &cls1309, &cls1322, &cls1350, &cls1351, &cls1412, &cls1605}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
-var term1610 = term1610Data.Prepare()
-var term1611Data = rt.TerminalProgram{Code: []uint16{2, 71, 3, 63, 65535, 7, 28, 0, 25, 0, 4, 1, 73, 0, 4, 2, 18, 0, 4, 3, 14, 0, 4, 4, 82, 0, 4, 5, 16, 0, 4, 6, 24, 7, 32, 7, 86, 0, 4, 8, 83, 0, 4, 9, 87, 1, 4, 0, 44, 0, 4, 0, 25, 0, 4, 10, 26, 0, 4, 6, 24, 0, 4, 7, 86, 5, 6, 0, 4, 11, 10}, Classes: []*rt.Class{&cls1321, &cls1324, &cls1310, &cls1309, &cls1333, &cls1308, &cls1311, &cls1316, &cls1315, &cls1351, &cls1318, &cls1605}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
-var term1611 = term1611Data.Prepare()
-var term1612Data = rt.TerminalProgram{Code: []uint16{2, 83, 3, 75, 65535, 7, 36, 0, 72, 0, 4, 1, 23, 0, 4, 2, 16, 0, 4, 1, 23, 0, 4, 3, 83, 0, 4, 4, 26, 0, 4, 5, 86, 0, 4, 1, 23, 0, 4, 6, 79, 7, 12, 7, 82, 0, 4, 4, 26, 0, 4, 8, 27, 7, 24, 9, 24, 0, 4, 5, 86, 0, 4, 3, 83, 0, 4, 10, 14, 0, 4, 11, 25, 0, 4, 5, 86, 5, 6, 0, 4, 12, 10}, Classes: []*rt.Class{&cls1352, &cls1320, &cls1308, &cls1315, &cls1318, &cls1316, &cls1336, &cls1333, &cls1322, &cls1311, &cls1309, &cls1321, &cls1605}}
-var term1612 = term1612Data.Prepare()
-var term1613Data = rt.TerminalProgram{Code: []uint16{2, 6196, 3, 6188, 0, 7, 313, 0, 26, 3, 309, 1, 7, 43, 1, 29, 3, 39, 65535, 7, 12, 2, 73, 0, 4, 3, 83, 0, 4, 4, 86, 7, 24, 5, 24, 0, 4, 2, 73, 0, 4, 6, 18, 0, 4, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 7, 39, 9, 25, 3, 35, 65535, 7, 16, 9, 25, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 5, 24, 7, 16, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 23, 12, 79, 3, 19, 65535, 7, 4, 12, 79, 7, 12, 13, 82, 0, 4, 10, 30, 0, 4, 11, 16, 7, 16, 14, 17, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 32, 15, 72, 0, 4, 15, 72, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 15, 72, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 43, 6, 18, 3, 39, 65535, 7, 8, 5, 24, 0, 4, 2, 73, 7, 12, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 16, 16, 89, 0, 4, 0, 26, 0, 4, 17, 87, 0, 4, 5, 24, 7, 63, 5, 24, 0, 4, 5, 24, 3, 55, 65535, 7, 24, 8, 23, 0, 4, 3, 83, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 28, 10, 30, 0, 4, 15, 72, 0, 4, 11, 16, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 47, 4, 86, 0, 4, 4, 86, 3, 39, 65535, 7, 12, 0, 26, 0, 4, 9, 25, 0, 4, 18, 88, 7, 24, 3, 83, 0, 4, 10, 30, 0, 4, 1, 29, 0, 4, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 7, 70, 1, 29, 3, 66, 65535, 7, 28, 0, 26, 0, 4, 9, 25, 0, 4, 19, 92, 0, 4, 16, 89, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 12, 79, 7, 35, 8, 23, 3, 31, 65535, 7, 16, 14, 17, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 8, 23, 7, 12, 15, 72, 0, 4, 10, 30, 0, 4, 11, 16, 7, 658, 9, 25, 3, 654, 2, 7, 85, 0, 26, 3, 81, 3, 7, 12, 9, 25, 0, 4, 18, 88, 0, 4, 8, 23, 7, 20, 6, 18, 0, 4, 6, 18, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 26, 5, 24, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 12, 79, 0, 4, 8, 23, 4, 6, 0, 4, 12, 79, 7, 20, 4, 86, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 15, 72, 7, 39, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 0, 4, 7, 14, 0, 4, 3, 83, 3, 19, 65535, 7, 12, 10, 30, 0, 4, 8, 23, 0, 4, 5, 24, 7, 4, 17, 87, 7, 102, 18, 88, 3, 98, 65535, 7, 63, 0, 26, 3, 59, 65535, 7, 8, 10, 30, 0, 4, 11, 16, 7, 48, 3, 83, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 5, 24, 7, 32, 8, 23, 0, 4, 9, 25, 0, 4, 19, 92, 0, 4, 20, 27, 0, 4, 2, 73, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 4, 86, 7, 51, 6, 18, 3, 47, 65535, 7, 12, 0, 26, 0, 4, 5, 24, 0, 4, 5, 24, 7, 12, 2, 73, 0, 4, 5, 24, 0, 4, 8, 23, 7, 20, 7, 14, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 300, 2, 73, 3, 296, 4, 7, 88, 13, 82, 3, 84, 65535, 7, 49, 13, 82, 3, 45, 65535, 7, 18, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 4, 6, 0, 4, 5, 24, 7, 24, 10, 30, 0, 4, 4, 86, 4, 16, 2, 14, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 32, 20, 27, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 189, 11, 16, 3, 185, 5, 7, 59, 14, 17, 3, 55, 65535, 7, 36, 10, 30, 0, 4, 15, 72, 0, 4, 7, 14, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 4, 86, 7, 28, 11, 16, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 32, 5, 24, 0, 4, 4, 86, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 4, 86, 0, 4, 5, 24, 7, 35, 4, 86, 3, 31, 65535, 7, 12, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 16, 10, 30, 0, 4, 11, 16, 0, 4, 7, 14, 0, 4, 8, 23, 7, 28, 21, 80, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 8, 20, 27, 0, 4, 17, 87, 7, 8, 5, 24, 0, 4, 4, 86, 7, 8, 5, 24, 0, 4, 21, 80, 7, 50, 7, 14, 3, 46, 65535, 7, 8, 1, 29, 0, 4, 8, 23, 7, 35, 3, 83, 3, 31, 65535, 7, 16, 3, 83, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 12, 5, 24, 0, 4, 2, 73, 0, 4, 3, 83, 7, 16, 17, 87, 0, 4, 9, 25, 0, 4, 6, 18, 0, 4, 8, 23, 7, 433, 12, 79, 3, 429, 6, 7, 45, 0, 26, 3, 41, 65535, 7, 28, 4, 86, 0, 4, 0, 26, 4, 20, 2, 18, 0, 4, 1, 29, 0, 4, 0, 26, 0, 4, 5, 24, 0, 4, 8, 23, 7, 10, 17, 87, 4, 6, 0, 4, 5, 24, 7, 228, 8, 23, 3, 224, 7, 7, 32, 0, 26, 0, 4, 6, 18, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 41, 9, 25, 3, 37, 65535, 7, 18, 0, 26, 0, 4, 12, 79, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 8, 23, 7, 63, 14, 17, 3, 59, 65535, 7, 20, 0, 26, 0, 4, 7, 14, 0, 4, 6, 18, 0, 4, 4, 86, 0, 4, 5, 24, 7, 20, 8, 23, 0, 4, 3, 83, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 10, 30, 0, 4, 11, 16, 0, 4, 8, 23, 0, 4, 3, 83, 7, 49, 6, 18, 3, 45, 65535, 7, 12, 8, 23, 0, 4, 4, 86, 0, 4, 8, 23, 7, 30, 10, 30, 0, 4, 13, 82, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 20, 20, 27, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 5, 24, 7, 16, 4, 86, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 18, 88, 7, 78, 10, 30, 3, 74, 65535, 7, 32, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 17, 87, 7, 39, 5, 24, 3, 35, 65535, 7, 16, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 16, 9, 25, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 12, 79, 7, 63, 2, 73, 3, 59, 65535, 7, 24, 9, 25, 0, 4, 7, 14, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 16, 13, 82, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 11, 16, 7, 16, 7, 14, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 12, 3, 83, 0, 4, 2, 73, 0, 4, 20, 27, 7, 350, 8, 23, 3, 346, 8, 7, 12, 0, 26, 0, 4, 9, 25, 0, 4, 18, 88, 7, 82, 11, 16, 3, 78, 65535, 7, 16, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 51, 9, 25, 3, 47, 65535, 7, 20, 2, 73, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 24, 3, 83, 0, 4, 17, 87, 0, 4, 20, 27, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 8, 7, 14, 0, 4, 13, 82, 7, 16, 3, 83, 0, 4, 3, 83, 0, 4, 2, 73, 0, 4, 3, 83, 7, 20, 5, 24, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 20, 27, 0, 4, 8, 23, 7, 16, 21, 80, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 197, 22, 96, 3, 193, 9, 7, 54, 9, 25, 0, 4, 6, 18, 0, 4, 7, 14, 3, 42, 65535, 7, 23, 12, 79, 3, 19, 65535, 7, 4, 8, 23, 7, 12, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 16, 5, 24, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 20, 8, 23, 0, 4, 9, 25, 0, 4, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 7, 63, 20, 27, 3, 59, 65535, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 11, 16, 7, 40, 2, 73, 0, 4, 3, 83, 0, 4, 4, 86, 4, 28, 2, 26, 1, 4, 0, 44, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 53, 4, 86, 0, 4, 8, 23, 3, 45, 65535, 7, 26, 11, 16, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 6, 0, 4, 5, 24, 7, 16, 3, 83, 0, 4, 11, 16, 0, 4, 0, 26, 0, 4, 6, 18, 7, 162, 14, 17, 3, 158, 10, 7, 20, 0, 26, 0, 4, 13, 82, 0, 4, 10, 30, 0, 4, 6, 18, 0, 4, 17, 87, 7, 35, 10, 30, 3, 31, 65535, 7, 16, 6, 18, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 12, 3, 83, 0, 4, 5, 24, 0, 4, 4, 86, 7, 66, 2, 73, 3, 62, 65535, 7, 28, 6, 18, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 16, 89, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 31, 3, 83, 3, 27, 65535, 7, 8, 9, 25, 0, 4, 8, 23, 7, 16, 16, 89, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 12, 79, 7, 34, 7, 14, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 6, 0, 4, 5, 24, 7, 74, 15, 72, 3, 70, 65535, 7, 20, 6, 18, 0, 4, 2, 73, 0, 4, 1, 29, 0, 4, 0, 26, 0, 4, 6, 18, 7, 47, 3, 83, 3, 43, 65535, 7, 24, 0, 26, 0, 4, 11, 16, 0, 4, 4, 86, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 2, 73, 0, 4, 7, 14, 0, 4, 20, 27, 0, 4, 5, 24, 7, 80, 18, 88, 3, 76, 65535, 7, 24, 0, 26, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 3, 83, 7, 20, 8, 23, 0, 4, 0, 26, 0, 4, 12, 79, 0, 4, 8, 23, 0, 4, 3, 83, 7, 29, 2, 73, 3, 25, 65535, 7, 8, 6, 18, 0, 4, 12, 79, 7, 14, 7, 14, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 440, 10, 30, 3, 436, 11, 7, 28, 12, 79, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 17, 87, 7, 4, 14, 17, 7, 20, 15, 72, 0, 4, 11, 16, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 8, 23, 7, 101, 13, 82, 3, 97, 65535, 7, 55, 13, 82, 3, 51, 65535, 7, 24, 8, 23, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 24, 7, 14, 0, 4, 4, 86, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 39, 20, 27, 3, 35, 65535, 7, 20, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 10, 30, 0, 4, 4, 86, 7, 12, 2, 73, 0, 4, 3, 83, 0, 4, 4, 86, 7, 248, 11, 16, 3, 244, 12, 7, 62, 9, 25, 3, 58, 65535, 7, 31, 6, 18, 0, 4, 7, 14, 0, 4, 12, 79, 3, 19, 65535, 7, 4, 8, 23, 7, 12, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 24, 3, 83, 0, 4, 8, 23, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 24, 12, 79, 0, 4, 8, 23, 0, 4, 22, 96, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 5, 24, 7, 26, 18, 88, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 4, 86, 4, 6, 0, 4, 5, 24, 7, 16, 6, 18, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 8, 23, 7, 12, 20, 27, 0, 4, 7, 14, 0, 4, 4, 86, 7, 81, 5, 24, 3, 77, 65535, 7, 43, 8, 23, 3, 39, 65535, 7, 28, 11, 16, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 8, 3, 83, 0, 4, 4, 86, 7, 31, 4, 86, 3, 27, 65535, 7, 12, 0, 26, 0, 4, 6, 18, 0, 4, 6, 18, 7, 12, 8, 23, 0, 4, 0, 26, 0, 4, 12, 79, 7, 20, 21, 80, 0, 4, 2, 73, 0, 4, 19, 92, 0, 4, 8, 23, 0, 4, 3, 83, 7, 32, 5, 24, 0, 4, 2, 73, 0, 4, 6, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 23, 93, 0, 4, 5, 24, 0, 4, 2, 73, 0, 4, 11, 16, 7, 12, 19, 92, 0, 4, 8, 23, 0, 4, 17, 87, 7, 218, 6, 18, 3, 214, 13, 7, 63, 0, 26, 3, 59, 14, 7, 12, 1, 29, 0, 4, 8, 23, 0, 4, 6, 18, 7, 24, 11, 16, 0, 4, 15, 72, 0, 4, 7, 14, 0, 4, 0, 26, 0, 4, 15, 72, 0, 4, 8, 23, 7, 12, 3, 83, 0, 4, 15, 72, 0, 4, 8, 23, 7, 8, 5, 24, 0, 4, 4, 86, 7, 47, 8, 23, 3, 43, 65535, 7, 28, 0, 26, 0, 4, 19, 92, 0, 4, 20, 27, 0, 4, 3, 83, 0, 4, 2, 73, 0, 4, 2, 73, 0, 4, 14, 17, 7, 12, 21, 80, 0, 4, 8, 23, 0, 4, 6, 18, 7, 20, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 11, 16, 7, 81, 2, 73, 3, 77, 65535, 7, 8, 0, 26, 0, 4, 12, 79, 7, 50, 9, 25, 3, 46, 65535, 7, 27, 0, 26, 3, 23, 65535, 7, 4, 6, 18, 7, 16, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 19, 92, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 15, 72, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 12, 79, 7, 379, 13, 82, 3, 375, 15, 7, 126, 0, 26, 3, 122, 16, 7, 12, 9, 25, 0, 4, 3, 83, 0, 4, 2, 73, 7, 20, 20, 27, 0, 4, 20, 27, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 63, 4, 86, 3, 59, 65535, 7, 20, 9, 25, 0, 4, 18, 88, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 36, 8, 23, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 24, 95, 0, 4, 8, 23, 0, 4, 12, 79, 7, 24, 22, 96, 0, 4, 21, 80, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 7, 14, 0, 4, 8, 23, 7, 35, 8, 23, 3, 31, 65535, 7, 12, 3, 83, 0, 4, 15, 72, 0, 4, 8, 23, 7, 16, 4, 86, 0, 4, 18, 88, 0, 4, 2, 73, 0, 4, 12, 79, 7, 170, 10, 30, 3, 166, 65535, 7, 42, 9, 25, 0, 4, 3, 83, 0, 4, 2, 73, 0, 4, 5, 24, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 12, 79, 4, 6, 0, 4, 5, 24, 7, 76, 6, 18, 0, 4, 6, 18, 3, 68, 65535, 7, 31, 8, 23, 0, 4, 11, 16, 0, 4, 11, 16, 0, 4, 10, 30, 3, 15, 65535, 7, 4, 0, 26, 7, 8, 7, 14, 0, 4, 13, 82, 7, 34, 10, 30, 0, 4, 5, 24, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 12, 79, 4, 6, 0, 4, 5, 24, 7, 45, 11, 16, 3, 41, 65535, 7, 18, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 20, 21, 80, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 7, 14, 0, 4, 8, 23, 7, 41, 2, 73, 3, 37, 65535, 7, 8, 12, 79, 0, 4, 8, 23, 7, 18, 11, 16, 0, 4, 4, 86, 0, 4, 18, 88, 4, 6, 0, 4, 5, 24, 7, 8, 21, 80, 0, 4, 8, 23, 7, 120, 11, 16, 3, 116, 17, 7, 18, 0, 26, 0, 4, 13, 82, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 19, 8, 23, 3, 15, 65535, 7, 4, 16, 89, 7, 8, 22, 96, 0, 4, 4, 86, 7, 60, 2, 73, 4, 56, 3, 54, 65535, 7, 35, 4, 86, 3, 31, 65535, 7, 16, 18, 88, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 12, 10, 30, 0, 4, 14, 17, 0, 4, 17, 87, 7, 16, 16, 89, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 4, 86, 7, 16, 7, 14, 0, 4, 6, 18, 0, 4, 6, 18, 0, 4, 5, 24, 7, 229, 2, 73, 3, 225, 18, 7, 20, 1, 29, 0, 4, 23, 93, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 4, 86, 7, 10, 14, 17, 4, 6, 0, 4, 14, 17, 7, 12, 10, 30, 0, 4, 12, 79, 0, 4, 5, 24, 7, 8, 6, 18, 0, 4, 12, 79, 7, 53, 20, 27, 3, 49, 65535, 7, 24, 8, 23, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 2, 73, 0, 4, 3, 83, 7, 22, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 6, 0, 4, 5, 24, 7, 36, 3, 83, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 17, 87, 7, 20, 4, 86, 0, 4, 18, 88, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 5, 24, 7, 40, 21, 80, 0, 4, 8, 23, 0, 4, 3, 83, 4, 28, 2, 26, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 23, 16, 89, 0, 4, 11, 16, 0, 4, 8, 23, 3, 11, 65535, 7, 4, 12, 79, 7, 4, 3, 83, 7, 467, 20, 27, 3, 463, 19, 7, 132, 0, 26, 3, 128, 65535, 7, 86, 3, 83, 3, 82, 65535, 7, 20, 0, 26, 0, 4, 6, 18, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 6, 18, 7, 12, 5, 24, 0, 4, 8, 23, 0, 4, 3, 83, 7, 47, 4, 86, 0, 4, 10, 30, 3, 39, 65535, 7, 8, 0, 26, 0, 4, 6, 18, 7, 28, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 39, 5, 24, 0, 4, 5, 24, 3, 31, 65535, 7, 12, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 16, 16, 89, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 12, 79, 7, 55, 8, 23, 0, 4, 3, 83, 3, 47, 65535, 7, 16, 9, 25, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 28, 5, 24, 0, 4, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 11, 16, 0, 4, 5, 24, 7, 20, 2, 73, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 17, 87, 7, 197, 3, 83, 3, 193, 20, 7, 16, 0, 26, 0, 4, 15, 72, 0, 4, 13, 82, 0, 4, 0, 26, 7, 73, 8, 23, 3, 69, 65535, 7, 24, 9, 25, 0, 4, 8, 23, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 22, 20, 27, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 8, 23, 4, 6, 0, 4, 12, 79, 7, 20, 5, 24, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 21, 80, 0, 4, 8, 23, 7, 43, 10, 30, 3, 39, 65535, 7, 8, 2, 73, 0, 4, 3, 83, 7, 28, 21, 80, 0, 4, 10, 30, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 5, 24, 7, 58, 2, 73, 3, 54, 65535, 7, 35, 9, 25, 0, 4, 8, 23, 0, 4, 12, 79, 0, 4, 7, 14, 0, 4, 3, 83, 3, 15, 65535, 7, 8, 0, 26, 0, 4, 6, 18, 7, 4, 8, 23, 7, 16, 15, 72, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 13, 82, 7, 40, 7, 14, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 49, 25, 90, 0, 4, 7, 14, 3, 41, 65535, 7, 26, 0, 26, 0, 4, 3, 83, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 12, 2, 73, 0, 4, 4, 86, 0, 4, 8, 23, 7, 481, 3, 83, 3, 477, 21, 7, 16, 0, 26, 0, 4, 11, 16, 0, 4, 15, 72, 0, 4, 8, 23, 7, 389, 8, 23, 3, 385, 22, 7, 31, 0, 26, 3, 27, 65535, 7, 4, 12, 79, 7, 20, 5, 24, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 15, 72, 0, 4, 11, 16, 7, 47, 9, 25, 3, 43, 65535, 7, 16, 18, 88, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 19, 92, 7, 24, 7, 14, 0, 4, 3, 83, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 57, 14, 17, 4, 53, 3, 51, 65535, 7, 32, 8, 23, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 16, 3, 83, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 18, 88, 7, 20, 10, 30, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 8, 23, 0, 4, 22, 96, 7, 43, 6, 18, 3, 39, 65535, 7, 20, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 16, 8, 23, 0, 4, 0, 26, 0, 4, 5, 24, 0, 4, 8, 23, 7, 16, 11, 16, 0, 4, 0, 26, 0, 4, 13, 82, 0, 4, 8, 23, 7, 66, 20, 27, 3, 62, 65535, 7, 28, 8, 23, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 31, 6, 18, 3, 27, 65535, 7, 12, 0, 26, 0, 4, 9, 25, 0, 4, 8, 23, 7, 12, 10, 30, 0, 4, 9, 25, 0, 4, 0, 26, 7, 66, 5, 24, 3, 62, 65535, 7, 8, 8, 23, 0, 4, 4, 86, 7, 16, 20, 27, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 4, 86, 7, 35, 4, 86, 3, 31, 65535, 7, 12, 0, 26, 0, 4, 3, 83, 0, 4, 4, 86, 7, 16, 3, 83, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 4, 86, 7, 20, 4, 86, 0, 4, 7, 14, 0, 4, 3, 83, 0, 4, 11, 16, 0, 4, 5, 24, 7, 16, 21, 80, 0, 4, 2, 73, 0, 4, 19, 92, 0, 4, 8, 23, 7, 57, 2, 73, 3, 53, 65535, 7, 42, 6, 18, 3, 38, 65535, 7, 4, 8, 23, 7, 31, 6, 18, 3, 27, 65535, 7, 16, 1, 29, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 19, 92, 7, 8, 7, 14, 0, 4, 20, 27, 7, 8, 16, 89, 0, 4, 5, 24, 7, 12, 7, 14, 0, 4, 6, 18, 0, 4, 8, 23, 7, 702, 5, 24, 3, 698, 23, 7, 51, 0, 26, 3, 47, 65535, 7, 16, 13, 82, 0, 4, 20, 27, 0, 4, 6, 18, 0, 4, 8, 23, 7, 28, 21, 80, 0, 4, 8, 23, 0, 4, 20, 27, 0, 4, 2, 73, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 4, 86, 7, 57, 9, 25, 3, 53, 65535, 7, 22, 18, 88, 0, 4, 8, 23, 0, 4, 13, 82, 0, 4, 0, 26, 4, 6, 0, 4, 5, 24, 7, 12, 2, 73, 0, 4, 20, 27, 0, 4, 8, 23, 7, 16, 3, 83, 0, 4, 2, 73, 0, 4, 6, 18, 0, 4, 6, 18, 7, 195, 8, 23, 3, 191, 24, 7, 16, 0, 26, 0, 4, 3, 83, 0, 4, 9, 25, 0, 4, 18, 88, 7, 57, 9, 25, 3, 53, 65535, 7, 18, 2, 73, 0, 4, 11, 16, 0, 4, 12, 79, 4, 6, 0, 4, 5, 24, 7, 12, 3, 83, 0, 4, 8, 23, 0, 4, 4, 86, 7, 20, 7, 14, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 17, 87, 7, 30, 25, 90, 0, 4, 7, 14, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 55, 3, 83, 3, 51, 65535, 7, 36, 10, 30, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 24, 95, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 12, 21, 80, 0, 4, 8, 23, 0, 4, 3, 83, 7, 20, 5, 24, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 10, 4, 86, 4, 6, 0, 4, 5, 24, 7, 16, 18, 88, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 8, 23, 7, 20, 10, 30, 0, 4, 13, 82, 0, 4, 20, 27, 0, 4, 6, 18, 0, 4, 8, 23, 7, 12, 19, 92, 0, 4, 10, 30, 0, 4, 20, 27, 7, 28, 11, 16, 0, 4, 0, 26, 0, 4, 20, 27, 0, 4, 5, 24, 0, 4, 18, 88, 0, 4, 2, 73, 0, 4, 4, 86, 7, 39, 2, 73, 3, 35, 65535, 7, 16, 3, 83, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 7, 14, 0, 4, 3, 83, 0, 4, 9, 25, 0, 4, 8, 23, 7, 8, 25, 90, 0, 4, 6, 18, 7, 194, 4, 86, 3, 190, 25, 7, 106, 0, 26, 3, 102, 26, 7, 12, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 28, 11, 16, 0, 4, 12, 79, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 8, 23, 7, 8, 3, 83, 0, 4, 4, 86, 7, 51, 4, 86, 3, 47, 65535, 7, 20, 8, 23, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 24, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 5, 24, 7, 27, 12, 79, 3, 23, 65535, 7, 8, 10, 30, 0, 4, 11, 16, 7, 12, 2, 73, 0, 4, 7, 14, 0, 4, 4, 86, 7, 31, 2, 73, 0, 4, 3, 83, 3, 23, 65535, 7, 12, 0, 26, 0, 4, 15, 72, 0, 4, 8, 23, 7, 8, 8, 23, 0, 4, 12, 79, 7, 23, 3, 83, 0, 4, 10, 30, 3, 15, 65535, 7, 8, 9, 25, 0, 4, 4, 86, 7, 4, 20, 27, 7, 44, 7, 14, 0, 4, 1, 29, 0, 4, 5, 24, 0, 4, 9, 25, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 20, 27, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 31, 17, 87, 0, 4, 5, 24, 3, 23, 65535, 7, 8, 10, 30, 0, 4, 12, 79, 7, 12, 4, 86, 0, 4, 8, 23, 0, 4, 13, 82, 7, 285, 4, 86, 3, 281, 27, 7, 59, 0, 26, 3, 55, 65535, 7, 36, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 5, 24, 4, 20, 2, 18, 0, 4, 20, 27, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 8, 23, 7, 16, 3, 83, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 4, 86, 7, 64, 8, 23, 3, 60, 65535, 7, 49, 13, 82, 0, 4, 20, 27, 4, 41, 3, 39, 65535, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 20, 2, 73, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 17, 87, 7, 8, 22, 96, 0, 4, 4, 86, 7, 12, 10, 30, 0, 4, 8, 23, 0, 4, 5, 24, 7, 125, 3, 83, 3, 121, 65535, 7, 55, 0, 26, 0, 4, 11, 16, 0, 4, 5, 24, 3, 43, 65535, 7, 24, 0, 26, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 14, 17, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 13, 82, 7, 20, 10, 30, 0, 4, 15, 72, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 3, 83, 7, 43, 7, 14, 3, 39, 65535, 7, 20, 11, 16, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 16, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 18, 17, 87, 0, 4, 20, 27, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 227, 7, 14, 3, 223, 65535, 7, 186, 11, 16, 3, 182, 28, 7, 28, 1, 29, 0, 4, 2, 73, 0, 4, 7, 14, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 8, 23, 0, 4, 12, 79, 7, 36, 9, 25, 0, 4, 2, 73, 0, 4, 13, 82, 0, 4, 13, 82, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 36, 8, 23, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 3, 83, 0, 4, 17, 87, 0, 4, 20, 27, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 20, 19, 92, 0, 4, 11, 16, 0, 4, 2, 73, 0, 4, 16, 89, 0, 4, 11, 16, 7, 47, 6, 18, 3, 43, 65535, 7, 20, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 11, 16, 7, 20, 2, 73, 0, 4, 15, 72, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 12, 79, 7, 12, 4, 86, 0, 4, 10, 30, 0, 4, 6, 18, 7, 20, 20, 27, 0, 4, 12, 79, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 14, 5, 24, 0, 4, 8, 23, 4, 6, 0, 4, 3, 83, 7, 216, 21, 80, 3, 212, 29, 7, 116, 0, 26, 3, 112, 65535, 7, 16, 9, 25, 0, 4, 7, 14, 0, 4, 7, 14, 0, 4, 13, 82, 7, 50, 6, 18, 3, 46, 65535, 7, 35, 10, 30, 0, 4, 12, 79, 4, 27, 2, 25, 0, 4, 0, 26, 0, 4, 4, 86, 3, 15, 65535, 7, 4, 8, 23, 7, 8, 2, 73, 0, 4, 3, 83, 7, 8, 7, 14, 0, 4, 8, 23, 7, 43, 3, 83, 3, 39, 65535, 7, 20, 10, 30, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 16, 17, 87, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 24, 8, 23, 0, 4, 3, 83, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 41, 10, 30, 3, 37, 65535, 7, 14, 8, 23, 0, 4, 16, 89, 4, 6, 0, 4, 5, 24, 7, 20, 3, 83, 0, 4, 4, 86, 0, 4, 7, 14, 0, 4, 0, 26, 0, 4, 6, 18, 7, 28, 2, 73, 0, 4, 6, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 6, 18, 0, 4, 8, 23, 7, 147, 16, 89, 3, 143, 30, 7, 18, 8, 23, 0, 4, 8, 23, 0, 4, 19, 92, 4, 6, 0, 4, 5, 24, 7, 36, 18, 88, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 20, 27, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 8, 23, 7, 35, 10, 30, 0, 4, 4, 86, 0, 4, 18, 88, 3, 23, 65535, 7, 8, 10, 30, 0, 4, 11, 16, 7, 12, 2, 73, 0, 4, 7, 14, 0, 4, 4, 86, 7, 12, 2, 73, 0, 4, 3, 83, 0, 4, 19, 92, 7, 39, 3, 83, 3, 35, 65535, 7, 20, 0, 26, 0, 4, 20, 27, 0, 4, 20, 27, 0, 4, 8, 23, 0, 4, 3, 83, 7, 12, 10, 30, 0, 4, 4, 86, 0, 4, 8, 23, 7, 12, 22, 96, 0, 4, 13, 82, 0, 4, 6, 18, 7, 29, 17, 87, 0, 4, 8, 23, 3, 21, 65535, 7, 14, 0, 26, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 4, 5, 24, 7, 16, 24, 95, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 8, 23, 5, 6, 0, 4, 26, 10}, Classes: []*rt.Class{&cls1318, &cls1326, &cls1324, &cls1315, &cls1316, &cls1311, &cls1310, &cls1309, &cls1320, &cls1321, &cls1314, &cls1308, &cls1336, &cls1333, &cls1313, &cls1352, &cls1327, &cls1351, &cls1344, &cls1330, &cls1322, &cls1350, &cls1369, &cls1608, &cls1412, &cls1432, &cls1605}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
-var term1613 = term1613Data.Prepare()
-var steps1614 = []rt.ClassStep{{C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}}
-var steps1615 = []rt.ClassStep{{C: &cls1308, ID: 16}, {C: &cls1324, ID: 73}, {C: &cls1316, ID: 86}, {C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}}
-var steps1616 = []rt.ClassStep{{C: &cls1352, ID: 72}, {C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1326, ID: 29}}
-var steps1617 = []rt.ClassStep{{C: &cls1351, ID: 87}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}}
-var steps1618 = []rt.ClassStep{{C: &cls1351, ID: 87}, {C: &cls1320, ID: 23}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}}
-var steps1619 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}, {C: &cls1311, ID: 24}}
-var steps1620 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1344, ID: 88}}
-var steps1621 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1318, ID: 26}, {C: &cls1351, ID: 87}, {C: &cls1311, ID: 24}}
-var steps1622 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1318, ID: 26}, {C: &cls1351, ID: 87}}
-var steps1623 = []rt.ClassStep{{C: &cls1344, ID: 88}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}}
-var steps1624 = []rt.ClassStep{{C: &cls1344, ID: 88}, {C: &cls1324, ID: 73}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}}
-var steps1625 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1626 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}, {C: &cls1309, ID: 14}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}}
-var steps1627 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}, {C: &cls1311, ID: 24}}
-var steps1628 = []rt.ClassStep{{C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}}
-var steps1629 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}, {C: &cls1311, ID: 24}}
-var steps1630 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1314, ID: 30}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}}
-var steps1631 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}, {C: &cls1311, ID: 24}}
-var steps1632 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1315, ID: 83}, {C: &cls1324, ID: 73}, {C: &cls1311, ID: 24}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1336, ID: 79}}
-var steps1633 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1320, ID: 23}, {C: &cls1320, ID: 23}, {C: &cls1330, ID: 92}, {C: &cls1311, ID: 24}}
-var steps1634 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1320, ID: 23}, {C: &cls1320, ID: 23}, {C: &cls1330, ID: 92}}
-var steps1635 = []rt.ClassStep{{C: &cls1432, ID: 90}, {C: &cls1309, ID: 14}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}, {C: &cls1311, ID: 24}}
-var steps1636 = []rt.ClassStep{{C: &cls1432, ID: 90}, {C: &cls1309, ID: 14}, {C: &cls1318, ID: 26}, {C: &cls1315, ID: 83}, {C: &cls1316, ID: 86}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1637 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1638 = []rt.ClassStep{{C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}}
-var steps1639 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}}
-var steps1640 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1316, ID: 86}, {C: &cls1309, ID: 14}, {C: &cls1315, ID: 83}, {C: &cls1351, ID: 87}}
-var steps1641 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1308, ID: 16}, {C: &cls1314, ID: 30}, {C: &cls1318, ID: 26}}
-var steps1642 = []rt.ClassStep{{C: &cls1333, ID: 82}, {C: &cls1314, ID: 30}, {C: &cls1310, ID: 18}, {C: &cls1310, ID: 18}, {C: &cls1320, ID: 23}, {C: &cls1308, ID: 16}, {C: &cls1308, ID: 16}, {C: &cls1314, ID: 30}, {C: &cls1309, ID: 14}, {C: &cls1333, ID: 82}}
-var steps1643 = []rt.ClassStep{{C: &cls1322, ID: 27}, {C: &cls1314, ID: 30}, {C: &cls1350, ID: 80}, {C: &cls1324, ID: 73}, {C: &cls1316, ID: 86}}
-var steps1644 = []rt.ClassStep{{C: &cls1327, ID: 89}, {C: &cls1314, ID: 30}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1645 = []rt.ClassStep{{C: &cls1310, ID: 18}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}, {C: &cls1352, ID: 72}, {C: &cls1320, ID: 23}, {C: &cls1315, ID: 83}}
-var steps1646 = []rt.ClassStep{{C: &cls1309, ID: 14}, {C: &cls1308, ID: 16}, {C: &cls1322, ID: 27}, {C: &cls1314, ID: 30}, {C: &cls1350, ID: 80}, {C: &cls1324, ID: 73}, {C: &cls1316, ID: 86}}
-var steps1647 = []rt.ClassStep{{C: &cls1608, ID: 93}, {C: &cls1324, ID: 73}, {C: &cls1314, ID: 30}, {C: &cls1308, ID: 16}}
-var steps1648 = []rt.ClassStep{{C: &cls1318, ID: 26}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}, {C: &cls1314, ID: 30}, {C: &cls1324, ID: 73}, {C: &cls1308, ID: 16}}
-var steps1649 = []rt.ClassStep{{C: &cls1315, ID: 83}, {C: &cls1320, ID: 23}, {C: &cls1311, ID: 24}, {C: &cls1316, ID: 86}, {C: &cls1315, ID: 83}, {C: &cls1314, ID: 30}, {C: &cls1321, ID: 25}, {C: &cls1316, ID: 86}}
-var steps1650 = []rt.ClassStep{{C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1311, ID: 24}, {C: &cls1321, ID: 25}, {C: &cls1318, ID: 26}, {C: &cls1336, ID: 79}, {C: &cls1320, ID: 23}}
-var lit1678 = []rune("::")
+var scope1219 = []string{"t"}
+var scope1223 = []string{"n"}
+var scope1229 = []string{"n"}
+var scope1231 = []string{"n"}
+var scope1233 = []string{"n"}
+var scope1275 = []string{"n"}
+var cls1284 = rt.Class{ASCII: [2]uint64{0x0, 0x400000004000}}
+var cls1285 = rt.Class{ASCII: [2]uint64{0x0, 0x20000000200000}}
+var cls1286 = rt.Class{ASCII: [2]uint64{0x0, 0x100000001000}}
+var cls1287 = rt.Class{ASCII: [2]uint64{0x0, 0x8000000080000}}
+var steps1288 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1287, ID: 24}}
+var cls1289 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000040}}
+var cls1290 = rt.Class{ASCII: [2]uint64{0x0, 0x20000000200}}
+var cls1291 = rt.Class{ASCII: [2]uint64{0x0, 0x4000000040000}}
+var cls1292 = rt.Class{ASCII: [2]uint64{0x0, 0x10000000100000}}
+var steps1293 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1290, ID: 30}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}}
+var cls1294 = rt.Class{ASCII: [2]uint64{0x0, 0x200000002}}
+var steps1295 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}}
+var cls1296 = rt.Class{ASCII: [2]uint64{0x0, 0x2000000020}}
+var cls1297 = rt.Class{ASCII: [2]uint64{0x0, 0x800000008}}
+var cls1298 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000010000}}
+var steps1299 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}}
+var cls1300 = rt.Class{ASCII: [2]uint64{0x0, 0x800000008000}}
+var steps1301 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1300, ID: 73}, {C: &cls1292, ID: 86}}
+var cls1302 = rt.Class{ASCII: [2]uint64{0x0, 0x400000004}}
+var cls1303 = rt.Class{ASCII: [2]uint64{0x0, 0x80000000800000}}
+var steps1304 = []rt.ClassStep{{C: &cls1302, ID: 29}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}, {C: &cls1303, ID: 89}, {C: &cls1296, ID: 23}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}}
+var steps1305 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}}
+var cls1306 = rt.Class{ASCII: [2]uint64{0x0, 0x80000000800}}
+var steps1307 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1306, ID: 92}, {C: &cls1296, ID: 23}}
+var steps1308 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1306, ID: 92}, {C: &cls1296, ID: 23}}
+var cls1309 = rt.Class{ASCII: [2]uint64{0x0, 0x200000002000}}
+var steps1310 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}}
+var steps1311 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}}
+var cls1312 = rt.Class{ASCII: [2]uint64{0x0, 0x1000000010}}
+var steps1313 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}}
+var steps1314 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1300, ID: 73}}
+var steps1315 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}}
+var steps1316 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}}
+var steps1317 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}}
+var steps1318 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1302, ID: 29}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1319 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var cls1320 = rt.Class{ASCII: [2]uint64{0x0, 0x10000000100}}
+var steps1321 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1322 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}}
+var steps1323 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}}
+var steps1324 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1325 = []rt.ClassStep{{C: &cls1302, ID: 29}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}}
+var cls1326 = rt.Class{ASCII: [2]uint64{0x0, 0x40000000400000}}
+var cls1327 = rt.Class{ASCII: [2]uint64{0x0, 0x200000002000000}}
+var cls1328 = rt.Class{ASCII: [2]uint64{0x0, 0x8000000080}}
+var steps1329 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1327, ID: 87}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1330 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1331 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1327, ID: 87}}
+var steps1332 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1298, ID: 27}}
+var steps1333 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}}
+var steps1334 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1289, ID: 17}}
+var steps1335 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}}
+var steps1336 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}}
+var steps1337 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1286, ID: 18}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}}
+var steps1338 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}}
+var steps1339 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}}
+var steps1340 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1303, ID: 89}}
+var steps1341 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1289, ID: 17}, {C: &cls1294, ID: 26}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1292, ID: 86}}
+var steps1342 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1309, ID: 82}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}}
+var steps1343 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1298, ID: 27}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1306, ID: 92}}
+var steps1344 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1309, ID: 82}, {C: &cls1302, ID: 29}, {C: &cls1312, ID: 79}, {C: &cls1294, ID: 26}}
+var cls1345 = rt.Class{ASCII: [2]uint64{0x0, 0x100000001000000}}
+var steps1346 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1297, ID: 25}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}}
+var steps1347 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}}
+var steps1348 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1298, ID: 27}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}}
+var steps1349 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}}
+var steps1350 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1285, ID: 14}, {C: &cls1296, ID: 23}}
+var steps1351 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}}
+var steps1352 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}}
+var steps1353 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1287, ID: 24}}
+var steps1354 = []rt.ClassStep{{C: &cls1328, ID: 72}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1298, ID: 27}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1355 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1312, ID: 79}}
+var steps1356 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}}
+var steps1357 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1327, ID: 87}}
+var steps1358 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1309, ID: 82}}
+var steps1359 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1360 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1361 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}}
+var steps1362 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}}
+var steps1363 = []rt.ClassStep{{C: &cls1328, ID: 72}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1298, ID: 27}}
+var steps1364 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1328, ID: 72}, {C: &cls1284, ID: 16}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}}
+var steps1365 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}}
+var steps1366 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1290, ID: 30}, {C: &cls1286, ID: 18}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1367 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}}
+var steps1368 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1369 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1370 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}}
+var steps1371 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1303, ID: 89}, {C: &cls1287, ID: 24}}
+var steps1372 = []rt.ClassStep{{C: &cls1328, ID: 72}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1298, ID: 27}, {C: &cls1287, ID: 24}}
+var steps1373 = []rt.ClassStep{{C: &cls1302, ID: 29}, {C: &cls1327, ID: 87}}
+var steps1374 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1302, ID: 29}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1375 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1376 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1303, ID: 89}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1377 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1378 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1379 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1300, ID: 73}}
+var steps1380 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}}
+var steps1381 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}, {C: &cls1300, ID: 73}, {C: &cls1289, ID: 17}}
+var steps1382 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1285, ID: 14}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}}
+var steps1383 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1384 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}}
+var steps1385 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}}
+var steps1386 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}}
+var steps1387 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1292, ID: 86}}
+var cls1388 = rt.Class{ASCII: [2]uint64{0x0, 0x400000004000000}}
+var steps1389 = []rt.ClassStep{{C: &cls1388, ID: 95}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1296, ID: 23}}
+var steps1390 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}}
+var steps1391 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}}
+var steps1392 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1393 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}}
+var steps1394 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}}
+var steps1395 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1396 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1397 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1398 = []rt.ClassStep{{C: &cls1302, ID: 29}, {C: &cls1290, ID: 30}, {C: &cls1328, ID: 72}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1399 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1400 = []rt.ClassStep{{C: &cls1302, ID: 29}, {C: &cls1300, ID: 73}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1284, ID: 16}}
+var steps1401 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}}
+var steps1402 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1403 = []rt.ClassStep{{C: &cls1306, ID: 92}, {C: &cls1296, ID: 23}, {C: &cls1327, ID: 87}}
+var steps1404 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1388, ID: 95}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1405 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}}
+var steps1406 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}}
+var steps1407 = []rt.ClassStep{{C: &cls1320, ID: 88}, {C: &cls1294, ID: 26}, {C: &cls1326, ID: 80}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var cls1408 = rt.Class{ASCII: [2]uint64{0x0, 0x2000000020000}}
+var steps1409 = []rt.ClassStep{{C: &cls1408, ID: 90}, {C: &cls1285, ID: 14}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1289, ID: 17}, {C: &cls1327, ID: 87}}
+var steps1410 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}}
+var steps1411 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1412 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1300, ID: 73}}
+var steps1413 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1327, ID: 87}}
+var steps1414 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}}
+var steps1415 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1416 = []rt.ClassStep{{C: &cls1328, ID: 72}, {C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1302, ID: 29}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1417 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1328, ID: 72}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1418 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1302, ID: 29}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1419 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1285, ID: 14}, {C: &cls1302, ID: 29}, {C: &cls1296, ID: 23}}
+var steps1420 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1298, ID: 27}}
+var steps1421 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}, {C: &cls1287, ID: 24}}
+var steps1422 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}, {C: &cls1300, ID: 73}, {C: &cls1303, ID: 89}}
+var steps1423 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1424 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}}
+var steps1425 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1296, ID: 23}}
+var steps1426 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1427 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1292, ID: 86}}
+var steps1428 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1286, ID: 18}, {C: &cls1327, ID: 87}}
+var steps1429 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1289, ID: 17}, {C: &cls1289, ID: 17}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}}
+var steps1430 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}}
+var steps1431 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1298, ID: 27}, {C: &cls1312, ID: 79}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1432 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1320, ID: 88}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}}
+var steps1433 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1289, ID: 17}}
+var steps1434 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1306, ID: 92}, {C: &cls1290, ID: 30}, {C: &cls1298, ID: 27}}
+var steps1435 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1297, ID: 25}, {C: &cls1306, ID: 92}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1436 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1294, ID: 26}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1437 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1302, ID: 29}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1294, ID: 26}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1438 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1302, ID: 29}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1439 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1287, ID: 24}, {C: &cls1287, ID: 24}}
+var steps1440 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1441 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1300, ID: 73}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1442 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}, {C: &cls1300, ID: 73}, {C: &cls1289, ID: 17}}
+var steps1443 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}}
+var steps1444 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1445 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1289, ID: 17}, {C: &cls1292, ID: 86}}
+var steps1446 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1328, ID: 72}, {C: &cls1320, ID: 88}, {C: &cls1292, ID: 86}}
+var steps1447 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}}
+var steps1448 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}}
+var steps1449 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1284, ID: 16}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1450 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}}
+var steps1451 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1452 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1453 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}}
+var steps1454 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1300, ID: 73}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1455 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1284, ID: 16}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1456 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1457 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1458 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1327, ID: 87}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1309, ID: 82}}
+var steps1459 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1289, ID: 17}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}}
+var steps1460 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1461 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1300, ID: 73}}
+var steps1462 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}}
+var steps1463 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1464 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1465 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}}
+var steps1466 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1467 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}}
+var steps1468 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}}
+var steps1469 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1300, ID: 73}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1470 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1471 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1472 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1473 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1290, ID: 30}, {C: &cls1312, ID: 79}, {C: &cls1287, ID: 24}}
+var steps1474 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1309, ID: 82}, {C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}}
+var steps1475 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1298, ID: 27}}
+var steps1476 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}}
+var steps1477 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1296, ID: 23}}
+var steps1478 = []rt.ClassStep{{C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1479 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1327, ID: 87}}
+var steps1480 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1303, ID: 89}, {C: &cls1294, ID: 26}, {C: &cls1327, ID: 87}, {C: &cls1287, ID: 24}}
+var steps1481 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1327, ID: 87}}
+var steps1482 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}}
+var steps1483 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1484 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1289, ID: 17}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1302, ID: 29}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1485 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1327, ID: 87}}
+var steps1486 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1289, ID: 17}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1487 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1488 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}}
+var steps1489 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}}
+var steps1490 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1491 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1312, ID: 79}}
+var steps1492 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}}
+var steps1493 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1290, ID: 30}, {C: &cls1328, ID: 72}, {C: &cls1284, ID: 16}}
+var steps1494 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1289, ID: 17}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1495 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1496 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1297, ID: 25}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}}
+var steps1497 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1309, ID: 82}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1287, ID: 24}}
+var steps1498 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1287, ID: 24}}
+var steps1499 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1289, ID: 17}, {C: &cls1294, ID: 26}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1292, ID: 86}, {C: &cls1287, ID: 24}}
+var steps1500 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1501 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1287, ID: 24}}
+var steps1502 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}}
+var steps1503 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}}
+var steps1504 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1290, ID: 30}, {C: &cls1296, ID: 23}, {C: &cls1303, ID: 89}}
+var steps1505 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1506 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1306, ID: 92}}
+var steps1507 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1298, ID: 27}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1508 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}}
+var steps1509 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1408, ID: 90}, {C: &cls1285, ID: 14}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}}
+var steps1510 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}}
+var steps1511 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1512 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1345, ID: 96}, {C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1296, ID: 23}}
+var steps1513 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1296, ID: 23}}
+var steps1514 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}}
+var steps1515 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1327, ID: 87}, {C: &cls1297, ID: 25}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1516 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1303, ID: 89}, {C: &cls1284, ID: 16}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1517 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1327, ID: 87}, {C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}}
+var steps1518 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1309, ID: 82}}
+var steps1519 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}}
+var steps1520 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1521 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}}
+var steps1522 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1523 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}, {C: &cls1312, ID: 79}}
+var steps1524 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1285, ID: 14}, {C: &cls1309, ID: 82}, {C: &cls1284, ID: 16}}
+var steps1525 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}}
+var steps1526 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1312, ID: 79}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1527 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1328, ID: 72}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}, {C: &cls1312, ID: 79}}
+var steps1528 = []rt.ClassStep{{C: &cls1300, ID: 73}, {C: &cls1298, ID: 27}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}}
+var steps1529 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1302, ID: 29}, {C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}}
+var steps1530 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1327, ID: 87}}
+var steps1531 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}}
+var steps1532 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1328, ID: 72}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1533 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1534 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1535 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1292, ID: 86}}
+var steps1536 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}}
+var steps1537 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1538 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1327, ID: 87}}
+var steps1539 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1540 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1289, ID: 17}, {C: &cls1290, ID: 30}, {C: &cls1328, ID: 72}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1541 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1287, ID: 24}}
+var steps1542 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}, {C: &cls1300, ID: 73}, {C: &cls1312, ID: 79}}
+var steps1543 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1544 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1545 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1298, ID: 27}, {C: &cls1298, ID: 27}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1546 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1285, ID: 14}, {C: &cls1302, ID: 29}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1547 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1548 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1298, ID: 27}, {C: &cls1327, ID: 87}}
+var steps1549 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1312, ID: 79}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}}
+var steps1550 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1312, ID: 79}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1292, ID: 86}}
+var steps1551 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}}
+var steps1552 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}}
+var steps1553 = []rt.ClassStep{{C: &cls1408, ID: 90}, {C: &cls1285, ID: 14}, {C: &cls1300, ID: 73}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1554 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1298, ID: 27}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}}
+var steps1555 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1309, ID: 82}, {C: &cls1298, ID: 27}, {C: &cls1300, ID: 73}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}}
+var steps1556 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}}
+var steps1557 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}}
+var steps1558 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}}
+var steps1559 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}}
+var steps1560 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}}
+var steps1561 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1328, ID: 72}, {C: &cls1309, ID: 82}, {C: &cls1294, ID: 26}}
+var steps1562 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1294, ID: 26}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1563 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1300, ID: 73}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1564 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1286, ID: 18}}
+var steps1565 = []rt.ClassStep{{C: &cls1292, ID: 86}, {C: &cls1294, ID: 26}, {C: &cls1302, ID: 29}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1566 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1298, ID: 27}, {C: &cls1286, ID: 18}, {C: &cls1294, ID: 26}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}}
+var steps1567 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1302, ID: 29}, {C: &cls1300, ID: 73}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}}
+var steps1568 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1327, ID: 87}, {C: &cls1388, ID: 95}, {C: &cls1296, ID: 23}}
+var steps1569 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1284, ID: 16}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1327, ID: 87}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}}
+var steps1570 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1298, ID: 27}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}}
+var steps1571 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1285, ID: 14}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1572 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1573 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1574 = []rt.ClassStep{{C: &cls1326, ID: 80}, {C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1285, ID: 14}, {C: &cls1285, ID: 14}, {C: &cls1309, ID: 82}}
+var steps1575 = []rt.ClassStep{{C: &cls1289, ID: 17}, {C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1296, ID: 23}, {C: &cls1388, ID: 95}, {C: &cls1296, ID: 23}}
+var steps1576 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1320, ID: 88}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1306, ID: 92}, {C: &cls1298, ID: 27}, {C: &cls1300, ID: 73}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1577 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}}
+var steps1578 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1309, ID: 82}, {C: &cls1309, ID: 82}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}}
+var steps1579 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}}
+var steps1580 = []rt.ClassStep{{C: &cls1296, ID: 23}, {C: &cls1345, ID: 96}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1287, ID: 24}}
+var cls1581 = rt.Class{ASCII: [2]uint64{0x3ff001000000000, 0x7fffffe87fffffe}, Wide: []rune{128, 159, 161, 8191, 8204, 8238, 8240, 8286, 8289, 12287, 12289, 65278, 65280, 1114111}}
+var term1582Data = rt.TerminalProgram{Code: []uint16{2, 1424, 3, 1416, 0, 7, 122, 0, 26, 3, 118, 1, 7, 8, 1, 18, 0, 4, 1, 18, 7, 46, 2, 16, 3, 42, 65535, 7, 31, 0, 26, 0, 4, 1, 18, 0, 4, 3, 87, 3, 19, 65535, 7, 8, 4, 24, 0, 4, 5, 23, 7, 8, 6, 95, 0, 4, 5, 23, 7, 4, 7, 79, 7, 4, 3, 87, 7, 16, 8, 83, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 3, 87, 7, 45, 4, 24, 4, 41, 3, 39, 65535, 7, 4, 9, 25, 7, 32, 3, 87, 0, 4, 10, 82, 0, 4, 10, 82, 0, 4, 5, 23, 0, 4, 11, 86, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 9, 25, 7, 16, 13, 29, 0, 4, 14, 73, 0, 4, 11, 86, 0, 4, 15, 88, 7, 136, 9, 25, 3, 132, 2, 7, 19, 0, 26, 0, 4, 4, 24, 3, 11, 65535, 7, 4, 5, 23, 7, 4, 11, 86, 7, 16, 15, 88, 0, 4, 5, 23, 0, 4, 9, 25, 0, 4, 16, 92, 7, 74, 14, 73, 3, 70, 65535, 7, 35, 1, 18, 3, 31, 65535, 7, 16, 1, 18, 0, 4, 0, 26, 0, 4, 11, 86, 0, 4, 5, 23, 7, 12, 17, 14, 0, 4, 10, 82, 0, 4, 2, 16, 7, 32, 2, 16, 0, 4, 4, 24, 0, 4, 11, 86, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 11, 86, 7, 20, 8, 83, 0, 4, 5, 23, 0, 4, 0, 26, 0, 4, 11, 86, 0, 4, 5, 23, 7, 125, 7, 79, 3, 121, 65535, 7, 86, 5, 23, 3, 82, 65535, 7, 51, 18, 17, 3, 47, 65535, 7, 16, 0, 26, 0, 4, 17, 14, 0, 4, 1, 18, 0, 4, 11, 86, 7, 28, 5, 23, 0, 4, 8, 83, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 13, 29, 0, 4, 1, 18, 0, 4, 5, 23, 7, 28, 4, 24, 0, 4, 9, 25, 4, 20, 2, 18, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 13, 29, 0, 4, 5, 23, 7, 28, 12, 30, 0, 4, 4, 24, 0, 4, 11, 86, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 9, 25, 0, 4, 11, 86, 7, 4, 14, 73, 7, 47, 5, 23, 3, 43, 65535, 7, 12, 1, 18, 0, 4, 4, 24, 0, 4, 5, 23, 7, 8, 2, 16, 0, 4, 7, 79, 7, 20, 19, 96, 0, 4, 9, 25, 0, 4, 5, 23, 0, 4, 20, 27, 0, 4, 11, 86, 7, 79, 18, 17, 3, 75, 3, 7, 16, 0, 26, 0, 4, 1, 18, 0, 4, 4, 24, 0, 4, 5, 23, 7, 16, 5, 23, 0, 4, 11, 86, 0, 4, 9, 25, 0, 4, 15, 88, 7, 28, 14, 73, 0, 4, 8, 83, 4, 20, 2, 18, 0, 4, 5, 23, 0, 4, 12, 30, 0, 4, 21, 72, 0, 4, 2, 16, 7, 12, 8, 83, 0, 4, 14, 73, 0, 4, 10, 82, 7, 20, 21, 72, 0, 4, 8, 83, 0, 4, 14, 73, 0, 4, 17, 14, 0, 4, 20, 27, 7, 24, 15, 88, 0, 4, 0, 26, 0, 4, 22, 80, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 76, 12, 30, 0, 4, 2, 16, 4, 68, 3, 66, 65535, 7, 28, 12, 30, 0, 4, 11, 86, 0, 4, 12, 30, 0, 4, 0, 26, 0, 4, 1, 18, 0, 4, 1, 18, 0, 4, 3, 87, 7, 35, 11, 86, 3, 31, 65535, 7, 24, 5, 23, 0, 4, 8, 83, 0, 4, 4, 24, 0, 4, 5, 23, 0, 4, 9, 25, 0, 4, 11, 86, 7, 4, 14, 73, 7, 90, 1, 18, 3, 86, 65535, 7, 43, 0, 26, 3, 39, 65535, 7, 16, 10, 82, 0, 4, 13, 29, 0, 4, 7, 79, 0, 4, 0, 26, 7, 20, 11, 86, 0, 4, 5, 23, 0, 4, 8, 83, 0, 4, 0, 26, 0, 4, 1, 18, 7, 24, 5, 23, 0, 4, 0, 26, 0, 4, 7, 79, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 16, 12, 30, 0, 4, 10, 82, 0, 4, 12, 30, 0, 4, 11, 86, 7, 27, 2, 16, 3, 23, 65535, 7, 8, 14, 73, 0, 4, 11, 86, 7, 12, 17, 14, 0, 4, 1, 18, 0, 4, 1, 18, 7, 63, 14, 73, 3, 59, 65535, 7, 20, 18, 17, 0, 4, 18, 17, 0, 4, 4, 24, 0, 4, 5, 23, 0, 4, 11, 86, 7, 16, 2, 16, 4, 12, 2, 10, 0, 4, 1, 18, 0, 4, 3, 87, 7, 20, 8, 83, 4, 16, 2, 14, 0, 4, 7, 79, 0, 4, 5, 23, 0, 4, 8, 83, 7, 126, 20, 27, 3, 122, 65535, 7, 71, 12, 30, 0, 4, 22, 80, 0, 4, 14, 73, 0, 4, 11, 86, 4, 55, 2, 53, 1, 4, 0, 44, 3, 47, 65535, 7, 24, 1, 18, 0, 4, 14, 73, 0, 4, 2, 16, 0, 4, 21, 72, 0, 4, 5, 23, 0, 4, 8, 83, 7, 20, 23, 89, 0, 4, 12, 30, 0, 4, 7, 79, 0, 4, 5, 23, 0, 4, 8, 83, 7, 24, 1, 18, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 24, 8, 83, 0, 4, 12, 30, 0, 4, 10, 82, 0, 4, 0, 26, 0, 4, 8, 83, 0, 4, 3, 87, 7, 28, 24, 90, 0, 4, 17, 14, 0, 4, 0, 26, 0, 4, 1, 18, 0, 4, 12, 30, 0, 4, 18, 17, 0, 4, 3, 87, 7, 71, 8, 83, 0, 4, 5, 23, 3, 63, 65535, 7, 32, 18, 17, 0, 4, 5, 23, 0, 4, 8, 83, 0, 4, 5, 23, 0, 4, 2, 16, 0, 4, 9, 25, 0, 4, 5, 23, 0, 4, 4, 24, 7, 28, 11, 86, 0, 4, 17, 14, 0, 4, 8, 83, 0, 4, 2, 16, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 115, 4, 24, 3, 111, 4, 7, 20, 5, 23, 0, 4, 1, 18, 0, 4, 5, 23, 0, 4, 9, 25, 0, 4, 11, 86, 7, 12, 15, 88, 0, 4, 14, 73, 0, 4, 23, 89, 7, 12, 14, 73, 0, 4, 10, 82, 0, 4, 5, 23, 7, 32, 17, 14, 0, 4, 10, 82, 0, 4, 10, 82, 0, 4, 0, 26, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 6, 95, 0, 4, 5, 23, 7, 32, 3, 87, 0, 4, 10, 82, 0, 4, 10, 82, 0, 4, 5, 23, 0, 4, 11, 86, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 9, 25, 7, 78, 11, 86, 3, 74, 5, 7, 16, 0, 26, 0, 4, 13, 29, 0, 4, 1, 18, 0, 4, 5, 23, 7, 12, 15, 88, 0, 4, 5, 23, 0, 4, 2, 16, 7, 4, 14, 73, 7, 39, 8, 83, 3, 35, 65535, 7, 24, 0, 26, 0, 4, 12, 30, 0, 4, 1, 18, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 8, 17, 14, 0, 4, 5, 23, 7, 77, 17, 14, 3, 73, 65535, 7, 54, 2, 16, 3, 50, 65535, 7, 27, 12, 30, 3, 23, 65535, 7, 8, 14, 73, 0, 4, 2, 16, 7, 12, 24, 90, 0, 4, 17, 14, 0, 4, 5, 23, 7, 20, 20, 27, 0, 4, 12, 30, 0, 4, 22, 80, 0, 4, 14, 73, 0, 4, 11, 86, 7, 16, 4, 24, 0, 4, 12, 30, 0, 4, 2, 16, 0, 4, 21, 72, 7, 32, 22, 80, 0, 4, 0, 26, 0, 4, 8, 83, 0, 4, 12, 30, 0, 4, 0, 26, 0, 4, 7, 79, 0, 4, 12, 30, 0, 4, 9, 25, 7, 61, 23, 89, 3, 57, 65535, 7, 23, 15, 88, 0, 4, 5, 23, 3, 15, 65535, 7, 4, 2, 16, 7, 8, 8, 83, 0, 4, 5, 23, 7, 31, 12, 30, 3, 27, 65535, 7, 16, 2, 16, 0, 4, 7, 79, 0, 4, 14, 73, 0, 4, 23, 89, 7, 8, 11, 86, 0, 4, 15, 88, 5, 6, 0, 4, 25, 10}, Classes: []*rt.Class{&cls1294, &cls1286, &cls1284, &cls1327, &cls1287, &cls1296, &cls1388, &cls1312, &cls1291, &cls1297, &cls1309, &cls1292, &cls1290, &cls1302, &cls1300, &cls1320, &cls1306, &cls1285, &cls1289, &cls1345, &cls1298, &cls1328, &cls1326, &cls1303, &cls1408, &cls1581}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
+var term1582 = term1582Data.Prepare()
+var term1583Data = rt.TerminalProgram{Code: []uint16{2, 75, 3, 67, 0, 7, 16, 0, 26, 0, 4, 1, 16, 0, 4, 2, 86, 0, 4, 3, 30, 7, 8, 4, 29, 0, 4, 5, 87, 7, 16, 6, 24, 0, 4, 7, 23, 0, 4, 8, 82, 0, 4, 3, 30, 7, 24, 9, 14, 0, 4, 1, 16, 0, 4, 10, 27, 0, 4, 0, 26, 0, 4, 11, 25, 0, 4, 12, 92, 5, 6, 0, 4, 13, 10}, Classes: []*rt.Class{&cls1294, &cls1284, &cls1292, &cls1290, &cls1302, &cls1327, &cls1287, &cls1296, &cls1309, &cls1285, &cls1298, &cls1297, &cls1306, &cls1581}}
+var term1583 = term1583Data.Prepare()
+var cls1584 = rt.Class{ASCII: [2]uint64{0x0, 0x40000000400}}
+var term1585Data = rt.TerminalProgram{Code: []uint16{2, 635, 3, 627, 0, 7, 71, 0, 26, 3, 67, 65535, 7, 12, 1, 24, 0, 4, 2, 73, 0, 4, 3, 17, 7, 4, 4, 86, 7, 48, 5, 14, 0, 4, 4, 86, 0, 4, 6, 88, 0, 4, 2, 73, 0, 4, 7, 83, 0, 4, 8, 30, 0, 4, 9, 95, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 30, 0, 4, 2, 73, 0, 4, 10, 16, 7, 24, 11, 29, 0, 4, 8, 30, 0, 4, 10, 16, 0, 4, 0, 26, 0, 4, 7, 83, 0, 4, 12, 87, 7, 98, 13, 25, 3, 94, 65535, 7, 75, 2, 73, 3, 71, 65535, 7, 28, 14, 18, 0, 4, 14, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 30, 0, 4, 2, 73, 0, 4, 10, 16, 7, 40, 10, 16, 0, 4, 13, 25, 0, 4, 5, 14, 0, 4, 7, 83, 0, 4, 7, 83, 0, 4, 15, 23, 0, 4, 10, 16, 0, 4, 4, 86, 0, 4, 14, 18, 0, 4, 12, 87, 7, 16, 7, 83, 0, 4, 2, 73, 0, 4, 1, 24, 0, 4, 1, 24, 7, 39, 3, 17, 3, 35, 65535, 7, 20, 7, 83, 0, 4, 15, 23, 0, 4, 15, 23, 0, 4, 9, 95, 0, 4, 15, 23, 7, 12, 5, 14, 0, 4, 14, 18, 0, 4, 14, 18, 7, 16, 16, 72, 0, 4, 14, 18, 0, 4, 2, 73, 0, 4, 11, 29, 7, 63, 8, 30, 3, 59, 65535, 7, 16, 14, 18, 0, 4, 8, 30, 0, 4, 17, 92, 0, 4, 15, 23, 7, 16, 10, 16, 0, 4, 10, 16, 0, 4, 15, 23, 0, 4, 7, 83, 7, 24, 1, 24, 4, 20, 2, 18, 0, 4, 10, 16, 0, 4, 5, 14, 0, 4, 14, 18, 0, 4, 14, 18, 7, 16, 18, 93, 0, 4, 2, 73, 0, 4, 8, 30, 0, 4, 10, 16, 7, 31, 14, 18, 3, 27, 65535, 7, 12, 15, 23, 0, 4, 3, 17, 0, 4, 4, 86, 7, 12, 8, 30, 0, 4, 17, 92, 0, 4, 15, 23, 7, 55, 10, 16, 3, 51, 65535, 7, 24, 0, 26, 0, 4, 4, 86, 0, 4, 5, 14, 0, 4, 7, 83, 0, 4, 0, 26, 0, 4, 14, 18, 7, 24, 2, 73, 0, 4, 4, 86, 0, 4, 10, 16, 0, 4, 5, 14, 0, 4, 14, 18, 0, 4, 14, 18, 7, 51, 2, 73, 3, 47, 65535, 7, 16, 5, 14, 0, 4, 4, 86, 0, 4, 15, 23, 0, 4, 7, 83, 7, 28, 19, 80, 0, 4, 15, 23, 0, 4, 7, 83, 0, 4, 14, 18, 0, 4, 0, 26, 0, 4, 20, 27, 0, 4, 1, 24, 7, 40, 20, 27, 0, 4, 2, 73, 0, 4, 1, 24, 0, 4, 8, 30, 0, 4, 4, 86, 0, 4, 8, 30, 0, 4, 2, 73, 0, 4, 10, 16, 0, 4, 0, 26, 0, 4, 14, 18, 7, 20, 7, 83, 0, 4, 8, 30, 0, 4, 16, 72, 0, 4, 6, 88, 0, 4, 4, 86, 7, 28, 1, 24, 0, 4, 8, 30, 0, 4, 21, 82, 0, 4, 8, 30, 0, 4, 14, 18, 0, 4, 0, 26, 0, 4, 7, 83, 7, 44, 4, 86, 0, 4, 0, 26, 0, 4, 11, 29, 0, 4, 14, 18, 0, 4, 15, 23, 0, 4, 1, 24, 0, 4, 0, 26, 0, 4, 21, 82, 0, 4, 20, 27, 0, 4, 14, 18, 0, 4, 15, 23, 7, 28, 19, 80, 0, 4, 15, 23, 0, 4, 7, 83, 0, 4, 11, 29, 0, 4, 2, 73, 0, 4, 1, 24, 0, 4, 15, 23, 5, 6, 0, 4, 22, 10}, Classes: []*rt.Class{&cls1294, &cls1287, &cls1300, &cls1289, &cls1292, &cls1285, &cls1320, &cls1291, &cls1290, &cls1388, &cls1284, &cls1302, &cls1327, &cls1297, &cls1286, &cls1296, &cls1328, &cls1306, &cls1584, &cls1326, &cls1298, &cls1309, &cls1581}}
+var term1585 = term1585Data.Prepare()
+var term1586Data = rt.TerminalProgram{Code: []uint16{2, 1109, 3, 1101, 0, 7, 82, 0, 29, 3, 78, 65535, 7, 24, 1, 23, 0, 4, 2, 86, 0, 4, 3, 89, 0, 4, 1, 23, 0, 4, 1, 23, 0, 4, 4, 16, 7, 27, 5, 30, 3, 23, 65535, 7, 16, 6, 72, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 2, 86, 7, 4, 2, 86, 7, 24, 7, 73, 0, 4, 7, 73, 0, 4, 8, 18, 0, 4, 1, 23, 0, 4, 9, 26, 0, 4, 4, 16, 7, 71, 10, 25, 3, 67, 65535, 7, 36, 11, 88, 0, 4, 9, 26, 0, 4, 12, 83, 4, 24, 2, 22, 0, 4, 9, 26, 0, 4, 10, 25, 0, 4, 2, 86, 0, 4, 1, 23, 0, 4, 12, 83, 7, 28, 7, 73, 0, 4, 9, 26, 0, 4, 8, 18, 0, 4, 1, 23, 0, 4, 13, 24, 0, 4, 10, 25, 0, 4, 1, 23, 7, 32, 14, 79, 0, 4, 1, 23, 0, 4, 10, 25, 4, 20, 2, 18, 0, 4, 5, 30, 0, 4, 15, 82, 0, 4, 9, 26, 0, 4, 8, 18, 7, 47, 1, 23, 0, 4, 16, 96, 3, 39, 65535, 7, 16, 5, 30, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 13, 24, 7, 20, 2, 86, 0, 4, 12, 83, 0, 4, 9, 26, 0, 4, 10, 25, 0, 4, 2, 86, 7, 20, 17, 17, 0, 4, 8, 18, 0, 4, 7, 73, 0, 4, 9, 26, 0, 4, 2, 86, 7, 48, 6, 72, 0, 4, 12, 83, 0, 4, 7, 73, 0, 4, 18, 14, 0, 4, 19, 27, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 6, 72, 4, 16, 2, 14, 1, 4, 0, 44, 0, 4, 5, 30, 0, 4, 14, 79, 7, 66, 5, 30, 0, 4, 4, 16, 3, 58, 65535, 7, 12, 7, 73, 0, 4, 18, 14, 0, 4, 2, 86, 7, 43, 2, 86, 4, 39, 2, 37, 0, 4, 1, 23, 3, 31, 65535, 7, 12, 6, 72, 0, 4, 1, 23, 0, 4, 12, 83, 7, 16, 12, 83, 0, 4, 20, 80, 0, 4, 9, 26, 0, 4, 8, 18, 7, 106, 4, 16, 3, 102, 1, 7, 28, 9, 26, 0, 4, 2, 86, 0, 4, 5, 30, 0, 4, 7, 73, 0, 4, 4, 16, 0, 4, 9, 26, 0, 4, 8, 18, 7, 16, 10, 25, 0, 4, 11, 88, 0, 4, 9, 26, 0, 4, 12, 83, 7, 12, 7, 73, 0, 4, 4, 16, 0, 4, 1, 23, 7, 43, 18, 14, 3, 39, 65535, 7, 16, 8, 18, 0, 4, 8, 18, 0, 4, 5, 30, 0, 4, 17, 17, 7, 20, 15, 82, 0, 4, 1, 23, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 10, 25, 7, 39, 7, 73, 3, 35, 65535, 7, 8, 18, 14, 0, 4, 2, 86, 7, 24, 20, 80, 0, 4, 1, 23, 0, 4, 12, 83, 0, 4, 8, 18, 0, 4, 9, 26, 0, 4, 21, 87, 7, 67, 19, 27, 3, 63, 65535, 7, 28, 7, 73, 0, 4, 13, 24, 0, 4, 5, 30, 0, 4, 2, 86, 0, 4, 5, 30, 0, 4, 7, 73, 0, 4, 4, 16, 7, 32, 12, 83, 0, 4, 1, 23, 0, 4, 10, 25, 0, 4, 5, 30, 0, 4, 13, 24, 0, 4, 5, 30, 0, 4, 7, 73, 0, 4, 4, 16, 7, 27, 12, 83, 3, 23, 65535, 7, 12, 1, 23, 0, 4, 9, 26, 0, 4, 8, 18, 7, 8, 7, 73, 0, 4, 3, 89, 7, 83, 13, 24, 3, 79, 65535, 7, 16, 1, 23, 0, 4, 2, 86, 0, 4, 7, 73, 0, 4, 17, 17, 7, 28, 15, 82, 0, 4, 9, 26, 0, 4, 8, 18, 0, 4, 8, 18, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 2, 86, 7, 32, 18, 14, 0, 4, 0, 29, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 4, 16, 0, 4, 6, 72, 7, 70, 2, 86, 3, 66, 65535, 7, 36, 5, 30, 0, 4, 15, 82, 0, 4, 1, 23, 4, 24, 2, 22, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 9, 26, 0, 4, 15, 82, 0, 4, 19, 27, 7, 27, 12, 83, 3, 23, 65535, 7, 12, 1, 23, 0, 4, 9, 26, 0, 4, 2, 86, 7, 8, 5, 30, 0, 4, 15, 82, 7, 47, 20, 80, 0, 4, 9, 26, 3, 39, 65535, 7, 16, 8, 18, 0, 4, 18, 14, 0, 4, 1, 23, 0, 4, 13, 24, 7, 20, 12, 83, 0, 4, 10, 25, 0, 4, 11, 88, 0, 4, 9, 26, 0, 4, 12, 83, 7, 293, 16, 96, 0, 4, 15, 82, 0, 4, 8, 18, 3, 281, 2, 7, 40, 9, 26, 0, 4, 2, 86, 0, 4, 2, 86, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 0, 29, 0, 4, 18, 14, 0, 4, 2, 86, 0, 4, 1, 23, 0, 4, 13, 24, 7, 24, 10, 25, 0, 4, 7, 73, 0, 4, 4, 16, 0, 4, 10, 25, 0, 4, 9, 26, 0, 4, 2, 86, 7, 51, 1, 23, 3, 47, 65535, 7, 24, 8, 18, 0, 4, 1, 23, 0, 4, 15, 82, 0, 4, 1, 23, 0, 4, 4, 16, 0, 4, 2, 86, 7, 20, 16, 96, 0, 4, 5, 30, 0, 4, 13, 24, 0, 4, 2, 86, 0, 4, 13, 24, 7, 24, 17, 17, 0, 4, 7, 73, 0, 4, 12, 83, 0, 4, 1, 23, 0, 4, 13, 24, 0, 4, 2, 86, 7, 40, 4, 16, 0, 4, 9, 26, 0, 4, 15, 82, 0, 4, 1, 23, 0, 4, 13, 24, 0, 4, 19, 27, 0, 4, 9, 26, 0, 4, 10, 25, 0, 4, 1, 23, 0, 4, 13, 24, 7, 27, 19, 27, 3, 23, 65535, 7, 16, 9, 26, 0, 4, 12, 83, 0, 4, 13, 24, 0, 4, 1, 23, 7, 4, 5, 30, 7, 16, 12, 83, 0, 4, 7, 73, 0, 4, 7, 73, 0, 4, 2, 86, 7, 36, 13, 24, 0, 4, 1, 23, 0, 4, 12, 83, 0, 4, 5, 30, 0, 4, 9, 26, 0, 4, 8, 18, 0, 4, 5, 30, 0, 4, 22, 95, 0, 4, 1, 23, 7, 20, 2, 86, 0, 4, 9, 26, 0, 4, 0, 29, 0, 4, 8, 18, 0, 4, 1, 23, 5, 6, 0, 4, 23, 10}, Classes: []*rt.Class{&cls1302, &cls1296, &cls1292, &cls1303, &cls1284, &cls1290, &cls1328, &cls1300, &cls1286, &cls1294, &cls1297, &cls1320, &cls1291, &cls1287, &cls1312, &cls1309, &cls1345, &cls1289, &cls1285, &cls1298, &cls1326, &cls1327, &cls1388, &cls1581}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
+var term1586 = term1586Data.Prepare()
+var term1587Data = rt.TerminalProgram{Code: []uint16{2, 71, 3, 63, 65535, 7, 28, 0, 25, 0, 4, 1, 73, 0, 4, 2, 18, 0, 4, 3, 14, 0, 4, 4, 82, 0, 4, 5, 16, 0, 4, 6, 24, 7, 32, 7, 86, 0, 4, 8, 83, 0, 4, 9, 87, 1, 4, 0, 44, 0, 4, 0, 25, 0, 4, 10, 26, 0, 4, 6, 24, 0, 4, 7, 86, 5, 6, 0, 4, 11, 10}, Classes: []*rt.Class{&cls1297, &cls1300, &cls1286, &cls1285, &cls1309, &cls1284, &cls1287, &cls1292, &cls1291, &cls1327, &cls1294, &cls1581}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
+var term1587 = term1587Data.Prepare()
+var term1588Data = rt.TerminalProgram{Code: []uint16{2, 83, 3, 75, 65535, 7, 36, 0, 72, 0, 4, 1, 23, 0, 4, 2, 16, 0, 4, 1, 23, 0, 4, 3, 83, 0, 4, 4, 26, 0, 4, 5, 86, 0, 4, 1, 23, 0, 4, 6, 79, 7, 12, 7, 82, 0, 4, 4, 26, 0, 4, 8, 27, 7, 24, 9, 24, 0, 4, 5, 86, 0, 4, 3, 83, 0, 4, 10, 14, 0, 4, 11, 25, 0, 4, 5, 86, 5, 6, 0, 4, 12, 10}, Classes: []*rt.Class{&cls1328, &cls1296, &cls1284, &cls1291, &cls1294, &cls1292, &cls1312, &cls1309, &cls1298, &cls1287, &cls1285, &cls1297, &cls1581}}
+var term1588 = term1588Data.Prepare()
+var term1589Data = rt.TerminalProgram{Code: []uint16{2, 6196, 3, 6188, 0, 7, 313, 0, 26, 3, 309, 1, 7, 43, 1, 29, 3, 39, 65535, 7, 12, 2, 73, 0, 4, 3, 83, 0, 4, 4, 86, 7, 24, 5, 24, 0, 4, 2, 73, 0, 4, 6, 18, 0, 4, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 7, 39, 9, 25, 3, 35, 65535, 7, 16, 9, 25, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 5, 24, 7, 16, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 23, 12, 79, 3, 19, 65535, 7, 4, 12, 79, 7, 12, 13, 82, 0, 4, 10, 30, 0, 4, 11, 16, 7, 16, 14, 17, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 32, 15, 72, 0, 4, 15, 72, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 15, 72, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 43, 6, 18, 3, 39, 65535, 7, 8, 5, 24, 0, 4, 2, 73, 7, 12, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 16, 16, 89, 0, 4, 0, 26, 0, 4, 17, 87, 0, 4, 5, 24, 7, 63, 5, 24, 0, 4, 5, 24, 3, 55, 65535, 7, 24, 8, 23, 0, 4, 3, 83, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 28, 10, 30, 0, 4, 15, 72, 0, 4, 11, 16, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 47, 4, 86, 0, 4, 4, 86, 3, 39, 65535, 7, 12, 0, 26, 0, 4, 9, 25, 0, 4, 18, 88, 7, 24, 3, 83, 0, 4, 10, 30, 0, 4, 1, 29, 0, 4, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 7, 70, 1, 29, 3, 66, 65535, 7, 28, 0, 26, 0, 4, 9, 25, 0, 4, 19, 92, 0, 4, 16, 89, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 12, 79, 7, 35, 8, 23, 3, 31, 65535, 7, 16, 14, 17, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 8, 23, 7, 12, 15, 72, 0, 4, 10, 30, 0, 4, 11, 16, 7, 658, 9, 25, 3, 654, 2, 7, 85, 0, 26, 3, 81, 3, 7, 12, 9, 25, 0, 4, 18, 88, 0, 4, 8, 23, 7, 20, 6, 18, 0, 4, 6, 18, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 26, 5, 24, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 12, 79, 0, 4, 8, 23, 4, 6, 0, 4, 12, 79, 7, 20, 4, 86, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 15, 72, 7, 39, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 0, 4, 7, 14, 0, 4, 3, 83, 3, 19, 65535, 7, 12, 10, 30, 0, 4, 8, 23, 0, 4, 5, 24, 7, 4, 17, 87, 7, 102, 18, 88, 3, 98, 65535, 7, 63, 0, 26, 3, 59, 65535, 7, 8, 10, 30, 0, 4, 11, 16, 7, 48, 3, 83, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 5, 24, 7, 32, 8, 23, 0, 4, 9, 25, 0, 4, 19, 92, 0, 4, 20, 27, 0, 4, 2, 73, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 4, 86, 7, 51, 6, 18, 3, 47, 65535, 7, 12, 0, 26, 0, 4, 5, 24, 0, 4, 5, 24, 7, 12, 2, 73, 0, 4, 5, 24, 0, 4, 8, 23, 7, 20, 7, 14, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 300, 2, 73, 3, 296, 4, 7, 88, 13, 82, 3, 84, 65535, 7, 49, 13, 82, 3, 45, 65535, 7, 18, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 4, 6, 0, 4, 5, 24, 7, 24, 10, 30, 0, 4, 4, 86, 4, 16, 2, 14, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 32, 20, 27, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 189, 11, 16, 3, 185, 5, 7, 59, 14, 17, 3, 55, 65535, 7, 36, 10, 30, 0, 4, 15, 72, 0, 4, 7, 14, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 4, 86, 7, 28, 11, 16, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 32, 5, 24, 0, 4, 4, 86, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 4, 86, 0, 4, 5, 24, 7, 35, 4, 86, 3, 31, 65535, 7, 12, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 16, 10, 30, 0, 4, 11, 16, 0, 4, 7, 14, 0, 4, 8, 23, 7, 28, 21, 80, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 8, 20, 27, 0, 4, 17, 87, 7, 8, 5, 24, 0, 4, 4, 86, 7, 8, 5, 24, 0, 4, 21, 80, 7, 50, 7, 14, 3, 46, 65535, 7, 8, 1, 29, 0, 4, 8, 23, 7, 35, 3, 83, 3, 31, 65535, 7, 16, 3, 83, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 12, 5, 24, 0, 4, 2, 73, 0, 4, 3, 83, 7, 16, 17, 87, 0, 4, 9, 25, 0, 4, 6, 18, 0, 4, 8, 23, 7, 433, 12, 79, 3, 429, 6, 7, 45, 0, 26, 3, 41, 65535, 7, 28, 4, 86, 0, 4, 0, 26, 4, 20, 2, 18, 0, 4, 1, 29, 0, 4, 0, 26, 0, 4, 5, 24, 0, 4, 8, 23, 7, 10, 17, 87, 4, 6, 0, 4, 5, 24, 7, 228, 8, 23, 3, 224, 7, 7, 32, 0, 26, 0, 4, 6, 18, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 41, 9, 25, 3, 37, 65535, 7, 18, 0, 26, 0, 4, 12, 79, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 8, 23, 7, 63, 14, 17, 3, 59, 65535, 7, 20, 0, 26, 0, 4, 7, 14, 0, 4, 6, 18, 0, 4, 4, 86, 0, 4, 5, 24, 7, 20, 8, 23, 0, 4, 3, 83, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 10, 30, 0, 4, 11, 16, 0, 4, 8, 23, 0, 4, 3, 83, 7, 49, 6, 18, 3, 45, 65535, 7, 12, 8, 23, 0, 4, 4, 86, 0, 4, 8, 23, 7, 30, 10, 30, 0, 4, 13, 82, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 20, 20, 27, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 5, 24, 7, 16, 4, 86, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 18, 88, 7, 78, 10, 30, 3, 74, 65535, 7, 32, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 17, 87, 7, 39, 5, 24, 3, 35, 65535, 7, 16, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 16, 9, 25, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 12, 79, 7, 63, 2, 73, 3, 59, 65535, 7, 24, 9, 25, 0, 4, 7, 14, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 16, 13, 82, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 11, 16, 7, 16, 7, 14, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 12, 3, 83, 0, 4, 2, 73, 0, 4, 20, 27, 7, 350, 8, 23, 3, 346, 8, 7, 12, 0, 26, 0, 4, 9, 25, 0, 4, 18, 88, 7, 82, 11, 16, 3, 78, 65535, 7, 16, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 51, 9, 25, 3, 47, 65535, 7, 20, 2, 73, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 24, 3, 83, 0, 4, 17, 87, 0, 4, 20, 27, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 8, 7, 14, 0, 4, 13, 82, 7, 16, 3, 83, 0, 4, 3, 83, 0, 4, 2, 73, 0, 4, 3, 83, 7, 20, 5, 24, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 20, 27, 0, 4, 8, 23, 7, 16, 21, 80, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 197, 22, 96, 3, 193, 9, 7, 54, 9, 25, 0, 4, 6, 18, 0, 4, 7, 14, 3, 42, 65535, 7, 23, 12, 79, 3, 19, 65535, 7, 4, 8, 23, 7, 12, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 16, 5, 24, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 20, 8, 23, 0, 4, 9, 25, 0, 4, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 7, 63, 20, 27, 3, 59, 65535, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 11, 16, 7, 40, 2, 73, 0, 4, 3, 83, 0, 4, 4, 86, 4, 28, 2, 26, 1, 4, 0, 44, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 53, 4, 86, 0, 4, 8, 23, 3, 45, 65535, 7, 26, 11, 16, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 6, 0, 4, 5, 24, 7, 16, 3, 83, 0, 4, 11, 16, 0, 4, 0, 26, 0, 4, 6, 18, 7, 162, 14, 17, 3, 158, 10, 7, 20, 0, 26, 0, 4, 13, 82, 0, 4, 10, 30, 0, 4, 6, 18, 0, 4, 17, 87, 7, 35, 10, 30, 3, 31, 65535, 7, 16, 6, 18, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 7, 12, 3, 83, 0, 4, 5, 24, 0, 4, 4, 86, 7, 66, 2, 73, 3, 62, 65535, 7, 28, 6, 18, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 16, 89, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 31, 3, 83, 3, 27, 65535, 7, 8, 9, 25, 0, 4, 8, 23, 7, 16, 16, 89, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 12, 79, 7, 34, 7, 14, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 6, 0, 4, 5, 24, 7, 74, 15, 72, 3, 70, 65535, 7, 20, 6, 18, 0, 4, 2, 73, 0, 4, 1, 29, 0, 4, 0, 26, 0, 4, 6, 18, 7, 47, 3, 83, 3, 43, 65535, 7, 24, 0, 26, 0, 4, 11, 16, 0, 4, 4, 86, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 2, 73, 0, 4, 7, 14, 0, 4, 20, 27, 0, 4, 5, 24, 7, 80, 18, 88, 3, 76, 65535, 7, 24, 0, 26, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 3, 83, 7, 20, 8, 23, 0, 4, 0, 26, 0, 4, 12, 79, 0, 4, 8, 23, 0, 4, 3, 83, 7, 29, 2, 73, 3, 25, 65535, 7, 8, 6, 18, 0, 4, 12, 79, 7, 14, 7, 14, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 440, 10, 30, 3, 436, 11, 7, 28, 12, 79, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 17, 87, 7, 4, 14, 17, 7, 20, 15, 72, 0, 4, 11, 16, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 8, 23, 7, 101, 13, 82, 3, 97, 65535, 7, 55, 13, 82, 3, 51, 65535, 7, 24, 8, 23, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 24, 7, 14, 0, 4, 4, 86, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 39, 20, 27, 3, 35, 65535, 7, 20, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 10, 30, 0, 4, 4, 86, 7, 12, 2, 73, 0, 4, 3, 83, 0, 4, 4, 86, 7, 248, 11, 16, 3, 244, 12, 7, 62, 9, 25, 3, 58, 65535, 7, 31, 6, 18, 0, 4, 7, 14, 0, 4, 12, 79, 3, 19, 65535, 7, 4, 8, 23, 7, 12, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 24, 3, 83, 0, 4, 8, 23, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 24, 12, 79, 0, 4, 8, 23, 0, 4, 22, 96, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 5, 24, 7, 26, 18, 88, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 4, 86, 4, 6, 0, 4, 5, 24, 7, 16, 6, 18, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 8, 23, 7, 12, 20, 27, 0, 4, 7, 14, 0, 4, 4, 86, 7, 81, 5, 24, 3, 77, 65535, 7, 43, 8, 23, 3, 39, 65535, 7, 28, 11, 16, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 8, 3, 83, 0, 4, 4, 86, 7, 31, 4, 86, 3, 27, 65535, 7, 12, 0, 26, 0, 4, 6, 18, 0, 4, 6, 18, 7, 12, 8, 23, 0, 4, 0, 26, 0, 4, 12, 79, 7, 20, 21, 80, 0, 4, 2, 73, 0, 4, 19, 92, 0, 4, 8, 23, 0, 4, 3, 83, 7, 32, 5, 24, 0, 4, 2, 73, 0, 4, 6, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 23, 93, 0, 4, 5, 24, 0, 4, 2, 73, 0, 4, 11, 16, 7, 12, 19, 92, 0, 4, 8, 23, 0, 4, 17, 87, 7, 218, 6, 18, 3, 214, 13, 7, 63, 0, 26, 3, 59, 14, 7, 12, 1, 29, 0, 4, 8, 23, 0, 4, 6, 18, 7, 24, 11, 16, 0, 4, 15, 72, 0, 4, 7, 14, 0, 4, 0, 26, 0, 4, 15, 72, 0, 4, 8, 23, 7, 12, 3, 83, 0, 4, 15, 72, 0, 4, 8, 23, 7, 8, 5, 24, 0, 4, 4, 86, 7, 47, 8, 23, 3, 43, 65535, 7, 28, 0, 26, 0, 4, 19, 92, 0, 4, 20, 27, 0, 4, 3, 83, 0, 4, 2, 73, 0, 4, 2, 73, 0, 4, 14, 17, 7, 12, 21, 80, 0, 4, 8, 23, 0, 4, 6, 18, 7, 20, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 11, 16, 7, 81, 2, 73, 3, 77, 65535, 7, 8, 0, 26, 0, 4, 12, 79, 7, 50, 9, 25, 3, 46, 65535, 7, 27, 0, 26, 3, 23, 65535, 7, 4, 6, 18, 7, 16, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 19, 92, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 15, 72, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 12, 79, 7, 379, 13, 82, 3, 375, 15, 7, 126, 0, 26, 3, 122, 16, 7, 12, 9, 25, 0, 4, 3, 83, 0, 4, 2, 73, 7, 20, 20, 27, 0, 4, 20, 27, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 63, 4, 86, 3, 59, 65535, 7, 20, 9, 25, 0, 4, 18, 88, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 36, 8, 23, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 24, 95, 0, 4, 8, 23, 0, 4, 12, 79, 7, 24, 22, 96, 0, 4, 21, 80, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 7, 14, 0, 4, 8, 23, 7, 35, 8, 23, 3, 31, 65535, 7, 12, 3, 83, 0, 4, 15, 72, 0, 4, 8, 23, 7, 16, 4, 86, 0, 4, 18, 88, 0, 4, 2, 73, 0, 4, 12, 79, 7, 170, 10, 30, 3, 166, 65535, 7, 42, 9, 25, 0, 4, 3, 83, 0, 4, 2, 73, 0, 4, 5, 24, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 12, 79, 4, 6, 0, 4, 5, 24, 7, 76, 6, 18, 0, 4, 6, 18, 3, 68, 65535, 7, 31, 8, 23, 0, 4, 11, 16, 0, 4, 11, 16, 0, 4, 10, 30, 3, 15, 65535, 7, 4, 0, 26, 7, 8, 7, 14, 0, 4, 13, 82, 7, 34, 10, 30, 0, 4, 5, 24, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 12, 79, 4, 6, 0, 4, 5, 24, 7, 45, 11, 16, 3, 41, 65535, 7, 18, 7, 14, 0, 4, 4, 86, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 20, 21, 80, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 7, 14, 0, 4, 8, 23, 7, 41, 2, 73, 3, 37, 65535, 7, 8, 12, 79, 0, 4, 8, 23, 7, 18, 11, 16, 0, 4, 4, 86, 0, 4, 18, 88, 4, 6, 0, 4, 5, 24, 7, 8, 21, 80, 0, 4, 8, 23, 7, 120, 11, 16, 3, 116, 17, 7, 18, 0, 26, 0, 4, 13, 82, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 19, 8, 23, 3, 15, 65535, 7, 4, 16, 89, 7, 8, 22, 96, 0, 4, 4, 86, 7, 60, 2, 73, 4, 56, 3, 54, 65535, 7, 35, 4, 86, 3, 31, 65535, 7, 16, 18, 88, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 12, 10, 30, 0, 4, 14, 17, 0, 4, 17, 87, 7, 16, 16, 89, 0, 4, 0, 26, 0, 4, 10, 30, 0, 4, 4, 86, 7, 16, 7, 14, 0, 4, 6, 18, 0, 4, 6, 18, 0, 4, 5, 24, 7, 229, 2, 73, 3, 225, 18, 7, 20, 1, 29, 0, 4, 23, 93, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 4, 86, 7, 10, 14, 17, 4, 6, 0, 4, 14, 17, 7, 12, 10, 30, 0, 4, 12, 79, 0, 4, 5, 24, 7, 8, 6, 18, 0, 4, 12, 79, 7, 53, 20, 27, 3, 49, 65535, 7, 24, 8, 23, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 2, 73, 0, 4, 3, 83, 7, 22, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 6, 0, 4, 5, 24, 7, 36, 3, 83, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 17, 87, 7, 20, 4, 86, 0, 4, 18, 88, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 5, 24, 7, 40, 21, 80, 0, 4, 8, 23, 0, 4, 3, 83, 4, 28, 2, 26, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 23, 16, 89, 0, 4, 11, 16, 0, 4, 8, 23, 3, 11, 65535, 7, 4, 12, 79, 7, 4, 3, 83, 7, 467, 20, 27, 3, 463, 19, 7, 132, 0, 26, 3, 128, 65535, 7, 86, 3, 83, 3, 82, 65535, 7, 20, 0, 26, 0, 4, 6, 18, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 6, 18, 7, 12, 5, 24, 0, 4, 8, 23, 0, 4, 3, 83, 7, 47, 4, 86, 0, 4, 10, 30, 3, 39, 65535, 7, 8, 0, 26, 0, 4, 6, 18, 7, 28, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 4, 12, 2, 10, 0, 4, 8, 23, 0, 4, 12, 79, 7, 39, 5, 24, 0, 4, 5, 24, 3, 31, 65535, 7, 12, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 16, 16, 89, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 12, 79, 7, 55, 8, 23, 0, 4, 3, 83, 3, 47, 65535, 7, 16, 9, 25, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 28, 5, 24, 0, 4, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 11, 16, 0, 4, 5, 24, 7, 20, 2, 73, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 17, 87, 7, 197, 3, 83, 3, 193, 20, 7, 16, 0, 26, 0, 4, 15, 72, 0, 4, 13, 82, 0, 4, 0, 26, 7, 73, 8, 23, 3, 69, 65535, 7, 24, 9, 25, 0, 4, 8, 23, 0, 4, 12, 79, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 22, 20, 27, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 8, 23, 4, 6, 0, 4, 12, 79, 7, 20, 5, 24, 0, 4, 8, 23, 0, 4, 3, 83, 0, 4, 21, 80, 0, 4, 8, 23, 7, 43, 10, 30, 3, 39, 65535, 7, 8, 2, 73, 0, 4, 3, 83, 7, 28, 21, 80, 0, 4, 10, 30, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 5, 24, 7, 58, 2, 73, 3, 54, 65535, 7, 35, 9, 25, 0, 4, 8, 23, 0, 4, 12, 79, 0, 4, 7, 14, 0, 4, 3, 83, 3, 15, 65535, 7, 8, 0, 26, 0, 4, 6, 18, 7, 4, 8, 23, 7, 16, 15, 72, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 13, 82, 7, 40, 7, 14, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 49, 25, 90, 0, 4, 7, 14, 3, 41, 65535, 7, 26, 0, 26, 0, 4, 3, 83, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 12, 2, 73, 0, 4, 4, 86, 0, 4, 8, 23, 7, 481, 3, 83, 3, 477, 21, 7, 16, 0, 26, 0, 4, 11, 16, 0, 4, 15, 72, 0, 4, 8, 23, 7, 389, 8, 23, 3, 385, 22, 7, 31, 0, 26, 3, 27, 65535, 7, 4, 12, 79, 7, 20, 5, 24, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 15, 72, 0, 4, 11, 16, 7, 47, 9, 25, 3, 43, 65535, 7, 16, 18, 88, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 19, 92, 7, 24, 7, 14, 0, 4, 3, 83, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 57, 14, 17, 4, 53, 3, 51, 65535, 7, 32, 8, 23, 0, 4, 3, 83, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 16, 3, 83, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 18, 88, 7, 20, 10, 30, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 8, 23, 0, 4, 22, 96, 7, 43, 6, 18, 3, 39, 65535, 7, 20, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 21, 80, 0, 4, 8, 23, 7, 16, 8, 23, 0, 4, 0, 26, 0, 4, 5, 24, 0, 4, 8, 23, 7, 16, 11, 16, 0, 4, 0, 26, 0, 4, 13, 82, 0, 4, 8, 23, 7, 66, 20, 27, 3, 62, 65535, 7, 28, 8, 23, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 31, 6, 18, 3, 27, 65535, 7, 12, 0, 26, 0, 4, 9, 25, 0, 4, 8, 23, 7, 12, 10, 30, 0, 4, 9, 25, 0, 4, 0, 26, 7, 66, 5, 24, 3, 62, 65535, 7, 8, 8, 23, 0, 4, 4, 86, 7, 16, 20, 27, 0, 4, 8, 23, 0, 4, 9, 25, 0, 4, 4, 86, 7, 35, 4, 86, 3, 31, 65535, 7, 12, 0, 26, 0, 4, 3, 83, 0, 4, 4, 86, 7, 16, 3, 83, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 4, 86, 7, 20, 4, 86, 0, 4, 7, 14, 0, 4, 3, 83, 0, 4, 11, 16, 0, 4, 5, 24, 7, 16, 21, 80, 0, 4, 2, 73, 0, 4, 19, 92, 0, 4, 8, 23, 7, 57, 2, 73, 3, 53, 65535, 7, 42, 6, 18, 3, 38, 65535, 7, 4, 8, 23, 7, 31, 6, 18, 3, 27, 65535, 7, 16, 1, 29, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 19, 92, 7, 8, 7, 14, 0, 4, 20, 27, 7, 8, 16, 89, 0, 4, 5, 24, 7, 12, 7, 14, 0, 4, 6, 18, 0, 4, 8, 23, 7, 702, 5, 24, 3, 698, 23, 7, 51, 0, 26, 3, 47, 65535, 7, 16, 13, 82, 0, 4, 20, 27, 0, 4, 6, 18, 0, 4, 8, 23, 7, 28, 21, 80, 0, 4, 8, 23, 0, 4, 20, 27, 0, 4, 2, 73, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 4, 86, 7, 57, 9, 25, 3, 53, 65535, 7, 22, 18, 88, 0, 4, 8, 23, 0, 4, 13, 82, 0, 4, 0, 26, 4, 6, 0, 4, 5, 24, 7, 12, 2, 73, 0, 4, 20, 27, 0, 4, 8, 23, 7, 16, 3, 83, 0, 4, 2, 73, 0, 4, 6, 18, 0, 4, 6, 18, 7, 195, 8, 23, 3, 191, 24, 7, 16, 0, 26, 0, 4, 3, 83, 0, 4, 9, 25, 0, 4, 18, 88, 7, 57, 9, 25, 3, 53, 65535, 7, 18, 2, 73, 0, 4, 11, 16, 0, 4, 12, 79, 4, 6, 0, 4, 5, 24, 7, 12, 3, 83, 0, 4, 8, 23, 0, 4, 4, 86, 7, 20, 7, 14, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 17, 87, 7, 30, 25, 90, 0, 4, 7, 14, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 55, 3, 83, 3, 51, 65535, 7, 36, 10, 30, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 10, 30, 0, 4, 24, 95, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 12, 21, 80, 0, 4, 8, 23, 0, 4, 3, 83, 7, 20, 5, 24, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 10, 4, 86, 4, 6, 0, 4, 5, 24, 7, 16, 18, 88, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 8, 23, 7, 20, 10, 30, 0, 4, 13, 82, 0, 4, 20, 27, 0, 4, 6, 18, 0, 4, 8, 23, 7, 12, 19, 92, 0, 4, 10, 30, 0, 4, 20, 27, 7, 28, 11, 16, 0, 4, 0, 26, 0, 4, 20, 27, 0, 4, 5, 24, 0, 4, 18, 88, 0, 4, 2, 73, 0, 4, 4, 86, 7, 39, 2, 73, 3, 35, 65535, 7, 16, 3, 83, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 16, 7, 14, 0, 4, 3, 83, 0, 4, 9, 25, 0, 4, 8, 23, 7, 8, 25, 90, 0, 4, 6, 18, 7, 194, 4, 86, 3, 190, 25, 7, 106, 0, 26, 3, 102, 26, 7, 12, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 28, 11, 16, 0, 4, 12, 79, 0, 4, 0, 26, 0, 4, 6, 18, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 8, 23, 7, 8, 3, 83, 0, 4, 4, 86, 7, 51, 4, 86, 3, 47, 65535, 7, 20, 8, 23, 0, 4, 13, 82, 0, 4, 8, 23, 0, 4, 11, 16, 0, 4, 4, 86, 7, 24, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 9, 25, 0, 4, 5, 24, 7, 27, 12, 79, 3, 23, 65535, 7, 8, 10, 30, 0, 4, 11, 16, 7, 12, 2, 73, 0, 4, 7, 14, 0, 4, 4, 86, 7, 31, 2, 73, 0, 4, 3, 83, 3, 23, 65535, 7, 12, 0, 26, 0, 4, 15, 72, 0, 4, 8, 23, 7, 8, 8, 23, 0, 4, 12, 79, 7, 23, 3, 83, 0, 4, 10, 30, 3, 15, 65535, 7, 8, 9, 25, 0, 4, 4, 86, 7, 4, 20, 27, 7, 44, 7, 14, 0, 4, 1, 29, 0, 4, 5, 24, 0, 4, 9, 25, 0, 4, 3, 83, 0, 4, 10, 30, 0, 4, 20, 27, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 31, 17, 87, 0, 4, 5, 24, 3, 23, 65535, 7, 8, 10, 30, 0, 4, 12, 79, 7, 12, 4, 86, 0, 4, 8, 23, 0, 4, 13, 82, 7, 285, 4, 86, 3, 281, 27, 7, 59, 0, 26, 3, 55, 65535, 7, 36, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 0, 4, 5, 24, 4, 20, 2, 18, 0, 4, 20, 27, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 8, 23, 7, 16, 3, 83, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 4, 86, 7, 64, 8, 23, 3, 60, 65535, 7, 49, 13, 82, 0, 4, 20, 27, 4, 41, 3, 39, 65535, 7, 16, 6, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 20, 2, 73, 0, 4, 3, 83, 0, 4, 0, 26, 0, 4, 3, 83, 0, 4, 17, 87, 7, 8, 22, 96, 0, 4, 4, 86, 7, 12, 10, 30, 0, 4, 8, 23, 0, 4, 5, 24, 7, 125, 3, 83, 3, 121, 65535, 7, 55, 0, 26, 0, 4, 11, 16, 0, 4, 5, 24, 3, 43, 65535, 7, 24, 0, 26, 0, 4, 9, 25, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 16, 14, 17, 0, 4, 2, 73, 0, 4, 3, 83, 0, 4, 13, 82, 7, 20, 10, 30, 0, 4, 15, 72, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 3, 83, 7, 43, 7, 14, 3, 39, 65535, 7, 20, 11, 16, 0, 4, 9, 25, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 16, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 18, 17, 87, 0, 4, 20, 27, 0, 4, 8, 23, 4, 6, 0, 4, 5, 24, 7, 227, 7, 14, 3, 223, 65535, 7, 186, 11, 16, 3, 182, 28, 7, 28, 1, 29, 0, 4, 2, 73, 0, 4, 7, 14, 0, 4, 11, 16, 0, 4, 12, 79, 0, 4, 8, 23, 0, 4, 12, 79, 7, 36, 9, 25, 0, 4, 2, 73, 0, 4, 13, 82, 0, 4, 13, 82, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 36, 8, 23, 0, 4, 11, 16, 0, 4, 9, 25, 0, 4, 3, 83, 0, 4, 17, 87, 0, 4, 20, 27, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 12, 79, 7, 20, 19, 92, 0, 4, 11, 16, 0, 4, 2, 73, 0, 4, 16, 89, 0, 4, 11, 16, 7, 47, 6, 18, 3, 43, 65535, 7, 20, 10, 30, 0, 4, 5, 24, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 11, 16, 7, 20, 2, 73, 0, 4, 15, 72, 0, 4, 15, 72, 0, 4, 8, 23, 0, 4, 12, 79, 7, 12, 4, 86, 0, 4, 10, 30, 0, 4, 6, 18, 7, 20, 20, 27, 0, 4, 12, 79, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 8, 23, 7, 14, 5, 24, 0, 4, 8, 23, 4, 6, 0, 4, 3, 83, 7, 216, 21, 80, 3, 212, 29, 7, 116, 0, 26, 3, 112, 65535, 7, 16, 9, 25, 0, 4, 7, 14, 0, 4, 7, 14, 0, 4, 13, 82, 7, 50, 6, 18, 3, 46, 65535, 7, 35, 10, 30, 0, 4, 12, 79, 4, 27, 2, 25, 0, 4, 0, 26, 0, 4, 4, 86, 3, 15, 65535, 7, 4, 8, 23, 7, 8, 2, 73, 0, 4, 3, 83, 7, 8, 7, 14, 0, 4, 8, 23, 7, 43, 3, 83, 3, 39, 65535, 7, 20, 10, 30, 0, 4, 0, 26, 0, 4, 1, 29, 0, 4, 6, 18, 0, 4, 8, 23, 7, 16, 17, 87, 0, 4, 10, 30, 0, 4, 11, 16, 0, 4, 15, 72, 7, 24, 8, 23, 0, 4, 3, 83, 0, 4, 5, 24, 0, 4, 10, 30, 0, 4, 2, 73, 0, 4, 11, 16, 7, 41, 10, 30, 3, 37, 65535, 7, 14, 8, 23, 0, 4, 16, 89, 4, 6, 0, 4, 5, 24, 7, 20, 3, 83, 0, 4, 4, 86, 0, 4, 7, 14, 0, 4, 0, 26, 0, 4, 6, 18, 7, 28, 2, 73, 0, 4, 6, 18, 0, 4, 0, 26, 0, 4, 4, 86, 0, 4, 10, 30, 0, 4, 6, 18, 0, 4, 8, 23, 7, 147, 16, 89, 3, 143, 30, 7, 18, 8, 23, 0, 4, 8, 23, 0, 4, 19, 92, 4, 6, 0, 4, 5, 24, 7, 36, 18, 88, 0, 4, 10, 30, 0, 4, 4, 86, 0, 4, 8, 23, 0, 4, 5, 24, 0, 4, 20, 27, 0, 4, 0, 26, 0, 4, 9, 25, 0, 4, 8, 23, 7, 35, 10, 30, 0, 4, 4, 86, 0, 4, 18, 88, 3, 23, 65535, 7, 8, 10, 30, 0, 4, 11, 16, 7, 12, 2, 73, 0, 4, 7, 14, 0, 4, 4, 86, 7, 12, 2, 73, 0, 4, 3, 83, 0, 4, 19, 92, 7, 39, 3, 83, 3, 35, 65535, 7, 20, 0, 26, 0, 4, 20, 27, 0, 4, 20, 27, 0, 4, 8, 23, 0, 4, 3, 83, 7, 12, 10, 30, 0, 4, 4, 86, 0, 4, 8, 23, 7, 12, 22, 96, 0, 4, 13, 82, 0, 4, 6, 18, 7, 29, 17, 87, 0, 4, 8, 23, 3, 21, 65535, 7, 14, 0, 26, 0, 4, 3, 83, 4, 6, 0, 4, 5, 24, 7, 4, 5, 24, 7, 16, 24, 95, 0, 4, 2, 73, 0, 4, 11, 16, 0, 4, 8, 23, 5, 6, 0, 4, 26, 10}, Classes: []*rt.Class{&cls1294, &cls1302, &cls1300, &cls1291, &cls1292, &cls1287, &cls1286, &cls1285, &cls1296, &cls1297, &cls1290, &cls1284, &cls1312, &cls1309, &cls1289, &cls1328, &cls1303, &cls1327, &cls1320, &cls1306, &cls1298, &cls1326, &cls1345, &cls1584, &cls1388, &cls1408, &cls1581}, Literals: []rt.TerminalText{{Runes: lit45, Text: "_"}}}
+var term1589 = term1589Data.Prepare()
+var steps1590 = []rt.ClassStep{{C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}}
+var steps1591 = []rt.ClassStep{{C: &cls1284, ID: 16}, {C: &cls1300, ID: 73}, {C: &cls1292, ID: 86}, {C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}}
+var steps1592 = []rt.ClassStep{{C: &cls1328, ID: 72}, {C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1302, ID: 29}}
+var steps1593 = []rt.ClassStep{{C: &cls1327, ID: 87}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}}
+var steps1594 = []rt.ClassStep{{C: &cls1327, ID: 87}, {C: &cls1296, ID: 23}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}}
+var steps1595 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}, {C: &cls1287, ID: 24}}
+var steps1596 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1320, ID: 88}}
+var steps1597 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1294, ID: 26}, {C: &cls1327, ID: 87}, {C: &cls1287, ID: 24}}
+var steps1598 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1294, ID: 26}, {C: &cls1327, ID: 87}}
+var steps1599 = []rt.ClassStep{{C: &cls1320, ID: 88}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}}
+var steps1600 = []rt.ClassStep{{C: &cls1320, ID: 88}, {C: &cls1300, ID: 73}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}}
+var steps1601 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1602 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}, {C: &cls1285, ID: 14}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}}
+var steps1603 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}, {C: &cls1287, ID: 24}}
+var steps1604 = []rt.ClassStep{{C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}}
+var steps1605 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}, {C: &cls1287, ID: 24}}
+var steps1606 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1290, ID: 30}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}}
+var steps1607 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}, {C: &cls1287, ID: 24}}
+var steps1608 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1291, ID: 83}, {C: &cls1300, ID: 73}, {C: &cls1287, ID: 24}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1312, ID: 79}}
+var steps1609 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1296, ID: 23}, {C: &cls1296, ID: 23}, {C: &cls1306, ID: 92}, {C: &cls1287, ID: 24}}
+var steps1610 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1296, ID: 23}, {C: &cls1296, ID: 23}, {C: &cls1306, ID: 92}}
+var steps1611 = []rt.ClassStep{{C: &cls1408, ID: 90}, {C: &cls1285, ID: 14}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}, {C: &cls1287, ID: 24}}
+var steps1612 = []rt.ClassStep{{C: &cls1408, ID: 90}, {C: &cls1285, ID: 14}, {C: &cls1294, ID: 26}, {C: &cls1291, ID: 83}, {C: &cls1292, ID: 86}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1613 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1614 = []rt.ClassStep{{C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}}
+var steps1615 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}}
+var steps1616 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1292, ID: 86}, {C: &cls1285, ID: 14}, {C: &cls1291, ID: 83}, {C: &cls1327, ID: 87}}
+var steps1617 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1284, ID: 16}, {C: &cls1290, ID: 30}, {C: &cls1294, ID: 26}}
+var steps1618 = []rt.ClassStep{{C: &cls1309, ID: 82}, {C: &cls1290, ID: 30}, {C: &cls1286, ID: 18}, {C: &cls1286, ID: 18}, {C: &cls1296, ID: 23}, {C: &cls1284, ID: 16}, {C: &cls1284, ID: 16}, {C: &cls1290, ID: 30}, {C: &cls1285, ID: 14}, {C: &cls1309, ID: 82}}
+var steps1619 = []rt.ClassStep{{C: &cls1298, ID: 27}, {C: &cls1290, ID: 30}, {C: &cls1326, ID: 80}, {C: &cls1300, ID: 73}, {C: &cls1292, ID: 86}}
+var steps1620 = []rt.ClassStep{{C: &cls1303, ID: 89}, {C: &cls1290, ID: 30}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1621 = []rt.ClassStep{{C: &cls1286, ID: 18}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}, {C: &cls1328, ID: 72}, {C: &cls1296, ID: 23}, {C: &cls1291, ID: 83}}
+var steps1622 = []rt.ClassStep{{C: &cls1285, ID: 14}, {C: &cls1284, ID: 16}, {C: &cls1298, ID: 27}, {C: &cls1290, ID: 30}, {C: &cls1326, ID: 80}, {C: &cls1300, ID: 73}, {C: &cls1292, ID: 86}}
+var steps1623 = []rt.ClassStep{{C: &cls1584, ID: 93}, {C: &cls1300, ID: 73}, {C: &cls1290, ID: 30}, {C: &cls1284, ID: 16}}
+var steps1624 = []rt.ClassStep{{C: &cls1294, ID: 26}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}, {C: &cls1290, ID: 30}, {C: &cls1300, ID: 73}, {C: &cls1284, ID: 16}}
+var steps1625 = []rt.ClassStep{{C: &cls1291, ID: 83}, {C: &cls1296, ID: 23}, {C: &cls1287, ID: 24}, {C: &cls1292, ID: 86}, {C: &cls1291, ID: 83}, {C: &cls1290, ID: 30}, {C: &cls1297, ID: 25}, {C: &cls1292, ID: 86}}
+var steps1626 = []rt.ClassStep{{C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1287, ID: 24}, {C: &cls1297, ID: 25}, {C: &cls1294, ID: 26}, {C: &cls1312, ID: 79}, {C: &cls1296, ID: 23}}
+var lit1654 = []rune("::")
 
 func init() {
 	rules = rt.NewRules(rulesSpec[:], rulesStrs[:], rulesExtras[:])
@@ -5785,162 +5785,522 @@ func init() {
 	trules = rt.NewTRules(rules)
 	defer tinit()
 	trules[72].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e1651,
+		Skip: e1627,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1652, Action: nil, Value: sh1},
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1653, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1628, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1629, Action: nil, Value: sh1},
 		},
-		Prefix: []*rt.TOperatorsRuleOp{{Id: 4, Kind: "prefix", Assoc: "", Level: 4, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1658, Action: func(c *rt.TActCtx) any { return tmk_Not(c, true, (c.Rhs)) }, Value: sh1}},
-			{Id: 15, Kind: "prefix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1669, Action: func(c *rt.TActCtx) any { return tmk_Unary(c, true, c.Cap(0), (c.Rhs)) }, Value: sh1196}},
-			{Id: 23, Kind: "prefix", Assoc: "", Level: 14, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1677, Action: func(c *rt.TActCtx) any { return tmk_Unary(c, true, (c.Op), (c.Rhs)) }, Value: sh1}}},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "infix", Assoc: "left", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1654, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs)) }, Value: sh8}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1655, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh28}},
-			{Id: 2, Kind: "infix", Assoc: "left", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1656, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs)) }, Value: sh8}},
-			{Id: 3, Kind: "infix", Assoc: "left", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1657, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs)) }, Value: sh8}},
-			{Id: 5, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "t", "nn"}, M: e1659, Action: func(c *rt.TActCtx) any {
-				return tmk_IsExpr(c, true, (c.Lhs), c.Or(c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)), func() any { return c.Binary(rt.OpGt, c.Length(c.Cap(2)), any(0)) }), c.Text(c.Cap(1)))
-			}, Value: sh8}},
-			{Id: 6, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e1660, Action: func(c *rt.TActCtx) any { return tmk_IsExpr(c, true, (c.Lhs), any(true), c.Text(c.Cap(0))) }, Value: sh8}},
-			{Id: 7, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "r"}, M: e1661, Action: func(c *rt.TActCtx) any {
-				return tmk_DistinctFrom(c, true, (c.Lhs), c.Cap(1), c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)))
-			}, Value: sh1135}},
-			{Id: 8, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "ts"}, M: e1662, Action: func(c *rt.TActCtx) any {
-				return tmk_IsOf(c, true, (c.Lhs), c.Cap(1), c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)))
-			}, Value: sh1141}},
-			{Id: 9, Kind: "postfix", Assoc: "", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1663, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh28}},
-			{Id: 10, Kind: "postfix", Assoc: "", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "q", "s"}, M: e1664, Action: func(c *rt.TActCtx) any {
-				return tmk_AnyAll(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Text(c.Cap(1)), c.Cap(2))
-			}, Value: sh218}},
-			{Id: 11, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "o", "p", "e"}, M: e1665, Action: func(c *rt.TActCtx) any {
-				return tmk_Like(c, true, (c.Lhs), c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)), c.Text(c.Cap(1)), c.Cap(2), c.Cap(3))
-			}, Value: sh218}},
-			{Id: 12, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "p"}, M: e1666, Action: func(c *rt.TActCtx) any {
-				return tmk_Like(c, true, (c.Lhs), any(false), c.Text(c.Cap(0)), c.Cap(1), nil)
+		Prefix: []*rt.TOperatorsRuleOp{{Id: 4, Kind: "prefix", Assoc: "", Level: 4, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1634, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_Not(c, true, (c.Rhs))
+			return tv1
+		}, Value: sh1}},
+			{Id: 15, Kind: "prefix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1645, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Unary(c, true, c.Cap(0), (c.Rhs))
+				return tv1
+			}, Value: sh1196}},
+			{Id: 23, Kind: "prefix", Assoc: "", Level: 14, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1653, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Unary(c, true, (c.Op), (c.Rhs))
+				return tv1
+			}, Value: sh1}}},
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "infix", Assoc: "left", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1630, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs))
+			return tv1
+		}, Value: sh8}},
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1631, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
 			}, Value: sh28}},
-			{Id: 13, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "q", "is", "s"}, M: e1667, Action: func(c *rt.TActCtx) any {
-				return tmk_In(c, true, (c.Lhs), c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)), c.Cap(1), c.Concat(c.Cap(2)), c.Cap(3))
+			{Id: 2, Kind: "infix", Assoc: "left", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1632, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs))
+				return tv1
+			}, Value: sh8}},
+			{Id: 3, Kind: "infix", Assoc: "left", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1633, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs))
+				return tv1
+			}, Value: sh8}},
+			{Id: 5, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "t", "nn"}, M: e1635, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tb3, tf3 := c.P.TermLogic(rt.OpOr, tv2)
+				if tf3 != nil {
+					panic(tf3)
+				}
+				tv4 := any(true)
+				if !tb3 {
+					tv5, tf5 := c.P.TermLength(c.Cap(2))
+					if tf5 != nil {
+						panic(tf5)
+					}
+					tv6, tf6 := c.P.TermBinary(rt.OpGt, tv5, any(0))
+					if tf6 != nil {
+						panic(tf6)
+					}
+					tb7, tf7 := c.P.TermLogic(rt.OpOr, tv6)
+					if tf7 != nil {
+						panic(tf7)
+					}
+					tv4 = any(tb7)
+				}
+				ts8, tf8 := c.P.TermText(c.Cap(1))
+				if tf8 != nil {
+					panic(tf8)
+				}
+				tv9 := tmk_IsExpr(c, true, (c.Lhs), tv4, any(ts8))
+				return tv9
+			}, Value: sh8}},
+			{Id: 6, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e1636, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_IsExpr(c, true, (c.Lhs), any(true), any(ts1))
+				return tv2
+			}, Value: sh8}},
+			{Id: 7, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "r"}, M: e1637, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3 := tmk_DistinctFrom(c, true, (c.Lhs), c.Cap(1), tv2)
+				return tv3
+			}, Value: sh1135}},
+			{Id: 8, Kind: "postfix", Assoc: "", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "ts"}, M: e1638, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3 := tmk_IsOf(c, true, (c.Lhs), c.Cap(1), tv2)
+				return tv3
+			}, Value: sh1141}},
+			{Id: 9, Kind: "postfix", Assoc: "", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1639, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh28}},
+			{Id: 10, Kind: "postfix", Assoc: "", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "q", "s"}, M: e1640, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				ts2, tf2 := c.P.TermText(c.Cap(1))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3 := tmk_AnyAll(c, true, (c.Lhs), any(ts1), any(ts2), c.Cap(2))
+				return tv3
+			}, Value: sh218}},
+			{Id: 11, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "o", "p", "e"}, M: e1641, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				ts3, tf3 := c.P.TermText(c.Cap(1))
+				if tf3 != nil {
+					panic(tf3)
+				}
+				tv4 := tmk_Like(c, true, (c.Lhs), tv2, any(ts3), c.Cap(2), c.Cap(3))
+				return tv4
+			}, Value: sh218}},
+			{Id: 12, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "p"}, M: e1642, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_Like(c, true, (c.Lhs), any(false), any(ts1), c.Cap(1), any(nil))
+				return tv2
+			}, Value: sh28}},
+			{Id: 13, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "q", "is", "s"}, M: e1643, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tm3 := len(c.P.KidStack)
+				tf4 := c.P.TermPushItems(c, "concat", c.Cap(2))
+				if tf4 != nil {
+					panic(tf4)
+				}
+				tk5 := c.P.Kids(tm3)
+				tn6 := c.P.TermHull(c, false, tk5)
+				tv7 := tmk_In(c, true, (c.Lhs), tv2, c.Cap(1), any(tn6), c.Cap(3))
+				return tv7
 			}, Value: sh126}},
-			{Id: 14, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "sy", "lo", "hi"}, M: e1668, Action: func(c *rt.TActCtx) any {
-				return tmk_Between(c, true, (c.Lhs), c.Cap(2), c.Cap(3), c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)), c.Binary(rt.OpGt, c.Length(c.Cap(1)), any(0)))
+			{Id: 14, Kind: "postfix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "sy", "lo", "hi"}, M: e1644, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3, tf3 := c.P.TermLength(c.Cap(1))
+				if tf3 != nil {
+					panic(tf3)
+				}
+				tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+				if tf4 != nil {
+					panic(tf4)
+				}
+				tv5 := tmk_Between(c, true, (c.Lhs), c.Cap(2), c.Cap(3), tv2, tv4)
+				return tv5
 			}, Value: sh19}},
-			{Id: 16, Kind: "postfix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1670, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh28}},
-			{Id: 17, Kind: "postfix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1671, Action: func(c *rt.TActCtx) any { return tmk_PostfixOp(c, true, (c.Lhs), c.Cap(0)) }, Value: sh8}},
-			{Id: 18, Kind: "infix", Assoc: "left", Level: 9, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1672, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs)) }, Value: sh8}},
-			{Id: 19, Kind: "infix", Assoc: "left", Level: 10, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1673, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs)) }, Value: sh8}},
-			{Id: 20, Kind: "infix", Assoc: "left", Level: 11, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1674, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs)) }, Value: sh8}},
-			{Id: 21, Kind: "postfix", Assoc: "", Level: 12, Line: &rt.TOperatorsRuleLine{Scope: []string{"z"}, M: e1675, Action: func(c *rt.TActCtx) any { return tmk_AtTimeZone(c, true, (c.Lhs), c.Cap(0)) }, Value: sh1132}},
-			{Id: 22, Kind: "postfix", Assoc: "", Level: 13, Line: &rt.TOperatorsRuleLine{Scope: []string{"n"}, M: e1676, Action: func(c *rt.TActCtx) any { return tmk_Collate(c, true, (c.Lhs), c.Cap(0)) }, Value: sh28}},
-			{Id: 24, Kind: "postfix", Assoc: "", Level: 15, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e1679, Action: func(c *rt.TActCtx) any { return tmk_Cast(c, true, (c.Lhs), c.Cap(0), any(false), any(true)) }, Value: sh28}}},
+			{Id: 16, Kind: "postfix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1646, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh28}},
+			{Id: 17, Kind: "postfix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1647, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_PostfixOp(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh8}},
+			{Id: 18, Kind: "infix", Assoc: "left", Level: 9, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1648, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs))
+				return tv1
+			}, Value: sh8}},
+			{Id: 19, Kind: "infix", Assoc: "left", Level: 10, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1649, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs))
+				return tv1
+			}, Value: sh8}},
+			{Id: 20, Kind: "infix", Assoc: "left", Level: 11, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1650, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), (c.Rhs))
+				return tv1
+			}, Value: sh8}},
+			{Id: 21, Kind: "postfix", Assoc: "", Level: 12, Line: &rt.TOperatorsRuleLine{Scope: []string{"z"}, M: e1651, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_AtTimeZone(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh1132}},
+			{Id: 22, Kind: "postfix", Assoc: "", Level: 13, Line: &rt.TOperatorsRuleLine{Scope: []string{"n"}, M: e1652, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Collate(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh28}},
+			{Id: 24, Kind: "postfix", Assoc: "", Level: 15, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e1655, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Cast(c, true, (c.Lhs), c.Cap(0), any(false), any(true))
+				return tv1
+			}, Value: sh28}}},
 	}
 	trules[72].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[72], min) }
 	trules[74].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e1651,
+		Skip: e1627,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1653, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1629, Action: nil, Value: sh1},
 		},
-		Prefix: []*rt.TOperatorsRuleOp{{Id: 3, Kind: "prefix", Assoc: "", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1669, Action: func(c *rt.TActCtx) any { return tmk_Unary(c, true, c.Cap(0), (c.Rhs)) }, Value: sh1196}},
-			{Id: 9, Kind: "prefix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1677, Action: func(c *rt.TActCtx) any { return tmk_Unary(c, true, (c.Op), (c.Rhs)) }, Value: sh1}}},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "r"}, M: e1680, Action: func(c *rt.TActCtx) any {
-			return tmk_DistinctFrom(c, true, (c.Lhs), c.Cap(1), c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)))
+		Prefix: []*rt.TOperatorsRuleOp{{Id: 3, Kind: "prefix", Assoc: "", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1645, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_Unary(c, true, c.Cap(0), (c.Rhs))
+			return tv1
+		}, Value: sh1196}},
+			{Id: 9, Kind: "prefix", Assoc: "", Level: 7, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1653, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Unary(c, true, (c.Op), (c.Rhs))
+				return tv1
+			}, Value: sh1}}},
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "r"}, M: e1656, Action: func(c *rt.TActCtx) any {
+			tv1, tf1 := c.P.TermLength(c.Cap(0))
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_DistinctFrom(c, true, (c.Lhs), c.Cap(1), tv2)
+			return tv3
 		}, Value: sh1135}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "ts"}, M: e1681, Action: func(c *rt.TActCtx) any {
-				return tmk_IsOf(c, true, (c.Lhs), c.Cap(1), c.Binary(rt.OpGt, c.Length(c.Cap(0)), any(0)))
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "ts"}, M: e1657, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3 := tmk_IsOf(c, true, (c.Lhs), c.Cap(1), tv2)
+				return tv3
 			}, Value: sh1141}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1682, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh28}},
-			{Id: 4, Kind: "postfix", Assoc: "", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1683, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh28}},
-			{Id: 5, Kind: "postfix", Assoc: "", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1684, Action: func(c *rt.TActCtx) any { return tmk_PostfixOp(c, true, (c.Lhs), c.Cap(0)) }, Value: sh8}},
-			{Id: 6, Kind: "infix", Assoc: "left", Level: 4, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1677, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs)) }, Value: sh1}},
-			{Id: 7, Kind: "infix", Assoc: "left", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1685, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs)) }, Value: sh1}},
-			{Id: 8, Kind: "infix", Assoc: "left", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1686, Action: func(c *rt.TActCtx) any { return tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs)) }, Value: sh1}},
-			{Id: 10, Kind: "postfix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e1687, Action: func(c *rt.TActCtx) any { return tmk_Cast(c, true, (c.Lhs), c.Cap(0), any(false), any(true)) }, Value: sh28}}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1658, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh28}},
+			{Id: 4, Kind: "postfix", Assoc: "", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "r"}, M: e1659, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh28}},
+			{Id: 5, Kind: "postfix", Assoc: "", Level: 3, Line: &rt.TOperatorsRuleLine{Scope: []string{"o"}, M: e1660, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_PostfixOp(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh8}},
+			{Id: 6, Kind: "infix", Assoc: "left", Level: 4, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1653, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
+				return tv1
+			}, Value: sh1}},
+			{Id: 7, Kind: "infix", Assoc: "left", Level: 5, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1661, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
+				return tv1
+			}, Value: sh1}},
+			{Id: 8, Kind: "infix", Assoc: "left", Level: 6, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e1662, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Binary(c, true, (c.Lhs), (c.Op), (c.Rhs))
+				return tv1
+			}, Value: sh1}},
+			{Id: 10, Kind: "postfix", Assoc: "", Level: 8, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e1663, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_Cast(c, true, (c.Lhs), c.Cap(0), any(false), any(true))
+				return tv1
+			}, Value: sh28}}},
 	}
 	trules[74].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[74], min) }
 	trules[87].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e1651,
+		Skip: e1627,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1688, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1664, Action: nil, Value: sh1},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n"}, M: e1689, Action: func(c *rt.TActCtx) any {
-			return tmk_Indirection(c, true, (c.Lhs), tmk_FieldStep(c, false, c.Cap(0), nil, nil))
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n"}, M: e1665, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_FieldStep(c, false, c.Cap(0), any(nil), any(nil))
+			tv2 := tmk_Indirection(c, true, (c.Lhs), tv1)
+			return tv2
 		}, Value: sh28}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e1690, Action: func(c *rt.TActCtx) any { return tmk_Indirection(c, true, (c.Lhs), tmk_IndexStep(c, false, c.Cap(0))) }, Value: sh218}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "hi"}, M: e1691, Action: func(c *rt.TActCtx) any {
-				return tmk_Indirection(c, true, (c.Lhs), tmk_SliceStep(c, false, c.Cap(0), c.Cap(1), nil, nil))
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e1666, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexStep(c, false, c.Cap(0))
+				tv2 := tmk_Indirection(c, true, (c.Lhs), tv1)
+				return tv2
+			}, Value: sh218}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "hi"}, M: e1667, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceStep(c, false, c.Cap(0), c.Cap(1), any(nil), any(nil))
+				tv2 := tmk_Indirection(c, true, (c.Lhs), tv1)
+				return tv2
 			}, Value: sh1135}},
-			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "hi", "st"}, M: e1692, Action: func(c *rt.TActCtx) any {
-				return tmk_Indirection(c, true, (c.Lhs), tmk_SliceStep(c, false, c.Cap(0), c.Cap(1), c.Cap(2), nil))
+			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "hi", "st"}, M: e1668, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceStep(c, false, c.Cap(0), c.Cap(1), c.Cap(2), any(nil))
+				tv2 := tmk_Indirection(c, true, (c.Lhs), tv1)
+				return tv2
 			}, Value: sh1198}}},
 	}
 	trules[87].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[87], min) }
 	trules[90].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e1651,
+		Skip: e1627,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1693, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1669, Action: nil, Value: sh1},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n"}, M: e1689, Action: func(c *rt.TActCtx) any {
-			return tmk_Indirection(c, true, (c.Lhs), tmk_FieldStep(c, false, c.Cap(0), nil, nil))
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n"}, M: e1665, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_FieldStep(c, false, c.Cap(0), any(nil), any(nil))
+			tv2 := tmk_Indirection(c, true, (c.Lhs), tv1)
+			return tv2
 		}, Value: sh28}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e1690, Action: func(c *rt.TActCtx) any { return tmk_Indirection(c, true, (c.Lhs), tmk_IndexStep(c, false, c.Cap(0))) }, Value: sh218}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "d", "st", "hi"}, M: e1694, Action: func(c *rt.TActCtx) any {
-				return tmk_Indirection(c, true, (c.Lhs), tmk_SliceStep(c, false, c.Cap(0), c.Cap(3), c.Cap(2), c.Binary(rt.OpGt, c.Length(c.Cap(1)), any(0))))
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e1666, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexStep(c, false, c.Cap(0))
+				tv2 := tmk_Indirection(c, true, (c.Lhs), tv1)
+				return tv2
+			}, Value: sh218}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "d", "st", "hi"}, M: e1670, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(1))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3 := tmk_SliceStep(c, false, c.Cap(0), c.Cap(3), c.Cap(2), tv2)
+				tv4 := tmk_Indirection(c, true, (c.Lhs), tv3)
+				return tv4
 			}, Value: sh1135}}},
 	}
 	trules[90].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[90], min) }
 	trules[91].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e1651,
+		Skip: e1627,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1695, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1671, Action: nil, Value: sh1},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "c", "a"}, M: e1696, Action: func(c *rt.TActCtx) any {
-			return tmk_Indirection(c, true, (c.Lhs), tmk_FieldStep(c, false, c.Cap(0), c.Binary(rt.OpGt, c.Length(c.Cap(1)), any(0)), c.Concat(c.Cap(2))))
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "c", "a"}, M: e1672, Action: func(c *rt.TActCtx) any {
+			tv1, tf1 := c.P.TermLength(c.Cap(1))
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tm3 := len(c.P.KidStack)
+			tf4 := c.P.TermPushItems(c, "concat", c.Cap(2))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm3)
+			tn6 := c.P.TermHull(c, false, tk5)
+			tv7 := tmk_FieldStep(c, false, c.Cap(0), tv2, any(tn6))
+			tv8 := tmk_Indirection(c, true, (c.Lhs), tv7)
+			return tv8
 		}, Value: sh126}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e1690, Action: func(c *rt.TActCtx) any { return tmk_Indirection(c, true, (c.Lhs), tmk_IndexStep(c, false, c.Cap(0))) }, Value: sh218}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "d", "st", "hi"}, M: e1694, Action: func(c *rt.TActCtx) any {
-				return tmk_Indirection(c, true, (c.Lhs), tmk_SliceStep(c, false, c.Cap(0), c.Cap(3), c.Cap(2), c.Binary(rt.OpGt, c.Length(c.Cap(1)), any(0))))
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e1666, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexStep(c, false, c.Cap(0))
+				tv2 := tmk_Indirection(c, true, (c.Lhs), tv1)
+				return tv2
+			}, Value: sh218}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"lo", "d", "st", "hi"}, M: e1670, Action: func(c *rt.TActCtx) any {
+				tv1, tf1 := c.P.TermLength(c.Cap(1))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3 := tmk_SliceStep(c, false, c.Cap(0), c.Cap(3), c.Cap(2), tv2)
+				tv4 := tmk_Indirection(c, true, (c.Lhs), tv3)
+				return tv4
 			}, Value: sh1135}}},
 	}
 	trules[91].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[91], min) }
 	trules[255].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e1651,
+		Skip: e1627,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1697, Action: nil, Value: sh1},
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1698, Action: nil, Value: sh1},
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1699, Action: nil, Value: sh1},
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1700, Action: nil, Value: sh1},
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1701, Action: nil, Value: sh1},
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1702, Action: nil, Value: sh1},
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1703, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1673, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1674, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1675, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1676, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1677, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1678, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1679, Action: nil, Value: sh1},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "infix", Assoc: "left", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "q", "bn"}, M: e1704, Action: func(c *rt.TActCtx) any {
-			return tmk_SetOp(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Text(c.Cap(1)), c.Binary(rt.OpGt, c.Length(c.Cap(2)), any(0)), (c.Rhs))
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "infix", Assoc: "left", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "q", "bn"}, M: e1680, Action: func(c *rt.TActCtx) any {
+			ts1, tf1 := c.P.TermText(c.Cap(0))
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(c.Cap(1))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(c.Cap(2))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_SetOp(c, true, (c.Lhs), any(ts1), any(ts2), tv4, (c.Rhs))
+			return tv5
 		}, Value: sh28}},
-			{Id: 1, Kind: "infix", Assoc: "left", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "q", "bn"}, M: e1705, Action: func(c *rt.TActCtx) any {
-				return tmk_SetOp(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Text(c.Cap(1)), c.Binary(rt.OpGt, c.Length(c.Cap(2)), any(0)), (c.Rhs))
+			{Id: 1, Kind: "infix", Assoc: "left", Level: 2, Line: &rt.TOperatorsRuleLine{Scope: []string{"o", "q", "bn"}, M: e1681, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				ts2, tf2 := c.P.TermText(c.Cap(1))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tv3, tf3 := c.P.TermLength(c.Cap(2))
+				if tf3 != nil {
+					panic(tf3)
+				}
+				tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+				if tf4 != nil {
+					panic(tf4)
+				}
+				tv5 := tmk_SetOp(c, true, (c.Lhs), any(ts1), any(ts2), tv4, (c.Rhs))
+				return tv5
 			}, Value: sh28}}},
 	}
 	trules[255].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[255], min) }
 	trules[329].OperatorsRule = &rt.TOperatorsRule{
-		Skip: e1651,
+		Skip: e1627,
 		Operands: []*rt.TOperatorsRuleLine{
-			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1706, Action: nil, Value: sh1},
+			&rt.TOperatorsRuleLine{Scope: []string{}, M: e1682, Action: nil, Value: sh1},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r"}, M: e1707, Action: func(c *rt.TActCtx) any { return tmk_Join(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Cap(1), nil, nil) }, Value: sh218}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r"}, M: e1708, Action: func(c *rt.TActCtx) any { return tmk_Join(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Cap(1), nil, nil) }, Value: sh126}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r"}, M: e1709, Action: func(c *rt.TActCtx) any { return tmk_Join(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Cap(1), nil, nil) }, Value: sh218}},
-			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1710, Action: func(c *rt.TActCtx) any { return tmk_Join(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Cap(1), c.Cap(2), nil) }, Value: sh1133}},
-			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1711, Action: func(c *rt.TActCtx) any { return tmk_Join(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Cap(1), nil, c.Cap(2)) }, Value: sh1133}},
-			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1712, Action: func(c *rt.TActCtx) any { return tmk_Join(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Cap(1), c.Cap(2), nil) }, Value: sh1133}},
-			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1713, Action: func(c *rt.TActCtx) any { return tmk_Join(c, true, (c.Lhs), c.Text(c.Cap(0)), c.Cap(1), nil, c.Cap(2)) }, Value: sh1133}},
-			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "vs", "g", "a"}, M: e1714, Action: func(c *rt.TActCtx) any {
-				return tmk_PivotRef(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Concat(c.Cap(2)), c.Cap(3))
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r"}, M: e1683, Action: func(c *rt.TActCtx) any {
+			ts1, tf1 := c.P.TermText(c.Cap(0))
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Join(c, true, (c.Lhs), any(ts1), c.Cap(1), any(nil), any(nil))
+			return tv2
+		}, Value: sh218}},
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r"}, M: e1684, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_Join(c, true, (c.Lhs), any(ts1), c.Cap(1), any(nil), any(nil))
+				return tv2
+			}, Value: sh126}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r"}, M: e1685, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_Join(c, true, (c.Lhs), any(ts1), c.Cap(1), any(nil), any(nil))
+				return tv2
+			}, Value: sh218}},
+			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1686, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_Join(c, true, (c.Lhs), any(ts1), c.Cap(1), c.Cap(2), any(nil))
+				return tv2
+			}, Value: sh1133}},
+			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1687, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_Join(c, true, (c.Lhs), any(ts1), c.Cap(1), any(nil), c.Cap(2))
+				return tv2
+			}, Value: sh1133}},
+			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1688, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_Join(c, true, (c.Lhs), any(ts1), c.Cap(1), c.Cap(2), any(nil))
+				return tv2
+			}, Value: sh1133}},
+			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"k", "r", "q"}, M: e1689, Action: func(c *rt.TActCtx) any {
+				ts1, tf1 := c.P.TermText(c.Cap(0))
+				if tf1 != nil {
+					panic(tf1)
+				}
+				tv2 := tmk_Join(c, true, (c.Lhs), any(ts1), c.Cap(1), any(nil), c.Cap(2))
+				return tv2
+			}, Value: sh1133}},
+			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "vs", "g", "a"}, M: e1690, Action: func(c *rt.TActCtx) any {
+				tm1 := len(c.P.KidStack)
+				tf2 := c.P.TermPushItems(c, "concat", c.Cap(2))
+				if tf2 != nil {
+					panic(tf2)
+				}
+				tk3 := c.P.Kids(tm1)
+				tn4 := c.P.TermHull(c, false, tk3)
+				tv5 := tmk_PivotRef(c, true, (c.Lhs), c.Cap(0), c.Cap(1), any(tn4), c.Cap(3))
+				return tv5
 			}, Value: sh1198}},
-			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "h", "vs", "a"}, M: e1715, Action: func(c *rt.TActCtx) any {
-				return tmk_UnpivotRef(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2), c.Cap(3))
+			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"n", "h", "vs", "a"}, M: e1691, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_UnpivotRef(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2), c.Cap(3))
+				return tv1
 			}, Value: sh1198}}},
 	}
 	trules[329].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[329], min) }
@@ -6843,7 +7203,18 @@ L22:
 	k1 = v23
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "number"
-	v = tmk_Number(c, true, c.Text(k1))
+	{
+		var tr18 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Number(c, true, any(ts1))
+			tr18 = tv2
+		}
+		v = tr18
+	}
 	return v, true
 fail:
 	return nil, false
@@ -6943,7 +7314,18 @@ func i30(p *rt.TParser) (any, bool) {
 	k1 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "iconst"
-	v = tmk_Number(c, true, c.Text(k1))
+	{
+		var tr20 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Number(c, true, any(ts1))
+			tr20 = tv2
+		}
+		v = tr20
+	}
 	return v, true
 fail:
 	return nil, false
@@ -7869,11 +8251,11 @@ L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "op_generic"
 	{
-		var tr19 any
+		var tr21 any
 		{
-			tr19 = k4
+			tr21 = k4
 		}
-		v = tr19
+		v = tr21
 	}
 	v = c.Finish(v)
 	return v, true
@@ -8143,7 +8525,21 @@ func i64(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "qn_string"
-	v = tmk_Name(c, true, c.List(k1))
+	{
+		var tr22 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Name(c, true, any(tn4))
+			tr22 = tv5
+		}
+		v = tr22
+	}
 	return v, true
 fail:
 	return nil, false
@@ -8321,11 +8717,11 @@ L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "name_list_opt_comma"
 	{
-		var tr20 any
+		var tr23 any
 		{
-			tr20 = k1
+			tr23 = k1
 		}
-		v = tr20
+		v = tr23
 	}
 	v = c.Finish(v)
 	return v, true
@@ -8554,13 +8950,27 @@ L5:
 L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fn_single"
-	v = tmk_Name(c, true, c.List(k1))
+	{
+		var tr24 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Name(c, true, any(tn4))
+			tr24 = tv5
+		}
+		v = tr24
+	}
 	return v, true
 fail:
 	return nil, false
 }
 
-func e1651(p *rt.TParser) (any, bool) {
+func e1627(p *rt.TParser) (any, bool) {
 	var ok bool
 	if _, ok = u1023(p); !ok {
 		goto fail
@@ -8570,7 +8980,7 @@ fail:
 	return nil, false
 }
 
-func e1652(p *rt.TParser) (any, bool) {
+func e1628(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = s127(p); !ok {
@@ -8581,7 +8991,7 @@ fail:
 	return nil, false
 }
 
-func e1653(p *rt.TParser) (any, bool) {
+func e1629(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u89(p); !ok {
@@ -8592,7 +9002,7 @@ fail:
 	return nil, false
 }
 
-func e1654(p *rt.TParser) (any, bool) {
+func e1630(p *rt.TParser) (any, bool) {
 	var x1, x3 int
 	var x2 []any
 	var ok bool
@@ -8628,7 +9038,7 @@ fail:
 	return nil, false
 }
 
-func e1655(p *rt.TParser) (any, bool) {
+func e1631(p *rt.TParser) (any, bool) {
 	var x1, x3 int
 	var x2 []any
 	var ok bool
@@ -8673,7 +9083,7 @@ fail:
 	return nil, false
 }
 
-func e1656(p *rt.TParser) (any, bool) {
+func e1632(p *rt.TParser) (any, bool) {
 	var x1, x3, size, x7 int
 	var x2 []any
 	var ch rune
@@ -8713,7 +9123,7 @@ fail:
 	return nil, false
 }
 
-func e1657(p *rt.TParser) (any, bool) {
+func e1633(p *rt.TParser) (any, bool) {
 	var x1, x3, size, x7 int
 	var x2 []any
 	var ch rune
@@ -8753,7 +9163,7 @@ fail:
 	return nil, false
 }
 
-func e1658(p *rt.TParser) (any, bool) {
+func e1634(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = s846(p); !ok {
@@ -8764,7 +9174,7 @@ fail:
 	return nil, false
 }
 
-func e1659(p *rt.TParser) (any, bool) {
+func e1635(p *rt.TParser) (any, bool) {
 	var x1, x3, size, x13, x50 int
 	var x2, x14, x51 []any
 	var ch, x9, x28 rune
@@ -8934,7 +9344,7 @@ fail:
 	return nil, false
 }
 
-func e1660(p *rt.TParser) (any, bool) {
+func e1636(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch rune
@@ -8972,7 +9382,7 @@ fail:
 	return nil, false
 }
 
-func e1661(p *rt.TParser) (any, bool) {
+func e1637(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch rune
@@ -9068,7 +9478,7 @@ fail:
 	return nil, false
 }
 
-func e1662(p *rt.TParser) (any, bool) {
+func e1638(p *rt.TParser) (any, bool) {
 	var x1, x3, size, x17, x23 int
 	var x2 []any
 	var ch rune
@@ -9180,7 +9590,7 @@ fail:
 	return nil, false
 }
 
-func e1663(p *rt.TParser) (any, bool) {
+func e1639(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch rune
@@ -9245,7 +9655,7 @@ fail:
 	return nil, false
 }
 
-func e1664(p *rt.TParser) (any, bool) {
+func e1640(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch, x13 rune
@@ -9339,7 +9749,7 @@ fail:
 	return nil, false
 }
 
-func e1665(p *rt.TParser) (any, bool) {
+func e1641(p *rt.TParser) (any, bool) {
 	var x1, x3, size, x11, x31, x40 int
 	var x2, x12, x41 []any
 	var ch, x21 rune
@@ -9499,7 +9909,7 @@ fail:
 	return nil, false
 }
 
-func e1666(p *rt.TParser) (any, bool) {
+func e1642(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch rune
@@ -9564,7 +9974,7 @@ fail:
 	return nil, false
 }
 
-func e1667(p *rt.TParser) (any, bool) {
+func e1643(p *rt.TParser) (any, bool) {
 	var x1, x3, size, x11, x30, x32, x38 int
 	var x2, x12, x31 []any
 	var ch, x22 rune
@@ -9695,7 +10105,7 @@ fail:
 	return nil, false
 }
 
-func e1668(p *rt.TParser) (any, bool) {
+func e1644(p *rt.TParser) (any, bool) {
 	var x1, x3, size, x11 int
 	var x2, x12 []any
 	var ch rune
@@ -9828,7 +10238,7 @@ fail:
 	return nil, false
 }
 
-func e1669(p *rt.TParser) (any, bool) {
+func e1645(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v2 any
 	if v2, ok = u79(p); !ok {
@@ -9840,7 +10250,7 @@ fail:
 	return nil, false
 }
 
-func e1670(p *rt.TParser) (any, bool) {
+func e1646(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch, x13 rune
@@ -9983,7 +10393,7 @@ fail:
 	return nil, false
 }
 
-func e1671(p *rt.TParser) (any, bool) {
+func e1647(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch rune
@@ -10056,7 +10466,7 @@ fail:
 	return nil, false
 }
 
-func e1672(p *rt.TParser) (any, bool) {
+func e1648(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch, x10 rune
@@ -10120,7 +10530,7 @@ fail:
 	return nil, false
 }
 
-func e1673(p *rt.TParser) (any, bool) {
+func e1649(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch, x10 rune
@@ -10208,7 +10618,7 @@ fail:
 	return nil, false
 }
 
-func e1674(p *rt.TParser) (any, bool) {
+func e1650(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch, x10 rune
@@ -10272,7 +10682,7 @@ fail:
 	return nil, false
 }
 
-func e1675(p *rt.TParser) (any, bool) {
+func e1651(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch rune
@@ -10334,7 +10744,7 @@ fail:
 	return nil, false
 }
 
-func e1676(p *rt.TParser) (any, bool) {
+func e1652(p *rt.TParser) (any, bool) {
 	var x1, x3, size int
 	var x2 []any
 	var ch rune
@@ -10380,7 +10790,7 @@ fail:
 	return nil, false
 }
 
-func e1677(p *rt.TParser) (any, bool) {
+func e1653(p *rt.TParser) (any, bool) {
 	var x1 rt.Mark
 	var v2, v8, v11 any
 	var x4 rune
@@ -10418,7 +10828,7 @@ fail:
 	return nil, false
 }
 
-func e1679(p *rt.TParser) (any, bool) {
+func e1655(p *rt.TParser) (any, bool) {
 	var x1, x3, x6 int
 	var x2 []any
 	var ok bool
@@ -10446,7 +10856,7 @@ L5:
 	x6 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 58 && p.In[p.Pos+1] == 58 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit1678, "::", 106, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit1654, "::", 106, false); !ok {
 		goto fail
 	}
 	v7 = p.NewMatchOrdinary(x6, p.Pos, "::", true)
@@ -10513,7 +10923,14 @@ L8:
 	k4 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "op_rhs_prefix"
-	v = tmk_Unary(c, true, k1, k4)
+	{
+		var tr25 any
+		{
+			tv1 := tmk_Unary(c, true, k1, k4)
+			tr25 = tv1
+		}
+		v = tr25
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10521,7 +10938,7 @@ fail:
 	return nil, false
 }
 
-func e1680(p *rt.TParser) (any, bool) {
+func e1656(p *rt.TParser) (any, bool) {
 	var x1 int
 	var x2 []any
 	var ok bool
@@ -10597,7 +11014,7 @@ fail:
 	return nil, false
 }
 
-func e1681(p *rt.TParser) (any, bool) {
+func e1657(p *rt.TParser) (any, bool) {
 	var x1, x14, x20 int
 	var x2 []any
 	var ok bool
@@ -10689,7 +11106,7 @@ fail:
 	return nil, false
 }
 
-func e1682(p *rt.TParser) (any, bool) {
+func e1658(p *rt.TParser) (any, bool) {
 	var x1 int
 	var x2 []any
 	var ok bool
@@ -10734,7 +11151,7 @@ fail:
 	return nil, false
 }
 
-func e1683(p *rt.TParser) (any, bool) {
+func e1659(p *rt.TParser) (any, bool) {
 	var x1 int
 	var x2 []any
 	var ok bool
@@ -10776,7 +11193,7 @@ fail:
 	return nil, false
 }
 
-func e1684(p *rt.TParser) (any, bool) {
+func e1660(p *rt.TParser) (any, bool) {
 	var x1 int
 	var x2 []any
 	var ok bool
@@ -10812,7 +11229,7 @@ fail:
 	return nil, false
 }
 
-func e1685(p *rt.TParser) (any, bool) {
+func e1661(p *rt.TParser) (any, bool) {
 	var x1 rt.Mark
 	var v2, v8, v11, v14, v17 any
 	var x4 rune
@@ -10874,7 +11291,7 @@ fail:
 	return nil, false
 }
 
-func e1686(p *rt.TParser) (any, bool) {
+func e1662(p *rt.TParser) (any, bool) {
 	var x1 rt.Mark
 	var v2, v8, v11 any
 	var x4 rune
@@ -10912,7 +11329,7 @@ fail:
 	return nil, false
 }
 
-func e1687(p *rt.TParser) (any, bool) {
+func e1663(p *rt.TParser) (any, bool) {
 	var x1, x3 int
 	var x2 []any
 	var ok bool
@@ -10922,7 +11339,7 @@ func e1687(p *rt.TParser) (any, bool) {
 	x3 = p.Pos
 	if p.Pos+2 <= len(p.In) && p.In[p.Pos] == 58 && p.In[p.Pos+1] == 58 {
 		p.Pos += 2
-	} else if _, ok = p.Parser.MatchLiteral(lit1678, "::", 106, false); !ok {
+	} else if _, ok = p.Parser.MatchLiteral(lit1654, "::", 106, false); !ok {
 		goto fail
 	}
 	v4 = p.NewMatchOrdinary(x3, p.Pos, "::", true)
@@ -11585,7 +12002,14 @@ func i85(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "any_source_query"
-	v = tmk_Subquery(c, true, k1)
+	{
+		var tr26 any
+		{
+			tv1 := tmk_Subquery(c, true, k1)
+			tr26 = tv1
+		}
+		v = tr26
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11628,7 +12052,7 @@ fail:
 	return nil, false
 }
 
-func e1688(p *rt.TParser) (any, bool) {
+func e1664(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u100(p); !ok {
@@ -11639,7 +12063,7 @@ fail:
 	return nil, false
 }
 
-func e1689(p *rt.TParser) (any, bool) {
+func e1665(p *rt.TParser) (any, bool) {
 	var x1, x3 int
 	var x2 []any
 	var ok bool
@@ -11669,7 +12093,7 @@ fail:
 	return nil, false
 }
 
-func e1690(p *rt.TParser) (any, bool) {
+func e1666(p *rt.TParser) (any, bool) {
 	var x1, x3, x9 int
 	var x2 []any
 	var ok bool
@@ -11711,7 +12135,7 @@ fail:
 	return nil, false
 }
 
-func e1691(p *rt.TParser) (any, bool) {
+func e1667(p *rt.TParser) (any, bool) {
 	var x1, x3, x22 int
 	var x2 []any
 	var ok bool
@@ -11785,7 +12209,7 @@ fail:
 	return nil, false
 }
 
-func e1692(p *rt.TParser) (any, bool) {
+func e1668(p *rt.TParser) (any, bool) {
 	var x1, x3, x31 int
 	var x2 []any
 	var ok bool
@@ -11955,7 +12379,7 @@ fail:
 	return nil, false
 }
 
-func e1693(p *rt.TParser) (any, bool) {
+func e1669(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u99(p); !ok {
@@ -11966,7 +12390,7 @@ fail:
 	return nil, false
 }
 
-func e1694(p *rt.TParser) (any, bool) {
+func e1670(p *rt.TParser) (any, bool) {
 	var x1, x3, x22, x25, x39, x51, x67 int
 	var x2, x23, x40, x52 []any
 	var ok, x19 bool
@@ -12133,7 +12557,7 @@ fail:
 	return nil, false
 }
 
-func e1695(p *rt.TParser) (any, bool) {
+func e1671(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = s92(p); !ok {
@@ -12144,7 +12568,7 @@ fail:
 	return nil, false
 }
 
-func e1696(p *rt.TParser) (any, bool) {
+func e1672(p *rt.TParser) (any, bool) {
 	var x1, x3, x12, x16, x26 int
 	var x2, x13 []any
 	var ok bool
@@ -12411,11 +12835,11 @@ L14:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "plain_literal"
 	{
-		var tr21 any
+		var tr27 any
 		{
-			tr21 = k1
+			tr27 = k1
 		}
-		v = tr21
+		v = tr27
 	}
 	v = c.Finish(v)
 	return v, true
@@ -12479,11 +12903,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "string_literal"
 	{
-		var tr22 any
+		var tr28 any
 		{
-			tr22 = k1
+			tr28 = k1
 		}
-		v = tr22
+		v = tr28
 	}
 	v = c.Finish(v)
 	return v, true
@@ -12609,7 +13033,14 @@ func i98(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "positional_ref"
-	v = tmk_PositionalRef(c, true, k1)
+	{
+		var tr29 any
+		{
+			tv1 := tmk_PositionalRef(c, true, k1)
+			tr29 = tv1
+		}
+		v = tr29
+	}
 	return v, true
 fail:
 	return nil, false
@@ -12912,7 +13343,14 @@ L48:
 	p.Pos = x47
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "plain_column"
-	v = tmk_ColumnRef(c, true, k44)
+	{
+		var tr30 any
+		{
+			tv1 := tmk_ColumnRef(c, true, k44)
+			tr30 = tv1
+		}
+		v = tr30
+	}
 	return v, true
 fail:
 	return nil, false
@@ -12943,7 +13381,14 @@ func i100(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "column_ref"
-	v = tmk_ColumnRef(c, true, k1)
+	{
+		var tr31 any
+		{
+			tv1 := tmk_ColumnRef(c, true, k1)
+			tr31 = tv1
+		}
+		v = tr31
+	}
 	return v, true
 fail:
 	return nil, false
@@ -13098,7 +13543,14 @@ func i103(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "subquery_expr"
-	v = tmk_Subquery(c, true, k1)
+	{
+		var tr32 any
+		{
+			tv1 := tmk_Subquery(c, true, k1)
+			tr32 = tv1
+		}
+		v = tr32
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13235,7 +13687,14 @@ func i105(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paren_expr"
-	v = tmk_Paren(c, true, k1)
+	{
+		var tr33 any
+		{
+			tv1 := tmk_Paren(c, true, k1)
+			tr33 = tv1
+		}
+		v = tr33
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13448,11 +13907,11 @@ L7:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "func_expr"
 	{
-		var tr23 any
+		var tr34 any
 		{
-			tr23 = k3
+			tr34 = k3
 		}
-		v = tr23
+		v = tr34
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -13503,11 +13962,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "func_call_plain"
 	{
-		var tr24 any
+		var tr35 any
 		{
-			tr24 = k1
+			tr35 = k1
 		}
-		v = tr24
+		v = tr35
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -13563,7 +14022,21 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "list_lit"
-	v = tmk_ListLit(c, true, c.Concat(k1))
+	{
+		var tr36 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_ListLit(c, true, any(tn4))
+			tr36 = tv5
+		}
+		v = tr36
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13647,7 +14120,14 @@ func i111(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "array_subquery"
-	v = tmk_ArraySubquery(c, true, k1)
+	{
+		var tr37 any
+		{
+			tv1 := tmk_ArraySubquery(c, true, k1)
+			tr37 = tv1
+		}
+		v = tr37
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13707,7 +14187,21 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "array_lit"
-	v = tmk_ArrayLit(c, true, c.Concat(k1))
+	{
+		var tr38 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_ArrayLit(c, true, any(tn4))
+			tr38 = tv5
+		}
+		v = tr38
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13849,7 +14343,14 @@ func i114(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "struct_field"
-	v = tmk_StructField(c, true, k1, k4)
+	{
+		var tr39 any
+		{
+			tv1 := tmk_StructField(c, true, k1, k4)
+			tr39 = tv1
+		}
+		v = tr39
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13909,7 +14410,21 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "map_lit"
-	v = tmk_MapLit(c, true, c.Concat(k1))
+	{
+		var tr40 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_MapLit(c, true, any(tn4))
+			tr40 = tv5
+		}
+		v = tr40
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14036,7 +14551,14 @@ func i117(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "map_entry"
-	v = tmk_MapEntry(c, true, k1, k4)
+	{
+		var tr41 any
+		{
+			tv1 := tmk_MapEntry(c, true, k1, k4)
+			tr41 = tv1
+		}
+		v = tr41
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14169,7 +14691,14 @@ func i119(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "list_comp_if"
-	v = tmk_ListComp(c, true, k1, k4, k7, k10)
+	{
+		var tr42 any
+		{
+			tv1 := tmk_ListComp(c, true, k1, k4, k7, k10)
+			tr42 = tv1
+		}
+		v = tr42
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14242,7 +14771,14 @@ func i120(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "list_comp"
-	v = tmk_ListComp(c, true, k1, k4, k7, nil)
+	{
+		var tr43 any
+		{
+			tv1 := tmk_ListComp(c, true, k1, k4, k7, any(nil))
+			tr43 = tv1
+		}
+		v = tr43
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14333,7 +14869,14 @@ L17:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "case_expr"
-	v = tmk_Case(c, true, k2, k10, k14)
+	{
+		var tr44 any
+		{
+			tv1 := tmk_Case(c, true, k2, k10, k14)
+			tr44 = tv1
+		}
+		v = tr44
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14445,7 +14988,14 @@ func i123(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "when_clause"
-	v = tmk_When(c, true, k1, k4)
+	{
+		var tr45 any
+		{
+			tv1 := tmk_When(c, true, k1, k4)
+			tr45 = tv1
+		}
+		v = tr45
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14505,7 +15055,21 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "qualified_row"
-	v = tmk_Row(c, true, c.Concat(k1), any(true))
+	{
+		var tr46 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Row(c, true, any(tn4), any(true))
+			tr46 = tv5
+		}
+		v = tr46
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14623,11 +15187,11 @@ L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "expr_list_opt_comma"
 	{
-		var tr25 any
+		var tr47 any
 		{
-			tr25 = k1
+			tr47 = k1
 		}
-		v = tr25
+		v = tr47
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -14806,7 +15370,14 @@ func i129(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "columns_expr"
-	v = tmk_ColumnsExpr(c, true, k1, any(false))
+	{
+		var tr48 any
+		{
+			tv1 := tmk_ColumnsExpr(c, true, k1, any(false))
+			tr48 = tv1
+		}
+		v = tr48
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14865,7 +15436,14 @@ func i130(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "star_columns"
-	v = tmk_ColumnsExpr(c, true, k1, any(true))
+	{
+		var tr49 any
+		{
+			tv1 := tmk_ColumnsExpr(c, true, k1, any(true))
+			tr49 = tv1
+		}
+		v = tr49
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14918,7 +15496,14 @@ func i131(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unpack_expr"
-	v = tmk_UnpackExpr(c, true, k1)
+	{
+		var tr50 any
+		{
+			tv1 := tmk_UnpackExpr(c, true, k1)
+			tr50 = tv1
+		}
+		v = tr50
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14990,7 +15575,35 @@ L18:
 L19:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "star_expr"
-	v = tmk_Star(c, true, nil, c.Concat(k2), c.Concat(k9), c.Concat(k16))
+	{
+		var tr51 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k2)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k9)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tm9 := len(c.P.KidStack)
+			tf10 := c.P.TermPushItems(c, "concat", k16)
+			if tf10 != nil {
+				panic(tf10)
+			}
+			tk11 := c.P.Kids(tm9)
+			tn12 := c.P.TermHull(c, false, tk11)
+			tv13 := tmk_Star(c, true, any(nil), any(tn4), any(tn8), any(tn12))
+			tr51 = tv13
+		}
+		v = tr51
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -15077,7 +15690,35 @@ L21:
 L22:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "qualified_star"
-	v = tmk_Star(c, true, k1, c.Concat(k5), c.Concat(k12), c.Concat(k19))
+	{
+		var tr52 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k12)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tm9 := len(c.P.KidStack)
+			tf10 := c.P.TermPushItems(c, "concat", k19)
+			if tf10 != nil {
+				panic(tf10)
+			}
+			tk11 := c.P.Kids(tm9)
+			tn12 := c.P.TermHull(c, false, tk11)
+			tv13 := tmk_Star(c, true, k1, any(tn4), any(tn8), any(tn12))
+			tr52 = tv13
+		}
+		v = tr52
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -15127,7 +15768,14 @@ func i134(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lambda_expr"
-	v = tmk_Lambda(c, true, k1, k4, any(true))
+	{
+		var tr53 any
+		{
+			tv1 := tmk_Lambda(c, true, k1, k4, any(true))
+			tr53 = tv1
+		}
+		v = tr53
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -15375,11 +16023,11 @@ func i138(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "exclude_paren"
 	{
-		var tr26 any
+		var tr54 any
 		{
-			tr26 = k1
+			tr54 = k1
 		}
-		v = tr26
+		v = tr54
 	}
 	v = c.Finish(v)
 	return v, true
@@ -15415,7 +16063,20 @@ func i139(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "exclude_single"
-	v = c.List(k1)
+	{
+		var tr55 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr55 = any(tn4)
+		}
+		v = tr55
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -15461,7 +16122,14 @@ func i140(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "replace_item"
-	v = tmk_ReplaceItem(c, true, k1, k4)
+	{
+		var tr56 any
+		{
+			tv1 := tmk_ReplaceItem(c, true, k1, k4)
+			tr56 = tv1
+		}
+		v = tr56
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -15655,7 +16323,20 @@ func i143(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "replace_single"
-	v = c.List(k1)
+	{
+		var tr57 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr57 = any(tn4)
+		}
+		v = tr57
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -15702,7 +16383,14 @@ func i144(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rename_item"
-	v = tmk_RenameItem(c, true, k1, k4)
+	{
+		var tr58 any
+		{
+			tv1 := tmk_RenameItem(c, true, k1, k4)
+			tr58 = tv1
+		}
+		v = tr58
+	}
 	return v, true
 fail:
 	return nil, false
@@ -15887,7 +16575,20 @@ func i147(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rename_single"
-	v = c.List(k1)
+	{
+		var tr59 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr59 = any(tn4)
+		}
+		v = tr59
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -16009,11 +16710,11 @@ L21:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "keyword_primary"
 	{
-		var tr27 any
+		var tr60 any
 		{
-			tr27 = k1
+			tr60 = k1
 		}
-		v = tr27
+		v = tr60
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -16120,7 +16821,14 @@ func i151(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "exists_expr"
-	v = tmk_Exists(c, true, k1)
+	{
+		var tr61 any
+		{
+			tv1 := tmk_Exists(c, true, k1)
+			tr61 = tv1
+		}
+		v = tr61
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16200,7 +16908,18 @@ L5:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "grouping_expr"
-	v = tmk_Grouping(c, true, c.Text(k1), k13)
+	{
+		var tr62 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Grouping(c, true, any(ts1), k13)
+			tr62 = tv2
+		}
+		v = tr62
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16321,7 +17040,14 @@ func i154(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cast_plain"
-	v = tmk_Cast(c, true, k1, k4, any(false), any(false))
+	{
+		var tr63 any
+		{
+			tv1 := tmk_Cast(c, true, k1, k4, any(false), any(false))
+			tr63 = tv1
+		}
+		v = tr63
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16387,7 +17113,14 @@ func i155(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cast_try"
-	v = tmk_Cast(c, true, k1, k4, any(true), any(false))
+	{
+		var tr64 any
+		{
+			tv1 := tmk_Cast(c, true, k1, k4, any(true), any(false))
+			tr64 = tv1
+		}
+		v = tr64
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16501,7 +17234,14 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "interval_paren"
-	v = tmk_IntervalLit(c, true, k1, k5)
+	{
+		var tr65 any
+		{
+			tv1 := tmk_IntervalLit(c, true, k1, k5)
+			tr65 = tv1
+		}
+		v = tr65
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16572,7 +17312,14 @@ L16:
 L17:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "interval_const"
-	v = tmk_IntervalLit(c, true, k1, k14)
+	{
+		var tr66 any
+		{
+			tv1 := tmk_IntervalLit(c, true, k1, k14)
+			tr66 = tv1
+		}
+		v = tr66
+	}
 	return v, true
 fail:
 	return nil, false
@@ -16889,7 +17636,18 @@ func i163(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_coalesce"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, k4, nil, nil, nil, nil, nil)
+	{
+		var tr67 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SpecialCall(c, true, any(ts1), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr67 = tv2
+		}
+		v = tr67
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16958,7 +17716,29 @@ func i164(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_nullif"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, c.List(k4, k7), nil, nil, nil, nil, nil)
+	{
+		var tr68 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tf4 := c.P.TermPush(c, "list", k7)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm2)
+			tn6 := c.P.TermHull(c, false, tk5)
+			tv7 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(tn6), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr68 = tv7
+		}
+		v = tr68
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17025,7 +17805,29 @@ func i165(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_extract"
-	v = tmk_SpecialCall(c, true, c.Text(k1), c.Text(k4), c.List(k7), nil, nil, nil, nil, nil)
+	{
+		var tr69 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k4)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tm3 := len(c.P.KidStack)
+			tf4 := c.P.TermPush(c, "list", k7)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm3)
+			tn6 := c.P.TermHull(c, false, tk5)
+			tv7 := tmk_SpecialCall(c, true, any(ts1), any(ts2), any(tn6), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr69 = tv7
+		}
+		v = tr69
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17071,7 +17873,18 @@ func i166(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_extract_empty"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr70 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr70 = tv2
+		}
+		v = tr70
+	}
 	return v, true
 fail:
 	return nil, false
@@ -17170,12 +17983,35 @@ L17:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_overlay"
 	{
-		f_1218 := c.Text(k1)
-		f_1219 := c.List(k4)
-		f_1220 := k7
-		f_1221 := c.List(k10)
-		f_1222 := k14
-		v = tmk_SpecialCall(c, true, f_1218, nil, f_1219, f_1221, f_1222, f_1220, nil, nil)
+		var tr71 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tf2 := any(ts1)
+			tm3 := len(c.P.KidStack)
+			tf4 := c.P.TermPush(c, "list", k4)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm3)
+			tn6 := c.P.TermHull(c, false, tk5)
+			tf7 := any(tn6)
+			tf8 := k7
+			tm9 := len(c.P.KidStack)
+			tf10 := c.P.TermPush(c, "list", k10)
+			if tf10 != nil {
+				panic(tf10)
+			}
+			tk11 := c.P.Kids(tm9)
+			tn12 := c.P.TermHull(c, false, tk11)
+			tf13 := any(tn12)
+			tf14 := k14
+			tv15 := tmk_SpecialCall(c, true, tf2, any(nil), tf7, tf13, tf14, tf8, any(nil), any(nil))
+			tr71 = tv15
+		}
+		v = tr71
 	}
 	p.Depth--
 	return v, true
@@ -17243,7 +18079,29 @@ func i168(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_position"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, c.List(k4, k7), nil, nil, nil, nil, nil)
+	{
+		var tr72 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tf4 := c.P.TermPush(c, "list", k7)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm2)
+			tn6 := c.P.TermHull(c, false, tk5)
+			tv7 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(tn6), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr72 = tv7
+		}
+		v = tr72
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17289,7 +18147,18 @@ func i169(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_position_empty"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr73 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr73 = tv2
+		}
+		v = tr73
+	}
 	return v, true
 fail:
 	return nil, false
@@ -17374,7 +18243,32 @@ L14:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_substring_from"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, c.List(k4), c.List(k7), k11, nil, nil, nil)
+	{
+		var tr74 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tm6 := len(c.P.KidStack)
+			tf7 := c.P.TermPush(c, "list", k7)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tk8 := c.P.Kids(tm6)
+			tn9 := c.P.TermHull(c, false, tk8)
+			tv10 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(tn5), any(tn9), k11, any(nil), any(nil), any(nil))
+			tr74 = tv10
+		}
+		v = tr74
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17454,7 +18348,32 @@ func i171(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_substring_for_from"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, c.List(k4), c.List(k10), k7, nil, nil, nil)
+	{
+		var tr75 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tm6 := len(c.P.KidStack)
+			tf7 := c.P.TermPush(c, "list", k10)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tk8 := c.P.Kids(tm6)
+			tn9 := c.P.TermHull(c, false, tk8)
+			tv10 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(tn5), any(tn9), k7, any(nil), any(nil), any(nil))
+			tr75 = tv10
+		}
+		v = tr75
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17521,7 +18440,25 @@ func i172(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_substring_for"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, c.List(k4), nil, k7, nil, nil, nil)
+	{
+		var tr76 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(tn5), any(nil), k7, any(nil), any(nil), any(nil))
+			tr76 = tv6
+		}
+		v = tr76
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17575,7 +18512,18 @@ func i173(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_substring_list"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, k4, nil, nil, nil, nil, nil)
+	{
+		var tr77 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SpecialCall(c, true, any(ts1), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr77 = tv2
+		}
+		v = tr77
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17621,7 +18569,18 @@ func i174(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_substring_empty"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr78 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr78 = tv2
+		}
+		v = tr78
+	}
 	return v, true
 fail:
 	return nil, false
@@ -17686,7 +18645,25 @@ func i175(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_treat"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, c.List(k4), nil, nil, nil, nil, k7)
+	{
+		var tr79 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(tn5), any(nil), any(nil), any(nil), any(nil), k7)
+			tr79 = tv6
+		}
+		v = tr79
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17805,7 +18782,22 @@ L8:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_trim_chars"
-	v = tmk_SpecialCall(c, true, c.Text(k1), c.Text(k5), k27, nil, nil, nil, k24, nil)
+	{
+		var tr80 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SpecialCall(c, true, any(ts1), any(ts2), k27, any(nil), any(nil), any(nil), k24, any(nil))
+			tr80 = tv3
+		}
+		v = tr80
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17931,7 +18923,22 @@ L28:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_trim"
-	v = tmk_SpecialCall(c, true, c.Text(k1), c.Text(k5), k24, nil, nil, nil, nil, nil)
+	{
+		var tr81 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SpecialCall(c, true, any(ts1), any(ts2), k24, any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr81 = tv3
+		}
+		v = tr81
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -17993,7 +19000,25 @@ func i178(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sc_collation"
-	v = tmk_SpecialCall(c, true, c.Text(k1), nil, c.List(k5), nil, nil, nil, nil, nil)
+	{
+		var tr82 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k5)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_SpecialCall(c, true, any(ts1), any(nil), any(tn5), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr82 = tv6
+		}
+		v = tr82
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -18069,11 +19094,11 @@ func i181(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "trim_from"
 	{
-		var tr28 any
+		var tr83 any
 		{
-			tr28 = k1
+			tr83 = k1
 		}
-		v = tr28
+		v = tr83
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -18388,7 +19413,37 @@ L92:
 L93:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "func_call"
-	v = tmk_FuncCall(c, true, k1, c.Text(k5), c.Concat(k7), k9, k55, c.Text(k62), k69, k76, c.Binary(rt.OpGt, c.Length(k83), any(0)), k90)
+	{
+		var tr84 any
+		{
+			ts1, tf1 := c.P.TermText(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k7)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			ts6, tf6 := c.P.TermText(k62)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermLength(k83)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermBinary(rt.OpGt, tv7, any(0))
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tv9 := tmk_FuncCall(c, true, k1, any(ts1), any(tn5), k9, k55, any(ts6), k69, k76, tv8, k90)
+			tr84 = tv9
+		}
+		v = tr84
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -18449,7 +19504,19 @@ func i183(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typed_literal_args"
-	v = tmk_TypedLit(c, true, tmk_Type(c, false, c.Text(k1), k4, nil, nil, nil, nil), k7)
+	{
+		var tr85 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Type(c, false, any(ts1), k4, any(nil), any(nil), any(nil), any(nil))
+			tv3 := tmk_TypedLit(c, true, tv2, k7)
+			tr85 = tv3
+		}
+		v = tr85
+	}
 	p.DropCreated(c.Cbase)
 	p.Depth--
 	return v, true
@@ -18555,10 +19622,10 @@ func i185(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "func_arg_list"
 	{
-		b_1223 := len(c.P.KidStack)
+		b_1218 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1223)
+		v = c.EndList(b_1218)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -18676,7 +19743,14 @@ L5:
 	k12 = v14
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "named_arg"
-	v = tmk_NamedArg(c, true, k1, k12, nil)
+	{
+		var tr86 any
+		{
+			tv1 := tmk_NamedArg(c, true, k1, k12, any(nil))
+			tr86 = tv1
+		}
+		v = tr86
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -18799,11 +19873,11 @@ L3:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "filter_clause"
 	{
-		var tr29 any
+		var tr87 any
 		{
-			tr29 = k4
+			tr87 = k4
 		}
-		v = tr29
+		v = tr87
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -18868,7 +19942,14 @@ L13:
 L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "over_clause"
-	v = tmk_WindowOver(c, true, k4, k2)
+	{
+		var tr88 any
+		{
+			tv1 := tmk_WindowOver(c, true, k4, k2)
+			tr88 = tv1
+		}
+		v = tr88
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -19039,7 +20120,21 @@ L40:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "window_specification"
-	v = tmk_WindowSpec(c, true, k2, c.Concat(k23), k30, k37)
+	{
+		var tr89 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k23)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_WindowSpec(c, true, k2, any(tn4), k30, k37)
+			tr89 = tv5
+		}
+		v = tr89
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -19099,11 +20194,11 @@ L7:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "frame_clause"
 	{
-		var tr30 any
+		var tr90 any
 		{
-			tr30 = k3
+			tr90 = k3
 		}
-		v = tr30
+		v = tr90
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -19215,7 +20310,22 @@ L25:
 L26:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "frame_single"
-	v = tmk_Frame(c, true, c.Text(k1), k19, nil, c.Text(k23))
+	{
+		var tr91 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k23)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_Frame(c, true, any(ts1), k19, any(nil), any(ts2))
+			tr91 = tv3
+		}
+		v = tr91
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -19338,7 +20448,22 @@ L28:
 L29:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "frame_between"
-	v = tmk_Frame(c, true, c.Text(k1), k19, k22, c.Text(k26))
+	{
+		var tr92 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k26)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_Frame(c, true, any(ts1), k19, k22, any(ts2))
+			tr92 = tv3
+		}
+		v = tr92
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -19472,7 +20597,18 @@ L5:
 	k1 = v20
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "frame_bound_kw"
-	v = tmk_FrameBound(c, true, c.Text(k1), nil)
+	{
+		var tr93 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_FrameBound(c, true, any(ts1), any(nil))
+			tr93 = tv2
+		}
+		v = tr93
+	}
 	return v, true
 fail:
 	return nil, false
@@ -19534,7 +20670,18 @@ L8:
 	k4 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "frame_bound_expr"
-	v = tmk_FrameBound(c, true, c.Text(k4), k1)
+	{
+		var tr94 any
+		{
+			ts1, tf1 := c.P.TermText(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_FrameBound(c, true, any(ts1), k1)
+			tr94 = tv2
+		}
+		v = tr94
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -19683,7 +20830,7 @@ func i201(p *rt.TParser) (any, bool) {
 		x13 = append(x13, v15)
 		v16 = p.NewNodeOrdinary("tuple", x12, p.Pos, x13)
 		v17 = p.ScopeValue(sh8, v16, x9)
-		v18 = p.AttachCaptures(v17, scope1224, []any{k10}, x9, p.Pos)
+		v18 = p.AttachCaptures(v17, scope1219, []any{k10}, x9, p.Pos)
 		p.PushKid(v18)
 		if p.Pos == x9 {
 			break
@@ -19698,10 +20845,10 @@ func i201(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_list"
 	{
-		b_1225 := len(c.P.KidStack)
+		b_1220 := len(c.P.KidStack)
 		c.PushList(k1)
-		c.PushMap(k4, func(l_1226 any) any { return c.Member((l_1226), "$t") })
-		v = c.EndList(b_1225)
+		c.PushMap(k4, func(l_1221 any) any { return c.Member((l_1221), "$t") })
+		v = c.EndList(b_1220)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -19767,11 +20914,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typename"
 	{
-		var tr31 any
+		var tr95 any
 		{
-			tr31 = k2
+			tr95 = k2
 		}
-		v = tr31
+		v = tr95
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -20031,7 +21178,18 @@ L10:
 	k11 = v13
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_setof_qualified"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, nil, k11, nil)
+	{
+		var tr96 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Type(c, true, any(ts1), any(nil), any(nil), any(nil), k11, any(nil))
+			tr96 = tv2
+		}
+		v = tr96
+	}
 	return v, true
 fail:
 	return nil, false
@@ -20129,7 +21287,14 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "array_dim"
-	v = tmk_ArrayDim(c, true, k1)
+	{
+		var tr97 any
+		{
+			tv1 := tmk_ArrayDim(c, true, k1)
+			tr97 = tv1
+		}
+		v = tr97
+	}
 	return v, true
 fail:
 	return nil, false
@@ -20237,7 +21402,21 @@ func i210(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "array_keyword_sized"
-	v = c.List(tmk_ArrayDim(c, false, k1))
+	{
+		var tr98 any
+		{
+			tv1 := tmk_ArrayDim(c, false, k1)
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", tv1)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tr98 = any(tn5)
+		}
+		v = tr98
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -20258,7 +21437,21 @@ func s211(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "array_keyword"
-	v = c.List(tmk_ArrayDim(c, false, nil))
+	{
+		var tr99 any
+		{
+			tv1 := tmk_ArrayDim(c, false, any(nil))
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", tv1)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tr99 = any(tn5)
+		}
+		v = tr99
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -20315,7 +21508,20 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_mods"
-	v = c.Concat(k1)
+	{
+		var tr100 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr100 = any(tn4)
+		}
+		v = tr100
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -20418,7 +21624,25 @@ L23:
 	k18 = v21
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_struct"
-	v = tmk_Type(c, true, c.Text(k1), nil, k15, nil, c.Concat(k18), nil)
+	{
+		var tr101 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k18)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(nil), k15, any(nil), any(tn5), any(nil))
+			tr101 = tv6
+		}
+		v = tr101
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -20480,10 +21704,10 @@ func i214(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "colid_type_list"
 	{
-		b_1227 := len(c.P.KidStack)
+		b_1222 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1227)
+		v = c.EndList(b_1222)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -20526,7 +21750,14 @@ func i215(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "colid_type"
-	v = tmk_TypeField(c, true, k1, k4)
+	{
+		var tr102 any
+		{
+			tv1 := tmk_TypeField(c, true, k1, k4)
+			tr102 = tv1
+		}
+		v = tr102
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -20593,7 +21824,25 @@ L13:
 	k8 = v11
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_map"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, k5, c.Concat(k8), nil)
+	{
+		var tr103 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k8)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(nil), any(nil), k5, any(tn5), any(nil))
+			tr103 = tv6
+		}
+		v = tr103
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -20678,7 +21927,25 @@ L17:
 	k12 = v15
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_interval"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, nil, c.Concat(k12), nil)
+	{
+		var tr104 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k12)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(nil), any(nil), any(nil), any(tn5), any(nil))
+			tr104 = tv6
+		}
+		v = tr104
+	}
 	return v, true
 fail:
 	return nil, false
@@ -20763,7 +22030,7 @@ L5:
 		}
 		v26 = p.NewNodeOrdinary("tuple", x22, p.Pos, x23)
 		v27 = p.ScopeValue(sh8, v26, x19)
-		v28 = p.AttachCaptures(v27, scope1228, []any{k20}, x19, p.Pos)
+		v28 = p.AttachCaptures(v27, scope1223, []any{k20}, x19, p.Pos)
 		p.PushKid(v28)
 		if p.Pos == x19 {
 			break
@@ -20803,11 +22070,11 @@ L42:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_datetime"
 	{
-		f_1229 := c.Text(k1)
-		f_1230 := c.MapList(k13, func(l_1231 any) any { return c.Member((l_1231), "$n") })
-		f_1232 := c.Text(k31)
-		f_1233 := c.Concat(k37)
-		v = tmk_Type(c, true, f_1229, f_1230, nil, nil, f_1233, f_1232)
+		f_1224 := c.Text(k1)
+		f_1225 := c.MapList(k13, func(l_1226 any) any { return c.Member((l_1226), "$n") })
+		f_1227 := c.Text(k31)
+		f_1228 := c.Concat(k37)
+		v = tmk_Type(c, true, f_1224, f_1225, nil, nil, f_1228, f_1227)
 	}
 	return v, true
 fail:
@@ -20931,7 +22198,7 @@ func i220(p *rt.TParser) (any, bool) {
 		}
 		v17 = p.NewNodeOrdinary("tuple", x13, p.Pos, x14)
 		v18 = p.ScopeValue(sh8, v17, x10)
-		v19 = p.AttachCaptures(v18, scope1234, []any{k11}, x10, p.Pos)
+		v19 = p.AttachCaptures(v18, scope1229, []any{k11}, x10, p.Pos)
 		p.PushKid(v19)
 		if p.Pos == x10 {
 			break
@@ -20956,7 +22223,7 @@ L26:
 	k21 = v24
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_char"
-	v = tmk_Type(c, true, c.Text(k1), c.MapList(k4, func(l_1235 any) any { return c.Member((l_1235), "$n") }), nil, nil, c.Concat(k21), nil)
+	v = tmk_Type(c, true, c.Text(k1), c.MapList(k4, func(l_1230 any) any { return c.Member((l_1230), "$n") }), nil, nil, c.Concat(k21), nil)
 	return v, true
 fail:
 	return nil, false
@@ -21197,7 +22464,32 @@ L20:
 	k15 = v18
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_bit"
-	v = tmk_Type(c, true, c.Text(k1), c.Concat(k9), nil, nil, c.Concat(k15), nil)
+	{
+		var tr105 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tm6 := len(c.P.KidStack)
+			tf7 := c.P.TermPushItems(c, "concat", k15)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tk8 := c.P.Kids(tm6)
+			tn9 := c.P.TermHull(c, false, tk8)
+			tv10 := tmk_Type(c, true, any(ts1), any(tn5), any(nil), any(nil), any(tn9), any(nil))
+			tr105 = tv10
+		}
+		v = tr105
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -21295,7 +22587,25 @@ L10:
 	k5 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_double"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, nil, c.Concat(k5), nil)
+	{
+		var tr106 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k5)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(nil), any(nil), any(nil), any(tn5), any(nil))
+			tr106 = tv6
+		}
+		v = tr106
+	}
 	return v, true
 fail:
 	return nil, false
@@ -21507,7 +22817,32 @@ L27:
 	k22 = v25
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_decimal"
-	v = tmk_Type(c, true, c.Text(k1), c.Concat(k16), nil, nil, c.Concat(k22), nil)
+	{
+		var tr107 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k16)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tm6 := len(c.P.KidStack)
+			tf7 := c.P.TermPushItems(c, "concat", k22)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tk8 := c.P.Kids(tm6)
+			tn9 := c.P.TermHull(c, false, tk8)
+			tv10 := tmk_Type(c, true, any(ts1), any(tn5), any(nil), any(nil), any(tn9), any(nil))
+			tr107 = tv10
+		}
+		v = tr107
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -21618,7 +22953,25 @@ L26:
 	k21 = v24
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_numeric_plain"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, nil, c.Concat(k21), nil)
+	{
+		var tr108 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k21)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(nil), any(nil), any(nil), any(tn5), any(nil))
+			tr108 = tv6
+		}
+		v = tr108
+	}
 	return v, true
 fail:
 	return nil, false
@@ -21688,7 +23041,25 @@ L13:
 	k8 = v11
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_qualified"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, nil, c.Concat(k8), nil)
+	{
+		var tr109 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k8)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(nil), any(nil), any(nil), any(tn5), any(nil))
+			tr109 = tv6
+		}
+		v = tr109
+	}
 	return v, true
 fail:
 	return nil, false
@@ -21744,7 +23115,32 @@ L17:
 	k12 = v15
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_generic"
-	v = tmk_Type(c, true, c.Text(k1), c.Concat(k6), nil, nil, c.Concat(k12), nil)
+	{
+		var tr110 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k6)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tm6 := len(c.P.KidStack)
+			tf7 := c.P.TermPushItems(c, "concat", k12)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tk8 := c.P.Kids(tm6)
+			tn9 := c.P.TermHull(c, false, tk8)
+			tv10 := tmk_Type(c, true, any(ts1), any(tn5), any(nil), any(nil), any(tn9), any(nil))
+			tr110 = tv10
+		}
+		v = tr110
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -21848,11 +23244,11 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typed_literal"
 	{
-		var tr32 any
+		var tr111 any
 		{
-			tr32 = k1
+			tr111 = k1
 		}
-		v = tr32
+		v = tr111
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -21912,7 +23308,19 @@ L7:
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typed_literal_nchar"
-	v = tmk_TypedLit(c, true, tmk_Type(c, false, c.Text(k1), nil, nil, nil, nil, nil), k8)
+	{
+		var tr112 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Type(c, false, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tv3 := tmk_TypedLit(c, true, tv2, k8)
+			tr112 = tv3
+		}
+		v = tr112
+	}
 	p.DropCreated(c.Cbase)
 	return v, true
 fail:
@@ -21949,7 +23357,14 @@ func i233(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typed_literal_const"
-	v = tmk_TypedLit(c, true, k1, k4)
+	{
+		var tr113 any
+		{
+			tv1 := tmk_TypedLit(c, true, k1, k4)
+			tr113 = tv1
+		}
+		v = tr113
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -22009,7 +23424,19 @@ L2:
 	k6 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typed_literal_name"
-	v = tmk_TypedLit(c, true, tmk_Type(c, false, c.Text(k3), nil, nil, nil, nil, nil), k6)
+	{
+		var tr114 any
+		{
+			ts1, tf1 := c.P.TermText(k3)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Type(c, false, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tv3 := tmk_TypedLit(c, true, tv2, k6)
+			tr114 = tv3
+		}
+		v = tr114
+	}
 	p.DropCreated(c.Cbase)
 	return v, true
 fail:
@@ -22151,7 +23578,18 @@ func i237(p *rt.TParser) (any, bool) {
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_double_const"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, nil, nil, nil)
+	{
+		var tr115 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Type(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr115 = tv2
+		}
+		v = tr115
+	}
 	return v, true
 fail:
 	return nil, false
@@ -22341,7 +23779,25 @@ L18:
 L19:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_decimal_const"
-	v = tmk_Type(c, true, c.Text(k1), c.Concat(k16), nil, nil, nil, nil)
+	{
+		var tr116 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k16)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(tn5), any(nil), any(nil), any(nil), any(nil))
+			tr116 = tv6
+		}
+		v = tr116
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -22441,7 +23897,18 @@ L5:
 	k1 = v20
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_numeric_plain_const"
-	v = tmk_Type(c, true, c.Text(k1), nil, nil, nil, nil, nil)
+	{
+		var tr117 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_Type(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr117 = tv2
+		}
+		v = tr117
+	}
 	return v, true
 fail:
 	return nil, false
@@ -22500,7 +23967,7 @@ func i242(p *rt.TParser) (any, bool) {
 		}
 		v17 = p.NewNodeOrdinary("tuple", x13, p.Pos, x14)
 		v18 = p.ScopeValue(sh8, v17, x10)
-		v19 = p.AttachCaptures(v18, scope1236, []any{k11}, x10, p.Pos)
+		v19 = p.AttachCaptures(v18, scope1231, []any{k11}, x10, p.Pos)
 		p.PushKid(v19)
 		if p.Pos == x10 {
 			break
@@ -22514,7 +23981,7 @@ func i242(p *rt.TParser) (any, bool) {
 	k4 = v20
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_char_const"
-	v = tmk_Type(c, true, c.Text(k1), c.MapList(k4, func(l_1237 any) any { return c.Member((l_1237), "$n") }), nil, nil, nil, nil)
+	v = tmk_Type(c, true, c.Text(k1), c.MapList(k4, func(l_1232 any) any { return c.Member((l_1232), "$n") }), nil, nil, nil, nil)
 	return v, true
 fail:
 	return nil, false
@@ -22586,7 +24053,25 @@ L11:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_bit_const"
-	v = tmk_Type(c, true, c.Text(k1), c.Concat(k9), nil, nil, nil, nil)
+	{
+		var tr118 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Type(c, true, any(ts1), any(tn5), any(nil), any(nil), any(nil), any(nil))
+			tr118 = tv6
+		}
+		v = tr118
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -22673,7 +24158,7 @@ L5:
 		}
 		v26 = p.NewNodeOrdinary("tuple", x22, p.Pos, x23)
 		v27 = p.ScopeValue(sh8, v26, x19)
-		v28 = p.AttachCaptures(v27, scope1238, []any{k20}, x19, p.Pos)
+		v28 = p.AttachCaptures(v27, scope1233, []any{k20}, x19, p.Pos)
 		p.PushKid(v28)
 		if p.Pos == x19 {
 			break
@@ -22701,7 +24186,7 @@ L33:
 L34:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "type_datetime_const"
-	v = tmk_Type(c, true, c.Text(k1), c.MapList(k13, func(l_1239 any) any { return c.Member((l_1239), "$n") }), nil, nil, nil, c.Text(k31))
+	v = tmk_Type(c, true, c.Text(k1), c.MapList(k13, func(l_1234 any) any { return c.Member((l_1234), "$n") }), nil, nil, nil, c.Text(k31))
 	return v, true
 fail:
 	return nil, false
@@ -22780,7 +24265,14 @@ func i246(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "select_paren_stmt"
-	v = tmk_Select(c, true, nil, k1, nil, nil, nil, nil)
+	{
+		var tr119 any
+		{
+			tv1 := tmk_Select(c, true, any(nil), k1, any(nil), any(nil), any(nil), any(nil))
+			tr119 = tv1
+		}
+		v = tr119
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -22830,7 +24322,14 @@ func i247(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "select_with_parens"
-	v = tmk_ParenQuery(c, true, k1)
+	{
+		var tr120 any
+		{
+			tv1 := tmk_ParenQuery(c, true, k1)
+			tr120 = tv1
+		}
+		v = tr120
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -23032,7 +24531,25 @@ L57:
 L58:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "select_no_parens"
-	v = tmk_Select(c, true, k2, k8, k12, k26, k28, c.Concat(k19, k55))
+	{
+		var tr121 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k19)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tf3 := c.P.TermPushItems(c, "concat", k55)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm1)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Select(c, true, k2, k8, k12, k26, k28, any(tn5))
+			tr121 = tv6
+		}
+		v = tr121
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -23161,10 +24678,10 @@ func i251(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "with_recursive"
 	{
-		b_1240 := len(c.P.KidStack)
+		b_1235 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_With(c, true, any(true), c.EndList(b_1240))
+		v = tmk_With(c, true, any(true), c.EndList(b_1235))
 	}
 	p.Depth--
 	return v, true
@@ -23233,10 +24750,10 @@ func i252(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "with_plain"
 	{
-		b_1241 := len(c.P.KidStack)
+		b_1236 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_With(c, true, nil, c.EndList(b_1241))
+		v = tmk_With(c, true, nil, c.EndList(b_1236))
 	}
 	p.Depth--
 	return v, true
@@ -23399,7 +24916,28 @@ L25:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cte"
-	v = tmk_CTE(c, true, k1, c.Concat(k5), c.Concat(k12), k22, k28)
+	{
+		var tr122 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k12)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tv9 := tmk_CTE(c, true, k1, any(tn4), any(tn8), k22, k28)
+			tr122 = tv9
+		}
+		v = tr122
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -23457,7 +24995,7 @@ fail:
 	return nil, false
 }
 
-func e1697(p *rt.TParser) (any, bool) {
+func e1673(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u256(p); !ok {
@@ -23468,7 +25006,7 @@ fail:
 	return nil, false
 }
 
-func e1698(p *rt.TParser) (any, bool) {
+func e1674(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u257(p); !ok {
@@ -23479,7 +25017,7 @@ fail:
 	return nil, false
 }
 
-func e1699(p *rt.TParser) (any, bool) {
+func e1675(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u281(p); !ok {
@@ -23490,7 +25028,7 @@ fail:
 	return nil, false
 }
 
-func e1700(p *rt.TParser) (any, bool) {
+func e1676(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u283(p); !ok {
@@ -23501,7 +25039,7 @@ fail:
 	return nil, false
 }
 
-func e1701(p *rt.TParser) (any, bool) {
+func e1677(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u284(p); !ok {
@@ -23512,7 +25050,7 @@ fail:
 	return nil, false
 }
 
-func e1702(p *rt.TParser) (any, bool) {
+func e1678(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u287(p); !ok {
@@ -23523,7 +25061,7 @@ fail:
 	return nil, false
 }
 
-func e1703(p *rt.TParser) (any, bool) {
+func e1679(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u247(p); !ok {
@@ -23534,7 +25072,7 @@ fail:
 	return nil, false
 }
 
-func e1704(p *rt.TParser) (any, bool) {
+func e1680(p *rt.TParser) (any, bool) {
 	var x1, x19, x41 int
 	var x2, x20, x42 []any
 	var x4, x15, x23, x37 rt.Mark
@@ -23654,7 +25192,7 @@ fail:
 	return nil, false
 }
 
-func e1705(p *rt.TParser) (any, bool) {
+func e1681(p *rt.TParser) (any, bool) {
 	var x1, x9, x31 int
 	var x2, x10, x32 []any
 	var ok, x17 bool
@@ -23956,7 +25494,35 @@ L74:
 L75:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "select_core"
-	v = tmk_SelectCore(c, true, nil, k2, c.Concat(k4), k23, c.Concat(k30), k37, k44, k51, c.Concat(k58), k65, k72)
+	{
+		var tr123 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k4)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k30)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tm9 := len(c.P.KidStack)
+			tf10 := c.P.TermPushItems(c, "concat", k58)
+			if tf10 != nil {
+				panic(tf10)
+			}
+			tk11 := c.P.Kids(tm9)
+			tn12 := c.P.TermHull(c, false, tk11)
+			tv13 := tmk_SelectCore(c, true, any(nil), k2, any(tn4), k23, any(tn8), k37, k44, k51, any(tn12), k65, k72)
+			tr123 = tv13
+		}
+		v = tr123
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -24173,7 +25739,28 @@ L75:
 L76:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "from_first"
-	v = tmk_SelectCore(c, true, any(true), k5, c.Concat(k7), k31, k1, k38, k45, k52, c.Concat(k59), k66, k73)
+	{
+		var tr124 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k7)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k59)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tv9 := tmk_SelectCore(c, true, any(true), k5, any(tn4), k31, k1, k38, k45, k52, any(tn8), k66, k73)
+			tr124 = tv9
+		}
+		v = tr124
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -24242,7 +25829,21 @@ L4:
 L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "distinct_clause"
-	v = tmk_DistinctClause(c, true, c.Concat(k2))
+	{
+		var tr125 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k2)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_DistinctClause(c, true, any(tn4))
+			tr125 = tv5
+		}
+		v = tr125
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -24320,10 +25921,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "target_list_opt_comma"
 	{
-		b_1242 := len(c.P.KidStack)
+		b_1237 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1242)
+		v = c.EndList(b_1237)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -24412,7 +26013,14 @@ func i261(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "item_prefixed"
-	v = tmk_SelectItem(c, true, k4, k1, nil, any(true))
+	{
+		var tr126 any
+		{
+			tv1 := tmk_SelectItem(c, true, k4, k1, any(nil), any(true))
+			tr126 = tv1
+		}
+		v = tr126
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -24488,7 +26096,22 @@ L9:
 L10:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "item_plain"
-	v = tmk_SelectItem(c, true, k1, k7, c.Binary(rt.OpGt, c.Length(k5), any(0)), nil)
+	{
+		var tr127 any
+		{
+			tv1, tf1 := c.P.TermLength(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SelectItem(c, true, k1, k7, tv2, any(nil))
+			tr127 = tv3
+		}
+		v = tr127
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -24570,11 +26193,11 @@ func i264(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "into_clause"
 	{
-		var tr33 any
+		var tr128 any
 		{
-			tr33 = k1
+			tr128 = k1
 		}
-		v = tr33
+		v = tr128
 	}
 	v = c.Finish(v)
 	return v, true
@@ -24792,7 +26415,18 @@ L42:
 	k43 = v45
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "into_temp"
-	v = tmk_IntoClause(c, true, c.Text(k1), k43)
+	{
+		var tr129 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_IntoClause(c, true, any(ts1), k43)
+			tr129 = tv2
+		}
+		v = tr129
+	}
 	return v, true
 fail:
 	return nil, false
@@ -24826,7 +26460,14 @@ func i267(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "into_table"
-	v = tmk_IntoClause(c, true, nil, k1)
+	{
+		var tr130 any
+		{
+			tv1 := tmk_IntoClause(c, true, any(nil), k1)
+			tr130 = tv1
+		}
+		v = tr130
+	}
 	return v, true
 fail:
 	return nil, false
@@ -24854,7 +26495,14 @@ func i268(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "into_plain"
-	v = tmk_IntoClause(c, true, nil, k1)
+	{
+		var tr131 any
+		{
+			tv1 := tmk_IntoClause(c, true, any(nil), k1)
+			tr131 = tv1
+		}
+		v = tr131
+	}
 	return v, true
 fail:
 	return nil, false
@@ -24938,7 +26586,14 @@ func s270(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "group_all"
-	v = tmk_GroupBy(c, true, any(true), nil)
+	{
+		var tr132 any
+		{
+			tv1 := tmk_GroupBy(c, true, any(true), any(nil))
+			tr132 = tv1
+		}
+		v = tr132
+	}
 	return v, true
 fail:
 	p.Pos = start
@@ -25024,10 +26679,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "group_list"
 	{
-		b_1243 := len(c.P.KidStack)
+		b_1238 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_GroupBy(c, true, nil, c.EndList(b_1243))
+		v = tmk_GroupBy(c, true, nil, c.EndList(b_1238))
 	}
 	p.Depth--
 	return v, true
@@ -25149,11 +26804,11 @@ L2:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "group_expr"
 	{
-		var tr34 any
+		var tr133 any
 		{
-			tr34 = k11
+			tr133 = k11
 		}
-		v = tr34
+		v = tr133
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -25289,7 +26944,18 @@ L5:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "gs_rollup"
-	v = tmk_GroupingSet(c, true, c.Text(k1), k13)
+	{
+		var tr134 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_GroupingSet(c, true, any(ts1), k13)
+			tr134 = tv2
+		}
+		v = tr134
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -25351,7 +27017,18 @@ func i276(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "gs_sets"
-	v = tmk_GroupingSet(c, true, c.Text(k1), k5)
+	{
+		var tr135 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_GroupingSet(c, true, any(ts1), k5)
+			tr135 = tv2
+		}
+		v = tr135
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -25380,7 +27057,14 @@ func s277(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "gs_empty"
-	v = tmk_GroupingSet(c, true, nil, nil)
+	{
+		var tr136 any
+		{
+			tv1 := tmk_GroupingSet(c, true, any(nil), any(nil))
+			tr136 = tv1
+		}
+		v = tr136
+	}
 	return v, true
 fail:
 	p.Pos = start
@@ -25454,10 +27138,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "group_by_list_opt_comma"
 	{
-		b_1244 := len(c.P.KidStack)
+		b_1239 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1244)
+		v = c.EndList(b_1239)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -25530,10 +27214,10 @@ func i279(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "window_clause"
 	{
-		b_1245 := len(c.P.KidStack)
+		b_1240 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1245)
+		v = c.EndList(b_1240)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -25582,7 +27266,14 @@ func i280(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "window_definition"
-	v = tmk_WindowDef(c, true, k1, k4)
+	{
+		var tr137 any
+		{
+			tv1 := tmk_WindowDef(c, true, k1, k4)
+			tr137 = tv1
+		}
+		v = tr137
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -25666,10 +27357,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "values_clause"
 	{
-		b_1246 := len(c.P.KidStack)
+		b_1241 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_ValuesClause(c, true, c.EndList(b_1246))
+		v = tmk_ValuesClause(c, true, c.EndList(b_1241))
 	}
 	p.Depth--
 	return v, true
@@ -25720,7 +27411,14 @@ func i282(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "values_row"
-	v = tmk_ValuesRow(c, true, k1)
+	{
+		var tr138 any
+		{
+			tv1 := tmk_ValuesRow(c, true, k1)
+			tr138 = tv1
+		}
+		v = tr138
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -25756,7 +27454,14 @@ func i283(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "table_query"
-	v = tmk_TableQuery(c, true, k1)
+	{
+		var tr139 any
+		{
+			tv1 := tmk_TableQuery(c, true, k1)
+			tr139 = tv1
+		}
+		v = tr139
+	}
 	return v, true
 fail:
 	return nil, false
@@ -25911,7 +27616,35 @@ L34:
 L35:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pivot_query"
-	v = tmk_PivotQuery(c, true, k1, c.Concat(k18), c.Concat(k25), c.Concat(k32))
+	{
+		var tr140 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k18)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k25)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tm9 := len(c.P.KidStack)
+			tf10 := c.P.TermPushItems(c, "concat", k32)
+			if tf10 != nil {
+				panic(tf10)
+			}
+			tk11 := c.P.Kids(tm9)
+			tn12 := c.P.TermHull(c, false, tk11)
+			tv13 := tmk_PivotQuery(c, true, k1, any(tn4), any(tn8), any(tn12))
+			tr140 = tv13
+		}
+		v = tr140
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -26026,7 +27759,21 @@ L12:
 L13:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unpivot_query"
-	v = tmk_UnpivotQuery(c, true, k1, k4, k8, c.Concat(k10))
+	{
+		var tr141 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k10)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_UnpivotQuery(c, true, k1, k4, k8, any(tn4))
+			tr141 = tv5
+		}
+		v = tr141
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -26123,11 +27870,11 @@ func i289(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "bracketed_names"
 	{
-		var tr35 any
+		var tr142 any
 		{
-			tr35 = k1
+			tr142 = k1
 		}
-		v = tr35
+		v = tr142
 	}
 	v = c.Finish(v)
 	return v, true
@@ -26202,10 +27949,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pivot_column_list"
 	{
-		b_1247 := len(c.P.KidStack)
+		b_1242 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1247)
+		v = c.EndList(b_1242)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -26342,11 +28089,23 @@ L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pivot_column_entry"
 	{
-		f_1248 := k1
-		f_1249 := k5
-		f_1250 := c.Concat(k7)
-		f_1251 := k9
-		v = tmk_PivotColumn(c, true, f_1248, f_1250, f_1249, f_1251)
+		var tr143 any
+		{
+			tf1 := k1
+			tf2 := k5
+			tm3 := len(c.P.KidStack)
+			tf4 := c.P.TermPushItems(c, "concat", k7)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm3)
+			tn6 := c.P.TermHull(c, false, tk5)
+			tf7 := any(tn6)
+			tf8 := k9
+			tv9 := tmk_PivotColumn(c, true, tf1, tf7, tf2, tf8)
+			tr143 = tv9
+		}
+		v = tr143
 	}
 	p.Depth--
 	return v, true
@@ -26471,7 +28230,22 @@ L11:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sort_all"
-	v = tmk_OrderBy(c, true, nil, any(true), c.Text(k2), c.Text(k9))
+	{
+		var tr144 any
+		{
+			ts1, tf1 := c.P.TermText(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k9)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_OrderBy(c, true, any(nil), any(true), any(ts1), any(ts2))
+			tr144 = tv3
+		}
+		v = tr144
+	}
 	return v, true
 fail:
 	return nil, false
@@ -26543,10 +28317,10 @@ func i294(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sort_list"
 	{
-		b_1252 := len(c.P.KidStack)
+		b_1243 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_OrderBy(c, true, c.EndList(b_1252), nil, nil, nil)
+		v = tmk_OrderBy(c, true, c.EndList(b_1243), nil, nil, nil)
 	}
 	p.Depth--
 	return v, true
@@ -26648,7 +28422,22 @@ L10:
 L11:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sortby_using"
-	v = tmk_SortItem(c, true, k1, c.Text(k4), nil, c.Text(k8))
+	{
+		var tr145 any
+		{
+			ts1, tf1 := c.P.TermText(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k8)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SortItem(c, true, k1, any(ts1), any(nil), any(ts2))
+			tr145 = tv3
+		}
+		v = tr145
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -26707,7 +28496,22 @@ L14:
 L15:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sortby_plain"
-	v = tmk_SortItem(c, true, k1, nil, c.Text(k5), c.Text(k12))
+	{
+		var tr146 any
+		{
+			ts1, tf1 := c.P.TermText(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k12)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SortItem(c, true, k1, any(nil), any(ts1), any(ts2))
+			tr146 = tv3
+		}
+		v = tr146
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -27032,7 +28836,18 @@ func i302(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "limit_comma"
-	v = tmk_LimitClause(c, true, c.Text(k1), nil, k4, nil, k7)
+	{
+		var tr147 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_LimitClause(c, true, any(ts1), any(nil), k4, any(nil), k7)
+			tr147 = tv2
+		}
+		v = tr147
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -27068,7 +28883,18 @@ func i303(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "limit_all"
-	v = tmk_LimitClause(c, true, c.Text(k1), any(true), nil, nil, nil)
+	{
+		var tr148 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_LimitClause(c, true, any(ts1), any(true), any(nil), any(nil), any(nil))
+			tr148 = tv2
+		}
+		v = tr148
+	}
 	return v, true
 fail:
 	return nil, false
@@ -27110,7 +28936,22 @@ func i304(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "limit_percent"
-	v = tmk_LimitClause(c, true, c.Text(k1), nil, k4, c.Text(k7), nil)
+	{
+		var tr149 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k7)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_LimitClause(c, true, any(ts1), any(nil), k4, any(ts2), any(nil))
+			tr149 = tv3
+		}
+		v = tr149
+	}
 	return v, true
 fail:
 	return nil, false
@@ -27186,7 +29027,22 @@ L5:
 	k16 = v18
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "limit_percent_sign"
-	v = tmk_LimitClause(c, true, c.Text(k1), nil, k13, c.Text(k16), nil)
+	{
+		var tr150 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k16)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_LimitClause(c, true, any(ts1), any(nil), k13, any(ts2), any(nil))
+			tr150 = tv3
+		}
+		v = tr150
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -27241,7 +29097,18 @@ L8:
 	p.Pos = x7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "limit_plain"
-	v = tmk_LimitClause(c, true, c.Text(k1), nil, k4, nil, nil)
+	{
+		var tr151 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_LimitClause(c, true, any(ts1), any(nil), k4, any(nil), any(nil))
+			tr151 = tv2
+		}
+		v = tr151
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -27344,7 +29211,18 @@ L16:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fetch_value_clause"
-	v = tmk_LimitClause(c, true, c.Text(k1), nil, k12, nil, nil)
+	{
+		var tr152 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_LimitClause(c, true, any(ts1), any(nil), k12, any(nil), any(nil))
+			tr152 = tv2
+		}
+		v = tr152
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -27439,7 +29317,18 @@ L13:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fetch_clause"
-	v = tmk_LimitClause(c, true, c.Text(k1), nil, nil, nil, nil)
+	{
+		var tr153 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_LimitClause(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil))
+			tr153 = tv2
+		}
+		v = tr153
+	}
 	return v, true
 fail:
 	return nil, false
@@ -27541,11 +29430,11 @@ L2:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fetch_signed"
 	{
-		var tr36 any
+		var tr154 any
 		{
-			tr36 = k9
+			tr154 = k9
 		}
-		v = tr36
+		v = tr154
 	}
 	v = c.Finish(v)
 	return v, true
@@ -27637,7 +29526,14 @@ func i312(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "offset_plain"
-	v = tmk_OffsetClause(c, true, k1, nil)
+	{
+		var tr155 any
+		{
+			tv1 := tmk_OffsetClause(c, true, k1, any(nil))
+			tr155 = tv1
+		}
+		v = tr155
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -27707,7 +29603,18 @@ L8:
 	k4 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "offset_rows"
-	v = tmk_OffsetClause(c, true, k1, c.Text(k4))
+	{
+		var tr156 any
+		{
+			ts1, tf1 := c.P.TermText(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_OffsetClause(c, true, k1, any(ts1))
+			tr156 = tv2
+		}
+		v = tr156
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -27763,10 +29670,10 @@ func i314(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "locking_clauses"
 	{
-		b_1253 := len(c.P.KidStack)
+		b_1244 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1253)
+		v = c.EndList(b_1244)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -27862,7 +29769,18 @@ func i316(p *rt.TParser) (any, bool) {
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lock_read_only"
-	v = tmk_LockClause(c, true, c.Text(k1), nil, nil)
+	{
+		var tr157 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_LockClause(c, true, any(ts1), any(nil), any(nil))
+			tr157 = tv2
+		}
+		v = tr157
+	}
 	return v, true
 fail:
 	return nil, false
@@ -28029,7 +29947,29 @@ L27:
 L28:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lock_for"
-	v = tmk_LockClause(c, true, c.Text(k1), c.Concat(k18), c.Text(k25))
+	{
+		var tr158 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k18)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			ts6, tf6 := c.P.TermText(k25)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7 := tmk_LockClause(c, true, any(ts1), any(tn5), any(ts6))
+			tr158 = tv7
+		}
+		v = tr158
+	}
 	return v, true
 fail:
 	return nil, false
@@ -28088,10 +30028,10 @@ func i318(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "qualified_name_list"
 	{
-		b_1254 := len(c.P.KidStack)
+		b_1245 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1254)
+		v = c.EndList(b_1245)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -28137,11 +30077,11 @@ func i319(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sample_clause"
 	{
-		var tr37 any
+		var tr159 any
 		{
-			tr37 = k1
+			tr159 = k1
 		}
-		v = tr37
+		v = tr159
 	}
 	v = c.Finish(v)
 	return v, true
@@ -28181,11 +30121,11 @@ func i320(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tablesample_clause"
 	{
-		var tr38 any
+		var tr160 any
 		{
-			tr38 = k1
+			tr160 = k1
 		}
-		v = tr38
+		v = tr160
 	}
 	v = c.Finish(v)
 	return v, true
@@ -28382,7 +30322,18 @@ L21:
 L22:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sample_func"
-	v = tmk_SampleClause(c, true, k2, k8, c.Text(k12), k19, nil)
+	{
+		var tr161 any
+		{
+			ts1, tf1 := c.P.TermText(k12)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SampleClause(c, true, k2, k8, any(ts1), k19, any(nil))
+			tr161 = tv2
+		}
+		v = tr161
+	}
 	return v, true
 fail:
 	return nil, false
@@ -28469,7 +30420,18 @@ L18:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sample_seeded"
-	v = tmk_SampleClause(c, true, k11, k1, c.Text(k5), nil, k15)
+	{
+		var tr162 any
+		{
+			ts1, tf1 := c.P.TermText(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SampleClause(c, true, k11, k1, any(ts1), any(nil), k15)
+			tr162 = tv2
+		}
+		v = tr162
+	}
 	return v, true
 fail:
 	return nil, false
@@ -28511,7 +30473,18 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sample_count"
-	v = tmk_SampleClause(c, true, nil, k1, c.Text(k5), nil, nil)
+	{
+		var tr163 any
+		{
+			ts1, tf1 := c.P.TermText(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SampleClause(c, true, any(nil), k1, any(ts1), any(nil), any(nil))
+			tr163 = tv2
+		}
+		v = tr163
+	}
 	return v, true
 fail:
 	return nil, false
@@ -28635,10 +30608,10 @@ func i327(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "from_list"
 	{
-		b_1255 := len(c.P.KidStack)
+		b_1246 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1255)
+		v = c.EndList(b_1246)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -28718,10 +30691,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "from_list_opt_comma"
 	{
-		b_1256 := len(c.P.KidStack)
+		b_1247 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1256)
+		v = c.EndList(b_1247)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -28731,7 +30704,7 @@ fail:
 	return nil, false
 }
 
-func e1706(p *rt.TParser) (any, bool) {
+func e1682(p *rt.TParser) (any, bool) {
 	var ok bool
 	var v1 any
 	if v1, ok = u344(p); !ok {
@@ -28742,7 +30715,7 @@ fail:
 	return nil, false
 }
 
-func e1707(p *rt.TParser) (any, bool) {
+func e1683(p *rt.TParser) (any, bool) {
 	var x1, x4 int
 	var x2 []any
 	var ok bool
@@ -28779,7 +30752,7 @@ fail:
 	return nil, false
 }
 
-func e1708(p *rt.TParser) (any, bool) {
+func e1684(p *rt.TParser) (any, bool) {
 	var x1, x4 int
 	var x2 []any
 	var ok bool
@@ -28827,7 +30800,7 @@ fail:
 	return nil, false
 }
 
-func e1709(p *rt.TParser) (any, bool) {
+func e1685(p *rt.TParser) (any, bool) {
 	var x1, x4 int
 	var x2 []any
 	var ok bool
@@ -28864,7 +30837,7 @@ fail:
 	return nil, false
 }
 
-func e1710(p *rt.TParser) (any, bool) {
+func e1686(p *rt.TParser) (any, bool) {
 	var x1, x4 int
 	var x2 []any
 	var ok bool
@@ -28921,7 +30894,7 @@ fail:
 	return nil, false
 }
 
-func e1711(p *rt.TParser) (any, bool) {
+func e1687(p *rt.TParser) (any, bool) {
 	var x1, x4 int
 	var x2 []any
 	var ok bool
@@ -28978,7 +30951,7 @@ fail:
 	return nil, false
 }
 
-func e1712(p *rt.TParser) (any, bool) {
+func e1688(p *rt.TParser) (any, bool) {
 	var x1, x4 int
 	var x2 []any
 	var x5 rt.Mark
@@ -29029,7 +31002,7 @@ fail:
 	return nil, false
 }
 
-func e1713(p *rt.TParser) (any, bool) {
+func e1689(p *rt.TParser) (any, bool) {
 	var x1, x4 int
 	var x2 []any
 	var x5 rt.Mark
@@ -29080,7 +31053,7 @@ fail:
 	return nil, false
 }
 
-func e1714(p *rt.TParser) (any, bool) {
+func e1690(p *rt.TParser) (any, bool) {
 	var x1, x5, x19, x31, x37 int
 	var x2, x20, x38 []any
 	var ok bool
@@ -29206,7 +31179,7 @@ fail:
 	return nil, false
 }
 
-func e1715(p *rt.TParser) (any, bool) {
+func e1691(p *rt.TParser) (any, bool) {
 	var x1, x8, x16, x27, x33 int
 	var x2, x9, x34 []any
 	var ok bool
@@ -29349,11 +31322,11 @@ func i331(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "join_qual_on"
 	{
-		var tr39 any
+		var tr164 any
 		{
-			tr39 = k1
+			tr164 = k1
 		}
-		v = tr39
+		v = tr164
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -29411,11 +31384,11 @@ func i332(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "join_qual_using"
 	{
-		var tr40 any
+		var tr165 any
 		{
-			tr40 = k1
+			tr165 = k1
 		}
-		v = tr40
+		v = tr165
 	}
 	v = c.Finish(v)
 	return v, true
@@ -29542,7 +31515,20 @@ func i335(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unpivot_single"
-	v = c.List(k1)
+	{
+		var tr166 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr166 = any(tn4)
+		}
+		v = tr166
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -29595,10 +31581,10 @@ func i336(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unpivot_value_list"
 	{
-		b_1257 := len(c.P.KidStack)
+		b_1248 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1257)
+		v = c.EndList(b_1248)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -29663,7 +31649,14 @@ func i337(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unpivot_value"
-	v = tmk_UnpivotValue(c, true, k1, k4)
+	{
+		var tr167 any
+		{
+			tv1 := tmk_UnpivotValue(c, true, k1, k4)
+			tr167 = tv1
+		}
+		v = tr167
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -29717,10 +31710,10 @@ func i338(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pivot_value_list"
 	{
-		b_1258 := len(c.P.KidStack)
+		b_1249 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1258)
+		v = c.EndList(b_1249)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -29811,7 +31804,21 @@ L16:
 L9:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pivot_value"
-	v = tmk_PivotValue(c, true, k1, c.Concat(k5), k7)
+	{
+		var tr168 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_PivotValue(c, true, k1, any(tn4), k7)
+			tr168 = tv5
+		}
+		v = tr168
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -29901,11 +31908,11 @@ func i341(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pivot_header_list"
 	{
-		var tr41 any
+		var tr169 any
 		{
-			tr41 = k1
+			tr169 = k1
 		}
-		v = tr41
+		v = tr169
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -29938,7 +31945,20 @@ func i342(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pivot_header_single"
-	v = c.List(k1)
+	{
+		var tr170 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr170 = any(tn4)
+		}
+		v = tr170
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -30014,10 +32034,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "c_expr_list_opt_comma"
 	{
-		b_1259 := len(c.P.KidStack)
+		b_1250 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1259)
+		v = c.EndList(b_1250)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -30130,11 +32150,11 @@ func i345(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alias_prefix"
 	{
-		var tr42 any
+		var tr171 any
 		{
-			tr42 = k1
+			tr171 = k1
 		}
-		v = tr42
+		v = tr171
 	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[345], v)
@@ -30326,7 +32346,30 @@ L61:
 L62:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "base_ref"
-	v = tmk_BaseTable(c, true, k2, k9, c.Binary(rt.OpGt, c.Length(k13), any(0)), c.Binary(rt.OpGt, c.Length(k11), any(0)), k45, k52, k59)
+	{
+		var tr173 any
+		{
+			tv1, tf1 := c.P.TermLength(k13)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(k11)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_BaseTable(c, true, k2, k9, tv2, tv4, k45, k52, k59)
+			tr173 = tv5
+		}
+		v = tr173
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -30418,7 +32461,18 @@ L5:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "at_clause"
-	v = tmk_AtClause(c, true, c.Text(k1), k13)
+	{
+		var tr174 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AtClause(c, true, any(ts1), k13)
+			tr174 = tv2
+		}
+		v = tr174
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -30514,7 +32568,22 @@ L28:
 L29:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "subquery_ref"
-	v = tmk_SubqueryRef(c, true, k2, k15, c.Binary(rt.OpGt, c.Length(k9), any(0)), k19, k26)
+	{
+		var tr176 any
+		{
+			tv1, tf1 := c.P.TermLength(k9)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SubqueryRef(c, true, k2, k15, tv2, k19, k26)
+			tr176 = tv3
+		}
+		v = tr176
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -30620,7 +32689,14 @@ L17:
 L18:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paren_table"
-	v = tmk_ParenTable(c, true, k2, k11, k15)
+	{
+		var tr178 any
+		{
+			tv1 := tmk_ParenTable(c, true, k2, k11, k15)
+			tr178 = tv1
+		}
+		v = tr178
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -30686,7 +32762,14 @@ L17:
 L18:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "values_ref"
-	v = tmk_ValuesRef(c, true, k2, k8, k11, k15)
+	{
+		var tr179 any
+		{
+			tv1 := tmk_ValuesRef(c, true, k2, k8, k11, k15)
+			tr179 = tv1
+		}
+		v = tr179
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -30802,7 +32885,30 @@ L35:
 L36:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "func_ref"
-	v = tmk_FuncTable(c, true, k2, k15, nil, c.Binary(rt.OpGt, c.Length(k9), any(0)), c.Binary(rt.OpGt, c.Length(k19), any(0)), k26, k33)
+	{
+		var tr181 any
+		{
+			tv1, tf1 := c.P.TermLength(k9)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(k19)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_FuncTable(c, true, k2, k15, any(nil), tv2, tv4, k26, k33)
+			tr181 = tv5
+		}
+		v = tr181
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -30963,10 +33069,10 @@ L39:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rows_from_ref"
 	{
-		b_1260 := len(c.P.KidStack)
+		b_1251 := len(c.P.KidStack)
 		c.PushList(k8)
 		c.PushItems(k11)
-		v = tmk_FuncTable(c, true, k2, nil, c.EndList(b_1260), nil, c.Binary(rt.OpGt, c.Length(k22), any(0)), k29, k36)
+		v = tmk_FuncTable(c, true, k2, nil, c.EndList(b_1251), nil, c.Binary(rt.OpGt, c.Length(k22), any(0)), k29, k36)
 	}
 	p.Depth--
 	return v, true
@@ -31037,7 +33143,21 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rowsfrom_item"
-	v = tmk_RowsFromItem(c, true, k1, c.Concat(k5))
+	{
+		var tr183 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_RowsFromItem(c, true, k1, any(tn4))
+			tr183 = tv5
+		}
+		v = tr183
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -31313,7 +33433,29 @@ L65:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "func_call_bare"
-	v = tmk_FuncCall(c, true, k1, c.Text(k5), c.Concat(k7), k9, k55, c.Text(k62), nil, nil, nil, nil)
+	{
+		var tr184 any
+		{
+			ts1, tf1 := c.P.TermText(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k7)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			ts6, tf6 := c.P.TermText(k62)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7 := tmk_FuncCall(c, true, k1, any(ts1), any(tn5), k9, k55, any(ts6), any(nil), any(nil), any(nil), any(nil))
+			tr184 = tv7
+		}
+		v = tr184
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -31441,7 +33583,14 @@ func i358(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alias_as_cols"
-	v = tmk_TableAlias(c, true, k1, k4, nil, any(true))
+	{
+		var tr185 any
+		{
+			tv1 := tmk_TableAlias(c, true, k1, k4, any(nil), any(true))
+			tr185 = tv1
+		}
+		v = tr185
+	}
 	return v, true
 fail:
 	return nil, false
@@ -31478,7 +33627,14 @@ func i359(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alias_as"
-	v = tmk_TableAlias(c, true, k1, nil, nil, any(true))
+	{
+		var tr186 any
+		{
+			tv1 := tmk_TableAlias(c, true, k1, any(nil), any(nil), any(true))
+			tr186 = tv1
+		}
+		v = tr186
+	}
 	return v, true
 fail:
 	return nil, false
@@ -31532,7 +33688,14 @@ func i360(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alias_cols"
-	v = tmk_TableAlias(c, true, k1, k4, nil, nil)
+	{
+		var tr187 any
+		{
+			tv1 := tmk_TableAlias(c, true, k1, k4, any(nil), any(nil))
+			tr187 = tv1
+		}
+		v = tr187
+	}
 	return v, true
 fail:
 	return nil, false
@@ -31563,7 +33726,14 @@ func i361(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alias_bare"
-	v = tmk_TableAlias(c, true, k1, nil, nil, nil)
+	{
+		var tr188 any
+		{
+			tv1 := tmk_TableAlias(c, true, k1, any(nil), any(nil), any(nil))
+			tr188 = tv1
+		}
+		v = tr188
+	}
 	return v, true
 fail:
 	return nil, false
@@ -31721,7 +33891,14 @@ func i363(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "falias_as_defs"
-	v = tmk_TableAlias(c, true, k1, nil, k4, any(true))
+	{
+		var tr189 any
+		{
+			tv1 := tmk_TableAlias(c, true, k1, any(nil), k4, any(true))
+			tr189 = tv1
+		}
+		v = tr189
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -31774,7 +33951,14 @@ func i364(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "falias_defs_only"
-	v = tmk_TableAlias(c, true, nil, nil, k1, any(true))
+	{
+		var tr190 any
+		{
+			tv1 := tmk_TableAlias(c, true, any(nil), any(nil), k1, any(true))
+			tr190 = tv1
+		}
+		v = tr190
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -31828,7 +34012,14 @@ func i365(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "falias_defs"
-	v = tmk_TableAlias(c, true, k1, nil, k4, nil)
+	{
+		var tr191 any
+		{
+			tv1 := tmk_TableAlias(c, true, k1, any(nil), k4, any(nil))
+			tr191 = tv1
+		}
+		v = tr191
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -31893,10 +34084,10 @@ func i366(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "table_func_element_list"
 	{
-		b_1261 := len(c.P.KidStack)
+		b_1252 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1261)
+		v = c.EndList(b_1252)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -31959,7 +34150,14 @@ L10:
 L11:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "table_func_element"
-	v = tmk_ColDef(c, true, k1, k4, k8)
+	{
+		var tr192 any
+		{
+			tv1 := tmk_ColDef(c, true, k1, k4, k8)
+			tr192 = tv1
+		}
+		v = tr192
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -32024,10 +34222,10 @@ func i368(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "target_list"
 	{
-		b_1262 := len(c.P.KidStack)
+		b_1253 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1262)
+		v = c.EndList(b_1253)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -32308,7 +34506,48 @@ L92:
 L93:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "insert_stmt"
-	v = tmk_InsertStmt(c, true, k2, c.Text(k9), k24, k28, c.Text(k35), c.Concat(k53), c.Text(k55), k57, c.Binary(rt.OpGt, c.Length(k51), any(0)), k83, c.Concat(k90))
+	{
+		var tr193 any
+		{
+			ts1, tf1 := c.P.TermText(k9)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k35)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tm3 := len(c.P.KidStack)
+			tf4 := c.P.TermPushItems(c, "concat", k53)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm3)
+			tn6 := c.P.TermHull(c, false, tk5)
+			ts7, tf7 := c.P.TermText(k55)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermLength(k51)
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tv9, tf9 := c.P.TermBinary(rt.OpGt, tv8, any(0))
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tm10 := len(c.P.KidStack)
+			tf11 := c.P.TermPushItems(c, "concat", k90)
+			if tf11 != nil {
+				panic(tf11)
+			}
+			tk12 := c.P.Kids(tm10)
+			tn13 := c.P.TermHull(c, false, tk12)
+			tv14 := tmk_InsertStmt(c, true, k2, any(ts1), k24, k28, any(ts2), any(tn6), any(ts7), k57, tv9, k83, any(tn13))
+			tr193 = tv14
+		}
+		v = tr193
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -32355,11 +34594,11 @@ func i370(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "insert_columns"
 	{
-		var tr48 any
+		var tr194 any
 		{
-			tr48 = k1
+			tr194 = k1
 		}
-		v = tr48
+		v = tr194
 	}
 	v = c.Finish(v)
 	return v, true
@@ -32420,10 +34659,10 @@ func i371(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "insert_column_list"
 	{
-		b_1263 := len(c.P.KidStack)
+		b_1254 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1263)
+		v = c.EndList(b_1254)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -32711,7 +34950,36 @@ L47:
 L34:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "on_conflict"
-	v = tmk_OnConflict(c, true, c.Concat(k2), k4, k6, c.Binary(rt.OpGt, c.Length(k32), any(0)), c.Concat(k28), k30)
+	{
+		var tr195 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k2)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5, tf5 := c.P.TermLength(k32)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpGt, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tm7 := len(c.P.KidStack)
+			tf8 := c.P.TermPushItems(c, "concat", k28)
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tk9 := c.P.Kids(tm7)
+			tn10 := c.P.TermHull(c, false, tk9)
+			tv11 := tmk_OnConflict(c, true, any(tn4), k4, k6, tv6, any(tn10), k30)
+			tr195 = tv11
+		}
+		v = tr195
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -32776,10 +35044,10 @@ func i375(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "index_params"
 	{
-		b_1264 := len(c.P.KidStack)
+		b_1255 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1264)
+		v = c.EndList(b_1255)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -32930,7 +35198,30 @@ L28:
 L29:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "index_elem_col"
-	v = tmk_IndexElem(c, true, tmk_ColumnRef(c, false, c.List(k1)), k5, k12, c.Text(k19), c.Text(k26))
+	{
+		var tr196 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_ColumnRef(c, false, any(tn4))
+			ts6, tf6 := c.P.TermText(k19)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			ts7, tf7 := c.P.TermText(k26)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8 := tmk_IndexElem(c, true, tv5, k5, k12, any(ts6), any(ts7))
+			tr196 = tv8
+		}
+		v = tr196
+	}
 	p.DropCreated(c.Cbase)
 	return v, true
 fail:
@@ -33022,7 +35313,22 @@ L28:
 L29:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "index_elem_func"
-	v = tmk_IndexElem(c, true, k1, k5, k12, c.Text(k19), c.Text(k26))
+	{
+		var tr197 any
+		{
+			ts1, tf1 := c.P.TermText(k19)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k26)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_IndexElem(c, true, k1, k5, k12, any(ts1), any(ts2))
+			tr197 = tv3
+		}
+		v = tr197
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -33131,7 +35437,22 @@ L28:
 L29:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "index_elem_expr"
-	v = tmk_IndexElem(c, true, k1, k5, k12, c.Text(k19), c.Text(k26))
+	{
+		var tr198 any
+		{
+			ts1, tf1 := c.P.TermText(k19)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k26)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_IndexElem(c, true, k1, k5, k12, any(ts1), any(ts2))
+			tr198 = tv3
+		}
+		v = tr198
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -33209,11 +35530,11 @@ L2:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "opt_class"
 	{
-		var tr49 any
+		var tr199 any
 		{
-			tr49 = k11
+			tr199 = k11
 		}
-		v = tr49
+		v = tr199
 	}
 	v = c.Finish(v)
 	return v, true
@@ -33291,10 +35612,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "set_clause_list_opt_comma"
 	{
-		b_1265 := len(c.P.KidStack)
+		b_1256 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1265)
+		v = c.EndList(b_1256)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -33390,7 +35711,21 @@ func i383(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "set_clause_one"
-	v = tmk_SetClause(c, true, c.List(k1), k4, nil)
+	{
+		var tr200 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_SetClause(c, true, any(tn4), k4, any(nil))
+			tr200 = tv5
+		}
+		v = tr200
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -33481,10 +35816,10 @@ func i384(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "set_clause_paren"
 	{
-		b_1266 := len(c.P.KidStack)
+		b_1257 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_SetClause(c, true, c.EndList(b_1266), k14, any(true))
+		v = tmk_SetClause(c, true, c.EndList(b_1257), k14, any(true))
 	}
 	p.Depth--
 	return v, true
@@ -33672,7 +36007,38 @@ L42:
 L43:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "target_table"
-	v = tmk_TargetTable(c, true, k2, c.Binary(rt.OpGt, c.Length(k6), any(0)), c.Binary(rt.OpGt, c.Length(k4), any(0)), k40, c.Binary(rt.OpGt, c.Length(k38), any(0)))
+	{
+		var tr201 any
+		{
+			tv1, tf1 := c.P.TermLength(k6)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermLength(k38)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpGt, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7 := tmk_TargetTable(c, true, k2, tv2, tv4, k40, tv6)
+			tr201 = tv7
+		}
+		v = tr201
+	}
 	return v, true
 fail:
 	return nil, false
@@ -33797,7 +36163,28 @@ L31:
 L32:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "update_stmt"
-	v = tmk_UpdateStmt(c, true, k2, k8, k11, c.Concat(k15), k22, c.Concat(k29))
+	{
+		var tr202 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k15)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k29)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tv9 := tmk_UpdateStmt(c, true, k2, k8, k11, any(tn4), k22, any(tn8))
+			tr202 = tv9
+		}
+		v = tr202
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -33917,7 +36304,28 @@ L28:
 L29:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "delete_stmt"
-	v = tmk_DeleteStmt(c, true, k2, k8, c.Concat(k12), k19, c.Concat(k26), nil)
+	{
+		var tr203 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k12)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPushItems(c, "concat", k26)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tv9 := tmk_DeleteStmt(c, true, k2, k8, any(tn4), k19, any(tn8), any(nil))
+			tr203 = tv9
+		}
+		v = tr203
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -33967,7 +36375,14 @@ L3:
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "truncate_stmt"
-	v = tmk_DeleteStmt(c, true, nil, k4, nil, nil, nil, any(true))
+	{
+		var tr204 any
+		{
+			tv1 := tmk_DeleteStmt(c, true, any(nil), k4, any(nil), any(nil), any(nil), any(true))
+			tr204 = tv1
+		}
+		v = tr204
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34153,11 +36568,11 @@ L47:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "merge_stmt"
 	{
-		t_1268 := c.Concat(k17)
-		b_1267 := len(c.P.KidStack)
+		t_1259 := c.Concat(k17)
+		b_1258 := len(c.P.KidStack)
 		c.PushList(k30)
 		c.PushItems(k33)
-		v = tmk_MergeStmt(c, true, k2, k8, k11, k15, t_1268, c.EndList(b_1267), c.Concat(k44))
+		v = tmk_MergeStmt(c, true, k2, k8, k11, k15, t_1259, c.EndList(b_1258), c.Concat(k44))
 	}
 	return v, true
 fail:
@@ -34276,7 +36691,14 @@ L5:
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "merge_when_matched"
-	v = tmk_MergeWhen(c, true, any(false), nil, k2, k8)
+	{
+		var tr205 any
+		{
+			tv1 := tmk_MergeWhen(c, true, any(false), any(nil), k2, k8)
+			tr205 = tv1
+		}
+		v = tr205
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34394,7 +36816,18 @@ L21:
 	k24 = v26
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "merge_when_not"
-	v = tmk_MergeWhen(c, true, any(true), c.Text(k2), k18, k24)
+	{
+		var tr206 any
+		{
+			ts1, tf1 := c.P.TermText(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_MergeWhen(c, true, any(true), any(ts1), k18, k24)
+			tr206 = tv2
+		}
+		v = tr206
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34571,7 +37004,18 @@ func i394(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_update_set"
-	v = tmk_MergeAction(c, true, c.Text(k1), k4, nil, nil, nil, nil, nil, nil)
+	{
+		var tr207 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_MergeAction(c, true, any(ts1), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr207 = tv2
+		}
+		v = tr207
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34611,7 +37055,18 @@ func i395(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_update_star"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, nil, any(true), nil, nil, nil, nil)
+	{
+		var tr208 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_MergeAction(c, true, any(ts1), any(nil), any(nil), any(true), any(nil), any(nil), any(nil), any(nil))
+			tr208 = tv2
+		}
+		v = tr208
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34685,7 +37140,22 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_update"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, c.Text(k5), nil, nil, nil, nil, nil)
+	{
+		var tr209 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_MergeAction(c, true, any(ts1), any(nil), any(ts2), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr209 = tv3
+		}
+		v = tr209
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34713,7 +37183,18 @@ func i397(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_delete"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr210 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_MergeAction(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr210 = tv2
+		}
+		v = tr210
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34800,7 +37281,25 @@ L8:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_insert_values"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, nil, nil, c.Concat(k5), k11, nil, nil)
+	{
+		var tr211 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k5)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_MergeAction(c, true, any(ts1), any(nil), any(nil), any(nil), any(tn5), k11, any(nil), any(nil))
+			tr211 = tv6
+		}
+		v = tr211
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34859,10 +37358,10 @@ func i399(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "insert_column_ident_list"
 	{
-		b_1269 := len(c.P.KidStack)
+		b_1260 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1269)
+		v = c.EndList(b_1260)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -34904,7 +37403,18 @@ func i400(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_insert_default"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, nil, nil, nil, nil, any(true), nil)
+	{
+		var tr212 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_MergeAction(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(true), any(nil))
+			tr212 = tv2
+		}
+		v = tr212
+	}
 	return v, true
 fail:
 	return nil, false
@@ -34992,7 +37502,30 @@ L23:
 L24:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_insert"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, c.Text(k5), c.Binary(rt.OpGt, c.Length(k21), any(0)), nil, nil, nil, nil)
+	{
+		var tr213 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(k21)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_MergeAction(c, true, any(ts1), any(nil), any(ts2), tv4, any(nil), any(nil), any(nil), any(nil))
+			tr213 = tv5
+		}
+		v = tr213
+	}
 	return v, true
 fail:
 	return nil, false
@@ -35028,7 +37561,18 @@ func i402(p *rt.TParser) (any, bool) {
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_nothing"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr214 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_MergeAction(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr214 = tv2
+		}
+		v = tr214
+	}
 	return v, true
 fail:
 	return nil, false
@@ -35070,7 +37614,18 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ma_error"
-	v = tmk_MergeAction(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, k5)
+	{
+		var tr215 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_MergeAction(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k5)
+			tr215 = tv2
+		}
+		v = tr215
+	}
 	return v, true
 fail:
 	return nil, false
@@ -35564,10 +38119,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "table_element_list"
 	{
-		b_1270 := len(c.P.KidStack)
+		b_1261 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1270)
+		v = c.EndList(b_1261)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -35709,7 +38264,14 @@ L5:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "partition_sorted_option"
-	v = tmk_PartitionSorted(c, true, k1, k13)
+	{
+		var tr217 any
+		{
+			tv1 := tmk_PartitionSorted(c, true, k1, k13)
+			tr217 = tv1
+		}
+		v = tr217
+	}
 	return v, true
 fail:
 	return nil, false
@@ -35807,11 +38369,11 @@ func i413(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "with_reloptions"
 	{
-		var tr51 any
+		var tr218 any
 		{
-			tr51 = k1
+			tr218 = k1
 		}
-		v = tr51
+		v = tr218
 	}
 	v = c.Finish(v)
 	return v, true
@@ -35866,7 +38428,16 @@ L7:
 L2:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "with_oids"
-	v = c.List()
+	{
+		var tr219 any
+		{
+			tm1 := len(c.P.KidStack)
+			tk2 := c.P.Kids(tm1)
+			tn3 := c.P.TermHull(c, false, tk2)
+			tr219 = any(tn3)
+		}
+		v = tr219
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -36017,10 +38588,10 @@ func i416(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "reloption_list"
 	{
-		b_1271 := len(c.P.KidStack)
+		b_1262 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1271)
+		v = c.EndList(b_1262)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -36125,7 +38696,26 @@ L10:
 L11:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "reloption_def"
-	v = tmk_Reloption(c, true, tmk_Name(c, false, c.List(k1, k4)), nil, k8)
+	{
+		var tr220 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tf3 := c.P.TermPush(c, "list", k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm1)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Name(c, false, any(tn5))
+			tv7 := tmk_Reloption(c, true, tv6, any(nil), k8)
+			tr220 = tv7
+		}
+		v = tr220
+	}
 	p.DropCreated(c.Cbase)
 	return v, true
 fail:
@@ -36174,7 +38764,14 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "reloption_expr"
-	v = tmk_Reloption(c, true, k1, k5, nil)
+	{
+		var tr221 any
+		{
+			tv1 := tmk_Reloption(c, true, k1, k5, any(nil))
+			tr221 = tv1
+		}
+		v = tr221
+	}
 	return v, true
 fail:
 	return nil, false
@@ -36202,7 +38799,21 @@ func i420(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "reloption_name"
-	v = tmk_Name(c, true, c.List(k1))
+	{
+		var tr222 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Name(c, true, any(tn4))
+			tr222 = tv5
+		}
+		v = tr222
+	}
 	return v, true
 fail:
 	return nil, false
@@ -36411,10 +39022,10 @@ func i423(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "def_list"
 	{
-		b_1272 := len(c.P.KidStack)
+		b_1263 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1272)
+		v = c.EndList(b_1263)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -36467,7 +39078,18 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "def_elem"
-	v = tmk_DefElem(c, true, k1, c.Text(k5))
+	{
+		var tr223 any
+		{
+			ts1, tf1 := c.P.TermText(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_DefElem(c, true, k1, any(ts1))
+			tr223 = tv2
+		}
+		v = tr223
+	}
 	return v, true
 fail:
 	return nil, false
@@ -36512,11 +39134,11 @@ func i425(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "definition"
 	{
-		var tr52 any
+		var tr224 any
 		{
-			tr52 = k1
+			tr224 = k1
 		}
-		v = tr52
+		v = tr224
 	}
 	v = c.Finish(v)
 	return v, true
@@ -36556,11 +39178,11 @@ func i426(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "opt_definition"
 	{
-		var tr53 any
+		var tr225 any
 		{
-			tr53 = k1
+			tr225 = k1
 		}
-		v = tr53
+		v = tr225
 	}
 	v = c.Finish(v)
 	return v, true
@@ -36862,7 +39484,25 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "gen_identity"
-	v = tmk_GeneratedColumn(c, true, c.Text(k1), any(true), c.Concat(k5), nil, nil)
+	{
+		var tr226 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k5)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_GeneratedColumn(c, true, any(ts1), any(true), any(tn5), any(nil), any(nil))
+			tr226 = tv6
+		}
+		v = tr226
+	}
 	return v, true
 fail:
 	return nil, false
@@ -36939,7 +39579,22 @@ L10:
 L11:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "gen_expr"
-	v = tmk_GeneratedColumn(c, true, c.Text(k1), nil, nil, k4, c.Text(k8))
+	{
+		var tr227 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k8)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_GeneratedColumn(c, true, any(ts1), any(nil), any(nil), k4, any(ts2))
+			tr227 = tv3
+		}
+		v = tr227
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37003,7 +39658,18 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "gen_as"
-	v = tmk_GeneratedColumn(c, true, nil, nil, nil, k1, c.Text(k5))
+	{
+		var tr228 any
+		{
+			ts1, tf1 := c.P.TermText(k5)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_GeneratedColumn(c, true, any(nil), any(nil), any(nil), k1, any(ts1))
+			tr228 = tv2
+		}
+		v = tr228
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37151,11 +39817,11 @@ func i436(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "constraint_name"
 	{
-		var tr54 any
+		var tr229 any
 		{
-			tr54 = k1
+			tr229 = k1
 		}
-		v = tr54
+		v = tr229
 	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[436], v)
@@ -37311,7 +39977,18 @@ L5:
 	k8 = v11
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_not_null"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), nil, nil, nil, nil, nil)
+	{
+		var tr230 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, k2, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr230 = tv2
+		}
+		v = tr230
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37353,7 +40030,18 @@ L5:
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_null"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), nil, nil, nil, nil, nil)
+	{
+		var tr231 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, k2, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr231 = tv2
+		}
+		v = tr231
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37409,7 +40097,25 @@ L14:
 L15:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_unique"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), nil, nil, nil, nil, c.Concat(k12))
+	{
+		var tr232 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k12)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_ColumnConstraint(c, true, k2, any(ts1), any(nil), any(nil), any(nil), any(nil), any(tn5))
+			tr232 = tv6
+		}
+		v = tr232
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37473,7 +40179,25 @@ L15:
 L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_primary"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), nil, nil, nil, nil, c.Concat(k13))
+	{
+		var tr233 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k13)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_ColumnConstraint(c, true, k2, any(ts1), any(nil), any(nil), any(nil), any(nil), any(tn5))
+			tr233 = tv6
+		}
+		v = tr233
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37555,7 +40279,18 @@ L15:
 L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_check"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), k11, nil, nil, nil, nil)
+	{
+		var tr234 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, k2, any(ts1), k11, any(nil), any(nil), any(nil), any(nil))
+			tr234 = tv2
+		}
+		v = tr234
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37612,7 +40347,18 @@ L5:
 	k12 = v14
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_compression"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), nil, nil, nil, k12, nil)
+	{
+		var tr235 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, k2, any(ts1), any(nil), any(nil), any(nil), k12, any(nil))
+			tr235 = tv2
+		}
+		v = tr235
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37661,7 +40407,18 @@ L5:
 	k11 = v13
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_default"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), k11, nil, nil, nil, nil)
+	{
+		var tr236 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, k2, any(ts1), k11, any(nil), any(nil), any(nil), any(nil))
+			tr236 = tv2
+		}
+		v = tr236
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37710,7 +40467,18 @@ L5:
 	k11 = v13
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_references"
-	v = tmk_ColumnConstraint(c, true, k2, c.Text(k8), nil, k11, nil, nil, nil)
+	{
+		var tr237 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, k2, any(ts1), any(nil), k11, any(nil), any(nil), any(nil))
+			tr237 = tv2
+		}
+		v = tr237
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37738,7 +40506,18 @@ func i446(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_attr"
-	v = tmk_ColumnConstraint(c, true, nil, c.Text(k1), nil, nil, nil, nil, nil)
+	{
+		var tr238 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, any(nil), any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr238 = tv2
+		}
+		v = tr238
+	}
 	return v, true
 fail:
 	return nil, false
@@ -37773,7 +40552,18 @@ func i447(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "cc_collate"
-	v = tmk_ColumnConstraint(c, true, nil, c.Text(k1), nil, nil, k4, nil, nil)
+	{
+		var tr239 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ColumnConstraint(c, true, any(nil), any(ts1), any(nil), any(nil), k4, any(nil), any(nil))
+			tr239 = tv2
+		}
+		v = tr239
+	}
 	return v, true
 fail:
 	return nil, false
@@ -38013,7 +40803,21 @@ L23:
 L24:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "reference"
-	v = tmk_Reference(c, true, k1, c.Concat(k5), k12, k19, k21)
+	{
+		var tr240 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Reference(c, true, k1, any(tn4), k12, k19, k21)
+			tr240 = tv5
+		}
+		v = tr240
+	}
 	return v, true
 fail:
 	return nil, false
@@ -38084,11 +40888,11 @@ L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "column_list_opt_comma"
 	{
-		var tr55 any
+		var tr241 any
 		{
-			tr55 = k1
+			tr241 = k1
 		}
-		v = tr55
+		v = tr241
 	}
 	v = c.Finish(v)
 	return v, true
@@ -38534,7 +41338,18 @@ L5:
 	k14 = v16
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tc_check"
-	v = tmk_TableConstraint(c, true, k2, c.Text(k8), nil, k11, nil, nil, nil, k14)
+	{
+		var tr242 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_TableConstraint(c, true, k2, any(ts1), any(nil), k11, any(nil), any(nil), any(nil), k14)
+			tr242 = tv2
+		}
+		v = tr242
+	}
 	return v, true
 fail:
 	return nil, false
@@ -38617,7 +41432,25 @@ L18:
 	k21 = v23
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tc_unique"
-	v = tmk_TableConstraint(c, true, k2, c.Text(k8), k11, nil, nil, nil, c.Concat(k15), k21)
+	{
+		var tr243 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k15)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_TableConstraint(c, true, k2, any(ts1), k11, any(nil), any(nil), any(nil), any(tn5), k21)
+			tr243 = tv6
+		}
+		v = tr243
+	}
 	return v, true
 fail:
 	return nil, false
@@ -38682,7 +41515,18 @@ L5:
 	k14 = v16
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tc_unique_index"
-	v = tmk_TableConstraint(c, true, k2, c.Text(k8), nil, nil, nil, k11, nil, k14)
+	{
+		var tr244 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_TableConstraint(c, true, k2, any(ts1), any(nil), any(nil), any(nil), k11, any(nil), k14)
+			tr244 = tv2
+		}
+		v = tr244
+	}
 	return v, true
 fail:
 	return nil, false
@@ -38773,7 +41617,25 @@ L19:
 	k22 = v24
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tc_primary"
-	v = tmk_TableConstraint(c, true, k2, c.Text(k8), k12, nil, nil, nil, c.Concat(k16), k22)
+	{
+		var tr245 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k16)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_TableConstraint(c, true, k2, any(ts1), k12, any(nil), any(nil), any(nil), any(tn5), k22)
+			tr245 = tv6
+		}
+		v = tr245
+	}
 	return v, true
 fail:
 	return nil, false
@@ -38846,7 +41708,18 @@ L5:
 	k15 = v17
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tc_primary_index"
-	v = tmk_TableConstraint(c, true, k2, c.Text(k8), nil, nil, nil, k12, nil, k15)
+	{
+		var tr246 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_TableConstraint(c, true, k2, any(ts1), any(nil), any(nil), any(nil), k12, any(nil), k15)
+			tr246 = tv2
+		}
+		v = tr246
+	}
 	return v, true
 fail:
 	return nil, false
@@ -38936,7 +41809,18 @@ L5:
 	k18 = v20
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tc_foreign"
-	v = tmk_TableConstraint(c, true, k2, c.Text(k8), k12, nil, k15, nil, nil, k18)
+	{
+		var tr247 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_TableConstraint(c, true, k2, any(ts1), k12, any(nil), k15, any(nil), any(nil), k18)
+			tr247 = tv2
+		}
+		v = tr247
+	}
 	return v, true
 fail:
 	return nil, false
@@ -39599,7 +42483,60 @@ L52:
 L53:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "create_view_stmt"
-	v = tmk_CreateViewStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Text(k9), c.Binary(rt.OpGt, c.Length(k16), any(0)), c.Binary(rt.OpGt, c.Length(k23), any(0)), k29, c.Concat(k33), c.Concat(k40), k46, c.Text(k50))
+	{
+		var tr250 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			ts3, tf3 := c.P.TermText(k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermLength(k16)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k23)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpGt, tv6, any(0))
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tm8 := len(c.P.KidStack)
+			tf9 := c.P.TermPushItems(c, "concat", k33)
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tk10 := c.P.Kids(tm8)
+			tn11 := c.P.TermHull(c, false, tk10)
+			tm12 := len(c.P.KidStack)
+			tf13 := c.P.TermPushItems(c, "concat", k40)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tk14 := c.P.Kids(tm12)
+			tn15 := c.P.TermHull(c, false, tk14)
+			ts16, tf16 := c.P.TermText(k50)
+			if tf16 != nil {
+				panic(tf16)
+			}
+			tv17 := tmk_CreateViewStmt(c, true, tv2, any(ts3), tv5, tv7, k29, any(tn11), any(tn15), k46, any(ts16))
+			tr250 = tv17
+		}
+		v = tr250
+	}
 	return v, true
 fail:
 	return nil, false
@@ -39890,7 +42827,45 @@ L57:
 L58:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "create_index_stmt"
-	v = tmk_CreateIndexStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Binary(rt.OpGt, c.Length(k9), any(0)), c.Binary(rt.OpGt, c.Length(k16), any(0)), k18, k34, k38, k44, c.Concat(k48), k55)
+	{
+		var tr251 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermLength(k16)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpGt, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tm7 := len(c.P.KidStack)
+			tf8 := c.P.TermPushItems(c, "concat", k48)
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tk9 := c.P.Kids(tm7)
+			tn10 := c.P.TermHull(c, false, tk9)
+			tv11 := tmk_CreateIndexStmt(c, true, tv2, tv4, tv6, k18, k34, k38, k44, any(tn10), k55)
+			tr251 = tv11
+		}
+		v = tr251
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40176,7 +43151,41 @@ L28:
 L29:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "create_sequence_stmt"
-	v = tmk_CreateSequenceStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Text(k9), c.Binary(rt.OpGt, c.Length(k16), any(0)), k22, c.Concat(k26))
+	{
+		var tr254 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			ts3, tf3 := c.P.TermText(k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermLength(k16)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tm6 := len(c.P.KidStack)
+			tf7 := c.P.TermPushItems(c, "concat", k26)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tk8 := c.P.Kids(tm6)
+			tn9 := c.P.TermHull(c, false, tk8)
+			tv10 := tmk_CreateSequenceStmt(c, true, tv2, any(ts3), tv5, k22, any(tn9))
+			tr254 = tv10
+		}
+		v = tr254
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40230,10 +43239,10 @@ func i475(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "seq_opt_list"
 	{
-		b_1273 := len(c.P.KidStack)
+		b_1264 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1273)
+		v = c.EndList(b_1264)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -40360,7 +43369,18 @@ func i477(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "so_as"
-	v = tmk_SeqOption(c, true, c.Text(k1), k4, nil, nil)
+	{
+		var tr255 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SeqOption(c, true, any(ts1), k4, any(nil), any(nil))
+			tr255 = tv2
+		}
+		v = tr255
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40476,7 +43496,22 @@ L5:
 	k25 = v27
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "so_num"
-	v = tmk_SeqOption(c, true, c.Text(k1), nil, c.Text(k25), nil)
+	{
+		var tr256 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k25)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SeqOption(c, true, any(ts1), any(nil), any(ts2), any(nil))
+			tr256 = tv3
+		}
+		v = tr256
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40570,7 +43605,18 @@ L5:
 	k1 = v22
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "so_flag"
-	v = tmk_SeqOption(c, true, c.Text(k1), nil, nil, nil)
+	{
+		var tr257 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SeqOption(c, true, any(ts1), any(nil), any(nil), any(nil))
+			tr257 = tv2
+		}
+		v = tr257
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40613,7 +43659,18 @@ func i480(p *rt.TParser) (any, bool) {
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "so_owned"
-	v = tmk_SeqOption(c, true, c.Text(k1), nil, nil, k5)
+	{
+		var tr258 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SeqOption(c, true, any(ts1), any(nil), any(nil), k5)
+			tr258 = tv2
+		}
+		v = tr258
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40656,7 +43713,18 @@ func i481(p *rt.TParser) (any, bool) {
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "so_seqname"
-	v = tmk_SeqOption(c, true, c.Text(k1), nil, nil, k5)
+	{
+		var tr259 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_SeqOption(c, true, any(ts1), any(nil), any(nil), k5)
+			tr259 = tv2
+		}
+		v = tr259
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40712,7 +43780,22 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "so_restart"
-	v = tmk_SeqOption(c, true, c.Text(k1), nil, c.Text(k5), nil)
+	{
+		var tr260 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SeqOption(c, true, any(ts1), any(nil), any(ts2), any(nil))
+			tr260 = tv3
+		}
+		v = tr260
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40937,7 +44020,49 @@ L59:
 L34:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "create_type_stmt"
-	v = tmk_CreateTypeStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Text(k9), c.Binary(rt.OpGt, c.Length(k16), any(0)), k22, c.Binary(rt.OpGt, c.Length(k26), any(0)), c.Concat(k30), k28, k32)
+	{
+		var tr262 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			ts3, tf3 := c.P.TermText(k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermLength(k16)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k26)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpGt, tv6, any(0))
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tm8 := len(c.P.KidStack)
+			tf9 := c.P.TermPushItems(c, "concat", k30)
+			if tf9 != nil {
+				panic(tf9)
+			}
+			tk10 := c.P.Kids(tm8)
+			tn11 := c.P.TermHull(c, false, tk10)
+			tv12 := tmk_CreateTypeStmt(c, true, tv2, any(ts3), tv5, k22, tv7, any(tn11), k28, k32)
+			tr262 = tv12
+		}
+		v = tr262
+	}
 	return v, true
 fail:
 	return nil, false
@@ -40996,10 +44121,10 @@ func i484(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "enum_val_list"
 	{
-		b_1274 := len(c.P.KidStack)
+		b_1265 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1274)
+		v = c.EndList(b_1265)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -41134,7 +44259,42 @@ L31:
 	k37 = v39
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "create_macro_stmt"
-	v = tmk_CreateMacroStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Text(k9), c.Binary(rt.OpGt, c.Length(k16), any(0)), c.Binary(rt.OpGt, c.Length(k28), any(0)), k34, k37)
+	{
+		var tr264 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			ts3, tf3 := c.P.TermText(k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermLength(k16)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k28)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpGt, tv6, any(0))
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8 := tmk_CreateMacroStmt(c, true, tv2, any(ts3), tv5, tv7, k34, k37)
+			tr264 = tv8
+		}
+		v = tr264
+	}
 	return v, true
 fail:
 	return nil, false
@@ -41232,10 +44392,10 @@ func i487(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_expr_list"
 	{
-		b_1275 := len(c.P.KidStack)
+		b_1266 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1275)
+		v = c.EndList(b_1266)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -41281,7 +44441,14 @@ func i488(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_expr_def"
-	v = tmk_MacroDef(c, true, k1, k4, nil)
+	{
+		var tr265 any
+		{
+			tv1 := tmk_MacroDef(c, true, k1, k4, any(nil))
+			tr265 = tv1
+		}
+		v = tr265
+	}
 	return v, true
 fail:
 	return nil, false
@@ -41370,11 +44537,11 @@ L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_table_one_end"
 	{
-		var tr62 any
+		var tr266 any
 		{
-			tr62 = k1
+			tr266 = k1
 		}
-		v = tr62
+		v = tr266
 	}
 	v = c.Finish(v)
 	return v, true
@@ -41423,7 +44590,21 @@ func i491(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_table_one"
-	v = c.List(tmk_MacroDef(c, false, k1, nil, k4))
+	{
+		var tr267 any
+		{
+			tv1 := tmk_MacroDef(c, false, k1, any(nil), k4)
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", tv1)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tr267 = any(tn5)
+		}
+		v = tr267
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -41483,10 +44664,10 @@ func i492(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_table_many"
 	{
-		b_1276 := len(c.P.KidStack)
+		b_1267 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1276)
+		v = c.EndList(b_1267)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -41538,7 +44719,14 @@ func i493(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_table_paren"
-	v = tmk_MacroDef(c, true, k1, nil, k4)
+	{
+		var tr268 any
+		{
+			tv1 := tmk_MacroDef(c, true, k1, any(nil), k4)
+			tr268 = tv1
+		}
+		v = tr268
+	}
 	return v, true
 fail:
 	return nil, false
@@ -41592,7 +44780,20 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "param_list"
-	v = c.Concat(k1)
+	{
+		var tr269 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr269 = any(tn4)
+		}
+		v = tr269
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -41665,10 +44866,10 @@ L16:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_params"
 	{
-		b_1277 := len(c.P.KidStack)
+		b_1268 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1277)
+		v = c.EndList(b_1268)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -41767,7 +44968,22 @@ L16:
 L17:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "macro_param"
-	v = tmk_MacroParam(c, true, k1, k5, k14, c.Binary(rt.OpGt, c.Length(k12), any(0)))
+	{
+		var tr270 any
+		{
+			tv1, tf1 := c.P.TermLength(k12)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_MacroParam(c, true, k1, k5, k14, tv2)
+			tr270 = tv3
+		}
+		v = tr270
+	}
 	return v, true
 fail:
 	return nil, false
@@ -41938,7 +45154,34 @@ L42:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "create_secret_stmt"
-	v = tmk_CreateSecretStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Text(k9), c.Binary(rt.OpGt, c.Length(k25), any(0)), k32, k39, k45)
+	{
+		var tr272 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			ts3, tf3 := c.P.TermText(k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermLength(k25)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6 := tmk_CreateSecretStmt(c, true, tv2, any(ts3), tv5, k32, k39, k45)
+			tr272 = tv6
+		}
+		v = tr272
+	}
 	return v, true
 fail:
 	return nil, false
@@ -41997,10 +45240,10 @@ func i498(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "secret_options"
 	{
-		b_1278 := len(c.P.KidStack)
+		b_1269 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1278)
+		v = c.EndList(b_1269)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -42040,7 +45283,14 @@ func i499(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "secret_option"
-	v = tmk_SecretOption(c, true, k1, k4)
+	{
+		var tr273 any
+		{
+			tv1 := tmk_SecretOption(c, true, k1, k4)
+			tr273 = tv1
+		}
+		v = tr273
+	}
 	return v, true
 fail:
 	return nil, false
@@ -42249,7 +45499,42 @@ L18:
 	k47 = v49
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_relation_stmt"
-	v = tmk_AlterTableStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k5), any(0)), k12, c.Binary(rt.OpGt, c.Length(k16), any(0)), c.Binary(rt.OpGt, c.Length(k14), any(0)), k47)
+	{
+		var tr274 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermLength(k16)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k14)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpGt, tv6, any(0))
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8 := tmk_AlterTableStmt(c, true, any(ts1), tv3, k12, tv5, tv7, k47)
+			tr274 = tv8
+		}
+		v = tr274
+	}
 	return v, true
 fail:
 	return nil, false
@@ -42349,7 +45634,26 @@ L21:
 	k27 = v29
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_name_stmt"
-	v = tmk_AlterTableStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k18), any(0)), k24, nil, nil, k27)
+	{
+		var tr275 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k18)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_AlterTableStmt(c, true, any(ts1), tv3, k24, any(nil), any(nil), k27)
+			tr275 = tv4
+		}
+		v = tr275
+	}
 	return v, true
 fail:
 	return nil, false
@@ -42411,10 +45715,10 @@ func i503(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_table_cmds"
 	{
-		b_1279 := len(c.P.KidStack)
+		b_1270 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1279)
+		v = c.EndList(b_1270)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -42448,11 +45752,11 @@ func i504(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "qualified_column"
 	{
-		var tr64 any
+		var tr276 any
 		{
-			tr64 = k1
+			tr276 = k1
 		}
-		v = tr64
+		v = tr276
 	}
 	v = c.Finish(v)
 	return v, true
@@ -42704,7 +46008,18 @@ func i506(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_add_constraint"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr277 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr277 = tv2
+		}
+		v = tr277
+	}
 	return v, true
 fail:
 	return nil, false
@@ -42965,7 +46280,18 @@ func i509(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_set_partitioned"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, k5, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr278 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k5, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr278 = tv2
+		}
+		v = tr278
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43007,7 +46333,18 @@ func i510(p *rt.TParser) (any, bool) {
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_reset_partitioned"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr279 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr279 = tv2
+		}
+		v = tr279
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43072,7 +46409,18 @@ func i511(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_set_sorted"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, k5, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr280 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k5, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr280 = tv2
+		}
+		v = tr280
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43114,7 +46462,18 @@ func i512(p *rt.TParser) (any, bool) {
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_reset_sorted"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr281 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr281 = tv2
+		}
+		v = tr281
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43173,10 +46532,10 @@ func i513(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sortby_list"
 	{
-		b_1280 := len(c.P.KidStack)
+		b_1271 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1280)
+		v = c.EndList(b_1271)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -43435,7 +46794,18 @@ func i516(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_default"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, k7, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr282 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, k7, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr282 = tv2
+		}
+		v = tr282
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43482,7 +46852,18 @@ func i517(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_drop_default"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr283 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr283 = tv2
+		}
+		v = tr283
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43559,7 +46940,18 @@ L8:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_not_null"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr284 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr284 = tv2
+		}
+		v = tr284
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43613,7 +47005,22 @@ func i519(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_statistics"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, c.Text(k7), nil, nil, nil, nil, nil)
+	{
+		var tr285 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k7)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(ts2), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr285 = tv3
+		}
+		v = tr285
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43677,7 +47084,18 @@ func i520(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_set_options"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, nil, k7, nil, nil, nil, nil)
+	{
+		var tr286 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k7, any(nil), any(nil), any(nil), any(nil))
+			tr286 = tv2
+		}
+		v = tr286
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43741,7 +47159,18 @@ func i521(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_reset_options"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, nil, k7, nil, nil, nil, nil)
+	{
+		var tr287 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k7, any(nil), any(nil), any(nil), any(nil))
+			tr287 = tv2
+		}
+		v = tr287
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43797,7 +47226,22 @@ func i522(p *rt.TParser) (any, bool) {
 	k7 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_storage"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, c.Text(k7), nil, nil, nil, nil, nil)
+	{
+		var tr288 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k7)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(ts2), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr288 = tv3
+		}
+		v = tr288
+	}
 	return v, true
 fail:
 	return nil, false
@@ -43894,11 +47338,31 @@ L14:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_add_identity"
 	{
-		f_1281 := c.Text(k1)
-		f_1282 := k4
-		f_1283 := c.Text(k7)
-		f_1284 := c.Concat(k11)
-		v = tmk_AlterCmd(c, true, f_1281, nil, nil, nil, nil, nil, nil, nil, f_1282, nil, nil, nil, nil, nil, nil, nil, f_1284, f_1283, nil, nil)
+		var tr289 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tf2 := any(ts1)
+			tf3 := k4
+			ts4, tf4 := c.P.TermText(k7)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tf5 := any(ts4)
+			tm6 := len(c.P.KidStack)
+			tf7 := c.P.TermPushItems(c, "concat", k11)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tk8 := c.P.Kids(tm6)
+			tn9 := c.P.TermHull(c, false, tk8)
+			tf10 := any(tn9)
+			tv11 := tmk_AlterCmd(c, true, tf2, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), tf3, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), tf10, tf5, any(nil), any(nil))
+			tr289 = tv11
+		}
+		v = tr289
 	}
 	return v, true
 fail:
@@ -43961,10 +47425,27 @@ L11:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_drop_identity"
 	{
-		f_1285 := c.Text(k1)
-		f_1286 := k4
-		f_1287 := c.Binary(rt.OpGt, c.Length(k8), any(0))
-		v = tmk_AlterCmd(c, true, f_1285, f_1287, nil, nil, nil, nil, nil, nil, f_1286, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+		var tr290 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tf2 := any(ts1)
+			tf3 := k4
+			tv4, tf4 := c.P.TermLength(k8)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tf6 := tv5
+			tv7 := tmk_AlterCmd(c, true, tf2, tf6, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), tf3, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr290 = tv7
+		}
+		v = tr290
 	}
 	return v, true
 fail:
@@ -44007,7 +47488,18 @@ func i525(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_identity"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, nil, nil, k7, nil, nil, nil)
+	{
+		var tr291 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k7, any(nil), any(nil), any(nil))
+			tr291 = tv2
+		}
+		v = tr291
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44058,10 +47550,10 @@ func i526(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "identity_options"
 	{
-		b_1288 := len(c.P.KidStack)
+		b_1272 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1288)
+		v = c.EndList(b_1272)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -44162,11 +47654,11 @@ func i528(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "io_set"
 	{
-		var tr65 any
+		var tr292 any
 		{
-			tr65 = k1
+			tr292 = k1
 		}
-		v = tr65
+		v = tr292
 	}
 	v = c.Finish(v)
 	return v, true
@@ -44211,7 +47703,22 @@ func i529(p *rt.TParser) (any, bool) {
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "io_generated"
-	v = tmk_SeqOption(c, true, c.Text(k1), nil, c.Text(k5), nil)
+	{
+		var tr293 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_SeqOption(c, true, any(ts1), any(nil), any(ts2), any(nil))
+			tr293 = tv3
+		}
+		v = tr293
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44351,12 +47858,21 @@ L36:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_type"
 	{
-		f_1289 := c.Text(k1)
-		f_1290 := k4
-		f_1291 := k19
-		f_1292 := k26
-		f_1293 := k33
-		v = tmk_AlterCmd(c, true, f_1289, nil, nil, nil, f_1291, nil, nil, nil, f_1290, nil, nil, nil, f_1292, f_1293, nil, nil, nil, nil, nil, nil)
+		var tr294 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tf2 := any(ts1)
+			tf3 := k4
+			tf4 := k19
+			tf5 := k26
+			tf6 := k33
+			tv7 := tmk_AlterCmd(c, true, tf2, any(nil), any(nil), any(nil), tf4, any(nil), any(nil), any(nil), tf3, any(nil), any(nil), any(nil), tf5, tf6, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr294 = tv7
+		}
+		v = tr294
 	}
 	return v, true
 fail:
@@ -44399,7 +47915,18 @@ func i531(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_col_generic"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, k7)
+	{
+		var tr295 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k7)
+			tr295 = tv2
+		}
+		v = tr295
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44530,7 +48057,30 @@ L21:
 L22:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_drop_column"
-	v = tmk_AlterCmd(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k9), any(0)), nil, k15, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, c.Text(k19), nil)
+	{
+		var tr296 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k9)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			ts4, tf4 := c.P.TermText(k19)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_AlterCmd(c, true, any(ts1), tv3, any(nil), k15, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(ts4), any(nil))
+			tr296 = tv5
+		}
+		v = tr296
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44576,7 +48126,18 @@ func i534(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_alter_constraint"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k5, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr297 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k5, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr297 = tv2
+		}
+		v = tr297
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44619,7 +48180,18 @@ func i535(p *rt.TParser) (any, bool) {
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_validate"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, k5, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr298 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k5, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr298 = tv2
+		}
+		v = tr298
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44690,7 +48262,30 @@ L18:
 L19:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_drop_constraint"
-	v = tmk_AlterCmd(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k6), any(0)), nil, nil, nil, nil, nil, nil, k12, nil, nil, nil, nil, nil, nil, nil, nil, nil, c.Text(k16), nil)
+	{
+		var tr299 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k6)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			ts4, tf4 := c.P.TermText(k16)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_AlterCmd(c, true, any(ts1), tv3, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k12, any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(ts4), any(nil))
+			tr299 = tv5
+		}
+		v = tr299
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44750,7 +48345,18 @@ L5:
 	k1 = v12
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_set_logged"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
+	{
+		var tr300 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr300 = tv2
+		}
+		v = tr300
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44801,7 +48407,18 @@ func i538(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_set_options"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil)
+	{
+		var tr301 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil))
+			tr301 = tv2
+		}
+		v = tr301
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44852,7 +48469,18 @@ func i539(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_reset_options"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, k4, nil, nil, nil, nil)
+	{
+		var tr302 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4, any(nil), any(nil), any(nil), any(nil))
+			tr302 = tv2
+		}
+		v = tr302
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44887,7 +48515,18 @@ func i540(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ac_generic"
-	v = tmk_AlterCmd(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, k4)
+	{
+		var tr303 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AlterCmd(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil), k4)
+			tr303 = tv2
+		}
+		v = tr303
+	}
 	return v, true
 fail:
 	return nil, false
@@ -44922,11 +48561,11 @@ func i541(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_generic_options"
 	{
-		var tr66 any
+		var tr304 any
 		{
-			tr66 = k1
+			tr304 = k1
 		}
-		v = tr66
+		v = tr304
 	}
 	v = c.Finish(v)
 	return v, true
@@ -45006,10 +48645,10 @@ func i542(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_generic_list"
 	{
-		b_1294 := len(c.P.KidStack)
+		b_1273 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1294)
+		v = c.EndList(b_1273)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -45133,7 +48772,18 @@ L5:
 	k21 = v23
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ago_value"
-	v = tmk_GenericAlterOption(c, true, c.Text(k2), k18, k21)
+	{
+		var tr305 any
+		{
+			ts1, tf1 := c.P.TermText(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_GenericAlterOption(c, true, any(ts1), k18, k21)
+			tr305 = tv2
+		}
+		v = tr305
+	}
 	return v, true
 fail:
 	return nil, false
@@ -45168,7 +48818,18 @@ func i545(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ago_drop"
-	v = tmk_GenericAlterOption(c, true, c.Text(k1), k4, nil)
+	{
+		var tr306 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_GenericAlterOption(c, true, any(ts1), k4, any(nil))
+			tr306 = tv2
+		}
+		v = tr306
+	}
 	return v, true
 fail:
 	return nil, false
@@ -45284,7 +48945,22 @@ L5:
 	k11 = v13
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_sequence_stmt"
-	v = tmk_AlterSequenceStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), k8, k11)
+	{
+		var tr307 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_AlterSequenceStmt(c, true, tv2, k8, k11)
+			tr307 = tv3
+		}
+		v = tr307
+	}
 	return v, true
 fail:
 	return nil, false
@@ -45364,7 +49040,22 @@ L5:
 	k14 = v16
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_database_stmt"
-	v = tmk_AlterDatabaseStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), k8, k11, k14)
+	{
+		var tr308 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_AlterDatabaseStmt(c, true, tv2, k8, k11, k14)
+			tr308 = tv3
+		}
+		v = tr308
+	}
 	return v, true
 fail:
 	return nil, false
@@ -45565,7 +49256,26 @@ L14:
 	k31 = v33
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_schema_relation"
-	v = tmk_AlterObjectSchemaStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k5), any(0)), k12, k31)
+	{
+		var tr309 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_AlterObjectSchemaStmt(c, true, any(ts1), tv3, k12, k31)
+			tr309 = tv4
+		}
+		v = tr309
+	}
 	return v, true
 fail:
 	return nil, false
@@ -45665,7 +49375,26 @@ L18:
 	k24 = v26
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "alter_schema_name"
-	v = tmk_AlterObjectSchemaStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k15), any(0)), k21, k24)
+	{
+		var tr310 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k15)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_AlterObjectSchemaStmt(c, true, any(ts1), tv3, k21, k24)
+			tr310 = tv4
+		}
+		v = tr310
+	}
 	return v, true
 fail:
 	return nil, false
@@ -45798,7 +49527,26 @@ func i553(p *rt.TParser) (any, bool) {
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rename_schema"
-	v = tmk_RenameStmt(c, true, c.Text(k1), nil, tmk_Name(c, false, c.List(k5)), nil, nil, k8)
+	{
+		var tr311 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", k5)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_Name(c, false, any(tn5))
+			tv7 := tmk_RenameStmt(c, true, any(ts1), any(nil), tv6, any(nil), any(nil), k8)
+			tr311 = tv7
+		}
+		v = tr311
+	}
 	p.DropCreated(c.Cbase)
 	return v, true
 fail:
@@ -45992,7 +49740,26 @@ L14:
 	k31 = v33
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rename_relation"
-	v = tmk_RenameStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k5), any(0)), k12, nil, nil, k31)
+	{
+		var tr312 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_RenameStmt(c, true, any(ts1), tv3, k12, any(nil), any(nil), k31)
+			tr312 = tv4
+		}
+		v = tr312
+	}
 	return v, true
 fail:
 	return nil, false
@@ -46104,7 +49871,26 @@ L21:
 	k27 = v29
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rename_name"
-	v = tmk_RenameStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k18), any(0)), k24, nil, nil, k27)
+	{
+		var tr313 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k18)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_RenameStmt(c, true, any(ts1), tv3, k24, any(nil), any(nil), k27)
+			tr313 = tv4
+		}
+		v = tr313
+	}
 	return v, true
 fail:
 	return nil, false
@@ -46271,7 +50057,26 @@ L33:
 	k37 = v39
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rename_column"
-	v = tmk_RenameStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k5), any(0)), k12, k34, nil, k37)
+	{
+		var tr314 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_RenameStmt(c, true, any(ts1), tv3, k12, k34, any(nil), k37)
+			tr314 = tv4
+		}
+		v = tr314
+	}
 	return v, true
 fail:
 	return nil, false
@@ -46433,7 +50238,26 @@ L14:
 	k34 = v36
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rename_constraint"
-	v = tmk_RenameStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k5), any(0)), k12, nil, k31, k34)
+	{
+		var tr315 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_RenameStmt(c, true, any(ts1), tv3, k12, any(nil), k31, k34)
+			tr315 = tv4
+		}
+		v = tr315
+	}
 	return v, true
 fail:
 	return nil, false
@@ -46566,7 +50390,30 @@ L17:
 L18:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "drop_any_name"
-	v = tmk_DropStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k5), any(0)), k11, nil, c.Text(k15))
+	{
+		var tr316 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			ts4, tf4 := c.P.TermText(k15)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_DropStmt(c, true, any(ts1), tv3, k11, any(nil), any(ts4))
+			tr316 = tv5
+		}
+		v = tr316
+	}
 	return v, true
 fail:
 	return nil, false
@@ -46635,7 +50482,30 @@ L17:
 L18:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "drop_name"
-	v = tmk_DropStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k5), any(0)), k11, nil, c.Text(k15))
+	{
+		var tr317 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			ts4, tf4 := c.P.TermText(k15)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_DropStmt(c, true, any(ts1), tv3, k11, any(nil), any(ts4))
+			tr317 = tv5
+		}
+		v = tr317
+	}
 	return v, true
 fail:
 	return nil, false
@@ -46754,7 +50624,45 @@ L31:
 L32:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "drop_on"
-	v = tmk_DropStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k16), any(0)), c.List(tmk_Name(c, false, c.List(k22))), k25, c.Text(k29))
+	{
+		var tr318 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k16)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tm4 := len(c.P.KidStack)
+			tf5 := c.P.TermPush(c, "list", k22)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tk6 := c.P.Kids(tm4)
+			tn7 := c.P.TermHull(c, false, tk6)
+			tv8 := tmk_Name(c, false, any(tn7))
+			tm9 := len(c.P.KidStack)
+			tf10 := c.P.TermPush(c, "list", tv8)
+			if tf10 != nil {
+				panic(tf10)
+			}
+			tk11 := c.P.Kids(tm9)
+			tn12 := c.P.TermHull(c, false, tk11)
+			ts13, tf13 := c.P.TermText(k29)
+			if tf13 != nil {
+				panic(tf13)
+			}
+			tv14 := tmk_DropStmt(c, true, any(ts1), tv3, any(tn12), k25, any(ts13))
+			tr318 = tv14
+		}
+		v = tr318
+	}
 	p.DropCreated(c.Cbase)
 	return v, true
 fail:
@@ -47182,10 +51090,10 @@ func i565(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "any_name_list"
 	{
-		b_1295 := len(c.P.KidStack)
+		b_1274 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1295)
+		v = c.EndList(b_1274)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -47238,7 +51146,7 @@ func i566(p *rt.TParser) (any, bool) {
 		x13 = append(x13, v15)
 		v16 = p.NewNodeOrdinary("tuple", x12, p.Pos, x13)
 		v17 = p.ScopeValue(sh8, v16, x9)
-		v18 = p.AttachCaptures(v17, scope1296, []any{k10}, x9, p.Pos)
+		v18 = p.AttachCaptures(v17, scope1275, []any{k10}, x9, p.Pos)
 		p.PushKid(v18)
 		if p.Pos == x9 {
 			break
@@ -47253,10 +51161,10 @@ func i566(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "name_as_name_list"
 	{
-		b_1297 := len(c.P.KidStack)
+		b_1276 := len(c.P.KidStack)
 		c.PushList(tmk_Name(c, false, c.List(k1)))
-		c.PushMap(k4, func(l_1298 any) any { return tmk_Name(c, false, c.List(c.Member((l_1298), "$n"))) })
-		v = c.EndList(b_1297)
+		c.PushMap(k4, func(l_1277 any) any { return tmk_Name(c, false, c.List(c.Member((l_1277), "$n"))) })
+		v = c.EndList(b_1276)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -47372,7 +51280,26 @@ L30:
 L31:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "drop_secret_stmt"
-	v = tmk_DropSecretStmt(c, true, c.Text(k2), c.Binary(rt.OpGt, c.Length(k18), any(0)), k24, k28)
+	{
+		var tr319 any
+		{
+			ts1, tf1 := c.P.TermText(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k18)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_DropSecretStmt(c, true, any(ts1), tv3, k24, k28)
+			tr319 = tv4
+		}
+		v = tr319
+	}
 	return v, true
 fail:
 	return nil, false
@@ -47965,7 +51892,18 @@ L10:
 L11:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "copy_database"
-	v = tmk_CopyDatabaseStmt(c, true, k1, k4, c.Text(k8))
+	{
+		var tr320 any
+		{
+			ts1, tf1 := c.P.TermText(k8)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_CopyDatabaseStmt(c, true, k1, k4, any(ts1))
+			tr320 = tv2
+		}
+		v = tr320
+	}
 	return v, true
 fail:
 	return nil, false
@@ -48148,10 +52086,10 @@ func i574(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "copy_ident_file"
 	{
-		b_1299 := len(c.P.KidStack)
+		b_1278 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_ColumnRef(c, true, c.EndList(b_1299))
+		v = tmk_ColumnRef(c, true, c.EndList(b_1278))
 	}
 	return v, true
 fail:
@@ -48231,10 +52169,10 @@ func i575(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "generic_opt_list"
 	{
-		b_1300 := len(c.P.KidStack)
+		b_1279 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1300)
+		v = c.EndList(b_1279)
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -48284,7 +52222,14 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "generic_opt_elem"
-	v = tmk_GenericOption(c, true, k1, k5)
+	{
+		var tr321 any
+		{
+			tv1 := tmk_GenericOption(c, true, k1, k5)
+			tr321 = tv1
+		}
+		v = tr321
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -48466,7 +52411,18 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "co_flag"
-	v = tmk_CopyOption(c, true, c.Text(k1), nil, nil)
+	{
+		var tr322 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_CopyOption(c, true, any(ts1), any(nil), any(nil))
+			tr322 = tv2
+		}
+		v = tr322
+	}
 	return v, true
 fail:
 	return nil, false
@@ -48576,7 +52532,22 @@ L25:
 	k26 = v29
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "co_string"
-	v = tmk_CopyOption(c, true, c.Text(k1), c.Text(k26), nil)
+	{
+		var tr323 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k26)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_CopyOption(c, true, any(ts1), any(ts2), any(nil))
+			tr323 = tv3
+		}
+		v = tr323
+	}
 	return v, true
 fail:
 	return nil, false
@@ -48660,7 +52631,18 @@ L5:
 	k15 = v17
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "co_force_cols"
-	v = tmk_CopyOption(c, true, c.Text(k1), nil, k15)
+	{
+		var tr324 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_CopyOption(c, true, any(ts1), any(nil), k15)
+			tr324 = tv2
+		}
+		v = tr324
+	}
 	return v, true
 fail:
 	return nil, false
@@ -48703,7 +52685,22 @@ func i581(p *rt.TParser) (any, bool) {
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "co_force_star"
-	v = tmk_CopyOption(c, true, c.Text(k1), c.Text(k5), nil)
+	{
+		var tr325 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_CopyOption(c, true, any(ts1), any(ts2), any(nil))
+			tr325 = tv3
+		}
+		v = tr325
+	}
 	return v, true
 fail:
 	return nil, false
@@ -48746,7 +52743,18 @@ func i582(p *rt.TParser) (any, bool) {
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "co_partition_cols"
-	v = tmk_CopyOption(c, true, c.Text(k1), nil, k5)
+	{
+		var tr326 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_CopyOption(c, true, any(ts1), any(nil), k5)
+			tr326 = tv2
+		}
+		v = tr326
+	}
 	return v, true
 fail:
 	return nil, false
@@ -48789,7 +52797,22 @@ func i583(p *rt.TParser) (any, bool) {
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "co_partition_star"
-	v = tmk_CopyOption(c, true, c.Text(k1), c.Text(k5), nil)
+	{
+		var tr327 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_CopyOption(c, true, any(ts1), any(ts2), any(nil))
+			tr327 = tv3
+		}
+		v = tr327
+	}
 	return v, true
 fail:
 	return nil, false
@@ -48928,7 +52951,14 @@ func i585(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "import_stmt"
-	v = tmk_ImportStmt(c, true, k1)
+	{
+		var tr328 any
+		{
+			tv1 := tmk_ImportStmt(c, true, k1)
+			tr328 = tv1
+		}
+		v = tr328
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49048,7 +53078,45 @@ L38:
 L39:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "attach_stmt"
-	v = tmk_AttachStmt(c, true, c.Binary(rt.OpGt, c.Length(k4), any(0)), c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Binary(rt.OpGt, c.Length(k19), any(0)), k25, k29, c.Concat(k36))
+	{
+		var tr329 any
+		{
+			tv1, tf1 := c.P.TermLength(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(k2)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermLength(k19)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpGt, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tm7 := len(c.P.KidStack)
+			tf8 := c.P.TermPushItems(c, "concat", k36)
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tk9 := c.P.Kids(tm7)
+			tn10 := c.P.TermHull(c, false, tk9)
+			tv11 := tmk_AttachStmt(c, true, tv2, tv4, tv6, k25, k29, any(tn10))
+			tr329 = tv11
+		}
+		v = tr329
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49146,7 +53214,22 @@ L5:
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "detach_database"
-	v = tmk_DetachStmt(c, true, any(true), c.Binary(rt.OpGt, c.Length(k2), any(0)), k8)
+	{
+		var tr330 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_DetachStmt(c, true, any(true), tv2, k8)
+			tr330 = tv3
+		}
+		v = tr330
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49180,7 +53263,14 @@ func i589(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "detach_plain"
-	v = tmk_DetachStmt(c, true, nil, nil, k1)
+	{
+		var tr331 any
+		{
+			tv1 := tmk_DetachStmt(c, true, any(nil), any(nil), k1)
+			tr331 = tv1
+		}
+		v = tr331
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49214,7 +53304,14 @@ func i590(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "use_stmt"
-	v = tmk_UseStmt(c, true, k1)
+	{
+		var tr332 any
+		{
+			tv1 := tmk_UseStmt(c, true, k1)
+			tr332 = tv1
+		}
+		v = tr332
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49295,7 +53392,14 @@ func i592(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "load_load"
-	v = tmk_LoadStmt(c, true, nil, nil, k1, nil, nil)
+	{
+		var tr333 any
+		{
+			tv1 := tmk_LoadStmt(c, true, any(nil), any(nil), k1, any(nil), any(nil))
+			tr333 = tv1
+		}
+		v = tr333
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49383,7 +53487,22 @@ L21:
 L22:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "load_install"
-	v = tmk_LoadStmt(c, true, any(true), c.Binary(rt.OpGt, c.Length(k2), any(0)), k8, k12, k19)
+	{
+		var tr334 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_LoadStmt(c, true, any(true), tv2, k8, k12, k19)
+			tr334 = tv3
+		}
+		v = tr334
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49504,7 +53623,14 @@ func i595(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pragma_call"
-	v = tmk_PragmaStmt(c, true, k1, nil, k4, any(true))
+	{
+		var tr335 any
+		{
+			tv1 := tmk_PragmaStmt(c, true, k1, any(nil), k4, any(true))
+			tr335 = tv1
+		}
+		v = tr335
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49551,7 +53677,14 @@ func i596(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pragma_set"
-	v = tmk_PragmaStmt(c, true, k1, k4, nil, nil)
+	{
+		var tr336 any
+		{
+			tv1 := tmk_PragmaStmt(c, true, k1, k4, any(nil), any(nil))
+			tr336 = tv1
+		}
+		v = tr336
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49585,7 +53718,14 @@ func i597(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pragma_plain"
-	v = tmk_PragmaStmt(c, true, k1, nil, nil, nil)
+	{
+		var tr337 any
+		{
+			tv1 := tmk_PragmaStmt(c, true, k1, any(nil), any(nil), any(nil))
+			tr337 = tv1
+		}
+		v = tr337
+	}
 	return v, true
 fail:
 	return nil, false
@@ -49647,10 +53787,10 @@ func i598(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "var_name"
 	{
-		b_1301 := len(c.P.KidStack)
+		b_1280 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = tmk_Name(c, true, c.EndList(b_1301))
+		v = tmk_Name(c, true, c.EndList(b_1280))
 	}
 	return v, true
 fail:
@@ -49953,7 +54093,37 @@ L41:
 L15:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "set_scoped"
-	v = tmk_SetStmt(c, true, c.Text(k1), k5, c.Concat(k7), c.Text(k11), c.Binary(rt.OpGt, c.Length(k9), any(0)), k13)
+	{
+		var tr338 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPushItems(c, "concat", k7)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			ts6, tf6 := c.P.TermText(k11)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermLength(k9)
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8, tf8 := c.P.TermBinary(rt.OpGt, tv7, any(0))
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tv9 := tmk_SetStmt(c, true, any(ts1), k5, any(tn5), any(ts6), tv8, k13)
+			tr338 = tv9
+		}
+		v = tr338
+	}
 	return v, true
 fail:
 	return nil, false
@@ -50120,7 +54290,33 @@ L38:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "set_unscoped"
-	v = tmk_SetStmt(c, true, nil, k2, c.Concat(k4), c.Text(k8), c.Binary(rt.OpGt, c.Length(k6), any(0)), k10)
+	{
+		var tr339 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k4)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			ts5, tf5 := c.P.TermText(k8)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermLength(k6)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tv7, tf7 := c.P.TermBinary(rt.OpGt, tv6, any(0))
+			if tf7 != nil {
+				panic(tf7)
+			}
+			tv8 := tmk_SetStmt(c, true, any(nil), k2, any(tn4), any(ts5), tv7, k10)
+			tr339 = tv8
+		}
+		v = tr339
+	}
 	return v, true
 fail:
 	return nil, false
@@ -50432,7 +54628,30 @@ L30:
 L11:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "reset_scoped"
-	v = tmk_ResetStmt(c, true, c.Text(k1), k9, c.Binary(rt.OpGt, c.Length(k5), any(0)), c.Text(k7))
+	{
+		var tr340 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			ts4, tf4 := c.P.TermText(k7)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5 := tmk_ResetStmt(c, true, any(ts1), k9, tv3, any(ts4))
+			tr340 = tv5
+		}
+		v = tr340
+	}
 	return v, true
 fail:
 	return nil, false
@@ -50548,7 +54767,26 @@ L27:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "reset_unscoped"
-	v = tmk_ResetStmt(c, true, nil, k6, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Text(k4))
+	{
+		var tr341 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			ts3, tf3 := c.P.TermText(k4)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_ResetStmt(c, true, any(nil), k6, tv2, any(ts3))
+			tr341 = tv4
+		}
+		v = tr341
+	}
 	return v, true
 fail:
 	return nil, false
@@ -50752,7 +54990,18 @@ func i609(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "show_query"
-	v = tmk_ShowStmt(c, true, c.Text(k1), k4, nil, nil, nil, nil, nil)
+	{
+		var tr342 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ShowStmt(c, true, any(ts1), k4, any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr342 = tv2
+		}
+		v = tr342
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -50790,7 +55039,18 @@ func i610(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "summarize_query"
-	v = tmk_ShowStmt(c, true, c.Text(k1), k4, nil, nil, nil, nil, nil)
+	{
+		var tr343 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ShowStmt(c, true, any(ts1), k4, any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr343 = tv2
+		}
+		v = tr343
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -50827,7 +55087,18 @@ func i611(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "summarize_table"
-	v = tmk_ShowStmt(c, true, c.Text(k1), nil, k4, nil, nil, nil, nil)
+	{
+		var tr344 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ShowStmt(c, true, any(ts1), any(nil), k4, any(nil), any(nil), any(nil), any(nil))
+			tr344 = tv2
+		}
+		v = tr344
+	}
 	return v, true
 fail:
 	return nil, false
@@ -50874,7 +55145,18 @@ func i612(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "show_tables"
-	v = tmk_ShowStmt(c, true, c.Text(k1), nil, nil, any(true), k4, nil, nil)
+	{
+		var tr345 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ShowStmt(c, true, any(ts1), any(nil), any(nil), any(true), k4, any(nil), any(nil))
+			tr345 = tv2
+		}
+		v = tr345
+	}
 	return v, true
 fail:
 	return nil, false
@@ -50917,7 +55199,22 @@ func i613(p *rt.TParser) (any, bool) {
 	k4 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "show_time_zone"
-	v = tmk_ShowStmt(c, true, c.Text(k1), nil, nil, nil, nil, c.Text(k4), nil)
+	{
+		var tr346 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k4)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_ShowStmt(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(ts2), any(nil))
+			tr346 = tv3
+		}
+		v = tr346
+	}
 	return v, true
 fail:
 	return nil, false
@@ -50966,7 +55263,22 @@ func i614(p *rt.TParser) (any, bool) {
 	k4 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "show_isolation"
-	v = tmk_ShowStmt(c, true, c.Text(k1), nil, nil, nil, nil, c.Text(k4), nil)
+	{
+		var tr347 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k4)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_ShowStmt(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(ts2), any(nil))
+			tr347 = tv3
+		}
+		v = tr347
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51015,10 +55327,27 @@ L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "show_all"
 	{
-		f_1302 := c.Text(k1)
-		f_1303 := any(true)
-		f_1304 := c.Binary(rt.OpGt, c.Length(k5), any(0))
-		v = tmk_ShowStmt(c, true, f_1302, nil, nil, f_1304, nil, nil, f_1303)
+		var tr348 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tf2 := any(ts1)
+			tf3 := any(true)
+			tv4, tf4 := c.P.TermLength(k5)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermBinary(rt.OpGt, tv4, any(0))
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tf6 := tv5
+			tv7 := tmk_ShowStmt(c, true, tf2, any(nil), any(nil), tf6, any(nil), any(nil), tf3)
+			tr348 = tv7
+		}
+		v = tr348
 	}
 	return v, true
 fail:
@@ -51054,7 +55383,18 @@ func i616(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "show_name"
-	v = tmk_ShowStmt(c, true, c.Text(k1), nil, k4, nil, nil, nil, nil)
+	{
+		var tr349 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ShowStmt(c, true, any(ts1), any(nil), k4, any(nil), any(nil), any(nil), any(nil))
+			tr349 = tv2
+		}
+		v = tr349
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51082,7 +55422,18 @@ func i617(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "show_bare"
-	v = tmk_ShowStmt(c, true, c.Text(k1), nil, nil, nil, nil, nil, nil)
+	{
+		var tr350 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_ShowStmt(c, true, any(ts1), any(nil), any(nil), any(nil), any(nil), any(nil), any(nil))
+			tr350 = tv2
+		}
+		v = tr350
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51207,7 +55558,14 @@ func i619(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "explain_options"
-	v = tmk_ExplainStmt(c, true, nil, nil, k1, k4)
+	{
+		var tr351 any
+		{
+			tv1 := tmk_ExplainStmt(c, true, any(nil), any(nil), k1, k4)
+			tr351 = tv1
+		}
+		v = tr351
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51288,7 +55646,26 @@ L18:
 	k21 = v23
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "explain_analyze"
-	v = tmk_ExplainStmt(c, true, c.Text(k1), c.Binary(rt.OpGt, c.Length(k15), any(0)), nil, k21)
+	{
+		var tr352 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermLength(k15)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermBinary(rt.OpGt, tv2, any(0))
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_ExplainStmt(c, true, any(ts1), tv3, any(nil), k21)
+			tr352 = tv4
+		}
+		v = tr352
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51328,7 +55705,14 @@ func i621(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "explain_verbose"
-	v = tmk_ExplainStmt(c, true, nil, any(true), nil, k1)
+	{
+		var tr353 any
+		{
+			tv1 := tmk_ExplainStmt(c, true, any(nil), any(true), any(nil), k1)
+			tr353 = tv1
+		}
+		v = tr353
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51362,7 +55746,14 @@ func i622(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "explain_plain"
-	v = tmk_ExplainStmt(c, true, nil, nil, nil, k1)
+	{
+		var tr354 any
+		{
+			tv1 := tmk_ExplainStmt(c, true, any(nil), any(nil), any(nil), k1)
+			tr354 = tv1
+		}
+		v = tr354
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51421,10 +55812,10 @@ func i623(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "explain_option_list"
 	{
-		b_1305 := len(c.P.KidStack)
+		b_1281 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1305)
+		v = c.EndList(b_1281)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -51557,7 +55948,22 @@ L17:
 L18:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "explain_option"
-	v = tmk_ExplainOption(c, true, c.Text(k1), c.Text(k15))
+	{
+		var tr355 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k15)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_ExplainOption(c, true, any(ts1), any(ts2))
+			tr355 = tv3
+		}
+		v = tr355
+	}
 	return v, true
 fail:
 	return nil, false
@@ -51961,7 +56367,21 @@ L8:
 	k11 = v13
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "prepare_stmt"
-	v = tmk_PrepareStmt(c, true, k1, c.Concat(k5), k11)
+	{
+		var tr356 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_PrepareStmt(c, true, k1, any(tn4), k11)
+			tr356 = tv5
+		}
+		v = tr356
+	}
 	return v, true
 fail:
 	return nil, false
@@ -52113,7 +56533,21 @@ L7:
 L8:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "execute_stmt"
-	v = tmk_ExecuteStmt(c, true, k1, c.Concat(k5))
+	{
+		var tr357 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k5)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_ExecuteStmt(c, true, k1, any(tn4))
+			tr357 = tv5
+		}
+		v = tr357
+	}
 	return v, true
 fail:
 	return nil, false
@@ -52172,10 +56606,10 @@ func i629(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "execute_params"
 	{
-		b_1306 := len(c.P.KidStack)
+		b_1282 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1306)
+		v = c.EndList(b_1282)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -52335,7 +56769,22 @@ L13:
 L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "deallocate_prepare"
-	v = tmk_DeallocateStmt(c, true, k4, c.Binary(rt.OpGt, c.Length(k2), any(0)))
+	{
+		var tr358 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_DeallocateStmt(c, true, k4, tv2)
+			tr358 = tv3
+		}
+		v = tr358
+	}
 	return v, true
 fail:
 	return nil, false
@@ -52395,7 +56844,22 @@ L13:
 L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "deallocate_plain"
-	v = tmk_DeallocateStmt(c, true, k4, c.Binary(rt.OpGt, c.Length(k2), any(0)))
+	{
+		var tr359 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_DeallocateStmt(c, true, k4, tv2)
+			tr359 = tv3
+		}
+		v = tr359
+	}
 	return v, true
 fail:
 	return nil, false
@@ -52573,7 +57037,26 @@ L34:
 L35:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tx_start"
-	v = tmk_TransactionStmt(c, true, c.Text(k1), c.Text(k15), c.Text(k32))
+	{
+		var tr360 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k15)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			ts3, tf3 := c.P.TermText(k32)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4 := tmk_TransactionStmt(c, true, any(ts1), any(ts2), any(ts3))
+			tr360 = tv4
+		}
+		v = tr360
+	}
 	return v, true
 fail:
 	return nil, false
@@ -52690,7 +57173,22 @@ L23:
 L24:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tx_end"
-	v = tmk_TransactionStmt(c, true, c.Text(k1), c.Text(k21), nil)
+	{
+		var tr361 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			ts2, tf2 := c.P.TermText(k21)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_TransactionStmt(c, true, any(ts1), any(ts2), any(nil))
+			tr361 = tv3
+		}
+		v = tr361
+	}
 	return v, true
 fail:
 	return nil, false
@@ -52838,7 +57336,21 @@ L9:
 L10:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "vacuum_options"
-	v = tmk_VacuumStmt(c, true, nil, nil, nil, k1, nil, k5, c.Concat(k7))
+	{
+		var tr362 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k7)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_VacuumStmt(c, true, any(nil), any(nil), any(nil), k1, any(nil), k5, any(tn4))
+			tr362 = tv5
+		}
+		v = tr362
+	}
 	return v, true
 fail:
 	return nil, false
@@ -52897,10 +57409,10 @@ func i639(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "vacuum_option_list"
 	{
-		b_1307 := len(c.P.KidStack)
+		b_1283 := len(c.P.KidStack)
 		c.PushList(k1)
 		c.PushItems(k4)
-		v = c.EndList(b_1307)
+		v = c.EndList(b_1283)
 	}
 	v = c.Finish(v)
 	return v, true
@@ -53132,7 +57644,45 @@ L29:
 L30:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "vacuum_plain"
-	v = tmk_VacuumStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), c.Binary(rt.OpGt, c.Length(k9), any(0)), c.Binary(rt.OpGt, c.Length(k16), any(0)), nil, k23, k25, c.Concat(k27))
+	{
+		var tr363 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3, tf3 := c.P.TermLength(k9)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tv4, tf4 := c.P.TermBinary(rt.OpGt, tv3, any(0))
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tv5, tf5 := c.P.TermLength(k16)
+			if tf5 != nil {
+				panic(tf5)
+			}
+			tv6, tf6 := c.P.TermBinary(rt.OpGt, tv5, any(0))
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tm7 := len(c.P.KidStack)
+			tf8 := c.P.TermPushItems(c, "concat", k27)
+			if tf8 != nil {
+				panic(tf8)
+			}
+			tk9 := c.P.Kids(tm7)
+			tn10 := c.P.TermHull(c, false, tk9)
+			tv11 := tmk_VacuumStmt(c, true, tv2, tv4, tv6, any(nil), k23, k25, any(tn10))
+			tr363 = tv11
+		}
+		v = tr363
+	}
 	return v, true
 fail:
 	return nil, false
@@ -53246,7 +57796,29 @@ L21:
 L22:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "analyze_stmt"
-	v = tmk_AnalyzeStmt(c, true, c.Binary(rt.OpGt, c.Length(k10), any(0)), k17, c.Concat(k19))
+	{
+		var tr364 any
+		{
+			tv1, tf1 := c.P.TermLength(k10)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tm3 := len(c.P.KidStack)
+			tf4 := c.P.TermPushItems(c, "concat", k19)
+			if tf4 != nil {
+				panic(tf4)
+			}
+			tk5 := c.P.Kids(tm3)
+			tn6 := c.P.TermHull(c, false, tk5)
+			tv7 := tmk_AnalyzeStmt(c, true, tv2, k17, any(tn6))
+			tr364 = tv7
+		}
+		v = tr364
+	}
 	return v, true
 fail:
 	return nil, false
@@ -53304,7 +57876,22 @@ L11:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "checkpoint_stmt"
-	v = tmk_CheckpointStmt(c, true, c.Binary(rt.OpGt, c.Length(k2), any(0)), k9)
+	{
+		var tr365 any
+		{
+			tv1, tf1 := c.P.TermLength(k2)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2, tf2 := c.P.TermBinary(rt.OpGt, tv1, any(0))
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tv3 := tmk_CheckpointStmt(c, true, tv2, k9)
+			tr365 = tv3
+		}
+		v = tr365
+	}
 	return v, true
 fail:
 	return nil, false
@@ -53341,7 +57928,14 @@ func i644(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "call_stmt"
-	v = tmk_CallStmt(c, true, k1)
+	{
+		var tr366 any
+		{
+			tv1 := tmk_CallStmt(c, true, k1)
+			tr366 = tv1
+		}
+		v = tr366
+	}
 	return v, true
 fail:
 	return nil, false
@@ -53447,7 +58041,18 @@ func i646(p *rt.TParser) (any, bool) {
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "comment_column"
-	v = tmk_CommentStmt(c, true, c.Text(k1), nil, k5, k8)
+	{
+		var tr367 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_CommentStmt(c, true, any(ts1), any(nil), k5, k8)
+			tr367 = tv2
+		}
+		v = tr367
+	}
 	return v, true
 fail:
 	return nil, false
@@ -53621,7 +58226,18 @@ L5:
 	k33 = v35
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "comment_object"
-	v = tmk_CommentStmt(c, true, c.Text(k1), k30, nil, k33)
+	{
+		var tr368 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_CommentStmt(c, true, any(ts1), k30, any(nil), k33)
+			tr368 = tv2
+		}
+		v = tr368
+	}
 	return v, true
 fail:
 	return nil, false
@@ -53750,7 +58366,21 @@ L11:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "update_extensions_stmt"
-	v = tmk_UpdateExtensionsStmt(c, true, k2, c.Concat(k9))
+	{
+		var tr369 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k9)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_UpdateExtensionsStmt(c, true, k2, any(tn4))
+			tr369 = tv5
+		}
+		v = tr369
+	}
 	return v, true
 fail:
 	return nil, false
@@ -65374,7 +70004,7 @@ func s1022(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1312) {
+	if !p.ClassesSkip(steps1288) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -65453,7 +70083,7 @@ func s1024(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1317) {
+	if !p.ClassesSkip(steps1293) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -65486,7 +70116,7 @@ func s1025(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1319) {
+	if !p.ClassesSkip(steps1295) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -65623,7 +70253,7 @@ func v1027(p *rt.TParser) (any, bool) {
 	if _, ok = u1023(p); !ok {
 		goto L2
 	}
-	if !p.ClassesSkip(steps1323) {
+	if !p.ClassesSkip(steps1299) {
 		goto L2
 	}
 	if _, ok = u1023(p); !ok {
@@ -65993,7 +70623,7 @@ func s1034(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1325) {
+	if !p.ClassesSkip(steps1301) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -66026,7 +70656,7 @@ func s1035(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1328) {
+	if !p.ClassesSkip(steps1304) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -66059,7 +70689,7 @@ func s1036(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1329) {
+	if !p.ClassesSkip(steps1305) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -66092,7 +70722,7 @@ func s1037(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1331) {
+	if !p.ClassesSkip(steps1307) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -66125,7 +70755,7 @@ func s1038(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1332) {
+	if !p.ClassesSkip(steps1308) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -66158,7 +70788,7 @@ func s1039(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1334) {
+	if !p.ClassesSkip(steps1310) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -67718,7 +72348,7 @@ func s1062(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1335) {
+	if !p.ClassesSkip(steps1311) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -67751,7 +72381,7 @@ func s1063(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1337) {
+	if !p.ClassesSkip(steps1313) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -67928,7 +72558,7 @@ func s1066(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1338) {
+	if !p.ClassesSkip(steps1314) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68063,7 +72693,7 @@ func s1068(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1339) {
+	if !p.ClassesSkip(steps1315) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68096,7 +72726,7 @@ func s1069(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1340) {
+	if !p.ClassesSkip(steps1316) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68457,7 +73087,7 @@ func s1077(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1341) {
+	if !p.ClassesSkip(steps1317) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68610,7 +73240,7 @@ func s1081(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1342) {
+	if !p.ClassesSkip(steps1318) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68643,7 +73273,7 @@ func s1082(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1343) {
+	if !p.ClassesSkip(steps1319) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68676,7 +73306,7 @@ func s1083(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1345) {
+	if !p.ClassesSkip(steps1321) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68709,7 +73339,7 @@ func s1084(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1346) {
+	if !p.ClassesSkip(steps1322) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68742,7 +73372,7 @@ func s1085(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1347) {
+	if !p.ClassesSkip(steps1323) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68775,7 +73405,7 @@ func s1086(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1348) {
+	if !p.ClassesSkip(steps1324) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68808,7 +73438,7 @@ func s1087(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1349) {
+	if !p.ClassesSkip(steps1325) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68841,7 +73471,7 @@ func s1088(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1353) {
+	if !p.ClassesSkip(steps1329) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68874,7 +73504,7 @@ func s1089(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1354) {
+	if !p.ClassesSkip(steps1330) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68907,7 +73537,7 @@ func s1090(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1355) {
+	if !p.ClassesSkip(steps1331) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -68999,7 +73629,7 @@ func s1092(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1356) {
+	if !p.ClassesSkip(steps1332) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69032,7 +73662,7 @@ func s1093(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1357) {
+	if !p.ClassesSkip(steps1333) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69065,7 +73695,7 @@ func s1094(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1358) {
+	if !p.ClassesSkip(steps1334) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69098,7 +73728,7 @@ func s1095(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1359) {
+	if !p.ClassesSkip(steps1335) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69131,7 +73761,7 @@ func s1096(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1360) {
+	if !p.ClassesSkip(steps1336) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69164,7 +73794,7 @@ func s1097(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1361) {
+	if !p.ClassesSkip(steps1337) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69197,7 +73827,7 @@ func s1098(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1362) {
+	if !p.ClassesSkip(steps1338) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69230,7 +73860,7 @@ func s1099(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1363) {
+	if !p.ClassesSkip(steps1339) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69263,7 +73893,7 @@ func s1100(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1364) {
+	if !p.ClassesSkip(steps1340) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69296,7 +73926,7 @@ func s1101(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1365) {
+	if !p.ClassesSkip(steps1341) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69329,7 +73959,7 @@ func s1102(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1366) {
+	if !p.ClassesSkip(steps1342) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69403,7 +74033,7 @@ func s1104(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1367) {
+	if !p.ClassesSkip(steps1343) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69436,7 +74066,7 @@ func s1105(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1368) {
+	if !p.ClassesSkip(steps1344) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69469,7 +74099,7 @@ func s1106(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1370) {
+	if !p.ClassesSkip(steps1346) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69502,7 +74132,7 @@ func s1107(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1371) {
+	if !p.ClassesSkip(steps1347) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69535,7 +74165,7 @@ func s1108(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1372) {
+	if !p.ClassesSkip(steps1348) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69568,7 +74198,7 @@ func s1109(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1373) {
+	if !p.ClassesSkip(steps1349) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69601,7 +74231,7 @@ func s1110(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1374) {
+	if !p.ClassesSkip(steps1350) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69634,7 +74264,7 @@ func s1111(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1375) {
+	if !p.ClassesSkip(steps1351) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69667,7 +74297,7 @@ func s1112(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1376) {
+	if !p.ClassesSkip(steps1352) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69700,7 +74330,7 @@ func s1113(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1377) {
+	if !p.ClassesSkip(steps1353) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69733,7 +74363,7 @@ func s1114(p *rt.TParser) (any, bool) {
 	var ok bool
 	var ch rune
 	start = p.Pos
-	if !p.ClassesSkip(steps1378) {
+	if !p.ClassesSkip(steps1354) {
 		goto fail
 	}
 	if p.Pos < len(p.In) && p.In[p.Pos] == 95 {
@@ -69741,7 +74371,7 @@ func s1114(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit45, "_", 44, false); !ok {
 		goto fail
 	}
-	if !p.ClassesSkip(steps1379) {
+	if !p.ClassesSkip(steps1355) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69774,7 +74404,7 @@ func s1115(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1378) {
+	if !p.ClassesSkip(steps1354) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69807,7 +74437,7 @@ func s1116(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1380) {
+	if !p.ClassesSkip(steps1356) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -69840,7 +74470,7 @@ func s1117(p *rt.TParser) (any, bool) {
 	var ok bool
 	var ch rune
 	start = p.Pos
-	if !p.ClassesSkip(steps1381) {
+	if !p.ClassesSkip(steps1357) {
 		goto fail
 	}
 	if p.Pos < len(p.In) && p.In[p.Pos] == 95 {
@@ -69848,7 +74478,7 @@ func s1117(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit45, "_", 44, false); !ok {
 		goto fail
 	}
-	if !p.ClassesSkip(steps1380) {
+	if !p.ClassesSkip(steps1356) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -70522,7 +75152,7 @@ func s1120(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1382) {
+	if !p.ClassesSkip(steps1358) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -70555,7 +75185,7 @@ func s1121(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1383) {
+	if !p.ClassesSkip(steps1359) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -70588,7 +75218,7 @@ func s1122(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1384) {
+	if !p.ClassesSkip(steps1360) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -70991,7 +75621,7 @@ func s1125(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1385) {
+	if !p.ClassesSkip(steps1361) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71024,7 +75654,7 @@ func s1126(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1386) {
+	if !p.ClassesSkip(steps1362) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71057,7 +75687,7 @@ func s1127(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1387) {
+	if !p.ClassesSkip(steps1363) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71198,7 +75828,7 @@ func s1130(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1388) {
+	if !p.ClassesSkip(steps1364) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71231,7 +75861,7 @@ func s1131(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1389) {
+	if !p.ClassesSkip(steps1365) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71264,7 +75894,7 @@ func s1132(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1390) {
+	if !p.ClassesSkip(steps1366) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71297,7 +75927,7 @@ func s1133(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1391) {
+	if !p.ClassesSkip(steps1367) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71330,7 +75960,7 @@ func s1134(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1392) {
+	if !p.ClassesSkip(steps1368) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71363,7 +75993,7 @@ func s1135(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1393) {
+	if !p.ClassesSkip(steps1369) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71396,7 +76026,7 @@ func s1136(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1394) {
+	if !p.ClassesSkip(steps1370) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71429,7 +76059,7 @@ func s1137(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1395) {
+	if !p.ClassesSkip(steps1371) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71462,7 +76092,7 @@ func s1138(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1396) {
+	if !p.ClassesSkip(steps1372) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71495,7 +76125,7 @@ func s1139(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1397) {
+	if !p.ClassesSkip(steps1373) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71897,7 +76527,7 @@ func s1142(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1398) {
+	if !p.ClassesSkip(steps1374) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71930,7 +76560,7 @@ func s1143(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1399) {
+	if !p.ClassesSkip(steps1375) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71963,7 +76593,7 @@ func s1144(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1400) {
+	if !p.ClassesSkip(steps1376) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -71996,7 +76626,7 @@ func s1145(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1401) {
+	if !p.ClassesSkip(steps1377) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72029,7 +76659,7 @@ func s1146(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1402) {
+	if !p.ClassesSkip(steps1378) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72062,7 +76692,7 @@ func s1147(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1403) {
+	if !p.ClassesSkip(steps1379) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72095,7 +76725,7 @@ func s1148(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1404) {
+	if !p.ClassesSkip(steps1380) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72128,7 +76758,7 @@ func s1149(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1405) {
+	if !p.ClassesSkip(steps1381) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72161,7 +76791,7 @@ func s1150(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1406) {
+	if !p.ClassesSkip(steps1382) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72194,7 +76824,7 @@ func s1151(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1407) {
+	if !p.ClassesSkip(steps1383) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72262,7 +76892,7 @@ func s1153(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1408) {
+	if !p.ClassesSkip(steps1384) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72295,7 +76925,7 @@ func s1154(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1409) {
+	if !p.ClassesSkip(steps1385) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72328,7 +76958,7 @@ func s1155(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1410) {
+	if !p.ClassesSkip(steps1386) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72361,7 +76991,7 @@ func s1156(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1411) {
+	if !p.ClassesSkip(steps1387) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72394,7 +77024,7 @@ func s1157(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1413) {
+	if !p.ClassesSkip(steps1389) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72427,7 +77057,7 @@ func s1158(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1414) {
+	if !p.ClassesSkip(steps1390) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72460,7 +77090,7 @@ func s1159(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1415) {
+	if !p.ClassesSkip(steps1391) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72493,7 +77123,7 @@ func s1160(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1416) {
+	if !p.ClassesSkip(steps1392) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72526,7 +77156,7 @@ func s1161(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1417) {
+	if !p.ClassesSkip(steps1393) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72559,7 +77189,7 @@ func s1162(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1418) {
+	if !p.ClassesSkip(steps1394) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72592,7 +77222,7 @@ func s1163(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1419) {
+	if !p.ClassesSkip(steps1395) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72625,7 +77255,7 @@ func s1164(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1420) {
+	if !p.ClassesSkip(steps1396) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72658,7 +77288,7 @@ func s1165(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1421) {
+	if !p.ClassesSkip(steps1397) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72691,7 +77321,7 @@ func s1166(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1422) {
+	if !p.ClassesSkip(steps1398) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72724,7 +77354,7 @@ func s1167(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1423) {
+	if !p.ClassesSkip(steps1399) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72757,7 +77387,7 @@ func s1168(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1424) {
+	if !p.ClassesSkip(steps1400) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72849,7 +77479,7 @@ func s1170(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1425) {
+	if !p.ClassesSkip(steps1401) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72882,7 +77512,7 @@ func s1171(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1426) {
+	if !p.ClassesSkip(steps1402) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72915,7 +77545,7 @@ func s1172(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1427) {
+	if !p.ClassesSkip(steps1403) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72948,7 +77578,7 @@ func s1173(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1428) {
+	if !p.ClassesSkip(steps1404) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -72981,7 +77611,7 @@ func s1174(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1429) {
+	if !p.ClassesSkip(steps1405) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73014,7 +77644,7 @@ func s1175(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1430) {
+	if !p.ClassesSkip(steps1406) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73047,7 +77677,7 @@ func s1176(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1431) {
+	if !p.ClassesSkip(steps1407) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73080,7 +77710,7 @@ func s1177(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1433) {
+	if !p.ClassesSkip(steps1409) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73113,7 +77743,7 @@ func s1178(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1434) {
+	if !p.ClassesSkip(steps1410) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73146,7 +77776,7 @@ func s1179(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1435) {
+	if !p.ClassesSkip(steps1411) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73179,7 +77809,7 @@ func s1180(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1436) {
+	if !p.ClassesSkip(steps1412) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73212,7 +77842,7 @@ func s1181(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1437) {
+	if !p.ClassesSkip(steps1413) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73245,7 +77875,7 @@ func s1182(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1438) {
+	if !p.ClassesSkip(steps1414) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73278,7 +77908,7 @@ func s1183(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1439) {
+	if !p.ClassesSkip(steps1415) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73311,7 +77941,7 @@ func s1184(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1440) {
+	if !p.ClassesSkip(steps1416) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73344,7 +77974,7 @@ func s1185(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1441) {
+	if !p.ClassesSkip(steps1417) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73377,7 +78007,7 @@ func s1186(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1442) {
+	if !p.ClassesSkip(steps1418) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73410,7 +78040,7 @@ func s1187(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1443) {
+	if !p.ClassesSkip(steps1419) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73443,7 +78073,7 @@ func s1188(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1444) {
+	if !p.ClassesSkip(steps1420) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73476,7 +78106,7 @@ func s1189(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1445) {
+	if !p.ClassesSkip(steps1421) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73509,7 +78139,7 @@ func s1190(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1446) {
+	if !p.ClassesSkip(steps1422) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73542,7 +78172,7 @@ func s1191(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1447) {
+	if !p.ClassesSkip(steps1423) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73653,7 +78283,7 @@ func s1194(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1448) {
+	if !p.ClassesSkip(steps1424) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73686,7 +78316,7 @@ func s1195(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1449) {
+	if !p.ClassesSkip(steps1425) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73719,7 +78349,7 @@ func s1196(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1450) {
+	if !p.ClassesSkip(steps1426) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73791,7 +78421,7 @@ func s1198(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1451) {
+	if !p.ClassesSkip(steps1427) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73824,7 +78454,7 @@ func s1199(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1452) {
+	if !p.ClassesSkip(steps1428) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73939,7 +78569,7 @@ func s1202(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1453) {
+	if !p.ClassesSkip(steps1429) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -73972,7 +78602,7 @@ func s1203(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1454) {
+	if !p.ClassesSkip(steps1430) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74005,7 +78635,7 @@ func s1204(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1455) {
+	if !p.ClassesSkip(steps1431) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74038,7 +78668,7 @@ func s1205(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1456) {
+	if !p.ClassesSkip(steps1432) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74071,7 +78701,7 @@ func s1206(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1457) {
+	if !p.ClassesSkip(steps1433) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74104,7 +78734,7 @@ func s1207(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1458) {
+	if !p.ClassesSkip(steps1434) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74137,7 +78767,7 @@ func s1208(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1459) {
+	if !p.ClassesSkip(steps1435) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74170,7 +78800,7 @@ func s1209(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1460) {
+	if !p.ClassesSkip(steps1436) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74203,7 +78833,7 @@ func s1210(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1461) {
+	if !p.ClassesSkip(steps1437) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74236,7 +78866,7 @@ func s1211(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1462) {
+	if !p.ClassesSkip(steps1438) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74269,7 +78899,7 @@ func s1212(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1463) {
+	if !p.ClassesSkip(steps1439) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74302,7 +78932,7 @@ func s1213(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1464) {
+	if !p.ClassesSkip(steps1440) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74459,7 +79089,7 @@ func s1215(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1465) {
+	if !p.ClassesSkip(steps1441) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74492,7 +79122,7 @@ func s1216(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1466) {
+	if !p.ClassesSkip(steps1442) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74525,7 +79155,7 @@ func s1217(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1467) {
+	if !p.ClassesSkip(steps1443) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74558,7 +79188,7 @@ func s1218(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1468) {
+	if !p.ClassesSkip(steps1444) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74591,7 +79221,7 @@ func s1219(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1469) {
+	if !p.ClassesSkip(steps1445) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74624,7 +79254,7 @@ func s1220(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1470) {
+	if !p.ClassesSkip(steps1446) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74657,7 +79287,7 @@ func s1221(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1471) {
+	if !p.ClassesSkip(steps1447) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74690,7 +79320,7 @@ func s1222(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1472) {
+	if !p.ClassesSkip(steps1448) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74723,7 +79353,7 @@ func s1223(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1473) {
+	if !p.ClassesSkip(steps1449) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74756,7 +79386,7 @@ func s1224(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1474) {
+	if !p.ClassesSkip(steps1450) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -74789,7 +79419,7 @@ func s1225(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1475) {
+	if !p.ClassesSkip(steps1451) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75022,7 +79652,7 @@ func s1228(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1476) {
+	if !p.ClassesSkip(steps1452) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75055,7 +79685,7 @@ func s1229(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1477) {
+	if !p.ClassesSkip(steps1453) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75088,7 +79718,7 @@ func s1230(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1478) {
+	if !p.ClassesSkip(steps1454) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75121,7 +79751,7 @@ func s1231(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1479) {
+	if !p.ClassesSkip(steps1455) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75154,7 +79784,7 @@ func s1232(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1480) {
+	if !p.ClassesSkip(steps1456) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75187,7 +79817,7 @@ func s1233(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1481) {
+	if !p.ClassesSkip(steps1457) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75220,7 +79850,7 @@ func s1234(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1482) {
+	if !p.ClassesSkip(steps1458) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75253,7 +79883,7 @@ func s1235(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1483) {
+	if !p.ClassesSkip(steps1459) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75286,7 +79916,7 @@ func s1236(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1484) {
+	if !p.ClassesSkip(steps1460) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75319,7 +79949,7 @@ func s1237(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1485) {
+	if !p.ClassesSkip(steps1461) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75352,7 +79982,7 @@ func s1238(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1486) {
+	if !p.ClassesSkip(steps1462) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75385,7 +80015,7 @@ func s1239(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1487) {
+	if !p.ClassesSkip(steps1463) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75418,7 +80048,7 @@ func s1240(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1488) {
+	if !p.ClassesSkip(steps1464) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75451,7 +80081,7 @@ func s1241(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1489) {
+	if !p.ClassesSkip(steps1465) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75484,7 +80114,7 @@ func s1242(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1490) {
+	if !p.ClassesSkip(steps1466) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75517,7 +80147,7 @@ func s1243(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1491) {
+	if !p.ClassesSkip(steps1467) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75550,7 +80180,7 @@ func s1244(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1492) {
+	if !p.ClassesSkip(steps1468) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75583,7 +80213,7 @@ func s1245(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1493) {
+	if !p.ClassesSkip(steps1469) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75616,7 +80246,7 @@ func s1246(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1494) {
+	if !p.ClassesSkip(steps1470) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75649,7 +80279,7 @@ func s1247(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1495) {
+	if !p.ClassesSkip(steps1471) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75682,7 +80312,7 @@ func s1248(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1496) {
+	if !p.ClassesSkip(steps1472) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75715,7 +80345,7 @@ func s1249(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1497) {
+	if !p.ClassesSkip(steps1473) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75748,7 +80378,7 @@ func s1250(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1498) {
+	if !p.ClassesSkip(steps1474) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75781,7 +80411,7 @@ func s1251(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1499) {
+	if !p.ClassesSkip(steps1475) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75814,7 +80444,7 @@ func s1252(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1500) {
+	if !p.ClassesSkip(steps1476) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75947,7 +80577,7 @@ func s1255(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1501) {
+	if !p.ClassesSkip(steps1477) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -75980,7 +80610,7 @@ func s1256(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1502) {
+	if !p.ClassesSkip(steps1478) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76013,7 +80643,7 @@ func s1257(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1503) {
+	if !p.ClassesSkip(steps1479) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76046,7 +80676,7 @@ func s1258(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1504) {
+	if !p.ClassesSkip(steps1480) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76079,7 +80709,7 @@ func s1259(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1505) {
+	if !p.ClassesSkip(steps1481) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76112,7 +80742,7 @@ func s1260(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1506) {
+	if !p.ClassesSkip(steps1482) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76145,7 +80775,7 @@ func s1261(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1507) {
+	if !p.ClassesSkip(steps1483) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76178,7 +80808,7 @@ func s1262(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1508) {
+	if !p.ClassesSkip(steps1484) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76211,7 +80841,7 @@ func s1263(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1509) {
+	if !p.ClassesSkip(steps1485) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76244,7 +80874,7 @@ func s1264(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1510) {
+	if !p.ClassesSkip(steps1486) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76277,7 +80907,7 @@ func s1265(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1511) {
+	if !p.ClassesSkip(steps1487) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76310,7 +80940,7 @@ func s1266(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1512) {
+	if !p.ClassesSkip(steps1488) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76343,7 +80973,7 @@ func s1267(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1513) {
+	if !p.ClassesSkip(steps1489) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76376,7 +81006,7 @@ func s1268(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1514) {
+	if !p.ClassesSkip(steps1490) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76507,7 +81137,7 @@ func s1270(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1515) {
+	if !p.ClassesSkip(steps1491) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76540,7 +81170,7 @@ func s1271(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1516) {
+	if !p.ClassesSkip(steps1492) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76573,7 +81203,7 @@ func s1272(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1517) {
+	if !p.ClassesSkip(steps1493) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76606,7 +81236,7 @@ func s1273(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1518) {
+	if !p.ClassesSkip(steps1494) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76639,7 +81269,7 @@ func s1274(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1519) {
+	if !p.ClassesSkip(steps1495) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76672,7 +81302,7 @@ func s1275(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1520) {
+	if !p.ClassesSkip(steps1496) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76705,7 +81335,7 @@ func s1276(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1521) {
+	if !p.ClassesSkip(steps1497) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76738,7 +81368,7 @@ func s1277(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1522) {
+	if !p.ClassesSkip(steps1498) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76771,7 +81401,7 @@ func s1278(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1523) {
+	if !p.ClassesSkip(steps1499) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76804,7 +81434,7 @@ func s1279(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1524) {
+	if !p.ClassesSkip(steps1500) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76837,7 +81467,7 @@ func s1280(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1525) {
+	if !p.ClassesSkip(steps1501) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76870,7 +81500,7 @@ func s1281(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1526) {
+	if !p.ClassesSkip(steps1502) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76903,7 +81533,7 @@ func s1282(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1527) {
+	if !p.ClassesSkip(steps1503) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76936,7 +81566,7 @@ func s1283(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1528) {
+	if !p.ClassesSkip(steps1504) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -76969,7 +81599,7 @@ func s1284(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1529) {
+	if !p.ClassesSkip(steps1505) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77002,7 +81632,7 @@ func s1285(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1530) {
+	if !p.ClassesSkip(steps1506) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77035,7 +81665,7 @@ func s1286(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1531) {
+	if !p.ClassesSkip(steps1507) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77068,7 +81698,7 @@ func s1287(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1532) {
+	if !p.ClassesSkip(steps1508) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77101,7 +81731,7 @@ func s1288(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1533) {
+	if !p.ClassesSkip(steps1509) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77134,7 +81764,7 @@ func s1289(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1534) {
+	if !p.ClassesSkip(steps1510) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77167,7 +81797,7 @@ func s1290(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1535) {
+	if !p.ClassesSkip(steps1511) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77200,7 +81830,7 @@ func s1291(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1536) {
+	if !p.ClassesSkip(steps1512) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77233,7 +81863,7 @@ func s1292(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1537) {
+	if !p.ClassesSkip(steps1513) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77266,7 +81896,7 @@ func s1293(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1538) {
+	if !p.ClassesSkip(steps1514) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77299,7 +81929,7 @@ func s1294(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1539) {
+	if !p.ClassesSkip(steps1515) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77332,7 +81962,7 @@ func s1295(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1540) {
+	if !p.ClassesSkip(steps1516) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77365,7 +81995,7 @@ func s1296(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1541) {
+	if !p.ClassesSkip(steps1517) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77398,7 +82028,7 @@ func s1297(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1542) {
+	if !p.ClassesSkip(steps1518) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77431,7 +82061,7 @@ func s1298(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1543) {
+	if !p.ClassesSkip(steps1519) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77504,7 +82134,7 @@ func s1300(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1544) {
+	if !p.ClassesSkip(steps1520) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77537,7 +82167,7 @@ func s1301(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1545) {
+	if !p.ClassesSkip(steps1521) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77570,7 +82200,7 @@ func s1302(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1546) {
+	if !p.ClassesSkip(steps1522) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77603,7 +82233,7 @@ func s1303(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1547) {
+	if !p.ClassesSkip(steps1523) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77636,7 +82266,7 @@ func s1304(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1548) {
+	if !p.ClassesSkip(steps1524) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77669,7 +82299,7 @@ func s1305(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1549) {
+	if !p.ClassesSkip(steps1525) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77702,7 +82332,7 @@ func s1306(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1550) {
+	if !p.ClassesSkip(steps1526) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77735,7 +82365,7 @@ func s1307(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1551) {
+	if !p.ClassesSkip(steps1527) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77768,7 +82398,7 @@ func s1308(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1552) {
+	if !p.ClassesSkip(steps1528) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77801,7 +82431,7 @@ func s1309(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1553) {
+	if !p.ClassesSkip(steps1529) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77834,7 +82464,7 @@ func s1310(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1554) {
+	if !p.ClassesSkip(steps1530) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77867,7 +82497,7 @@ func s1311(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1555) {
+	if !p.ClassesSkip(steps1531) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77900,7 +82530,7 @@ func s1312(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1556) {
+	if !p.ClassesSkip(steps1532) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77933,7 +82563,7 @@ func s1313(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1557) {
+	if !p.ClassesSkip(steps1533) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77966,7 +82596,7 @@ func s1314(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1558) {
+	if !p.ClassesSkip(steps1534) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -77999,7 +82629,7 @@ func s1315(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1559) {
+	if !p.ClassesSkip(steps1535) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78032,7 +82662,7 @@ func s1316(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1560) {
+	if !p.ClassesSkip(steps1536) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78065,7 +82695,7 @@ func s1317(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1561) {
+	if !p.ClassesSkip(steps1537) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78098,7 +82728,7 @@ func s1318(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1562) {
+	if !p.ClassesSkip(steps1538) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78131,7 +82761,7 @@ func s1319(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1563) {
+	if !p.ClassesSkip(steps1539) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78164,7 +82794,7 @@ func s1320(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1564) {
+	if !p.ClassesSkip(steps1540) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78197,7 +82827,7 @@ func s1321(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1565) {
+	if !p.ClassesSkip(steps1541) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78230,7 +82860,7 @@ func s1322(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1566) {
+	if !p.ClassesSkip(steps1542) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78263,7 +82893,7 @@ func s1323(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1567) {
+	if !p.ClassesSkip(steps1543) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78296,7 +82926,7 @@ func s1324(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1568) {
+	if !p.ClassesSkip(steps1544) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78329,7 +82959,7 @@ func s1325(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1569) {
+	if !p.ClassesSkip(steps1545) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78362,7 +82992,7 @@ func s1326(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1570) {
+	if !p.ClassesSkip(steps1546) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78395,7 +83025,7 @@ func s1327(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1571) {
+	if !p.ClassesSkip(steps1547) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78428,7 +83058,7 @@ func s1328(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1572) {
+	if !p.ClassesSkip(steps1548) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78461,7 +83091,7 @@ func s1329(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1573) {
+	if !p.ClassesSkip(steps1549) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78494,7 +83124,7 @@ func s1330(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1574) {
+	if !p.ClassesSkip(steps1550) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78527,7 +83157,7 @@ func s1331(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1575) {
+	if !p.ClassesSkip(steps1551) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78560,7 +83190,7 @@ func s1332(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1576) {
+	if !p.ClassesSkip(steps1552) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78593,7 +83223,7 @@ func s1333(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1577) {
+	if !p.ClassesSkip(steps1553) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78626,7 +83256,7 @@ func s1334(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1578) {
+	if !p.ClassesSkip(steps1554) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78659,7 +83289,7 @@ func s1335(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1579) {
+	if !p.ClassesSkip(steps1555) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78692,7 +83322,7 @@ func s1336(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1580) {
+	if !p.ClassesSkip(steps1556) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78725,7 +83355,7 @@ func s1337(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1581) {
+	if !p.ClassesSkip(steps1557) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78758,7 +83388,7 @@ func s1338(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1582) {
+	if !p.ClassesSkip(steps1558) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78791,7 +83421,7 @@ func s1339(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1583) {
+	if !p.ClassesSkip(steps1559) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78824,7 +83454,7 @@ func s1340(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1584) {
+	if !p.ClassesSkip(steps1560) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78857,7 +83487,7 @@ func s1341(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1585) {
+	if !p.ClassesSkip(steps1561) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78890,7 +83520,7 @@ func s1342(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1586) {
+	if !p.ClassesSkip(steps1562) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78923,7 +83553,7 @@ func s1343(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1587) {
+	if !p.ClassesSkip(steps1563) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78956,7 +83586,7 @@ func s1344(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1588) {
+	if !p.ClassesSkip(steps1564) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -78989,7 +83619,7 @@ func s1345(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1589) {
+	if !p.ClassesSkip(steps1565) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79022,7 +83652,7 @@ func s1346(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1590) {
+	if !p.ClassesSkip(steps1566) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79055,7 +83685,7 @@ func s1347(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1591) {
+	if !p.ClassesSkip(steps1567) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79155,7 +83785,7 @@ func s1349(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1592) {
+	if !p.ClassesSkip(steps1568) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79188,7 +83818,7 @@ func s1350(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1593) {
+	if !p.ClassesSkip(steps1569) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79221,7 +83851,7 @@ func s1351(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1594) {
+	if !p.ClassesSkip(steps1570) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79254,7 +83884,7 @@ func s1352(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1595) {
+	if !p.ClassesSkip(steps1571) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79287,7 +83917,7 @@ func s1353(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1596) {
+	if !p.ClassesSkip(steps1572) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79320,7 +83950,7 @@ func s1354(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1597) {
+	if !p.ClassesSkip(steps1573) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79353,7 +83983,7 @@ func s1355(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1598) {
+	if !p.ClassesSkip(steps1574) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79386,7 +84016,7 @@ func s1356(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1599) {
+	if !p.ClassesSkip(steps1575) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79419,7 +84049,7 @@ func s1357(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1600) {
+	if !p.ClassesSkip(steps1576) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79452,7 +84082,7 @@ func s1358(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1601) {
+	if !p.ClassesSkip(steps1577) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79485,7 +84115,7 @@ func s1359(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1602) {
+	if !p.ClassesSkip(steps1578) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79518,7 +84148,7 @@ func s1360(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1603) {
+	if !p.ClassesSkip(steps1579) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79566,7 +84196,7 @@ func s1362(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1604) {
+	if !p.ClassesSkip(steps1580) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -79646,7 +84276,7 @@ func s1364(p *rt.TParser) (any, bool) {
 	var start int
 	var v any
 	start = p.Pos
-	if !p.SkipTerminal(term1606) {
+	if !p.SkipTerminal(term1582) {
 		goto fail
 	}
 	v = nil
@@ -79660,7 +84290,7 @@ func s1365(p *rt.TParser) (any, bool) {
 	var start int
 	var v any
 	start = p.Pos
-	if !p.SkipTerminal(term1607) {
+	if !p.SkipTerminal(term1583) {
 		goto fail
 	}
 	v = nil
@@ -79674,7 +84304,7 @@ func s1366(p *rt.TParser) (any, bool) {
 	var start int
 	var v any
 	start = p.Pos
-	if !p.SkipTerminal(term1609) {
+	if !p.SkipTerminal(term1585) {
 		goto fail
 	}
 	v = nil
@@ -79726,7 +84356,7 @@ func s1369(p *rt.TParser) (any, bool) {
 	var start int
 	var v any
 	start = p.Pos
-	if !p.SkipTerminal(term1610) {
+	if !p.SkipTerminal(term1586) {
 		goto fail
 	}
 	v = nil
@@ -79740,7 +84370,7 @@ func s1370(p *rt.TParser) (any, bool) {
 	var start int
 	var v any
 	start = p.Pos
-	if !p.SkipTerminal(term1611) {
+	if !p.SkipTerminal(term1587) {
 		goto fail
 	}
 	v = nil
@@ -79754,7 +84384,7 @@ func s1371(p *rt.TParser) (any, bool) {
 	var start int
 	var v any
 	start = p.Pos
-	if !p.SkipTerminal(term1612) {
+	if !p.SkipTerminal(term1588) {
 		goto fail
 	}
 	v = nil
@@ -79768,7 +84398,7 @@ func s1372(p *rt.TParser) (any, bool) {
 	var start int
 	var v any
 	start = p.Pos
-	if !p.SkipTerminal(term1613) {
+	if !p.SkipTerminal(term1589) {
 		goto fail
 	}
 	v = nil
@@ -80146,7 +84776,7 @@ func s1376(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1614) {
+	if !p.ClassesSkip(steps1590) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80179,7 +84809,7 @@ func s1377(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1615) {
+	if !p.ClassesSkip(steps1591) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80212,7 +84842,7 @@ func s1378(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1616) {
+	if !p.ClassesSkip(steps1592) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80470,7 +85100,7 @@ func s1381(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1617) {
+	if !p.ClassesSkip(steps1593) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80503,7 +85133,7 @@ func s1382(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1618) {
+	if !p.ClassesSkip(steps1594) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80536,7 +85166,7 @@ func s1383(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1619) {
+	if !p.ClassesSkip(steps1595) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80569,7 +85199,7 @@ func s1384(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1620) {
+	if !p.ClassesSkip(steps1596) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80602,7 +85232,7 @@ func s1385(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1621) {
+	if !p.ClassesSkip(steps1597) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80635,7 +85265,7 @@ func s1386(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1622) {
+	if !p.ClassesSkip(steps1598) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80668,7 +85298,7 @@ func s1387(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1623) {
+	if !p.ClassesSkip(steps1599) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80701,7 +85331,7 @@ func s1388(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1624) {
+	if !p.ClassesSkip(steps1600) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80734,7 +85364,7 @@ func s1389(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1625) {
+	if !p.ClassesSkip(steps1601) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80767,7 +85397,7 @@ func s1390(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1626) {
+	if !p.ClassesSkip(steps1602) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80800,7 +85430,7 @@ func s1391(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1627) {
+	if !p.ClassesSkip(steps1603) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80833,7 +85463,7 @@ func s1392(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1628) {
+	if !p.ClassesSkip(steps1604) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80866,7 +85496,7 @@ func s1393(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1629) {
+	if !p.ClassesSkip(steps1605) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80899,7 +85529,7 @@ func s1394(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1630) {
+	if !p.ClassesSkip(steps1606) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80932,7 +85562,7 @@ func s1395(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1631) {
+	if !p.ClassesSkip(steps1607) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80965,7 +85595,7 @@ func s1396(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1632) {
+	if !p.ClassesSkip(steps1608) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -80998,7 +85628,7 @@ func s1397(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1633) {
+	if !p.ClassesSkip(steps1609) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81031,7 +85661,7 @@ func s1398(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1634) {
+	if !p.ClassesSkip(steps1610) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81064,7 +85694,7 @@ func s1399(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1635) {
+	if !p.ClassesSkip(steps1611) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81097,7 +85727,7 @@ func s1400(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1636) {
+	if !p.ClassesSkip(steps1612) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81130,7 +85760,7 @@ func s1401(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1637) {
+	if !p.ClassesSkip(steps1613) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81163,7 +85793,7 @@ func s1402(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1638) {
+	if !p.ClassesSkip(steps1614) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81196,7 +85826,7 @@ func s1403(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1639) {
+	if !p.ClassesSkip(steps1615) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81229,7 +85859,7 @@ func s1404(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1640) {
+	if !p.ClassesSkip(steps1616) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81262,7 +85892,7 @@ func s1405(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1641) {
+	if !p.ClassesSkip(steps1617) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81295,7 +85925,7 @@ func s1406(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1642) {
+	if !p.ClassesSkip(steps1618) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81328,7 +85958,7 @@ func s1407(p *rt.TParser) (any, bool) {
 	var ok bool
 	var ch rune
 	start = p.Pos
-	if !p.ClassesSkip(steps1643) {
+	if !p.ClassesSkip(steps1619) {
 		goto fail
 	}
 	if p.Pos < len(p.In) && p.In[p.Pos] == 95 {
@@ -81336,7 +85966,7 @@ func s1407(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit45, "_", 44, false); !ok {
 		goto fail
 	}
-	if !p.ClassesSkip(steps1644) {
+	if !p.ClassesSkip(steps1620) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81369,7 +85999,7 @@ func s1408(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1643) {
+	if !p.ClassesSkip(steps1619) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81402,7 +86032,7 @@ func s1409(p *rt.TParser) (any, bool) {
 	var ok bool
 	var ch rune
 	start = p.Pos
-	if !p.ClassesSkip(steps1643) {
+	if !p.ClassesSkip(steps1619) {
 		goto fail
 	}
 	if p.Pos < len(p.In) && p.In[p.Pos] == 95 {
@@ -81410,7 +86040,7 @@ func s1409(p *rt.TParser) (any, bool) {
 	} else if _, ok = p.Parser.MatchLiteral(lit45, "_", 44, false); !ok {
 		goto fail
 	}
-	if !p.ClassesSkip(steps1645) {
+	if !p.ClassesSkip(steps1621) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81443,7 +86073,7 @@ func s1410(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1646) {
+	if !p.ClassesSkip(steps1622) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81476,7 +86106,7 @@ func s1411(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1647) {
+	if !p.ClassesSkip(steps1623) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81509,7 +86139,7 @@ func s1412(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1648) {
+	if !p.ClassesSkip(steps1624) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81542,7 +86172,7 @@ func s1413(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1649) {
+	if !p.ClassesSkip(steps1625) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81575,7 +86205,7 @@ func s1414(p *rt.TParser) (any, bool) {
 	var ch rune
 	var ok bool
 	start = p.Pos
-	if !p.ClassesSkip(steps1650) {
+	if !p.ClassesSkip(steps1626) {
 		goto fail
 	}
 	x1 = p.Pos
@@ -81846,4 +86476,4 @@ fail:
 
 const _ = types.ZPSchema_c2948dd344162e7a
 
-const _ = rt.Protocol7
+const _ = rt.Protocol8

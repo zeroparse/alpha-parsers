@@ -1646,16 +1646,46 @@ func init() {
 			&rt.TOperatorsRuleLine{Scope: []string{}, M: e624, Action: nil, Value: sh341},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any { return tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh47}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e626, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), nil) }, Value: sh62}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e627, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any { return tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any { return tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh46}},
-			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e630, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), nil) }, Value: sh362}},
-			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e631, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2)) }, Value: sh63}},
-			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e632, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), nil, nil) }, Value: sh47}},
-			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e633, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh362}},
-			{Id: 9, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"v"}, M: e634, Action: func(c *rt.TActCtx) any { return tmk_CompositeLit(c, true, (c.Lhs), c.Cap(0)) }, Value: sh3}}},
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0))
+			return tv1
+		}, Value: sh47}},
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e626, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), any(nil))
+				return tv1
+			}, Value: sh62}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e627, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh46}},
+			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e630, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), any(nil))
+				return tv1
+			}, Value: sh362}},
+			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e631, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2))
+				return tv1
+			}, Value: sh63}},
+			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e632, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), any(nil), any(nil))
+				return tv1
+			}, Value: sh47}},
+			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e633, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh362}},
+			{Id: 9, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"v"}, M: e634, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CompositeLit(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh3}}},
 	}
 	trules[196].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[196], min) }
 	trules[209].OperatorsRule = &rt.TOperatorsRule{
@@ -1664,16 +1694,46 @@ func init() {
 			&rt.TOperatorsRuleLine{Scope: []string{}, M: e624, Action: nil, Value: sh341},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any { return tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh47}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e635, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), nil) }, Value: sh62}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e636, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any { return tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any { return tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh46}},
-			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e637, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), nil) }, Value: sh362}},
-			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e638, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2)) }, Value: sh63}},
-			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e639, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), nil, nil) }, Value: sh47}},
-			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e640, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh362}},
-			{Id: 9, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"v"}, M: e641, Action: func(c *rt.TActCtx) any { return tmk_CompositeLit(c, true, (c.Lhs), c.Cap(0)) }, Value: sh3}}},
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0))
+			return tv1
+		}, Value: sh47}},
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e635, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), any(nil))
+				return tv1
+			}, Value: sh62}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e636, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh46}},
+			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e637, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), any(nil))
+				return tv1
+			}, Value: sh362}},
+			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e638, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2))
+				return tv1
+			}, Value: sh63}},
+			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e639, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), any(nil), any(nil))
+				return tv1
+			}, Value: sh47}},
+			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e640, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh362}},
+			{Id: 9, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"v"}, M: e641, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CompositeLit(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh3}}},
 	}
 	trules[209].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[209], min) }
 	trules[223].OperatorsRule = &rt.TOperatorsRule{
@@ -1682,15 +1742,42 @@ func init() {
 			&rt.TOperatorsRuleLine{Scope: []string{}, M: e642, Action: nil, Value: sh341},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any { return tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh47}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e643, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), nil) }, Value: sh62}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e644, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any { return tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any { return tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh46}},
-			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e645, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), nil) }, Value: sh362}},
-			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e646, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2)) }, Value: sh63}},
-			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e647, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), nil, nil) }, Value: sh47}},
-			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e648, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh362}}},
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0))
+			return tv1
+		}, Value: sh47}},
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e643, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), any(nil))
+				return tv1
+			}, Value: sh62}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e644, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh46}},
+			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e645, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), any(nil))
+				return tv1
+			}, Value: sh362}},
+			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e646, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2))
+				return tv1
+			}, Value: sh63}},
+			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e647, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), any(nil), any(nil))
+				return tv1
+			}, Value: sh47}},
+			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e648, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh362}}},
 	}
 	trules[223].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[223], min) }
 	trules[227].OperatorsRule = &rt.TOperatorsRule{
@@ -1699,15 +1786,42 @@ func init() {
 			&rt.TOperatorsRuleLine{Scope: []string{}, M: e642, Action: nil, Value: sh341},
 		},
 		Prefix: []*rt.TOperatorsRuleOp{},
-		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any { return tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh47}},
-			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e649, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), nil) }, Value: sh62}},
-			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e644, Action: func(c *rt.TActCtx) any { return tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any { return tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh62}},
-			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any { return tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0)) }, Value: sh46}},
-			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e650, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), nil) }, Value: sh362}},
-			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e651, Action: func(c *rt.TActCtx) any { return tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2)) }, Value: sh63}},
-			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e647, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), nil, nil) }, Value: sh47}},
-			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e648, Action: func(c *rt.TActCtx) any { return tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1)) }, Value: sh362}}},
+		Led: []*rt.TOperatorsRuleOp{{Id: 0, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"s"}, M: e625, Action: func(c *rt.TActCtx) any {
+			tv1 := tmk_SelectorExpr(c, true, (c.Lhs), c.Cap(0))
+			return tv1
+		}, Value: sh47}},
+			{Id: 1, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e649, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), any(nil))
+				return tv1
+			}, Value: sh62}},
+			{Id: 2, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"t"}, M: e644, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_TypeAssertExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 3, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e628, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh62}},
+			{Id: 4, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"i"}, M: e629, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_IndexListExpr(c, true, (c.Lhs), c.Cap(0))
+				return tv1
+			}, Value: sh46}},
+			{Id: 5, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h"}, M: e650, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), any(nil))
+				return tv1
+			}, Value: sh362}},
+			{Id: 6, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"l", "h", "m"}, M: e651, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_SliceExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1), c.Cap(2))
+				return tv1
+			}, Value: sh63}},
+			{Id: 7, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{}, M: e647, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), any(nil), any(nil))
+				return tv1
+			}, Value: sh47}},
+			{Id: 8, Kind: "postfix", Assoc: "", Level: 1, Line: &rt.TOperatorsRuleLine{Scope: []string{"as", "e"}, M: e648, Action: func(c *rt.TActCtx) any {
+				tv1 := tmk_CallExpr(c, true, (c.Lhs), c.Cap(0), c.Cap(1))
+				return tv1
+			}, Value: sh362}}},
 	}
 	trules[227].Body = func(p *rt.TParser, min int) (any, bool) { return p.OperatorsRuleParse(trules[227], min) }
 	zpGrammar.Descs = []string{"any character", "beginning of input", "end of input", "beginning of line", "end of line", "\"\\ufeff\"", "\"func\"", "\"const\"", "\"var\"", "\"type\"", "\"(\"", "\")\"", "\".\"", "\"..\"", "\",\"", "\"=\"", "\"[\"", "\"]\"", "\"{\"", "\"|\"", "[|=]", "\"*\"", "[.\\[(]", "\"~\"", "\"<-\"", "\"struct\"", "\"map\"", "[.\\[({]", "\"interface\"", "\"...\"", "[a-zA-Z_\\[*<(\\u0080-\\U0010ffff]", "expected type", "\"chan\"", "\"}\"", "\"\\\"\"", "\"`\"", "\";\"", "\":\"", "\"case\"", "\"default\"", "\"go\"", "\"defer\"", "\"return\"", "\"if\"", "\"select\"", "\"break\"", "\"continue\"", "\"goto\"", "\"fallthrough\"", "\"switch\"", "\":=\"", "\"for\"", "[<+\\-!\\^&~*]", "[a-zA-Z_0-9.\\'\"`(\\[<\\u0080-\\U0010ffff]", "expected operand", "[|&=!<>+\\-\\^*/%]", "\"||\"", "\"&\"", "\"&&\"", "[=!<>]", "\"==\"", "\"!=\"", "\"<=\"", "\">=\"", "\"<\"", "[<\\-]", "\">\"", "[+\\-|\\^]", "\"+\"", "[+=]", "\"-\"", "[\\-=]", "\"^\"", "[*/%<>&]", "\"/\"", "[/*=]", "\"%\"", "\"<<\"", "\">>\"", "\"&^\"", "[&=\\^]", "[+\\-!\\^&~]", "\"!\"", "[=:+\\-*/%&|\\^<>]", "\"+=\"", "\"-=\"", "\"*=\"", "\"/=\"", "\"%=\"", "\"&=\"", "\"|=\"", "\"^=\"", "\"<<=\"", "\">>=\"", "\"&^=\"", "[+\\-]", "\"++\"", "\"--\"", "\"\\n\"", "\"/*\"", "[ \\t\\r/]", "[ \\t\\r]", "\"//\"", "[^\\n\\x00\\ufeff�]", "\"�\"", "\"*/\"", "[^\\n]", "\"line \"", "[^:*\\x00\\ufeff�]", "[^:*]", "[^*\\x00\\ufeff�]", "\"0\"", "[1-9]", "[0-9]", "[ \\t\\r\\n/]", "[ \\t\\r\\n]", "\"//line \"", "[^:\\n\\r\\x00\\ufeff�]", "\"\\r\"", "[^:\\n\\r]", "[a-zA-Z_]", "[\\u0080-\\U0010ffff]", "[a-zA-Z0-9_\\u0080-\\U0010ffff]", "[a-zA-Z0-9_]", "\"else\"", "\"import\"", "\"package\"", "\"range\"", "\"'\"", "[xX]", "\"_\"", "[oO]", "[bB]", "[0-7]", "[0-9a-zA-Z_.]", "[0-9a-zA-Z_]", "\"i\"", "[oObB]", "[eE]", "[pP]", "[0-9a-fA-F]", "[01]", "\"\\\\\"", "[\\'\\\\\\n]", "[^\"\\\\\\n\\x00\\ufeff�]", "[^\\x00\\ufeff�]", "[abfnrtv\\\\\\']", "[abfnrtv\\\\\"]", "[0-3]", "\"x\"", "\"u\"", "[dD]", "[89a-fA-F]", "\"U\"", "\"00\"", "\"10\"", "[ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶ-ͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙՠ-ֈא-תׯ-ײؠ-يٮ-ٯٱ-ۓەۥ-ۦۮ-ۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴ-ߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࡠ-ࡪࡰ-ࢇࢉ-࢏ࢠ-ࣉऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএ-ঐও-নপ-রলশ-হঽৎড়-ঢ়য়-ৡৰ-ৱৼਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હઽૐૠ-ૡૹଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହଽଡ଼-ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚ౜-ౝౠ-ౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽ೜-ೞೠ-ೡೱ-ೲഄ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะา-ำเ-ๆກ-ຂຄຆ-ຊຌ-ຣລວ-ະາ-ຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥ-ၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜑᜟ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡸᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭌᮃ-ᮠᮮ-ᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲊᲐ-ᲺᲽ-Ჿᳩ-ᳬᳮ-ᳳᳵ-ᳶᳺᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃ-ↄⰀ-ⳤⳫ-ⳮⳲ-ⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々-〆〱-〵〻-〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄯㄱ-ㆎㆠ-ㆿㇰ-ㇿ㐀-䶿一-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪ-ꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-Ƛ꟱-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽ-ꣾꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵ-ꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭩꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּ-סּףּ-פּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ𐀀-𐀋𐀍-𐀦𐀨-𐀺𐀼-𐀽𐀿-𐁍𐁐-𐁝𐂀-𐃺𐊀-𐊜𐊠-𐋐𐌀-𐌟𐌭-𐍀𐍂-𐍉𐍐-𐍵𐎀-𐎝𐎠-𐏃𐏈-𐏏𐐀-𐒝𐒰-𐓓𐓘-𐓻𐔀-𐔧𐔰-𐕣𐕰-𐕺𐕼-𐖊𐖌-𐖒𐖔-𐖕𐖗-𐖡𐖣-𐖱𐖳-𐖹𐖻-𐖼𐗀-𐗳𐘀-𐜶𐝀-𐝕𐝠-𐝧𐞀-𐞅𐞇-𐞰𐞲-𐞺𐠀-𐠅𐠈𐠊-𐠵𐠷-𐠸𐠼𐠿-𐡕𐡠-𐡶𐢀-𐢞𐣠-𐣲𐣴-𐣵𐤀-𐤕𐤠-𐤹𐥀-𐥙𐦀-𐦷𐦾-𐦿𐨀𐨐-𐨓𐨕-𐨗𐨙-𐨵𐩠-𐩼𐪀-𐪜𐫀-𐫇𐫉-𐫤𐬀-𐬵𐭀-𐭕𐭠-𐭲𐮀-𐮑𐰀-𐱈𐲀-𐲲𐳀-𐳲𐴀-𐴣𐵊-𐵥𐵯-𐶅𐺀-𐺩𐺰-𐺱𐻂-𐻇𐼀-𐼜𐼧𐼰-𐽅𐽰-𐾁𐾰-𐿄𐿠-𐿶𑀃-𑀷𑁱-𑁲𑁵𑂃-𑂯𑃐-𑃨𑄃-𑄦𑅄𑅇𑅐-𑅲𑅶𑆃-𑆲𑇁-𑇄𑇚𑇜𑈀-𑈑𑈓-𑈫𑈿-𑉀𑊀-𑊆𑊈𑊊-𑊍𑊏-𑊝𑊟-𑊨𑊰-𑋞𑌅-𑌌𑌏-𑌐𑌓-𑌨𑌪-𑌰𑌲-𑌳𑌵-𑌹𑌽𑍐𑍝-𑍡𑎀-𑎉𑎋𑎎𑎐-𑎵𑎷𑏑𑏓𑐀-𑐴𑑇-𑑊𑑟-𑑡𑒀-𑒯𑓄-𑓅𑓇𑖀-𑖮𑗘-𑗛𑘀-𑘯𑙄𑚀-𑚪𑚸𑜀-𑜚𑝀-𑝆𑠀-𑠫𑢠-𑣟𑣿-𑤆𑤉𑤌-𑤓𑤕-𑤖𑤘-𑤯𑤿𑥁𑦠-𑦧𑦪-𑧐𑧡𑧣𑨀𑨋-𑨲𑨺𑩐𑩜-𑪉𑪝𑪰-𑫸𑯀-𑯠𑰀-𑰈𑰊-𑰮𑱀𑱲-𑲏𑴀-𑴆𑴈-𑴉𑴋-𑴰𑵆𑵠-𑵥𑵧-𑵨𑵪-𑶉𑶘𑶰-𑷛𑻠-𑻲𑼂𑼄-𑼐𑼒-𑼳𑾰𒀀-𒎙𒒀-𒕃𒾐-𒿰𓀀-𓐯𓑁-𓑆𓑠-𔏺𔐀-𔙆𖄀-𖄝𖠀-𖨸𖩀-𖩞𖩰-𖪾𖫐-𖫭𖬀-𖬯𖭀-𖭃𖭣-𖭷𖭽-𖮏𖵀-𖵬𖹀-𖹿𖺠-𖺸𖺻-𖻓𖼀-𖽊𖽐𖾓-𖾟𖿠-𖿡𖿣𖿲-𖿳𗀀-𘳕𘳿-𘴞𘶀-𘷲𚿰-𚿳𚿵-𚿻𚿽-𚿾𛀀-𛄢𛄲𛅐-𛅒𛅕𛅤-𛅧𛅰-𛋻𛰀-𛱪𛱰-𛱼𛲀-𛲈𛲐-𛲙𝐀-𝑔𝑖-𝒜𝒞-𝒟𝒢𝒥-𝒦𝒩-𝒬𝒮-𝒹𝒻𝒽-𝓃𝓅-𝔅𝔇-𝔊𝔍-𝔔𝔖-𝔜𝔞-𝔹𝔻-𝔾𝕀-𝕄𝕆𝕊-𝕐𝕒-𝚥𝚨-𝛀𝛂-𝛚𝛜-𝛺𝛼-𝜔𝜖-𝜴𝜶-𝝎𝝐-𝝮𝝰-𝞈𝞊-𝞨𝞪-𝟂𝟄-𝟋𝼀-𝼞𝼥-𝼪𞀰-𞁭𞄀-𞄬𞄷-𞄽𞅎𞊐-𞊭𞋀-𞋫𞓐-𞓫𞗐-𞗭𞗰𞛀-𞛞𞛠-𞛢𞛤-𞛥𞛧-𞛭𞛰-𞛴𞛾-𞛿𞟠-𞟦𞟨-𞟫𞟭-𞟮𞟰-𞟾𞠀-𞣄𞤀-𞥃𞥋𞸀-𞸃𞸅-𞸟𞸡-𞸢𞸤𞸧𞸩-𞸲𞸴-𞸷𞸹𞸻𞹂𞹇𞹉𞹋𞹍-𞹏𞹑-𞹒𞹔𞹗𞹙𞹛𞹝𞹟𞹡-𞹢𞹤𞹧-𞹪𞹬-𞹲𞹴-𞹷𞹹-𞹼𞹾𞺀-𞺉𞺋-𞺛𞺡-𞺣𞺥-𞺩𞺫-𞺻𠀀-𪛟𪜀-𫠝𫠠-𬺭𬺰-𮯠𮯰-𮹝丽-𪘀𰀀-𱍊𱍐-𳑹]", "[٠-٩۰-۹߀-߉०-९০-৯੦-੯૦-૯୦-୯௦-௯౦-౯೦-೯൦-൯෦-෯๐-๙໐-໙༠-༩၀-၉႐-႙០-៩᠐-᠙᥆-᥏᧐-᧙᪀-᪉᪐-᪙᭐-᭙᮰-᮹᱀-᱉᱐-᱙꘠-꘩꣐-꣙꤀-꤉꧐-꧙꧰-꧹꩐-꩙꯰-꯹０-９𐒠-𐒩𐴰-𐴹𐵀-𐵉𑁦-𑁯𑃰-𑃹𑄶-𑄿𑇐-𑇙𑋰-𑋹𑑐-𑑙𑓐-𑓙𑙐-𑙙𑛀-𑛉𑛐-𑛣𑜰-𑜹𑣠-𑣩𑥐-𑥙𑯰-𑯹𑱐-𑱙𑵐-𑵙𑶠-𑶩𑷠-𑷩𑽐-𑽙𖄰-𖄹𖩠-𖩩𖫀-𖫉𖭐-𖭙𖵰-𖵹𜳰-𜳹𝟎-𝟿𞅀-𞅉𞋰-𞋹𞓰-𞓹𞗱-𞗺𞥐-𞥙🯰-🯹]"}
@@ -1967,7 +2081,14 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "importDecl"
-	v = tmk_GenDecl(c, true, any("import"), k1)
+	{
+		var tr65 any
+		{
+			tv1 := tmk_GenDecl(c, true, any("import"), k1)
+			tr65 = tv1
+		}
+		v = tr65
+	}
 	return v, true
 fail:
 	return nil, false
@@ -1995,7 +2116,20 @@ func i3(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "importOne"
-	v = c.List(k1)
+	{
+		var tr66 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr66 = any(tn4)
+		}
+		v = tr66
+	}
 	v = c.Finish(v)
 	return v, true
 fail:
@@ -2104,7 +2238,14 @@ L6:
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "importSpec"
-	v = tmk_ImportSpec(c, true, k1, k8)
+	{
+		var tr67 any
+		{
+			tv1 := tmk_ImportSpec(c, true, k1, k8)
+			tr67 = tv1
+		}
+		v = tr67
+	}
 	return v, true
 fail:
 	return nil, false
@@ -2162,11 +2303,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "importName"
 	{
-		var tr65 any
+		var tr68 any
 		{
-			tr65 = k2
+			tr68 = k2
 		}
-		v = tr65
+		v = tr68
 	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[6], v)
@@ -2268,7 +2409,14 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "constDecl"
-	v = tmk_GenDecl(c, true, any("const"), k1)
+	{
+		var tr69 any
+		{
+			tv1 := tmk_GenDecl(c, true, any("const"), k1)
+			tr69 = tv1
+		}
+		v = tr69
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -2299,7 +2447,20 @@ func i9(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "constOne"
-	v = c.List(k1)
+	{
+		var tr70 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr70 = any(tn4)
+		}
+		v = tr70
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -2425,7 +2586,21 @@ L16:
 	k11 = v14
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "constSpec"
-	v = tmk_ValueSpec(c, true, k1, k4, c.Concat(k11))
+	{
+		var tr71 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k11)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_ValueSpec(c, true, k1, k4, any(tn4))
+			tr71 = tv5
+		}
+		v = tr71
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -2460,11 +2635,11 @@ func i12(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeSp"
 	{
-		var tr66 any
+		var tr72 any
 		{
-			tr66 = k1
+			tr72 = k1
 		}
-		v = tr66
+		v = tr72
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2595,11 +2770,11 @@ L2:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "valuesSp"
 	{
-		var tr67 any
+		var tr73 any
 		{
-			tr67 = k3
+			tr73 = k3
 		}
-		v = tr67
+		v = tr73
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -2662,7 +2837,14 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "varDecl"
-	v = tmk_GenDecl(c, true, any("var"), k1)
+	{
+		var tr74 any
+		{
+			tv1 := tmk_GenDecl(c, true, any("var"), k1)
+			tr74 = tv1
+		}
+		v = tr74
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -2693,7 +2875,20 @@ func i16(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "varOne"
-	v = c.List(k1)
+	{
+		var tr75 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr75 = any(tn4)
+		}
+		v = tr75
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -2855,7 +3050,21 @@ L12:
 	k7 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "varSpecTyped"
-	v = tmk_ValueSpec(c, true, k1, k4, c.Concat(k7))
+	{
+		var tr76 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k7)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_ValueSpec(c, true, k1, k4, any(tn4))
+			tr76 = tv5
+		}
+		v = tr76
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -2917,7 +3126,14 @@ L5:
 	k6 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "varSpecUntyped"
-	v = tmk_ValueSpec(c, true, k1, nil, k6)
+	{
+		var tr77 any
+		{
+			tv1 := tmk_ValueSpec(c, true, k1, any(nil), k6)
+			tr77 = tv1
+		}
+		v = tr77
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -2978,7 +3194,14 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeDecl"
-	v = tmk_GenDecl(c, true, any("type"), k1)
+	{
+		var tr78 any
+		{
+			tv1 := tmk_GenDecl(c, true, any("type"), k1)
+			tr78 = tv1
+		}
+		v = tr78
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -3009,7 +3232,20 @@ func i22(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeOne"
-	v = c.List(k1)
+	{
+		var tr79 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr79 = any(tn4)
+		}
+		v = tr79
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -3185,7 +3421,14 @@ L12:
 	k14 = v16
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeSpecGeneric"
-	v = tmk_TypeSpec(c, true, k1, k4, k7, k14)
+	{
+		var tr80 any
+		{
+			tv1 := tmk_TypeSpec(c, true, k1, k4, k7, k14)
+			tr80 = tv1
+		}
+		v = tr80
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -3237,7 +3480,14 @@ L5:
 	k6 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeSpecArray"
-	v = tmk_TypeSpec(c, true, k1, nil, nil, k6)
+	{
+		var tr81 any
+		{
+			tv1 := tmk_TypeSpec(c, true, k1, any(nil), any(nil), k6)
+			tr81 = tv1
+		}
+		v = tr81
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -3302,7 +3552,14 @@ L11:
 	k13 = v15
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeSpecPlain"
-	v = tmk_TypeSpec(c, true, k1, nil, k6, k13)
+	{
+		var tr82 any
+		{
+			tv1 := tmk_TypeSpec(c, true, k1, any(nil), k6, k13)
+			tr82 = tv1
+		}
+		v = tr82
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -3359,11 +3616,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "aliasEq"
 	{
-		var tr68 any
+		var tr83 any
 		{
-			tr68 = k1
+			tr83 = k1
 		}
-		v = tr68
+		v = tr83
 	}
 	v = c.Finish(v)
 	return v, true
@@ -3467,11 +3724,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "genericParams"
 	{
-		var tr69 any
+		var tr84 any
 		{
-			tr69 = k2
+			tr84 = k2
 		}
-		v = tr69
+		v = tr84
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -3794,7 +4051,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "splitStar"
-	v = tmk_StarExpr(c, true, k3)
+	{
+		var tr85 any
+		{
+			tv1 := tmk_StarExpr(c, true, k3)
+			tr85 = tv1
+		}
+		v = tr85
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -3875,7 +4139,14 @@ L8:
 	p.Pos = x7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "splitParen"
-	v = tmk_ParenExpr(c, true, k1)
+	{
+		var tr86 any
+		{
+			tv1 := tmk_ParenExpr(c, true, k1)
+			tr86 = tv1
+		}
+		v = tr86
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -3997,7 +4268,15 @@ L39:
 	k34 = v37
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "funcDecl"
-	v = tmk_FuncDecl(c, true, k1, k8, tmk_FuncType(c, false, k11, k18, k21), k34)
+	{
+		var tr88 any
+		{
+			tv1 := tmk_FuncType(c, false, k11, k18, k21)
+			tv2 := tmk_FuncDecl(c, true, k1, k8, tv1, k34)
+			tr88 = tv2
+		}
+		v = tr88
+	}
 	p.DropCreated(c.Cbase)
 	return v, true
 fail:
@@ -4030,11 +4309,11 @@ func i44(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "recvSp"
 	{
-		var tr71 any
+		var tr89 any
 		{
-			tr71 = k1
+			tr89 = k1
 		}
-		v = tr71
+		v = tr89
 	}
 	v = c.Finish(v)
 	return v, true
@@ -4068,11 +4347,11 @@ func i45(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeParamsSp"
 	{
-		var tr72 any
+		var tr90 any
 		{
-			tr72 = k1
+			tr90 = k1
 		}
-		v = tr72
+		v = tr90
 	}
 	v = c.Finish(v)
 	return v, true
@@ -4106,11 +4385,11 @@ func i46(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "bodySp"
 	{
-		var tr73 any
+		var tr91 any
 		{
-			tr73 = k1
+			tr91 = k1
 		}
-		v = tr73
+		v = tr91
 	}
 	v = c.Finish(v)
 	return v, true
@@ -4164,7 +4443,21 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "params"
-	v = tmk_FieldList(c, true, c.Concat(k1))
+	{
+		var tr92 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_FieldList(c, true, any(tn4))
+			tr92 = tv5
+		}
+		v = tr92
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -4377,11 +4670,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "paramGroup"
 	{
-		var tr74 any
+		var tr93 any
 		{
-			tr74 = k2
+			tr93 = k2
 		}
-		v = tr74
+		v = tr93
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -4421,7 +4714,21 @@ func i51(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "variadicGroup"
-	v = tmk_Field(c, true, c.List(k1), k4, nil)
+	{
+		var tr94 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Field(c, true, any(tn4), k4, any(nil))
+			tr94 = tv5
+		}
+		v = tr94
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -4462,7 +4769,14 @@ func i52(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "namedGroup"
-	v = tmk_Field(c, true, k1, k4, nil)
+	{
+		var tr95 any
+		{
+			tv1 := tmk_Field(c, true, k1, k4, any(nil))
+			tr95 = tv1
+		}
+		v = tr95
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -4549,11 +4863,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "namedParamType"
 	{
-		var tr75 any
+		var tr96 any
 		{
-			tr75 = k2
+			tr96 = k2
 		}
-		v = tr75
+		v = tr96
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -4597,7 +4911,14 @@ func i54(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "variadicType"
-	v = tmk_Ellipsis(c, true, k1)
+	{
+		var tr97 any
+		{
+			tv1 := tmk_Ellipsis(c, true, k1)
+			tr97 = tv1
+		}
+		v = tr97
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -4771,7 +5092,14 @@ L17:
 L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unnamedParam"
-	v = tmk_Field(c, true, nil, k2, nil)
+	{
+		var tr98 any
+		{
+			tv1 := tmk_Field(c, true, any(nil), k2, any(nil))
+			tr98 = tv1
+		}
+		v = tr98
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -4903,11 +5231,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unnamedType"
 	{
-		var tr76 any
+		var tr99 any
 		{
-			tr76 = k2
+			tr99 = k2
 		}
-		v = tr76
+		v = tr99
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -4947,11 +5275,11 @@ func i58(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "resultsSp"
 	{
-		var tr77 any
+		var tr100 any
 		{
-			tr77 = k1
+			tr100 = k1
 		}
-		v = tr77
+		v = tr100
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -5026,7 +5354,22 @@ func i60(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "resultType"
-	v = tmk_FieldList(c, true, c.List(tmk_Field(c, false, nil, k1, nil)))
+	{
+		var tr101 any
+		{
+			tv1 := tmk_Field(c, false, any(nil), k1, any(nil))
+			tm2 := len(c.P.KidStack)
+			tf3 := c.P.TermPush(c, "list", tv1)
+			if tf3 != nil {
+				panic(tf3)
+			}
+			tk4 := c.P.Kids(tm2)
+			tn5 := c.P.TermHull(c, false, tk4)
+			tv6 := tmk_FieldList(c, true, any(tn5))
+			tr101 = tv6
+		}
+		v = tr101
+	}
 	p.DropCreated(c.Cbase)
 	p.Depth--
 	return v, true
@@ -5078,7 +5421,21 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "resultParams"
-	v = tmk_FieldList(c, true, c.Concat(k1))
+	{
+		var tr102 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_FieldList(c, true, any(tn4))
+			tr102 = tv5
+		}
+		v = tr102
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -5313,7 +5670,14 @@ func i65(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unnamedResult"
-	v = tmk_Field(c, true, nil, k1, nil)
+	{
+		var tr103 any
+		{
+			tv1 := tmk_Field(c, true, any(nil), k1, any(nil))
+			tr103 = tv1
+		}
+		v = tr103
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -5452,7 +5816,14 @@ func i67(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeParam"
-	v = tmk_Field(c, true, k1, k4, nil)
+	{
+		var tr104 any
+		{
+			tv1 := tmk_Field(c, true, k1, k4, any(nil))
+			tr104 = tv1
+		}
+		v = tr104
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -5644,11 +6015,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "constraintFirst"
 	{
-		var tr78 any
+		var tr105 any
 		{
-			tr78 = k2
+			tr105 = k2
 		}
-		v = tr78
+		v = tr105
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -5742,7 +6113,14 @@ func i71(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tildeTerm"
-	v = tmk_UnaryExpr(c, true, any("~"), k1)
+	{
+		var tr106 any
+		{
+			tv1 := tmk_UnaryExpr(c, true, any("~"), k1)
+			tr106 = tv1
+		}
+		v = tr106
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -5803,7 +6181,14 @@ L6:
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "arrayFieldType"
-	v = tmk_ArrayType(c, true, k1, k8)
+	{
+		var tr107 any
+		{
+			tv1 := tmk_ArrayType(c, true, k1, k8)
+			tr107 = tv1
+		}
+		v = tr107
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -5841,11 +6226,11 @@ func i73(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "exprSp"
 	{
-		var tr79 any
+		var tr108 any
 		{
-			tr79 = k1
+			tr108 = k1
 		}
-		v = tr79
+		v = tr108
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -5917,7 +6302,14 @@ L9:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "identIndex"
-	v = tmk_IndexExpr(c, true, k1, k4)
+	{
+		var tr109 any
+		{
+			tv1 := tmk_IndexExpr(c, true, k1, k4)
+			tr109 = tv1
+		}
+		v = tr109
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -6185,11 +6577,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typ"
 	{
-		var tr80 any
+		var tr110 any
 		{
-			tr80 = k2
+			tr110 = k2
 		}
-		v = tr80
+		v = tr110
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -6238,7 +6630,14 @@ func i79(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "parenType"
-	v = tmk_ParenExpr(c, true, k1)
+	{
+		var tr111 any
+		{
+			tv1 := tmk_ParenExpr(c, true, k1)
+			tr111 = tv1
+		}
+		v = tr111
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -6293,7 +6692,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "pointerType"
-	v = tmk_StarExpr(c, true, k3)
+	{
+		var tr112 any
+		{
+			tv1 := tmk_StarExpr(c, true, k3)
+			tr112 = tv1
+		}
+		v = tr112
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -6363,11 +6769,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeName"
 	{
-		var tr81 any
+		var tr113 any
 		{
-			tr81 = k2
+			tr113 = k2
 		}
-		v = tr81
+		v = tr113
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -6479,7 +6885,14 @@ L9:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeInstance"
-	v = tmk_IndexExpr(c, true, k1, k4)
+	{
+		var tr114 any
+		{
+			tv1 := tmk_IndexExpr(c, true, k1, k4)
+			tr114 = tv1
+		}
+		v = tr114
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -6682,11 +7095,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "qualifiedIdent"
 	{
-		var tr82 any
+		var tr115 any
 		{
-			tr82 = k2
+			tr115 = k2
 		}
-		v = tr82
+		v = tr115
 	}
 	v = c.Finish(v)
 	return v, true
@@ -6747,7 +7160,14 @@ L5:
 	k6 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "selectorIdent"
-	v = tmk_SelectorExpr(c, true, k1, k6)
+	{
+		var tr116 any
+		{
+			tv1 := tmk_SelectorExpr(c, true, k1, k6)
+			tr116 = tv1
+		}
+		v = tr116
+	}
 	return v, true
 fail:
 	return nil, false
@@ -6806,7 +7226,14 @@ L6:
 	k8 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "arrayType"
-	v = tmk_ArrayType(c, true, k1, k8)
+	{
+		var tr117 any
+		{
+			tv1 := tmk_ArrayType(c, true, k1, k8)
+			tr117 = tv1
+		}
+		v = tr117
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -6867,11 +7294,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "arrayLen"
 	{
-		var tr83 any
+		var tr118 any
 		{
-			tr83 = k2
+			tr118 = k2
 		}
-		v = tr83
+		v = tr118
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -6894,7 +7321,14 @@ func s89(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ellipsisLen"
-	v = tmk_Ellipsis(c, true, nil)
+	{
+		var tr119 any
+		{
+			tv1 := tmk_Ellipsis(c, true, any(nil))
+			tr119 = tv1
+		}
+		v = tr119
+	}
 	return v, true
 fail:
 	p.Pos = start
@@ -6956,7 +7390,14 @@ func i90(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "mapType"
-	v = tmk_MapType(c, true, k1, k4)
+	{
+		var tr120 any
+		{
+			tv1 := tmk_MapType(c, true, k1, k4)
+			tr120 = tv1
+		}
+		v = tr120
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7068,7 +7509,14 @@ func i92(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sendChanType"
-	v = tmk_ChanType(c, true, any(1), k1)
+	{
+		var tr121 any
+		{
+			tv1 := tmk_ChanType(c, true, any(1), k1)
+			tr121 = tv1
+		}
+		v = tr121
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7121,7 +7569,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "bothChanType"
-	v = tmk_ChanType(c, true, any(3), k3)
+	{
+		var tr122 any
+		{
+			tv1 := tmk_ChanType(c, true, any(3), k3)
+			tr122 = tv1
+		}
+		v = tr122
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7169,7 +7624,14 @@ func i94(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "recvChanTypeT"
-	v = tmk_ChanType(c, true, any(2), k1)
+	{
+		var tr123 any
+		{
+			tv1 := tmk_ChanType(c, true, any(2), k1)
+			tr123 = tv1
+		}
+		v = tr123
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7255,7 +7717,14 @@ L14:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "funcType"
-	v = tmk_FuncType(c, true, nil, k1, k4)
+	{
+		var tr125 any
+		{
+			tv1 := tmk_FuncType(c, true, any(nil), k1, k4)
+			tr125 = tv1
+		}
+		v = tr125
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7295,7 +7764,14 @@ func i96(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "structType"
-	v = tmk_StructType(c, true, k1)
+	{
+		var tr126 any
+		{
+			tv1 := tmk_StructType(c, true, k1)
+			tr126 = tv1
+		}
+		v = tr126
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7555,7 +8031,14 @@ L25:
 	k20 = v23
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "embeddedField"
-	v = tmk_Field(c, true, nil, k17, k20)
+	{
+		var tr127 any
+		{
+			tv1 := tmk_Field(c, true, any(nil), k17, k20)
+			tr127 = tv1
+		}
+		v = tr127
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7597,7 +8080,14 @@ L9:
 	k4 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "starField"
-	v = tmk_Field(c, true, nil, k1, k4)
+	{
+		var tr128 any
+		{
+			tv1 := tmk_Field(c, true, any(nil), k1, k4)
+			tr128 = tv1
+		}
+		v = tr128
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7652,7 +8142,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "starEmbedded"
-	v = tmk_StarExpr(c, true, k3)
+	{
+		var tr129 any
+		{
+			tv1 := tmk_StarExpr(c, true, k3)
+			tr129 = tv1
+		}
+		v = tr129
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7790,7 +8287,21 @@ L12:
 	k7 = v10
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "arrayNameField"
-	v = tmk_Field(c, true, c.List(k1), k4, k7)
+	{
+		var tr130 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Field(c, true, any(tn4), k4, k7)
+			tr130 = tv5
+		}
+		v = tr130
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7855,7 +8366,21 @@ L14:
 	k9 = v12
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "oneNameField"
-	v = tmk_Field(c, true, c.List(k1), k6, k9)
+	{
+		var tr131 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Field(c, true, any(tn4), k6, k9)
+			tr131 = tv5
+		}
+		v = tr131
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7911,7 +8436,14 @@ L15:
 	k10 = v13
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "instanceField"
-	v = tmk_Field(c, true, nil, k1, k10)
+	{
+		var tr132 any
+		{
+			tv1 := tmk_Field(c, true, any(nil), k1, k10)
+			tr132 = tv1
+		}
+		v = tr132
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -7948,11 +8480,11 @@ func i106(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "tagSp"
 	{
-		var tr85 any
+		var tr133 any
 		{
-			tr85 = k1
+			tr133 = k1
 		}
-		v = tr85
+		v = tr133
 	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[106], v)
@@ -7993,7 +8525,14 @@ func i107(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "interfaceType"
-	v = tmk_InterfaceType(c, true, k1)
+	{
+		var tr134 any
+		{
+			tv1 := tmk_InterfaceType(c, true, k1)
+			tr134 = tv1
+		}
+		v = tr134
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -8134,7 +8673,21 @@ func i110(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "methodSpec"
-	v = tmk_Field(c, true, c.List(k1), k4, nil)
+	{
+		var tr135 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_Field(c, true, any(tn4), k4, any(nil))
+			tr135 = tv5
+		}
+		v = tr135
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -8211,7 +8764,14 @@ L14:
 L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "signature"
-	v = tmk_FuncType(c, true, nil, k1, k4)
+	{
+		var tr137 any
+		{
+			tv1 := tmk_FuncType(c, true, any(nil), k1, k4)
+			tr137 = tv1
+		}
+		v = tr137
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -8412,7 +8972,14 @@ L9:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "embeddedIndex"
-	v = tmk_IndexExpr(c, true, k1, k4)
+	{
+		var tr138 any
+		{
+			tv1 := tmk_IndexExpr(c, true, k1, k4)
+			tr138 = tv1
+		}
+		v = tr138
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -8703,11 +9270,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "terminatedStmt"
 	{
-		var tr87 any
+		var tr139 any
 		{
-			tr87 = k1
+			tr139 = k1
 		}
-		v = tr87
+		v = tr139
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -8730,7 +9297,14 @@ func s119(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "emptyStmt"
-	v = tmk_EmptyStmt(c, true)
+	{
+		var tr140 any
+		{
+			tv1 := tmk_EmptyStmt(c, true)
+			tr140 = tv1
+		}
+		v = tr140
+	}
 	return v, true
 fail:
 	p.Pos = start
@@ -8763,7 +9337,14 @@ L2:
 L3:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "implicitEmpty"
-	v = tmk_EmptyStmt(c, true)
+	{
+		var tr141 any
+		{
+			tv1 := tmk_EmptyStmt(c, true)
+			tr141 = tv1
+		}
+		v = tr141
+	}
 	return v, true
 fail:
 	p.Pos = start
@@ -8855,7 +9436,14 @@ L10:
 	k6 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "labeledEmpty"
-	v = tmk_LabeledStmt(c, true, k1, k6)
+	{
+		var tr142 any
+		{
+			tv1 := tmk_LabeledStmt(c, true, k1, k6)
+			tr142 = tv1
+		}
+		v = tr142
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -8934,7 +9522,14 @@ L10:
 	k6 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "labeledStmt"
-	v = tmk_LabeledStmt(c, true, k1, k6)
+	{
+		var tr143 any
+		{
+			tv1 := tmk_LabeledStmt(c, true, k1, k6)
+			tr143 = tv1
+		}
+		v = tr143
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9092,11 +9687,11 @@ L17:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "clauseStmt"
 	{
-		var tr88 any
+		var tr144 any
 		{
-			tr88 = k1
+			tr144 = k1
 		}
-		v = tr88
+		v = tr144
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -9150,11 +9745,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "clauseTerminated"
 	{
-		var tr89 any
+		var tr145 any
 		{
-			tr89 = k1
+			tr145 = k1
 		}
-		v = tr89
+		v = tr145
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -9218,7 +9813,20 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lastClauseStmt"
-	v = c.List(k1)
+	{
+		var tr146 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr146 = any(tn4)
+		}
+		v = tr146
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -9284,11 +9892,11 @@ L12:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "lastClauseTerminated"
 	{
-		var tr90 any
+		var tr147 any
 		{
-			tr90 = k1
+			tr147 = k1
 		}
-		v = tr90
+		v = tr147
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -9477,11 +10085,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "plainStmt"
 	{
-		var tr91 any
+		var tr148 any
 		{
-			tr91 = k2
+			tr148 = k2
 		}
-		v = tr91
+		v = tr148
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -9552,7 +10160,14 @@ L5:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "declStmt"
-	v = tmk_DeclStmt(c, true, k1)
+	{
+		var tr149 any
+		{
+			tv1 := tmk_DeclStmt(c, true, k1)
+			tr149 = tv1
+		}
+		v = tr149
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9646,7 +10261,18 @@ func i132(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "assignStmt"
-	v = tmk_AssignStmt(c, true, k1, c.Text(k4), k7)
+	{
+		var tr150 any
+		{
+			ts1, tf1 := c.P.TermText(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AssignStmt(c, true, k1, any(ts1), k7)
+			tr150 = tv2
+		}
+		v = tr150
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9695,7 +10321,14 @@ func i133(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "sendStmt"
-	v = tmk_SendStmt(c, true, k1, k4)
+	{
+		var tr151 any
+		{
+			tv1 := tmk_SendStmt(c, true, k1, k4)
+			tr151 = tv1
+		}
+		v = tr151
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9733,7 +10366,18 @@ func i134(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "incDecStmt"
-	v = tmk_IncDecStmt(c, true, k1, c.Text(k4))
+	{
+		var tr152 any
+		{
+			ts1, tf1 := c.P.TermText(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_IncDecStmt(c, true, k1, any(ts1))
+			tr152 = tv2
+		}
+		v = tr152
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9767,7 +10411,14 @@ func i135(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "exprStmt"
-	v = tmk_ExprStmt(c, true, k1)
+	{
+		var tr153 any
+		{
+			tv1 := tmk_ExprStmt(c, true, k1)
+			tr153 = tv1
+		}
+		v = tr153
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9869,7 +10520,18 @@ func i137(p *rt.TParser) (any, bool) {
 	k7 = v9
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hassignStmt"
-	v = tmk_AssignStmt(c, true, k1, c.Text(k4), k7)
+	{
+		var tr154 any
+		{
+			ts1, tf1 := c.P.TermText(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_AssignStmt(c, true, k1, any(ts1), k7)
+			tr154 = tv2
+		}
+		v = tr154
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9915,7 +10577,14 @@ func i138(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hsendStmt"
-	v = tmk_SendStmt(c, true, k1, k4)
+	{
+		var tr155 any
+		{
+			tv1 := tmk_SendStmt(c, true, k1, k4)
+			tr155 = tv1
+		}
+		v = tr155
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9953,7 +10622,18 @@ func i139(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hincDecStmt"
-	v = tmk_IncDecStmt(c, true, k1, c.Text(k4))
+	{
+		var tr156 any
+		{
+			ts1, tf1 := c.P.TermText(k4)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_IncDecStmt(c, true, k1, any(ts1))
+			tr156 = tv2
+		}
+		v = tr156
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -9984,7 +10664,14 @@ func i140(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hexprStmt"
-	v = tmk_ExprStmt(c, true, k1)
+	{
+		var tr157 any
+		{
+			tv1 := tmk_ExprStmt(c, true, k1)
+			tr157 = tv1
+		}
+		v = tr157
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10021,7 +10708,14 @@ func i141(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "goStmt"
-	v = tmk_GoStmt(c, true, k1)
+	{
+		var tr158 any
+		{
+			tv1 := tmk_GoStmt(c, true, k1)
+			tr158 = tv1
+		}
+		v = tr158
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10058,7 +10752,14 @@ func i142(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "deferStmt"
-	v = tmk_DeferStmt(c, true, k1)
+	{
+		var tr159 any
+		{
+			tv1 := tmk_DeferStmt(c, true, k1)
+			tr159 = tv1
+		}
+		v = tr159
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10148,7 +10849,14 @@ func i144(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "goCallEmpty"
-	v = tmk_CallExpr(c, true, k1, nil, nil)
+	{
+		var tr160 any
+		{
+			tv1 := tmk_CallExpr(c, true, k1, any(nil), any(nil))
+			tr160 = tv1
+		}
+		v = tr160
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10226,7 +10934,14 @@ L16:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "goCallArgs"
-	v = tmk_CallExpr(c, true, k1, k4, k7)
+	{
+		var tr161 any
+		{
+			tv1 := tmk_CallExpr(c, true, k1, k4, k7)
+			tr161 = tv1
+		}
+		v = tr161
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10267,11 +10982,11 @@ func i146(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "dotsWs"
 	{
-		var tr92 any
+		var tr162 any
 		{
-			tr92 = k1
+			tr162 = k1
 		}
-		v = tr92
+		v = tr162
 	}
 	v = c.Finish(v)
 	return v, true
@@ -10312,7 +11027,21 @@ L6:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "returnStmt"
-	v = tmk_ReturnStmt(c, true, c.Concat(k1))
+	{
+		var tr163 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tv5 := tmk_ReturnStmt(c, true, any(tn4))
+			tr163 = tv5
+		}
+		v = tr163
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10347,11 +11076,11 @@ func i148(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "returnValues"
 	{
-		var tr93 any
+		var tr164 any
 		{
-			tr93 = k1
+			tr164 = k1
 		}
-		v = tr93
+		v = tr164
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -10461,7 +11190,14 @@ L6:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "breakStmt"
-	v = tmk_BranchStmt(c, true, any("break"), k1)
+	{
+		var tr165 any
+		{
+			tv1 := tmk_BranchStmt(c, true, any("break"), k1)
+			tr165 = tv1
+		}
+		v = tr165
+	}
 	return v, true
 fail:
 	return nil, false
@@ -10499,7 +11235,14 @@ L6:
 	k1 = v4
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "continueStmt"
-	v = tmk_BranchStmt(c, true, any("continue"), k1)
+	{
+		var tr166 any
+		{
+			tv1 := tmk_BranchStmt(c, true, any("continue"), k1)
+			tr166 = tv1
+		}
+		v = tr166
+	}
 	return v, true
 fail:
 	return nil, false
@@ -10533,7 +11276,14 @@ func i152(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "gotoStmt"
-	v = tmk_BranchStmt(c, true, any("goto"), k1)
+	{
+		var tr167 any
+		{
+			tv1 := tmk_BranchStmt(c, true, any("goto"), k1)
+			tr167 = tv1
+		}
+		v = tr167
+	}
 	return v, true
 fail:
 	return nil, false
@@ -10550,7 +11300,14 @@ func s153(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "fallthroughStmt"
-	v = tmk_BranchStmt(c, true, any("fallthrough"), nil)
+	{
+		var tr168 any
+		{
+			tv1 := tmk_BranchStmt(c, true, any("fallthrough"), any(nil))
+			tr168 = tv1
+		}
+		v = tr168
+	}
 	return v, true
 fail:
 	p.Pos = start
@@ -10586,11 +11343,11 @@ func i154(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "labelSp"
 	{
-		var tr94 any
+		var tr169 any
 		{
-			tr94 = k1
+			tr169 = k1
 		}
-		v = tr94
+		v = tr169
 	}
 	v = c.Finish(v)
 	v = p.TConvertResult(trules[154], v)
@@ -10687,7 +11444,14 @@ L27:
 	k22 = v25
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "ifStmt"
-	v = tmk_IfStmt(c, true, k2, k16, k19, k22)
+	{
+		var tr170 any
+		{
+			tv1 := tmk_IfStmt(c, true, k2, k16, k19, k22)
+			tr170 = tv1
+		}
+		v = tr170
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -10728,11 +11492,11 @@ func i156(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hsimpleSemi"
 	{
-		var tr95 any
+		var tr171 any
 		{
-			tr95 = k1
+			tr171 = k1
 		}
-		v = tr95
+		v = tr171
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -10801,11 +11565,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "elseSp"
 	{
-		var tr96 any
+		var tr172 any
 		{
-			tr96 = k1
+			tr172 = k1
 		}
-		v = tr96
+		v = tr172
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -10905,11 +11669,11 @@ L6:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "switchInit"
 	{
-		var tr97 any
+		var tr173 any
 		{
-			tr97 = k1
+			tr173 = k1
 		}
-		v = tr97
+		v = tr173
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -10973,7 +11737,14 @@ L13:
 	k15 = v17
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "exprSwitchStmt"
-	v = tmk_SwitchStmt(c, true, k1, k8, k15)
+	{
+		var tr174 any
+		{
+			tv1 := tmk_SwitchStmt(c, true, k1, k8, k15)
+			tr174 = tv1
+		}
+		v = tr174
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11028,7 +11799,14 @@ L6:
 	k11 = v13
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "typeSwitchStmt"
-	v = tmk_TypeSwitchStmt(c, true, k1, k8, k11)
+	{
+		var tr175 any
+		{
+			tv1 := tmk_TypeSwitchStmt(c, true, k1, k8, k11)
+			tr175 = tv1
+		}
+		v = tr175
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11109,7 +11887,28 @@ func i163(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "guardAssign"
-	v = tmk_AssignStmt(c, true, c.List(k1), any(":="), c.List(k4))
+	{
+		var tr176 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPush(c, "list", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tm5 := len(c.P.KidStack)
+			tf6 := c.P.TermPush(c, "list", k4)
+			if tf6 != nil {
+				panic(tf6)
+			}
+			tk7 := c.P.Kids(tm5)
+			tn8 := c.P.TermHull(c, false, tk7)
+			tv9 := tmk_AssignStmt(c, true, any(tn4), any(":="), any(tn8))
+			tr176 = tv9
+		}
+		v = tr176
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11140,7 +11939,14 @@ func i164(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "guardExpr"
-	v = tmk_ExprStmt(c, true, k1)
+	{
+		var tr177 any
+		{
+			tv1 := tmk_ExprStmt(c, true, k1)
+			tr177 = tv1
+		}
+		v = tr177
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11202,7 +12008,14 @@ func i165(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "guardAssert"
-	v = tmk_TypeAssertExpr(c, true, k1, nil)
+	{
+		var tr178 any
+		{
+			tv1 := tmk_TypeAssertExpr(c, true, k1, any(nil))
+			tr178 = tv1
+		}
+		v = tr178
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11390,7 +12203,14 @@ L5:
 	k6 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "caseClauseList"
-	v = tmk_CaseClause(c, true, k1, k6)
+	{
+		var tr179 any
+		{
+			tv1 := tmk_CaseClause(c, true, k1, k6)
+			tr179 = tv1
+		}
+		v = tr179
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11448,7 +12268,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "caseClauseDefault"
-	v = tmk_CaseClause(c, true, nil, k3)
+	{
+		var tr180 any
+		{
+			tv1 := tmk_CaseClause(c, true, any(nil), k3)
+			tr180 = tv1
+		}
+		v = tr180
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11485,7 +12312,14 @@ func i170(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "selectStmt"
-	v = tmk_SelectStmt(c, true, k1)
+	{
+		var tr181 any
+		{
+			tv1 := tmk_SelectStmt(c, true, k1)
+			tr181 = tv1
+		}
+		v = tr181
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11670,7 +12504,14 @@ L5:
 	k6 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "commClauseCase"
-	v = tmk_CommClause(c, true, k1, k6)
+	{
+		var tr182 any
+		{
+			tv1 := tmk_CommClause(c, true, k1, k6)
+			tr182 = tv1
+		}
+		v = tr182
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -11728,7 +12569,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "commClauseDefault"
-	v = tmk_CommClause(c, true, nil, k3)
+	{
+		var tr183 any
+		{
+			tv1 := tmk_CommClause(c, true, any(nil), k3)
+			tr183 = tv1
+		}
+		v = tr183
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -12014,7 +12862,14 @@ func i178(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "forInfinite"
-	v = tmk_ForStmt(c, true, nil, nil, nil, k1)
+	{
+		var tr184 any
+		{
+			tv1 := tmk_ForStmt(c, true, any(nil), any(nil), any(nil), k1)
+			tr184 = tv1
+		}
+		v = tr184
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -12058,7 +12913,14 @@ func i179(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "forCond"
-	v = tmk_ForStmt(c, true, nil, k1, nil, k4)
+	{
+		var tr185 any
+		{
+			tv1 := tmk_ForStmt(c, true, any(nil), k1, any(nil), k4)
+			tr185 = tv1
+		}
+		v = tr185
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -12149,7 +13011,14 @@ L20:
 	k22 = v24
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "forClause"
-	v = tmk_ForStmt(c, true, k1, k8, k15, k22)
+	{
+		var tr186 any
+		{
+			tv1 := tmk_ForStmt(c, true, k1, k8, k15, k22)
+			tr186 = tv1
+		}
+		v = tr186
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -12281,7 +13150,18 @@ L9:
 	k34 = v36
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "forRange"
-	v = tmk_RangeStmt(c, true, k2, k4, c.Text(k6), k31, k34)
+	{
+		var tr187 any
+		{
+			ts1, tf1 := c.P.TermText(k6)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_RangeStmt(c, true, k2, k4, any(ts1), k31, k34)
+			tr187 = tv2
+		}
+		v = tr187
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -12324,11 +13204,11 @@ func i182(p *rt.TParser) (any, bool) {
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "rangeValue"
 	{
-		var tr98 any
+		var tr188 any
 		{
-			tr98 = k1
+			tr188 = k1
 		}
-		v = tr98
+		v = tr188
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -12398,11 +13278,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "expr"
 	{
-		var tr99 any
+		var tr189 any
 		{
-			tr99 = k2
+			tr189 = k2
 		}
-		v = tr99
+		v = tr189
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -12971,11 +13851,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unaryExpr"
 	{
-		var tr100 any
+		var tr190 any
 		{
-			tr100 = k2
+			tr190 = k2
 		}
-		v = tr100
+		v = tr190
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -13033,11 +13913,11 @@ L5:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "recvChanType"
 	{
-		var tr101 any
+		var tr191 any
 		{
-			tr101 = k1
+			tr191 = k1
 		}
-		v = tr101
+		v = tr191
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -13113,7 +13993,14 @@ L2:
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "recvExpr"
-	v = tmk_UnaryExpr(c, true, any("<-"), k5)
+	{
+		var tr192 any
+		{
+			tv1 := tmk_UnaryExpr(c, true, any("<-"), k5)
+			tr192 = tv1
+		}
+		v = tr192
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13151,7 +14038,18 @@ func i193(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "unaryOpExpr"
-	v = tmk_UnaryExpr(c, true, c.Text(k1), k4)
+	{
+		var tr193 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_UnaryExpr(c, true, any(ts1), k4)
+			tr193 = tv2
+		}
+		v = tr193
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13206,7 +14104,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "starExpr"
-	v = tmk_StarExpr(c, true, k3)
+	{
+		var tr194 any
+		{
+			tv1 := tmk_StarExpr(c, true, k3)
+			tr194 = tv1
+		}
+		v = tr194
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -13275,11 +14180,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "primaryExpr"
 	{
-		var tr102 any
+		var tr195 any
 		{
-			tr102 = k2
+			tr195 = k2
 		}
-		v = tr102
+		v = tr195
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -14091,11 +14996,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "primaryOperand"
 	{
-		var tr103 any
+		var tr196 any
 		{
-			tr103 = k2
+			tr196 = k2
 		}
-		v = tr103
+		v = tr196
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -14334,7 +15239,14 @@ func i201(p *rt.TParser) (any, bool) {
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "parenExpr"
-	v = tmk_ParenExpr(c, true, k1)
+	{
+		var tr197 any
+		{
+			tv1 := tmk_ParenExpr(c, true, k1)
+			tr197 = tv1
+		}
+		v = tr197
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14375,7 +15287,14 @@ func i202(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "funcLit"
-	v = tmk_FuncLit(c, true, k1, k4)
+	{
+		var tr198 any
+		{
+			tv1 := tmk_FuncLit(c, true, k1, k4)
+			tr198 = tv1
+		}
+		v = tr198
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14429,7 +15348,20 @@ L6:
 	}
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "litValue"
-	v = c.Concat(k1)
+	{
+		var tr199 any
+		{
+			tm1 := len(c.P.KidStack)
+			tf2 := c.P.TermPushItems(c, "concat", k1)
+			if tf2 != nil {
+				panic(tf2)
+			}
+			tk3 := c.P.Kids(tm1)
+			tn4 := c.P.TermHull(c, false, tk3)
+			tr199 = any(tn4)
+		}
+		v = tr199
+	}
 	v = c.Finish(v)
 	p.Depth--
 	return v, true
@@ -14628,7 +15560,14 @@ L5:
 	k6 = v8
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "keyValue"
-	v = tmk_KeyValueExpr(c, true, k1, k6)
+	{
+		var tr200 any
+		{
+			tv1 := tmk_KeyValueExpr(c, true, k1, k6)
+			tr200 = tv1
+		}
+		v = tr200
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -14709,7 +15648,14 @@ func i208(p *rt.TParser) (any, bool) {
 	k1 = v3
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "elidedLit"
-	v = tmk_CompositeLit(c, true, nil, k1)
+	{
+		var tr201 any
+		{
+			tv1 := tmk_CompositeLit(c, true, any(nil), k1)
+			tr201 = tv1
+		}
+		v = tr201
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -15364,11 +16310,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hexpr"
 	{
-		var tr104 any
+		var tr202 any
 		{
-			tr104 = k2
+			tr202 = k2
 		}
-		v = tr104
+		v = tr202
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -15937,11 +16883,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hunaryExpr"
 	{
-		var tr105 any
+		var tr203 any
 		{
-			tr105 = k2
+			tr203 = k2
 		}
-		v = tr105
+		v = tr203
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -16017,7 +16963,14 @@ L2:
 	k5 = v7
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hrecvExpr"
-	v = tmk_UnaryExpr(c, true, any("<-"), k5)
+	{
+		var tr204 any
+		{
+			tv1 := tmk_UnaryExpr(c, true, any("<-"), k5)
+			tr204 = tv1
+		}
+		v = tr204
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16055,7 +17008,18 @@ func i220(p *rt.TParser) (any, bool) {
 	k4 = v6
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hunaryOpExpr"
-	v = tmk_UnaryExpr(c, true, c.Text(k1), k4)
+	{
+		var tr205 any
+		{
+			ts1, tf1 := c.P.TermText(k1)
+			if tf1 != nil {
+				panic(tf1)
+			}
+			tv2 := tmk_UnaryExpr(c, true, any(ts1), k4)
+			tr205 = tv2
+		}
+		v = tr205
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16110,7 +17074,14 @@ L2:
 	k3 = v5
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hstarExpr"
-	v = tmk_StarExpr(c, true, k3)
+	{
+		var tr206 any
+		{
+			tv1 := tmk_StarExpr(c, true, k3)
+			tr206 = tv1
+		}
+		v = tr206
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -16179,11 +17150,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hprimaryExpr"
 	{
-		var tr106 any
+		var tr207 any
 		{
-			tr106 = k2
+			tr207 = k2
 		}
-		v = tr106
+		v = tr207
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -16827,11 +17798,11 @@ L4:
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "hoperand"
 	{
-		var tr107 any
+		var tr208 any
 		{
-			tr107 = k2
+			tr208 = k2
 		}
-		v = tr107
+		v = tr208
 	}
 	v = c.Finish(v)
 	p.Depth--
@@ -16909,7 +17880,14 @@ L5:
 	k17 = v19
 	c = p.UseCtx(rt.TActCtx{P: p, Start: start, End: p.Pos, Cbase: len(p.Created)})
 	p.Where = "compositeLitH"
-	v = tmk_CompositeLit(c, true, k1, k17)
+	{
+		var tr209 any
+		{
+			tv1 := tmk_CompositeLit(c, true, k1, k17)
+			tr209 = tv1
+		}
+		v = tr209
+	}
 	p.Depth--
 	return v, true
 fail:
@@ -29677,4 +30655,4 @@ fail:
 
 const _ = types.ZPSchema_96397c5170989fa0
 
-const _ = rt.Protocol7
+const _ = rt.Protocol8
