@@ -9028,6 +9028,73 @@ func (v *YieldExpression) TZeroField(c *rt.TActCtx, name string) (any, bool) {
 	return nil, false
 }
 
+func init() {
+	back := ZPHooks.Back
+	ZPHooks.Back = func(v any) any {
+		switch x := v.(type) {
+		case *BigIntLiteral:
+			return tb6(x)
+		case *BooleanLiteral:
+			return tb7(x)
+		case *DebuggerStatement:
+			return tb8(x)
+		case *EmptyStatement:
+			return tb9(x)
+		case *EndOfFileToken:
+			return tb4(x)
+		case *Identifier:
+			return tb1(x)
+		case *ImportExpression:
+			return tb10(x)
+		case *JSDocAllType:
+			return tb11(x)
+		case *JSDocUnknownType:
+			return tb12(x)
+		case *JsxClosingFragment:
+			return tb3(x)
+		case *JsxOpeningFragment:
+			return tb2(x)
+		case *JsxText:
+			return tb13(x)
+		case *KeywordTypeNode:
+			return tb14(x)
+		case *Modifier:
+			return tb15(x)
+		case *NoSubstitutionTemplateLiteral:
+			return tb16(x)
+		case *NullLiteral:
+			return tb17(x)
+		case *NumericLiteral:
+			return tb18(x)
+		case *OmittedExpression:
+			return tb19(x)
+		case *PrivateIdentifier:
+			return tb20(x)
+		case *RegularExpressionLiteral:
+			return tb21(x)
+		case *SemicolonClassElement:
+			return tb22(x)
+		case *StringLiteral:
+			return tb23(x)
+		case *SuperExpression:
+			return tb24(x)
+		case *TemplateHead:
+			return tb5(x)
+		case *TemplateMiddle:
+			return tb25(x)
+		case *TemplateTail:
+			return tb26(x)
+		case *ThisExpression:
+			return tb27(x)
+		case *ThisTypeNode:
+			return tb28(x)
+		case *Token:
+			return tb0(x)
+		}
+		return back(v)
+	}
+}
+
 func tb0(v *Token) any {
 	if v == nil {
 		return nil
@@ -9070,11 +9137,172 @@ func tb5(v *TemplateHead) any {
 	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[24])
 }
 
+func tb6(v *BigIntLiteral) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[1])
+}
+
+func tb7(v *BooleanLiteral) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[2])
+}
+
+func tb8(v *DebuggerStatement) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[3])
+}
+
+func tb9(v *EmptyStatement) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[4])
+}
+
+func tb10(v *ImportExpression) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[7])
+}
+
+func tb11(v *JSDocAllType) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[8])
+}
+
+func tb12(v *JSDocUnknownType) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[9])
+}
+
+func tb13(v *JsxText) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[12])
+}
+
+func tb14(v *KeywordTypeNode) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[13])
+}
+
+func tb15(v *Modifier) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[14])
+}
+
+func tb16(v *NoSubstitutionTemplateLiteral) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[15])
+}
+
+func tb17(v *NullLiteral) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[16])
+}
+
+func tb18(v *NumericLiteral) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[17])
+}
+
+func tb19(v *OmittedExpression) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[18])
+}
+
+func tb20(v *PrivateIdentifier) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[19])
+}
+
+func tb21(v *RegularExpressionLiteral) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[20])
+}
+
+func tb22(v *SemicolonClassElement) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[21])
+}
+
+func tb23(v *StringLiteral) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[22])
+}
+
+func tb24(v *SuperExpression) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[23])
+}
+
+func tb25(v *TemplateMiddle) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[25])
+}
+
+func tb26(v *TemplateTail) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[26])
+}
+
+func tb27(v *ThisExpression) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[27])
+}
+
+func tb28(v *ThisTypeNode) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[28])
+}
+
 // ZPNodeTypes holds the registered indexes of the named node types by their generated index; index 0
 // is no named node type. It is for generated parsers.
 var ZPNodeTypes [30]uint16
 
-// ZPSchema_00c866018ea989f2 ties the parser package to this package: the parser refers to it once, so a
+// ZPSchema_bd0fc995c7788152 ties the parser package to this package: the parser refers to it once, so a
 // parser and a types package generated from different schemas do not compile together.
 // It is for generated parsers; not a stable API.
-const ZPSchema_00c866018ea989f2 = 0
+const ZPSchema_bd0fc995c7788152 = 0

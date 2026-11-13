@@ -2628,6 +2628,27 @@ func (v *ValueSpec) TZeroField(c *rt.TActCtx, name string) (any, bool) {
 	return nil, false
 }
 
+func init() {
+	back := ZPHooks.Back
+	ZPHooks.Back = func(v any) any {
+		switch x := v.(type) {
+		case *CharLit:
+			return tb2(x)
+		case *FloatLit:
+			return tb3(x)
+		case *Ident:
+			return tb0(x)
+		case *ImagLit:
+			return tb4(x)
+		case *IntLit:
+			return tb5(x)
+		case *StringLit:
+			return tb1(x)
+		}
+		return back(v)
+	}
+}
+
 func tb0(v *Ident) any {
 	if v == nil {
 		return nil
@@ -2642,11 +2663,39 @@ func tb1(v *StringLit) any {
 	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[6])
 }
 
+func tb2(v *CharLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[1])
+}
+
+func tb3(v *FloatLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[2])
+}
+
+func tb4(v *ImagLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[4])
+}
+
+func tb5(v *IntLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[5])
+}
+
 // ZPNodeTypes holds the registered indexes of the named node types by their generated index; index 0
 // is no named node type. It is for generated parsers.
 var ZPNodeTypes [7]uint16
 
-// ZPSchema_96397c5170989fa0 ties the parser package to this package: the parser refers to it once, so a
+// ZPSchema_55e6fdda92ef36bc ties the parser package to this package: the parser refers to it once, so a
 // parser and a types package generated from different schemas do not compile together.
 // It is for generated parsers; not a stable API.
-const ZPSchema_96397c5170989fa0 = 0
+const ZPSchema_55e6fdda92ef36bc = 0

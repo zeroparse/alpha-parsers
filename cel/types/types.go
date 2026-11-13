@@ -711,6 +711,33 @@ func (v *Unary) TZeroField(c *rt.TActCtx, name string) (any, bool) {
 	return nil, false
 }
 
+func init() {
+	back := ZPHooks.Back
+	ZPHooks.Back = func(v any) any {
+		switch x := v.(type) {
+		case *BoolLit:
+			return tb2(x)
+		case *BytesLit:
+			return tb3(x)
+		case *DoubleLit:
+			return tb4(x)
+		case *Ident:
+			return tb0(x)
+		case *IntLit:
+			return tb5(x)
+		case *Name:
+			return tb1(x)
+		case *NullLit:
+			return tb6(x)
+		case *StringLit:
+			return tb7(x)
+		case *UintLit:
+			return tb8(x)
+		}
+		return back(v)
+	}
+}
+
 func tb0(v *Ident) any {
 	if v == nil {
 		return nil
@@ -725,11 +752,60 @@ func tb1(v *Name) any {
 	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[6])
 }
 
+func tb2(v *BoolLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[1])
+}
+
+func tb3(v *BytesLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[2])
+}
+
+func tb4(v *DoubleLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[3])
+}
+
+func tb5(v *IntLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[5])
+}
+
+func tb6(v *NullLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[7])
+}
+
+func tb7(v *StringLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[8])
+}
+
+func tb8(v *UintLit) any {
+	if v == nil {
+		return nil
+	}
+	return rt.TSetNodeType(rt.TBack(ZPHooks, &v.TNode), ZPNodeTypes[9])
+}
+
 // ZPNodeTypes holds the registered indexes of the named node types by their generated index; index 0
 // is no named node type. It is for generated parsers.
 var ZPNodeTypes [10]uint16
 
-// ZPSchema_e4eec6991b5d883e ties the parser package to this package: the parser refers to it once, so a
+// ZPSchema_b6502f89b49491a9 ties the parser package to this package: the parser refers to it once, so a
 // parser and a types package generated from different schemas do not compile together.
 // It is for generated parsers; not a stable API.
-const ZPSchema_e4eec6991b5d883e = 0
+const ZPSchema_b6502f89b49491a9 = 0
