@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"zeroparse.dev/zp"
+	"zeroparse.dev/zp/runtime/parse"
 )
 
 func TestYAMLDirectiveBackends(t *testing.T) {
@@ -28,7 +29,7 @@ func TestYAMLDirectiveBackends(t *testing.T) {
 	} {
 		t.Run(tc.directive, func(t *testing.T) {
 			for _, backend := range []zp.Backend{zp.Closure, zp.Bytecode, zp.BytecodeIterative} {
-				for _, unit := range []zp.PositionUnit{zp.CodePoints, zp.Bytes} {
+				for _, unit := range []parse.PositionUnit{parse.CodePoints, parse.Bytes} {
 					for _, recognize := range []bool{false, true} {
 						opts := []zp.ParseOption{zp.WithBackend(backend), zp.WithUnit(unit)}
 						if recognize {

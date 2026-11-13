@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"zeroparse.dev/zp"
+	"zeroparse.dev/zp/runtime/parse"
 )
 
 // The generated parser has only the typed entry point, so the check that it agrees with the grammar does not
@@ -54,8 +55,8 @@ func interpreterDiff(src string, p *zp.Parser) string {
 	for _, unit := range []struct {
 		name string
 		g    PositionUnit
-		i    zp.PositionUnit
-	}{{"code points", CodePoints, zp.CodePoints}, {"bytes", Bytes, zp.Bytes}} {
+		i    parse.PositionUnit
+	}{{"code points", CodePoints, parse.CodePoints}, {"bytes", Bytes, parse.Bytes}} {
 		v, gerr := ParseValue(src, WithUnit(unit.g))
 		n, ierr := p.Parse(src, zp.WithUnit(unit.i))
 		if (gerr == nil) != (ierr == nil) || (gerr != nil && gerr.Error() != ierr.Error()) {
