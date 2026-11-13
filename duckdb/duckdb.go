@@ -2,7 +2,7 @@
 // duckdb.zp: the statements of its grammar (a fork of PostgreSQL's) with the syntax DuckDB adds, and the
 // scanner that goes with it.
 //
-// ParseAST returns a script as typed values: a Script of statements (Select, InsertStmt, CreateTableStmt and the
+// ParseValue returns a script as typed values: a Script of statements (Select, InsertStmt, CreateTableStmt and the
 // others of the Statement union), whose expressions, types and table references are the nodes of the syntax
 // tree, each with its Span in the input. Split cuts a script into statements as DuckDB does, with the text DuckDB
 // keeps for each, and Kind gives the type DuckDB gives a statement.

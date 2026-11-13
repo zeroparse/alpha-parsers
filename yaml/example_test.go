@@ -32,8 +32,8 @@ func ExampleLoadAll() {
 	// Output: ["a" ["b" "c"]]
 }
 
-func ExampleParseAST() {
-	s, err := yaml.ParseAST("key: &x value # comment\nlist:\n- 'single'\n- *x\n")
+func ExampleParseValue() {
+	s, err := yaml.ParseValue("key: &x value # comment\nlist:\n- 'single'\n- *x\n")
 	if err != nil {
 		panic(err)
 	}
@@ -47,7 +47,7 @@ func ExampleParseAST() {
 }
 
 func ExampleScalar_Value() {
-	s, err := yaml.ParseAST(`
+	s, err := yaml.ParseValue(`
 plain: a
   b
 quoted: "tab\there"
@@ -92,8 +92,8 @@ func ExampleEvents() {
 	// -STR
 }
 
-func ExampleParseAST_syntaxError() {
-	_, err := yaml.ParseAST("key: [a, b}\n") // a closing brace for a sequence
+func ExampleParseValue_syntaxError() {
+	_, err := yaml.ParseValue("key: [a, b}\n") // a closing brace for a sequence
 	var se *yaml.SyntaxError
 	if errors.As(err, &se) {
 		fmt.Println(se.Line, se.Col, len(se.Expected))
@@ -102,7 +102,7 @@ func ExampleParseAST_syntaxError() {
 }
 
 func ExampleResolveTag() {
-	s, err := yaml.ParseAST("%TAG !e! tag:example.com,2000:\n--- !e!point%21 &p {x: 1, y: !!int 2}\n")
+	s, err := yaml.ParseValue("%TAG !e! tag:example.com,2000:\n--- !e!point%21 &p {x: 1, y: !!int 2}\n")
 	if err != nil {
 		panic(err)
 	}

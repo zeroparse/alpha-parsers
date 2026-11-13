@@ -50,7 +50,7 @@ func TestGolden(t *testing.T) {
 // rootScalar parses a document whose root is a scalar.
 func rootScalar(t *testing.T, src string) *types.Scalar {
 	t.Helper()
-	s, err := yaml.ParseAST(src)
+	s, err := yaml.ParseValue(src)
 	if err != nil {
 		t.Fatalf("%q: %v", src, err)
 	}
@@ -138,7 +138,7 @@ func TestBlockScalarIndent(t *testing.T) {
 		{"- |1\n  a\n", 1},
 		{"--- >\n a\n", 1},
 	} {
-		s, err := yaml.ParseAST(tc.src)
+		s, err := yaml.ParseValue(tc.src)
 		if err != nil {
 			t.Fatalf("%q: %v", tc.src, err)
 		}
@@ -291,7 +291,7 @@ func TestCheck(t *testing.T) {
 		{"%YAML 2.0\n--- a\n", false},
 		{"%FOO bar\n--- a\n", true},
 	} {
-		s, err := yaml.ParseAST(tc.src)
+		s, err := yaml.ParseValue(tc.src)
 		if err != nil {
 			t.Fatalf("%q: %v", tc.src, err)
 		}
@@ -368,14 +368,14 @@ func TestDeepNesting(t *testing.T) {
 		ok    bool
 	}{{1000, true}, {10000, true}, {100000, false}, {1000000, false}} {
 		src := strings.Repeat("[", tc.depth) + strings.Repeat("]", tc.depth)
-		if _, err := yaml.ParseAST(src); (err == nil) != tc.ok {
-			t.Errorf("depth %d: ParseAST: %v", tc.depth, err)
+		if _, err := yaml.ParseValue(src); (err == nil) != tc.ok {
+			t.Errorf("depth %d: ParseValue: %v", tc.depth, err)
 		}
 		if err := yaml.Recognize(src); (err == nil) != tc.ok {
 			t.Errorf("depth %d: Recognize: %v", tc.depth, err)
 		}
 	}
-	if _, err := yaml.ParseAST(strings.Repeat("{a: ", 5000) + strings.Repeat("}", 5000)); err != nil {
+	if _, err := yaml.ParseValue(strings.Repeat("{a: ", 5000) + strings.Repeat("}", 5000)); err != nil {
 		t.Errorf("5000 nested flow mappings: %v", err)
 	}
 	var b strings.Builder
@@ -394,13 +394,13 @@ func TestDeepNesting(t *testing.T) {
 		"\"" + strings.Repeat("a\n", 200000) + "\"",
 		strings.Repeat("- a\n", 200000),
 	} {
-		if _, err := yaml.ParseAST(src); err != nil {
+		if _, err := yaml.ParseValue(src); err != nil {
 			t.Errorf("%.20q...: %v", src, err)
 		}
 	}
 }
 
-// FuzzParse checks on arbitrary input that ParseAST and Recognize agree, that what Valid accepts has
+// FuzzParse checks on arbitrary input that ParseValue and Recognize agree, that what Valid accepts has
 // events and values, and that nothing panics.
 func FuzzParse(f *testing.F) {
 	for _, s := range []string{"a: [b, {c: d}]\n", "- |\n x\n- 'y'\n", "--- !!str &a \"z\"\n...\n", "? a\n: *a\n", "a:\n\tb"} {
@@ -410,9 +410,9 @@ func FuzzParse(f *testing.F) {
 		f.Add(s)
 	}
 	f.Fuzz(func(t *testing.T, src string) {
-		s, perr := yaml.ParseAST(src)
+		s, perr := yaml.ParseValue(src)
 		if rerr := yaml.Recognize(src); (perr == nil) != (rerr == nil) {
-			t.Fatalf("%q: ParseAST: %v, Recognize: %v", src, perr, rerr)
+			t.Fatalf("%q: ParseValue: %v, Recognize: %v", src, perr, rerr)
 		}
 		_, eerr := yaml.Events(src)
 		if yaml.Valid(src) != (eerr == nil) {

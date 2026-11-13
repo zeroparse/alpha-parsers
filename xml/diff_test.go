@@ -256,7 +256,7 @@ func TestDifferential(t *testing.T) {
 
 // FuzzDecode compares Decode with encoding/xml on arbitrary input: every document without a DTD that
 // this package accepts as namespace-well-formed must be accepted by encoding/xml with the same tokens.
-// (encoding/xml accepts more: see the README.) It also checks that Recognize agrees with ParseAST.
+// (encoding/xml accepts more: see the README.) It also checks that Recognize agrees with ParseValue.
 func FuzzDecode(f *testing.F) {
 	r := rand.New(rand.NewPCG(5, 6))
 	for range 20 {
@@ -264,10 +264,10 @@ func FuzzDecode(f *testing.F) {
 	}
 	f.Add(`<!DOCTYPE a [<!ENTITY e "<b>&#38;amp;</b>">]><a x="&e;">&e;</a>`)
 	f.Fuzz(func(t *testing.T, src string) {
-		_, perr := xml.ParseAST(src)
+		_, perr := xml.ParseValue(src)
 		rerr := xml.Recognize(src)
 		if (perr == nil) != (rerr == nil) {
-			t.Fatalf("%q: ParseAST: %v, Recognize: %v", src, perr, rerr)
+			t.Fatalf("%q: ParseValue: %v, Recognize: %v", src, perr, rerr)
 		}
 		tree, err := xml.Decode(src)
 		// encoding/xml rejects versions other than 1.0, which XML 1.0 processes as 1.0 (2.8).

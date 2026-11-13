@@ -83,7 +83,7 @@ func readReferences(t *testing.T, name string, want int) []reference {
 }
 
 // checkReferences compares the parser with the references: the same inputs accepted, with the same
-// ast.dump and the same positions, and ParseAST and the interpreter in agreement.
+// ast.dump and the same positions, and ParseValue and the interpreter in agreement.
 func checkReferences(t *testing.T, refs []reference) {
 	var same, rejected, fail int
 	report := func(format string, args ...any) {
@@ -101,9 +101,9 @@ func checkReferences(t *testing.T, refs []reference) {
 		}
 		m, err := python.ParseModule(r.Source)
 		agreeWithInterpreter(t, r.Source)
-		_, aerr := python.ParseAST(r.Source)
-		if _, rerr := python.ParseAST(r.Source, python.WithUnit(python.Bytes)); utf8.ValidString(r.Source) && (rerr == nil) != (aerr == nil) {
-			report("%q: ParseAST: %v, in bytes: %v", name, aerr, rerr)
+		_, aerr := python.ParseValue(r.Source)
+		if _, rerr := python.ParseValue(r.Source, python.WithUnit(python.Bytes)); utf8.ValidString(r.Source) && (rerr == nil) != (aerr == nil) {
+			report("%q: ParseValue: %v, in bytes: %v", name, aerr, rerr)
 		}
 		switch {
 		case r.OK && err != nil:

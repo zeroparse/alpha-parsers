@@ -53,8 +53,8 @@ func ExampleInspect() {
 	// variable request
 }
 
-func ExampleParseAST() {
-	e, err := cel.ParseAST("a.b + f(1,\n  2u) // sum")
+func ExampleParseValue() {
+	e, err := cel.ParseValue("a.b + f(1,\n  2u) // sum")
 	if err != nil {
 		panic(err)
 	}

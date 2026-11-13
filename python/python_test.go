@@ -23,7 +23,7 @@ func TestGolden(t *testing.T) {
 			t.Fatal(err)
 		}
 		var got string
-		n, err := python.ParseAST(string(data), python.WithExpectations())
+		n, err := python.ParseValue(string(data), python.WithExpectations())
 		if n != nil {
 			got = render(n)
 		}
@@ -70,7 +70,7 @@ func TestAcceptance(t *testing.T) {
 	}
 }
 
-// FuzzParse checks that the parser does not panic and that ParseAST agrees with the interpreter running the grammar.
+// FuzzParse checks that the parser does not panic and that ParseValue agrees with the interpreter running the grammar.
 func FuzzParse(f *testing.F) {
 	inputs, _ := filepath.Glob("testdata/*.txt")
 	for _, in := range inputs {
@@ -82,9 +82,9 @@ func FuzzParse(f *testing.F) {
 	f.Add("f'{x!r:>{w}}' t'{y=}'")
 	f.Fuzz(func(t *testing.T, src string) {
 		agreeWithInterpreter(t, src)
-		m, err := python.ParseAST(src)
-		if _, rerr := python.ParseAST(src, python.WithUnit(python.Bytes)); utf8.ValidString(src) && (rerr == nil) != (err == nil) {
-			t.Fatalf("ParseAST: %v, in bytes: %v", err, rerr)
+		m, err := python.ParseValue(src)
+		if _, rerr := python.ParseValue(src, python.WithUnit(python.Bytes)); utf8.ValidString(src) && (rerr == nil) != (err == nil) {
+			t.Fatalf("ParseValue: %v, in bytes: %v", err, rerr)
 		}
 		if err != nil {
 			return

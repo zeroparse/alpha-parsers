@@ -34,7 +34,7 @@ tree, err = xml.DecodeBytes(data)
 err = tree.ResolveNamespaces()
 
 // The syntax tree, with positions.
-doc, err := xml.ParseAST(`<a x="1"><b>text</b><!-- note --></a>`)
+doc, err := xml.ParseValue(`<a x="1"><b>text</b><!-- note --></a>`)
 for _, c := range doc.Root.Content {
 	if e, ok := c.(*types.Element); ok {
 		fmt.Println(e.Name.Text, e.Start, e.End) // b 9 20
@@ -60,7 +60,7 @@ if errors.As(err, &we) {
 | `Tree` | `Version`, `Encoding`, `Standalone`, `DTD`, `Prolog`, `Root`, `Epilog` and the syntax tree `Doc` |
 | `Elem`, `Attr`, `Text` | Decoded elements (name, attributes, children), attributes (normalized value, `Defaulted`) and text (adjacent text merged) |
 | `DTD`, `Entity`, `AttributeDecl` | The declarations of the internal subset that were processed |
-| `ParseAST(input, opts...) (*types.Document, error)` | The syntax tree: `types.Document`, `types.Element`, `types.Attribute`, `types.CharData`, `types.EntityRef`, `types.CharRef`, `types.CDSect`, `types.PI`, `types.Comment`, `types.Doctype` and the declarations, each with its `Span` |
+| `ParseValue(input, opts...) (*types.Document, error)` | The syntax tree: `types.Document`, `types.Element`, `types.Attribute`, `types.CharData`, `types.EntityRef`, `types.CharRef`, `types.CDSect`, `types.PI`, `types.Comment`, `types.Doctype` and the declarations, each with its `Span` |
 | `Parse(input, opts...) (*Node, error)`, `Recognize(input, opts...) error` | The tree of `*Node`, as the engine returns it; only checking |
 | `(*types.CharData).Value()`, `(*types.CharRef).Rune()`, ... | Values of the syntax tree: line ends normalized, references decoded |
 | `ExpandAttValue(*types.AttValue) (string, error)` | The value of an attribute, normalized for type CDATA, for a document without entity declarations |
@@ -73,7 +73,7 @@ document whose DTD was not read entirely). Elements that come from the replaceme
 The children implement `Item`. That set is closed by convention, not by the compiler: `PI`, `Comment` and `EntityRef`
 live in the `types` package, so the marker method `TreeItem` is exported. Other types must not implement `TreeItem`.
 
-Positions are in code points by default; `xml.ParseAST(src, xml.WithUnit(xml.Bytes))` counts bytes. `Decode` reports code points.
+Positions are in code points by default; `xml.ParseValue(src, xml.WithUnit(xml.Bytes))` counts bytes. `Decode` reports code points.
 
 ## Conformance
 
@@ -164,7 +164,7 @@ tests allow for each):
   it would mean a second set of character classes in the grammar.
 - **Encodings:** `Transcode` supports UTF-8, UTF-16, ISO-8859-1 and US-ASCII; other encodings are a fatal error, as
   XML allows. The suite has no test that needs another encoding and is not of type `error`.
-- **`ParseAST`, `Parse` and `Recognize` alone** check the syntax and the element type match, not the constraints that
+- **`ParseValue`, `Parse` and `Recognize` alone** check the syntax and the element type match, not the constraints that
   `Decode` checks, and read invalid UTF-8 as U+FFFD (which is a `Char`).
 - **Entity expansion** is limited by `ExpansionLimit` (16 Mi units of replacement text expanded per document), which
   stops exponential expansion ("billion laughs").
@@ -177,8 +177,8 @@ tests allow for each):
 ## Performance
 
 On a catalog of 256 KB (`go test -bench .`; elements, attributes, references, comments and CDATA sections), on a
-shared Apple M3 Max (minimum of 6 runs): `ParseAST` takes 3.8 ms and `Recognize` 3.9 ms, about the time of
+shared Apple M3 Max (minimum of 6 runs): `ParseValue` takes 3.8 ms and `Recognize` 3.9 ms, about the time of
 `encoding/xml`'s `Decoder.Token` loop over the document (4.0 ms), which builds no tree and records no positions;
-`ParseAST` allocates 1.2 times the bytes in 320 times fewer allocations (251 against 80,914). `Decode`, which also
+`ParseValue` allocates 1.2 times the bytes in 320 times fewer allocations (251 against 80,914). `Decode`, which also
 checks the constraints and builds the decoded tree, takes 4.3 ms (7.3 MB, 1,308 allocations). `Parse` (the tree of
 `*Node`) takes 6.8 ms.

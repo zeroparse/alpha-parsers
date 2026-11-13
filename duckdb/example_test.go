@@ -9,9 +9,9 @@ import (
 	"zeroparse.dev/alpha-parsers/duckdb/types"
 )
 
-func ExampleParseAST() {
+func ExampleParseValue() {
 	src := `SELECT region, sum(amount) AS total FROM sales WHERE year = 2024 GROUP BY region`
-	script, err := duckdb.ParseAST(src)
+	script, err := duckdb.ParseValue(src)
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +29,7 @@ func ExampleParseAST() {
 }
 
 func ExampleInspect() {
-	script, err := duckdb.ParseAST(`SELECT t.a, f(b) FROM s.t JOIN u ON t.id = u.id WHERE c > 1`)
+	script, err := duckdb.ParseValue(`SELECT t.a, f(b) FROM s.t JOIN u ON t.id = u.id WHERE c > 1`)
 	if err != nil {
 		panic(err)
 	}
@@ -68,7 +68,7 @@ func ExampleSplit() {
 }
 
 func ExampleIdent_Name() {
-	script, err := duckdb.ParseAST(`SELECT Foo, "Bar", "a ""quoted"" name", U&"d\0061ta"`)
+	script, err := duckdb.ParseValue(`SELECT Foo, "Bar", "a ""quoted"" name", U&"d\0061ta"`)
 	if err != nil {
 		panic(err)
 	}
@@ -86,7 +86,7 @@ func ExampleIdent_Name() {
 }
 
 func ExampleStringLit_Value() {
-	script, err := duckdb.ParseAST(`SELECT 'it''s', E'tab\there', $$a 'b'$$, 'one'
+	script, err := duckdb.ParseValue(`SELECT 'it''s', E'tab\there', $$a 'b'$$, 'one'
 	'two'`)
 	if err != nil {
 		panic(err)
@@ -105,7 +105,7 @@ func ExampleStringLit_Value() {
 }
 
 func ExampleNumber_Type() {
-	script, err := duckdb.ParseAST(`SELECT 42, 3000000000, 1.50, 1e3, 1_000, 99999999999999999999`)
+	script, err := duckdb.ParseValue(`SELECT 42, 3000000000, 1.50, 1e3, 1_000, 99999999999999999999`)
 	if err != nil {
 		panic(err)
 	}
@@ -152,7 +152,7 @@ func ExampleKeyword() {
 }
 
 func ExampleSyntaxError() {
-	_, err := duckdb.ParseAST("SELECT a,\n  b FROM")
+	_, err := duckdb.ParseValue("SELECT a,\n  b FROM")
 	var se *duckdb.SyntaxError
 	if errors.As(err, &se) {
 		fmt.Println("line", se.Line, "column", se.Col)
@@ -160,10 +160,10 @@ func ExampleSyntaxError() {
 	// Output: line 2 column 9
 }
 
-func ExampleParseAST_syntaxError() {
-	_, err := duckdb.ParseAST("SELECT 1 UNION SELECT 2")
+func ExampleParseValue_syntaxError() {
+	_, err := duckdb.ParseValue("SELECT 1 UNION SELECT 2")
 	fmt.Println(err)
-	_, err = duckdb.ParseAST("SELECT 1 UNION")
+	_, err = duckdb.ParseValue("SELECT 1 UNION")
 	fmt.Println(err != nil)
 	// Output:
 	// <nil>

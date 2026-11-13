@@ -92,11 +92,11 @@ data:
 	return b.String()
 }()
 
-func BenchmarkParseAST(b *testing.B) {
+func BenchmarkParseValue(b *testing.B) {
 	b.SetBytes(int64(len(benchInput)))
 	b.ReportAllocs()
 	for b.Loop() {
-		if _, err := yaml.ParseAST(benchInput); err != nil {
+		if _, err := yaml.ParseValue(benchInput); err != nil {
 			b.Fatal(err)
 		}
 	}
@@ -141,11 +141,11 @@ func BenchmarkDirectives(b *testing.B) {
 	} {
 		input := strings.Repeat(tc.directive+"\n--- x\n...\n", 128)
 		b.Run(tc.name, func(b *testing.B) {
-			b.Run("ParseAST", func(b *testing.B) {
+			b.Run("ParseValue", func(b *testing.B) {
 				b.SetBytes(int64(len(input)))
 				b.ReportAllocs()
 				for b.Loop() {
-					if _, err := yaml.ParseAST(input); err != nil {
+					if _, err := yaml.ParseValue(input); err != nil {
 						b.Fatal(err)
 					}
 				}
@@ -160,7 +160,7 @@ func BenchmarkDirectives(b *testing.B) {
 				}
 			})
 			b.Run("Check", func(b *testing.B) {
-				s, err := yaml.ParseAST(input)
+				s, err := yaml.ParseValue(input)
 				if err != nil {
 					b.Fatal(err)
 				}

@@ -1400,22 +1400,22 @@ func (a *tslabs) MemoryBytes() uint64 {
 	return a.tAlias.MemoryBytes() + a.tAnnAssign.MemoryBytes() + a.tArg.MemoryBytes() + a.tArguments.MemoryBytes() + a.tAssert.MemoryBytes() + a.tAssign.MemoryBytes() + a.tAsyncFor.MemoryBytes() + a.tAsyncFunctionDef.MemoryBytes() + a.tAsyncWith.MemoryBytes() + a.tAttribute.MemoryBytes() + a.tAugAssign.MemoryBytes() + a.tAwait.MemoryBytes() + a.tBinOp.MemoryBytes() + a.tBoolOp.MemoryBytes() + a.tBreak.MemoryBytes() + a.tCall.MemoryBytes() + a.tClassDef.MemoryBytes() + a.tCompare.MemoryBytes() + a.tComprehension.MemoryBytes() + a.tContinue.MemoryBytes() + a.tDelete.MemoryBytes() + a.tDict.MemoryBytes() + a.tDictComp.MemoryBytes() + a.tExceptHandler.MemoryBytes() + a.tExprStmt.MemoryBytes() + a.tFor.MemoryBytes() + a.tFormattedValue.MemoryBytes() + a.tFunctionDef.MemoryBytes() + a.tGeneratorExp.MemoryBytes() + a.tGlobal.MemoryBytes() + a.tIf.MemoryBytes() + a.tIfExp.MemoryBytes() + a.tImport.MemoryBytes() + a.tImportFrom.MemoryBytes() + a.tInterpolation.MemoryBytes() + a.tJoinedStr.MemoryBytes() + a.tKeyword.MemoryBytes() + a.tLambda.MemoryBytes() + a.tListComp.MemoryBytes() + a.tListExpr.MemoryBytes() + a.tMatchAs.MemoryBytes() + a.tMatchCase.MemoryBytes() + a.tMatchClass.MemoryBytes() + a.tMatchMapping.MemoryBytes() + a.tMatchOr.MemoryBytes() + a.tMatchSequence.MemoryBytes() + a.tMatchSingleton.MemoryBytes() + a.tMatchStar.MemoryBytes() + a.tMatchStmt.MemoryBytes() + a.tMatchValue.MemoryBytes() + a.tModule.MemoryBytes() + a.tName.MemoryBytes() + a.tNamedExpr.MemoryBytes() + a.tNonlocal.MemoryBytes() + a.tParamSpec.MemoryBytes() + a.tPass.MemoryBytes() + a.tRaise.MemoryBytes() + a.tReturn.MemoryBytes() + a.tSet.MemoryBytes() + a.tSetComp.MemoryBytes() + a.tSlice.MemoryBytes() + a.tStarred.MemoryBytes() + a.tSubscript.MemoryBytes() + a.tTemplateStr.MemoryBytes() + a.tTry.MemoryBytes() + a.tTryStar.MemoryBytes() + a.tTuple.MemoryBytes() + a.tTypeAlias.MemoryBytes() + a.tTypeVar.MemoryBytes() + a.tTypeVarTuple.MemoryBytes() + a.tUnaryOp.MemoryBytes() + a.tWhile.MemoryBytes() + a.tWith.MemoryBytes() + a.tWithItem.MemoryBytes() + a.tYield.MemoryBytes() + a.tYieldFrom.MemoryBytes() + a.tl0Chunk.MemoryBytes() + a.tl1Chunk.MemoryBytes() + a.tl2Chunk.MemoryBytes() + a.tl3Chunk.MemoryBytes() + a.tl4Chunk.MemoryBytes() + a.tl5Chunk.MemoryBytes() + a.tl6Chunk.MemoryBytes() + a.tl7Chunk.MemoryBytes() + a.tl8Chunk.MemoryBytes() + a.tl9Chunk.MemoryBytes() + a.tl10Chunk.MemoryBytes() + a.tl11Chunk.MemoryBytes() + a.tl12Chunk.MemoryBytes() + a.tl13Chunk.MemoryBytes()
 }
 
-// ParseAST parses the input like Parse and returns the result as typed values. If the parse recovered
+// ParseValue parses the input like Parse and returns the result as typed values. If the parse recovered
 // from errors, the result is returned together with SyntaxErrors; an Error node where a struct
 // type is expected becomes nil.
 // It builds the values directly, without the nodes Parse returns.
-func ParseAST(input string, opts ...rt.ParseOption) (*types.Module, error) {
+func ParseValue(input string, opts ...rt.ParseOption) (*types.Module, error) {
 	a := &tslabs{}
 	return rt.TParse(trules[0], input, opts, a, func(v any) *types.Module { return rt.TAs[*types.Module](v) })
 }
 
-// ParseRuleAST parses the whole input with the named start rule and returns its typed value; an empty
+// ParseRuleValue parses the whole input with the named start rule and returns its typed value; an empty
 // name selects the grammar's default start rule.
 // Recovered values accompany SyntaxErrors. Nil results and failed parses return the selected type's zero value.
 // Invalid options and names of rules that are not start rules return nil with an error. Start rule result types:
 //
 //	main: *types.Module
-func ParseRuleAST(name, input string, opts ...rt.ParseOption) (any, error) {
+func ParseRuleValue(name, input string, opts ...rt.ParseOption) (any, error) {
 	o, err := rt.ResolveOptions(zpGrammar, opts)
 	if err != nil {
 		return nil, err

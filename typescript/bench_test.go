@@ -106,11 +106,11 @@ func benchEach(b *testing.B, f func(b *testing.B, s benchSource)) {
 	}
 }
 
-// BenchmarkParseAST builds the typed AST.
-func BenchmarkParseAST(b *testing.B) {
+// BenchmarkParseValue builds the typed AST.
+func BenchmarkParseValue(b *testing.B) {
 	benchEach(b, func(b *testing.B, s benchSource) {
 		for b.Loop() {
-			if _, err := typescript.ParseAST(s.text); err != nil {
+			if _, err := typescript.ParseValue(s.text); err != nil {
 				b.Fatal(err)
 			}
 		}

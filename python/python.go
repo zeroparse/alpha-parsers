@@ -4,7 +4,7 @@
 // ParseModule parses a module (a file of Python source, as ast.parse does with mode "exec") into a
 // typed AST modeled on Python's ast module: *Module holds Stmt values (*FunctionDef, *If, ...) that
 // hold Expr values (*BinOp, *Call, ...), and every node embeds a Span, the positions of its text
-// in code points (or bytes: pass Bytes). ParseAST is the parser alone.
+// in code points (or bytes: pass Bytes). ParseValue is the parser alone.
 //
 // The AST differs from Python's in a few ways, so as to stay a tree of the source: identifiers
 // are strings, with "" for Python's None (NormalizeName gives the NFKC form that Python uses);
@@ -34,7 +34,7 @@
 //   - Check, which ParseModule calls, makes what CPython checks outside its grammar: names in
 //     \N{...} escapes, the limit of 4300 digits of an integer literal, `from __future__` imports
 //     of features that do not exist, identifiers that normalize to None, True or False, and the
-//     choice between '!=' and '<>' (after `from __future__ import barry_as_FLUFL`). ParseAST does
+//     choice between '!=' and '<>' (after `from __future__ import barry_as_FLUFL`). ParseValue does
 //     not make these checks.
 //   - Only the accepted programs are compared with CPython. The errors are *SyntaxError values
 //     with the position and either what was expected or a short message ("invalid syntax",
@@ -64,10 +64,10 @@ import (
 	"zeroparse.dev/alpha-parsers/python/types"
 )
 
-// ParseModule parses a module (a file of Python source) like ParseAST and then makes the checks
+// ParseModule parses a module (a file of Python source) like ParseValue and then makes the checks
 // that CPython's ast.parse makes outside its grammar (see Check).
 func ParseModule(src string, unit ...PositionUnit) (*types.Module, error) {
-	m, err := ParseAST(src, append(unitOptions(unit), WithExpectations())...)
+	m, err := ParseValue(src, append(unitOptions(unit), WithExpectations())...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func ParseModule(src string, unit ...PositionUnit) (*types.Module, error) {
 }
 
 // Check makes the checks of ast.parse that the grammar does not make, on a module returned by
-// ParseAST for src:
+// ParseValue for src:
 //
 //   - the names in \N{...} escapes must be names (or aliases) of characters;
 //   - a decimal integer literal may have at most 4300 digits (CPython's default limit of

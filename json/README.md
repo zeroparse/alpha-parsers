@@ -20,7 +20,7 @@ import "zeroparse.dev/alpha-parsers/json/types"
 v, err := json.Decode(`{"name": "zp", "stars": 42}`)
 
 // Typed values with positions.
-ast, err := json.ParseAST(`{"a": [1, true], "b": "x\ty"}`)
+ast, err := json.ParseValue(`{"a": [1, true], "b": "x\ty"}`)
 for _, m := range ast.(*types.Object).Members {
 	fmt.Printf("%q at %d-%d: %T\n", m.Key.Value(), m.Span.Start, m.Span.End, m.Value)
 }
@@ -31,7 +31,7 @@ for _, m := range ast.(*types.Object).Members {
 ok := json.Valid(`[1, 2, 3,]`) // false
 
 // Syntax errors.
-_, err = json.ParseAST(`{"a": [1, 2,]}`)
+_, err = json.ParseValue(`{"a": [1, 2,]}`)
 var se *json.SyntaxError
 if errors.As(err, &se) {
 	fmt.Println(se.Line, se.Col, se.Message())
@@ -41,7 +41,7 @@ if errors.As(err, &se) {
 
 | | |
 |:--|:--|
-| `ParseAST(input, opts...) (types.Value, error)` | The value: `*types.Object`, `*types.Array`, `*types.String`, `*types.Number`, `*types.Bool` or `*types.Null`, each with its `Span` |
+| `ParseValue(input, opts...) (types.Value, error)` | The value: `*types.Object`, `*types.Array`, `*types.String`, `*types.Number`, `*types.Bool` or `*types.Null`, each with its `Span` |
 | `Decode(input) (any, error)` | Go values, as `encoding/json` decodes into an `any` |
 | `ToAny(types.Value) (any, error)` | The conversion `Decode` uses |
 | `Valid(input) bool`, `Recognize(input, opts...) error` | Only check the input |
@@ -50,7 +50,7 @@ if errors.As(err, &se) {
 | `(*types.Number).Float64()`, `(*types.Number).Int64()` | The number (`Text` is the source) |
 | `(*types.Bool).Value() bool` | The boolean |
 
-Positions are in code points by default; `json.ParseAST(src, json.WithUnit(json.Bytes))` counts bytes.
+Positions are in code points by default; `json.ParseValue(src, json.WithUnit(json.Bytes))` counts bytes.
 
 ## Conformance
 
@@ -59,14 +59,14 @@ The tests check:
 
 - every case of [JSONTestSuite](https://github.com/nst/JSONTestSuite) (MIT License, fetched by `go run ./hack/corpora fetch jsontestsuite`; the tests skip without it): the 95 `y_` files
   are accepted and decode to what `encoding/json` decodes, the 188 `n_` files are rejected, and `Recognize` and
-  `ParseAST` agree on the 35 `i_` files;
+  `ParseValue` agree on the 35 `i_` files;
 - `Decode` against `encoding/json` on 2,000 random documents, and on arbitrary input in `FuzzDecode`
   (`go test -fuzz FuzzDecode`): both must accept the same inputs and return the same values.
 
 Where RFC 8259 leaves the behavior to the implementation, the package behaves like `encoding/json`:
 
 - invalid UTF-8 in strings is accepted and decodes to U+FFFD, and so does an unpaired surrogate escape (`"\ud800"`);
-- of duplicate keys, `Decode` keeps the last (`ParseAST` keeps them all, in order);
+- of duplicate keys, `Decode` keeps the last (`ParseValue` keeps them all, in order);
 - a number outside the range of `float64` (`1e400`) is a valid `*Number` but an error in `Decode` and
   `Float64`;
 - a byte order mark is rejected.
@@ -76,8 +76,8 @@ Nesting is limited by the generated parser's depth limit of 100,000 rule calls, 
 
 ## Performance
 
-On an array of objects of 256 KB (`go test -bench .`), `ParseAST` is about a sixth faster than `encoding/json` decoding
+On an array of objects of 256 KB (`go test -bench .`), `ParseValue` is about a sixth faster than `encoding/json` decoding
 into an `any`, and allocates a quarter more bytes in 230 times fewer allocations; `Decode` (which converts the typed
 values) takes about 15% longer than `encoding/json`. `Valid` builds nothing, but it is not faster than
-`ParseAST` and far slower than `encoding/json`'s `Valid`, which is a hand-written scanner. See the
+`ParseValue` and far slower than `encoding/json`'s `Valid`, which is a hand-written scanner. See the
 [benchmarks of ZeroParse](https://github.com/zeroparse/zp/blob/main/docs/benchmarks.md) for the other backends.

@@ -25,7 +25,7 @@ header, rows, err := csv.Table("id,name\n1,alice\n2,bob\n")
 name := slices.Index(header, "name")
 
 // Typed values with positions.
-f, err := csv.ParseAST("a,\"b\"\"c\"\n\nd\n")
+f, err := csv.ParseValue("a,\"b\"\"c\"\n\nd\n")
 for _, r := range f.Records {
 	for _, fl := range r.Fields {
 		fmt.Println(fl.Start, fl.End, fl.TNode.Value, fl.Quoted(), fl.Value()) // 2 8 "b""c" true b"c
@@ -47,7 +47,7 @@ if errors.As(err, &se) {
 |:--|:--|
 | `Records(input) ([][]string, error)` | The records, each a list of field values; empty lines left out |
 | `Table(input) (header []string, rows [][]string, err error)` | The first record as the header and the others, each with as many fields as the header (`*FieldCountError` otherwise; `ErrNoHeader` for an input without records) |
-| `ParseAST(input, opts...) (*types.File, error)` | The file: a `*types.File` of `*types.Record`s of `*types.Field`s, each with its `Span` |
+| `ParseValue(input, opts...) (*types.File, error)` | The file: a `*types.File` of `*types.Record`s of `*types.Field`s, each with its `Span` |
 | `Valid(input) bool`, `Recognize(input, opts...) error` | Only check the input |
 | `Parse(input, opts...) (*Node, error)` | The tree of `*Node`, as the engine returns it |
 | `(*types.Field).Value() string` | The field's value: quotes removed and `""` decoded (`Text` is the source) |
@@ -55,7 +55,7 @@ if errors.As(err, &se) {
 | `(*types.Record).Strings() []string`, `(*types.File).Strings() [][]string` | The values of a record, of a file (as `Records` returns them) |
 | `(*types.Record).Blank() bool` | Whether the record is an empty line |
 
-Positions are in code points by default; `csv.ParseAST(src, csv.WithUnit(csv.Bytes))` counts bytes. A record's span includes its line
+Positions are in code points by default; `csv.ParseValue(src, csv.WithUnit(csv.Bytes))` counts bytes. A record's span includes its line
 break; its fields end at the `End` of the last one. With code points, the `Text` of a field holds U+FFFD for each byte
 that is not part of valid UTF-8; with `Bytes` it keeps the bytes, and so do `Records` and `Table`.
 
@@ -74,7 +74,7 @@ RFC's grammar, and in the points where the RFC and practice differ it follows `e
 | CR outside quotes | not allowed in a field | data, except at the end of the input, where it ends the record | the same | Compatibility with `encoding/csv` |
 | Final line break | optional | optional | optional | |
 | Empty input | (by the grammar) one record of one empty field | no records | no records | An empty file holds no data |
-| Empty line | (by the grammar) a record of one empty field | `ParseAST`: a record of one empty field (`Blank`); `Records`, `Table`: skipped | skipped | Blank lines (often at the end of a file) are almost never meant as records; tools that need them have them in `ParseAST`. A file of one column loses its empty values in `Records`, as with `encoding/csv` |
+| Empty line | (by the grammar) a record of one empty field | `ParseValue`: a record of one empty field (`Blank`); `Records`, `Table`: skipped | skipped | Blank lines (often at the end of a file) are almost never meant as records; tools that need them have them in `ParseValue`. A file of one column loses its empty values in `Records`, as with `encoding/csv` |
 | Records of different lengths | "should" have the same number of fields | `Records`: allowed; `Table`: an error (`*FieldCountError`) | an error unless `FieldsPerRecord` is -1 (`ErrFieldCount`) | The RFC makes it a recommendation, and ragged files are common; where columns matter, `Table` checks them against the header |
 | Trailing comma (`a,b,`) | an empty last field (the prose forbids the comma, the grammar reads it as a field) | an empty last field | an empty last field | |
 | Spaces around a quoted field (` "a"`, `"a" `) | not allowed | syntax error | syntax error (`TrimLeadingSpace` allows the leading one) | Conformance; such a field is ambiguous |
@@ -101,8 +101,8 @@ There is no official conformance suite for CSV. The tests check:
 - the same comparison on arbitrary input in `FuzzRecords` (`go test -fuzz FuzzRecords`): both must accept the same
   inputs and return the same records once the byte order mark is removed and CRLFs in values are turned into LF
   (6 million inputs passed when it was written);
-- the positions of `ParseAST`, the lines and columns of syntax errors, `Table`, and that `Valid`, `Recognize`,
-  `ParseAST` and `Records` agree on every input.
+- the positions of `ParseValue`, the lines and columns of syntax errors, `Table`, and that `Valid`, `Recognize`,
+  `ParseValue` and `Records` agree on every input.
 
 All of them run with Go alone.
 
@@ -114,13 +114,13 @@ On a file of 5,000 records (210 KB) with quoted fields that contain commas, doub
 | | Time | Memory | Allocations |
 |:--|--:|--:|--:|
 | `encoding/csv` `ReadAll` | 0.75 ms | 1.2 MB | 10,033 |
-| `ParseAST` | 1.59 ms | 1.8 MB | 172 |
-| `ParseAST` (`Bytes`) | 1.79 ms | 1.8 MB | 173 |
+| `ParseValue` | 1.59 ms | 1.8 MB | 172 |
+| `ParseValue` (`Bytes`) | 1.79 ms | 1.8 MB | 173 |
 | `Records` | 1.84 ms | 3.6 MB | 1,048 |
 | `Valid` | 1.29 ms | 0 | 0 |
 | `Parse` | 2.46 ms | 5.5 MB | 308 |
 
-`encoding/csv` is a hand-written reader that builds nothing but strings; `ParseAST` takes about twice its time while
+`encoding/csv` is a hand-written reader that builds nothing but strings; `ParseValue` takes about twice its time while
 recording the position of every field and record, and `Records` 2.5 times. `Valid` builds nothing but runs the general
-code of the generated parser (one method per expression), not the direct rules `ParseAST` runs. The comments in
+code of the generated parser (one method per expression), not the direct rules `ParseValue` runs. The comments in
 [csv.zp](csv.zp) give the measured effect of the grammar's choices.

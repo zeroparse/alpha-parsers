@@ -39,14 +39,14 @@ var nestings = []struct {
 func TestNesting(t *testing.T) {
 	for _, tc := range nestings {
 		t.Run(tc.name, func(t *testing.T) {
-			if _, err := duckdb.ParseAST(tc.make(200)); err != nil {
+			if _, err := duckdb.ParseValue(tc.make(200)); err != nil {
 				t.Fatalf("200 levels: %v", err)
 			}
 			if os.Getenv("NESTING_LIMITS") != "" && tc.recursive {
 				lo, hi := 200, 1<<20
 				for lo+1 < hi {
 					mid := (lo + hi) / 2
-					if _, err := duckdb.ParseAST(tc.make(mid)); err == nil {
+					if _, err := duckdb.ParseValue(tc.make(mid)); err == nil {
 						lo = mid
 					} else {
 						hi = mid
@@ -56,12 +56,12 @@ func TestNesting(t *testing.T) {
 				return
 			}
 			if !tc.recursive {
-				if _, err := duckdb.ParseAST(tc.make(20000)); err != nil {
+				if _, err := duckdb.ParseValue(tc.make(20000)); err != nil {
 					t.Errorf("20,000 terms: %v", err)
 				}
 				return
 			}
-			if _, err := duckdb.ParseAST(tc.make(300000)); err == nil {
+			if _, err := duckdb.ParseValue(tc.make(300000)); err == nil {
 				t.Errorf("300,000 levels were accepted")
 			}
 		})

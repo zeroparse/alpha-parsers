@@ -61,8 +61,8 @@ func TestFrameBoundaries(t *testing.T) {
 		for _, frameUnit := range []string{"ROWS", "RANGE", "GROUPS"} {
 			sql := fmt.Sprintf("SELECT sum(v) OVER (ORDER BY i %s %s)", frameUnit, tc.bound)
 			for _, unit := range []duckdb.PositionUnit{duckdb.CodePoints, duckdb.Bytes} {
-				if _, err := duckdb.ParseAST(sql, duckdb.WithUnit(unit)); (err == nil) != tc.ok {
-					t.Errorf("ParseAST(%q, %v): %v", sql, unit, err)
+				if _, err := duckdb.ParseValue(sql, duckdb.WithUnit(unit)); (err == nil) != tc.ok {
+					t.Errorf("ParseValue(%q, %v): %v", sql, unit, err)
 				}
 				agreeWithInterpreter(t, sql)
 			}
@@ -84,7 +84,7 @@ func TestFrameAST(t *testing.T) {
 		for _, frameUnit := range []string{"ROWS", "RANGE", "GROUPS"} {
 			sql := fmt.Sprintf(`SELECT sum("é") OVER (ORDER BY i %s %s EXCLUDE TIES)`, frameUnit, tc.bound)
 			for _, unit := range []duckdb.PositionUnit{duckdb.CodePoints, duckdb.Bytes} {
-				script, err := duckdb.ParseAST(sql, duckdb.WithUnit(unit))
+				script, err := duckdb.ParseValue(sql, duckdb.WithUnit(unit))
 				if err != nil {
 					t.Fatal(err)
 				}

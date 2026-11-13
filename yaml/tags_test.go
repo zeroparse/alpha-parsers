@@ -34,9 +34,9 @@ func TestTagValidity(t *testing.T) {
 		{"%TAG !e! !local-\n--- !e!kind x\n", "!local-kind"},
 	} {
 		t.Run(tc.input, func(t *testing.T) {
-			s, err := yaml.ParseAST(tc.input)
+			s, err := yaml.ParseValue(tc.input)
 			if err != nil {
-				t.Fatalf("syntax-only ParseAST: %v", err)
+				t.Fatalf("syntax-only ParseValue: %v", err)
 			}
 			if _, err := yaml.Parse(tc.input); err != nil {
 				t.Fatal(err)
@@ -83,7 +83,7 @@ func TestTagValidity(t *testing.T) {
 func TestMalformedTagAST(t *testing.T) {
 	for _, text := range []string{"", "str", "!<", "!<>", "!<tag:x", "!bad!kind", "!x%", "!x%0", "!x%GG", "!x%FF", "!x y"} {
 		t.Run(text, func(t *testing.T) {
-			s, err := yaml.ParseAST("x\n")
+			s, err := yaml.ParseValue("x\n")
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -130,7 +130,7 @@ func BenchmarkTagCheck(b *testing.B) {
 					input.WriteString("- !e!kind x\n")
 				}
 			}
-			s, err := yaml.ParseAST(input.String())
+			s, err := yaml.ParseValue(input.String())
 			if err != nil {
 				b.Fatal(err)
 			}

@@ -45,7 +45,7 @@ to record the requirements of the module.
 import "zeroparse.dev/alpha-parsers/json"
 
 v, err := json.Decode(`{"name": "zp", "tags": ["peg", "operators-rule"]}`) // map[string]any{...}
-ast, err := json.ParseAST(src)                                      // typed values with positions
+ast, err := json.ParseValue(src)                                      // typed values with positions
 ```
 
 Every parser has the API of a parser generated with `zp gen -types -recognize` (see
@@ -53,7 +53,7 @@ Every parser has the API of a parser generated with `zp gen -types -recognize` (
 
 | | |
 |:--|:--|
-| `ParseAST(input, opts...)` | The document as the Go types the grammar declares, each with its `Span` in the input |
+| `ParseValue(input, opts...)` | The document as the Go types the grammar declares, each with its `Span` in the input |
 | `Parse(input, opts...)` | The document as a tree of `*Node`, as the engine returns it |
 | `Recognize(input, opts...)` | Only checks the input, without building anything |
 | `*SyntaxError` | The position (`Line`, `Col`, `Pos`) and the expected tokens of a syntax error |

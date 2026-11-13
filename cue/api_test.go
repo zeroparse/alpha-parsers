@@ -23,10 +23,10 @@ func TestCheck(t *testing.T) {
 		{"x: \"\"\"\n  a\\(b)\n c\n  \"\"\"\n", "non-matching whitespace for multiline string"},
 		{"a~X: 1\n", "postfix alias syntax requires @experiment(aliasv2)"},
 	} {
-		_, aerr := ParseAST(c.in)
+		_, aerr := ParseValue(c.in)
 		_, ferr := ParseFile(c.in)
 		if aerr != nil {
-			t.Errorf("%q: ParseAST: %v", c.in, aerr)
+			t.Errorf("%q: ParseValue: %v", c.in, aerr)
 		}
 		var se *SemanticError
 		if !errors.As(ferr, &se) || !strings.Contains(se.Msg, c.msg) {
@@ -247,7 +247,7 @@ func TestUnquote(t *testing.T) {
 		}
 	}
 	for _, in := range []string{`"\q"`, `"\u12"`, `"\ud800"`, `'\u00e9\400'`, "\"\"\"\n\ta\n b\n\t\"\"\""} {
-		f, err := ParseAST("x: " + in)
+		f, err := ParseValue("x: " + in)
 		if err != nil {
 			continue // a syntax error is an error too
 		}
@@ -331,13 +331,13 @@ func TestInvalidUTF8(t *testing.T) {
 	if !errors.As(err, &se) || !strings.Contains(se.Msg, "UTF-8") || se.Line != 1 {
 		t.Errorf("error %v", err)
 	}
-	if _, err := ParseAST("x: 1\xff\n"); err == nil {
-		t.Errorf("ParseAST accepted invalid UTF-8 outside a string")
+	if _, err := ParseValue("x: 1\xff\n"); err == nil {
+		t.Errorf("ParseValue accepted invalid UTF-8 outside a string")
 	}
 }
 
 func TestSyntaxErrors(t *testing.T) {
-	_, err := ParseAST("a: 1\nb: [1, 2\nc: 3\n")
+	_, err := ParseValue("a: 1\nb: [1, 2\nc: 3\n")
 	var se *SyntaxError
 	if !errors.As(err, &se) {
 		t.Fatalf("error %T %v", err, err)
@@ -349,7 +349,7 @@ func TestSyntaxErrors(t *testing.T) {
 		if Valid(in) {
 			t.Errorf("%q is valid", in)
 		}
-		if _, err := ParseAST(in); err == nil {
+		if _, err := ParseValue(in); err == nil {
 			t.Errorf("%q parsed", in)
 		}
 	}
@@ -367,7 +367,7 @@ func TestDepth(t *testing.T) {
 		{"binary in parens", "(1 + ", "1", ")"},
 	} {
 		valid := func(n int) bool {
-			_, err := ParseAST("x: " + strings.Repeat(c.open, n) + c.mid + strings.Repeat(c.close, n) + "\n")
+			_, err := ParseValue("x: " + strings.Repeat(c.open, n) + c.mid + strings.Repeat(c.close, n) + "\n")
 			return err == nil
 		}
 		if !valid(2000) {
@@ -424,8 +424,8 @@ func TestUnicodeTables(t *testing.T) {
 		if r < 0x80 || r > unicode.MaxRune || r >= 0xd800 && r < 0xe000 || r == 0xfeff { // U+FEFF is a byte order mark
 			continue
 		}
-		_, serr := ParseAST(string(r))
-		_, ierr := ParseAST("a" + string(r))
+		_, serr := ParseValue(string(r))
+		_, ierr := ParseValue("a" + string(r))
 		start, inside := serr == nil, ierr == nil
 		if start != unicode.IsLetter(r) || inside != (unicode.IsLetter(r) || unicode.IsDigit(r)) {
 			if bad = append(bad, r); len(bad) > 10 {

@@ -67,7 +67,7 @@ func BenchmarkCELGoPoliciesNoMacros(b *testing.B) {
 	benchParse(b, newParser(), policies(b))
 }
 
-// BenchmarkCELGoLarge parses one expression of about 256 KB, as BenchmarkLargeParseAST of package cel does.
+// BenchmarkCELGoLarge parses one expression of about 256 KB, as BenchmarkLargeParseValue of package cel does.
 func BenchmarkCELGoLarge(b *testing.B) {
 	ps := policies(b)
 	var sb strings.Builder

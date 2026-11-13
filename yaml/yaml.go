@@ -2,7 +2,7 @@
 // yaml.zp: streams of documents, directives, block and flow collections, every scalar style,
 // properties, aliases and comments.
 //
-// ParseAST returns the stream as typed values: a Stream of Documents, whose nodes are Mappings,
+// ParseValue returns the stream as typed values: a Stream of Documents, whose nodes are Mappings,
 // Sequences, Scalars and Aliases, each with its Span in the input and its Properties (tag and anchor).
 // Parse returns the same as a tree of Nodes, and Recognize only checks the syntax. A Scalar keeps its
 // source text; Value decodes it according to its style (line folding, escapes, block indentation and
@@ -26,9 +26,9 @@
 //   - A carriage return alone is a line break, but does not start a line for the rules that test the
 //     start of a line: a comment or a document marker at the start of the line after it is rejected.
 //   - The 1024-character limit of implicit keys is not enforced.
-//   - The input is UTF-8; UTF-16 and UTF-32 are not detected. ParseAST, Parse and Recognize read invalid
+//   - The input is UTF-8; UTF-16 and UTF-32 are not detected. ParseValue, Parse and Recognize read invalid
 //     UTF-8 as U+FFFD.
-//   - Duplicate keys are kept by ParseAST and Events, as the suite expects, and rejected by Load.
+//   - Duplicate keys are kept by ParseValue and Events, as the suite expects, and rejected by Load.
 //   - The indicators ? and : of block mappings must be followed by white space or a line break, like -;
 //     otherwise they start a plain scalar.
 //   - An indentation indicator at the top level adds to the indentation -1 of the top-level node, as the
@@ -383,7 +383,7 @@ func parseChecked(input string) (*types.Stream, error) {
 		}
 		return nil, fmt.Errorf("yaml: invalid UTF-8 at byte %d", i)
 	}
-	s, err := ParseAST(input)
+	s, err := ParseValue(input)
 	if err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func parseChecked(input string) (*types.Stream, error) {
 	return s, nil
 }
 
-// Valid reports whether input is a valid YAML stream: well-formed UTF-8 that ParseAST accepts and Check
+// Valid reports whether input is a valid YAML stream: well-formed UTF-8 that ParseValue accepts and Check
 // finds no error in.
 func Valid(input string) bool {
 	_, err := parseChecked(input)

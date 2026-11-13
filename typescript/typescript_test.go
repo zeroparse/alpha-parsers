@@ -26,7 +26,7 @@ func TestGolden(t *testing.T) {
 			t.Fatal(err)
 		}
 		var got string
-		n, err := typescript.ParseAST(string(data), typescript.WithExpectations())
+		n, err := typescript.ParseValue(string(data), typescript.WithExpectations())
 		if n != nil {
 			got = render(n)
 		}
@@ -46,7 +46,7 @@ func TestGolden(t *testing.T) {
 	}
 }
 
-// valid and invalid are sources that ParseAST must accept and reject, as the TypeScript compiler's
+// valid and invalid are sources that ParseValue must accept and reject, as the TypeScript compiler's
 // parser does (the differential tests, which need node, check the same on the compiler's own test cases).
 var valid = []string{
 	"",
@@ -117,10 +117,10 @@ var invalid = []string{
 
 func TestValid(t *testing.T) {
 	for _, src := range valid {
-		if _, err := typescript.ParseAST(src); err != nil {
+		if _, err := typescript.ParseValue(src); err != nil {
 			t.Errorf("%q: %v", src, err)
 		}
-		if _, err := typescript.ParseAST(src, typescript.WithUnit(typescript.Bytes)); err != nil && utf8.ValidString(src) {
+		if _, err := typescript.ParseValue(src, typescript.WithUnit(typescript.Bytes)); err != nil && utf8.ValidString(src) {
 			t.Errorf("in bytes %q: %v", src, err)
 		}
 	}
@@ -136,10 +136,10 @@ func TestValid(t *testing.T) {
 
 func TestInvalid(t *testing.T) {
 	for _, src := range invalid {
-		if _, err := typescript.ParseAST(src); err == nil {
+		if _, err := typescript.ParseValue(src); err == nil {
 			t.Errorf("%q: accepted", src)
 		}
-		if _, err := typescript.ParseAST(src, typescript.WithUnit(typescript.Bytes)); err == nil && utf8.ValidString(src) {
+		if _, err := typescript.ParseValue(src, typescript.WithUnit(typescript.Bytes)); err == nil && utf8.ValidString(src) {
 			t.Errorf("in bytes %q: accepted", src)
 		}
 	}
@@ -147,7 +147,7 @@ func TestInvalid(t *testing.T) {
 	if _, err := typescript.ParseTSX("let a = <T>b;"); err == nil {
 		t.Error("tsx: a type assertion was accepted")
 	}
-	if _, err := typescript.ParseAST("let a = <div>b</div>;"); err == nil {
+	if _, err := typescript.ParseValue("let a = <div>b</div>;"); err == nil {
 		t.Error("ts: JSX was accepted")
 	}
 }
@@ -156,7 +156,7 @@ func TestInvalid(t *testing.T) {
 // order of the input.
 func TestSpans(t *testing.T) {
 	for _, src := range append(append([]string{}, valid...), "x = <div a={1}>{b}</div>") {
-		parse := func(s string) (*types.SourceFile, error) { return typescript.ParseAST(s) }
+		parse := func(s string) (*types.SourceFile, error) { return typescript.ParseValue(s) }
 		if strings.HasPrefix(src, "x = <div") {
 			parse = func(s string) (*types.SourceFile, error) { return typescript.ParseTSX(s) }
 		}
@@ -187,11 +187,11 @@ func TestSpans(t *testing.T) {
 
 func TestUnits(t *testing.T) {
 	src := "let ü = '日本語'; let b = 1"
-	cp, err := typescript.ParseAST(src)
+	cp, err := typescript.ParseValue(src)
 	if err != nil {
 		t.Fatal(err)
 	}
-	by, err := typescript.ParseAST(src, typescript.WithUnit(typescript.Bytes))
+	by, err := typescript.ParseValue(src, typescript.WithUnit(typescript.Bytes))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -248,7 +248,7 @@ func TestErrors(t *testing.T) {
 }
 
 func TestKind(t *testing.T) {
-	f, err := typescript.ParseAST("a + b && c; this; null; true; x as string; `t`; super.y")
+	f, err := typescript.ParseValue("a + b && c; this; null; true; x as string; `t`; super.y")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -270,7 +270,7 @@ func TestKind(t *testing.T) {
 	}
 }
 
-// FuzzParse checks that ParseAST agrees with itself in both position units on any input, that a successful parse has valid ranges, and
+// FuzzParse checks that ParseValue agrees with itself in both position units on any input, that a successful parse has valid ranges, and
 // that nothing panics: go test -fuzz FuzzParse
 func FuzzParse(f *testing.F) {
 	for _, s := range valid {
@@ -289,14 +289,14 @@ func FuzzParse(f *testing.F) {
 			file, err = typescript.ParseTSX(src[1:])
 			rerr = typescript.RecognizeTSX(src[1:])
 		} else {
-			file, err = typescript.ParseAST(src)
-			_, rerr = typescript.ParseAST(src, typescript.WithUnit(typescript.Bytes))
+			file, err = typescript.ParseValue(src)
+			_, rerr = typescript.ParseValue(src, typescript.WithUnit(typescript.Bytes))
 			if !utf8.ValidString(src) {
 				rerr = err // invalid UTF-8 is one code point and one byte, which can decide differently
 			}
 		}
 		if (err == nil) != (rerr == nil) {
-			t.Fatalf("ParseAST error %v, second parse error %v", err, rerr)
+			t.Fatalf("ParseValue error %v, second parse error %v", err, rerr)
 		}
 		if err == nil {
 			n := len([]rune(src))
@@ -321,7 +321,7 @@ func TestGeneratorContext(t *testing.T) {
 		"class C { *m() { const a = yield; } }",
 		"const o = { *m() { const a = yield; } };",
 	} {
-		f, err := typescript.ParseAST(src)
+		f, err := typescript.ParseValue(src)
 		if err != nil {
 			t.Fatalf("%q: %v", src, err)
 		}

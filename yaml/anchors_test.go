@@ -51,7 +51,7 @@ func TestLoadNestedAnchorSharing(t *testing.T) {
 }
 
 func TestLoadSharedAnchorAST(t *testing.T) {
-	s, err := yaml.ParseAST("- &a [&a x]\n- *a\n")
+	s, err := yaml.ParseValue("- &a [&a x]\n- *a\n")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -91,7 +91,7 @@ func BenchmarkAnchorComposition(b *testing.B) {
 					input.WriteString("- &a [&b x]\n- *a\n- *b\n")
 				}
 			}
-			s, err := yaml.ParseAST(input.String())
+			s, err := yaml.ParseValue(input.String())
 			if err != nil {
 				b.Fatal(err)
 			}

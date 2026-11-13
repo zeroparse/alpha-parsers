@@ -1,7 +1,7 @@
 // Package cel parses CEL, the Common Expression Language (https://github.com/google/cel-spec), with a parser generated
 // by ZeroParse from cel.zp.
 //
-// ParseAST returns an expression as typed values, each with its Span in the input: Ident, IntLit, UintLit, DoubleLit,
+// ParseValue returns an expression as typed values, each with its Span in the input: Ident, IntLit, UintLit, DoubleLit,
 // StringLit, BytesLit, BoolLit and NullLit for names and literals, Select, Index, Call, Unary, Binary and Conditional
 // for operations, Paren, ListLit, MapLit and MessageLit for the rest, and Optional for an optional list element. The
 // tree keeps what is written, parentheses included (a Paren), so that Format can print it back; Inspect and Children
@@ -12,9 +12,9 @@
 // exists_one, map, filter) are calls in the tree, since the specification leaves the macros an application supports
 // to the application; CheckMacros reports the calls that cel-go's standard macros reject.
 //
-// What cel-go reads after it has parsed is not in the grammar, so ParseAST accepts it: an integer literal out of the
+// What cel-go reads after it has parsed is not in the grammar, so ParseValue accepts it: an integer literal out of the
 // range of int64 or uint64, a double out of the range of float64, and expressions nested deeper than 250 levels or
-// longer than 100,000 code points (cel-go's defaults). ParseExpr, which is ParseAST followed by Check, rejects them.
+// longer than 100,000 code points (cel-go's defaults). ParseExpr, which is ParseValue followed by Check, rejects them.
 //
 // The tests compare the AST that this parser returns for hundreds of thousands of expressions with the AST of cel-go,
 // accept the 2,527 expressions of the conformance tests of cel-spec, and reject what cel-go rejects. The README

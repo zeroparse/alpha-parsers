@@ -137,7 +137,7 @@ func TestCorpus(t *testing.T) {
 		}
 		if err != nil {
 			rejected++
-			if _, aerr := ParseAST(c.src, WithUnit(Bytes)); aerr == nil {
+			if _, aerr := ParseValue(c.src, WithUnit(Bytes)); aerr == nil {
 				checkOnly++ // the syntax is valid; Check rejects it
 			}
 			continue
@@ -156,7 +156,7 @@ func TestCorpus(t *testing.T) {
 			}
 		}
 	}
-	t.Logf("%d sources: %d accepted, %d rejected (%d of them by Check, which ParseAST does not do), %d differ in acceptance, %d in the tree",
+	t.Logf("%d sources: %d accepted, %d rejected (%d of them by Check, which ParseValue does not do), %d differ in acceptance, %d in the tree",
 		len(corpus), accepted, rejected, checkOnly, accDiff, treeDiff)
 	for _, r := range append(reports, treeReports...) {
 		t.Error(r)

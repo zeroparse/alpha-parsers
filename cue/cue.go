@@ -3,7 +3,7 @@
 //
 // The language is that of the specification (doc/ref/spec.md of github.com/cue-lang/cue) as the reference
 // implementation, cuelang.org/go/cue/parser of v0.17.1, reads it, which decides where the two differ. ParseFile
-// accepts exactly what cue/parser.ParseFile accepts and returns the syntax tree; ParseAST returns the tree as the
+// accepts exactly what cue/parser.ParseFile accepts and returns the syntax tree; ParseValue returns the tree as the
 // grammar reads it, without the checks that come after the syntax (File.Check: experiments, scopes, import paths,
 // the indentation of strings with interpolations, UTF-8). The types of the tree follow cuelang.org/go/cue/ast, and every node has its Span in the input
 // (in code points; Bytes counts bytes). Comments lists the comments of a source. String.Unquote, Int.Value,
@@ -29,7 +29,7 @@
 //     parser's limit of 100,000 rule calls, which is 8,331 levels of structs, 14,282 of lists and 19,995 of
 //     parentheses.
 //   - Only the latest syntax is read, with no @lang selection of older versions.
-//   - ParseAST accepts invalid UTF-8 in strings and comments (ParseFile rejects it), and the syntax of all
+//   - ParseValue accepts invalid UTF-8 in strings and comments (ParseFile rejects it), and the syntax of all
 //     experiments in any file (Check rejects what the file has not enabled).
 //
 // Unicode letters and digits in identifiers are those of the unicode package of the Go version that made the
@@ -44,7 +44,7 @@ import (
 )
 
 // ParseFile parses a CUE file as cuelang.org/go/cue/parser.ParseFile does, and returns the first error, if
-// any: ParseAST, then Check, and an error for input that is not UTF-8 (which the parser reads as U+FFFD).
+// any: ParseValue, then Check, and an error for input that is not UTF-8 (which the parser reads as U+FFFD).
 func ParseFile(input string, unit ...PositionUnit) (*types.File, error) {
 	if pos := invalidUTF8(input); pos < len(input) {
 		if len(unit) == 0 || unit[0] != Bytes {
@@ -52,7 +52,7 @@ func ParseFile(input string, unit ...PositionUnit) (*types.File, error) {
 		}
 		return nil, locate(input, &SemanticError{Span: Span{Start: pos, End: pos}, Msg: "illegal UTF-8 encoding"}, unit)
 	}
-	f, err := ParseAST(input, unitOptions(unit)...)
+	f, err := ParseValue(input, unitOptions(unit)...)
 	if err != nil {
 		return nil, err
 	}

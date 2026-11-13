@@ -20,7 +20,7 @@ import "zeroparse.dev/alpha-parsers/cel/types"
 e, err := cel.ParseExpr(`request.auth.claims.exists(c, c == "admin") && size(items) <= 10 ? "ok" : "no"`)
 
 // Typed values with positions; ParseExpr is this followed by Check.
-e, err = cel.ParseAST(`a.b + f(1,
+e, err = cel.ParseValue(`a.b + f(1,
   2u) // sum`)
 call := e.(*types.Binary).Right.(*types.Call)
 fmt.Println(call.Func.Name(), call.Start, call.End) // f 6 16
@@ -52,8 +52,8 @@ ok := cel.Valid(`1 +`) // false
 
 | | |
 |:--|:--|
-| `ParseAST(input, opts...) (types.Expr, error)` | The expression as the typed values below, each with its `Span` |
-| `ParseExpr(input, opts...) (types.Expr, error)` | `ParseAST`, then `Check`; the size of the input is checked first. It returns a `*SyntaxError` or a `*CheckError` |
+| `ParseValue(input, opts...) (types.Expr, error)` | The expression as the typed values below, each with its `Span` |
+| `ParseExpr(input, opts...) (types.Expr, error)` | `ParseValue`, then `Check`; the size of the input is checked first. It returns a `*SyntaxError` or a `*CheckError` |
 | `Valid(input, opts...) bool` | Only check the input, as `ParseExpr` does |
 | `Check(e, opts...) error` | What the grammar does not check: literals out of range, the limits of depth, and with `WithMacros` the macros |
 | `CheckLimits(e, ExprLimits) error`, `DefaultExprLimits` | The depth of recursion and the size that cel-go allows (250 and 100,000 code points) |
@@ -65,7 +65,7 @@ ok := cel.Valid(`1 +`) // false
 | `(*types.IntLit).Value()`, `(*types.UintLit).Value()`, `(*types.DoubleLit).Value()`, `(*types.StringLit).Value()`, `(*types.BytesLit).Value()`, `(*types.BoolLit).Value()` | The values of the literals, decoded as cel-go does (`Text` is the source) |
 | `(*types.Ident).Name()`, `(*types.Ident).Rooted()`, `(*types.Name).Value()` | Names, without the leading dot and the whitespace in them; field names without backquotes |
 
-Positions are in code points by default; `cel.ParseAST(src, cel.WithUnit(cel.Bytes))` counts bytes (`ParseExpr` and the errors of
+Positions are in code points by default; `cel.ParseValue(src, cel.WithUnit(cel.Bytes))` counts bytes (`ParseExpr` and the errors of
 `Check` count code points).
 
 ## The Tree
@@ -90,7 +90,7 @@ The types are declared in the package `types` (`types.Expr`, `types.Ident`, ...)
 | `MessageLit` | `Type *Ident`, `Fields` | `a.b.Msg{f: v}`; each `Field` has `Name *Name`, `Value` and `Optional` |
 | `Optional` | `X` | `?a` as an element of a list |
 
-`Expr` is the union of the expression types. A value of `ParseAST` is one of them; every
+`Expr` is the union of the expression types. A value of `ParseValue` is one of them; every
 struct has an embedded `Span{Start, End}` (the end is exclusive).
 
 ## Checks That Are Not Syntax
@@ -115,7 +115,7 @@ reports the rest as a `*CheckError`:
   `has(has(a.b))` is valid as in cel-go, the inner `has` being a selection after expansion. The macros of extension
   libraries (`optMap`, `cel.bind`, ...) are not checked.
 
-`ParseAST` does none of this, and the depth they accept is that of the generated parser's limit of
+`ParseValue` does none of this, and the depth they accept is that of the generated parser's limit of
 100,000 rule calls: about 20,000 nested parentheses, 16,600 nested calls, 14,000 nested lists and 12,500 nested maps;
 a run of `!`, a chain of selections, of binary operators or of conditionals is not limited by it. Deeper input fails
 with an error instead of exhausting the stack.
@@ -143,7 +143,7 @@ implementation (`cel.dev/cel-go`), whose parser is an ANTLR grammar:
   'Differential|Limits|Agreement|Spans|Format'`) found no difference, nor did the 56,309 for the macros and a run of 156,308
   more macro calls. Runs of 196,000 to 426,000 expressions on earlier versions of the grammar found one difference besides
   those that the smaller corpora had found while the grammar was written: `has(has(a.b))`, which is fixed.
-- `ParseAST` agrees with itself on every input in code points and in bytes; the spans of every value lie in those of
+- `ParseValue` agrees with itself on every input in code points and in bytes; the spans of every value lie in those of
   its parent in order (`TestAgreement`, `TestSpans`, over all of the above); `Format` prints each of the 181,336
   accepted expressions of the large run as source that parses to the same expression (`TestFormat`); and
   `go test -fuzz FuzzParse` checks the same on arbitrary input (1.4 million executions without a failure).
@@ -195,13 +195,13 @@ conditional, the `:` of an entry and a field, the first operator of a run of `!`
 ## Grammar
 
 [cel.zp](cel.zp) follows the productions of the specification and the ANTLR grammar of cel-go. Where it differs for
-speed, the comments say what it measurably cost. The table has the time of `ParseAST` on the 28
+speed, the comments say what it measurably cost. The table has the time of `ParseValue` on the 28
 expressions of [testdata/bench/policies.txt](testdata/bench/policies.txt) (2.9 KB) and on one expression of 34 KB made
 of them, for the grammar as it is and for variants that differ in one thing (each generated with `zp gen -types
 -typed-only -nodoc` into a copy of the module, and run in turn, the minimum of 8 rounds of 0.3 s on one CPU of an Apple
 M3 Max):
 
-| Variant | `ParseAST` | long `ParseAST` |
+| Variant | `ParseValue` | long `ParseValue` |
 |:--|--:|--:|
 | The grammar as committed | 686 µs | 3.61 ms |
 | First version (an alternative for each literal, a message before a call before an identifier, rules for characters) | +16% | +24% |
@@ -225,14 +225,14 @@ module, with its parser (`cel.dev/cel-go/parser` v0.32.0) on the same expression
 
 | | 28 expressions | Throughput | Allocations | One of 256 KB | Throughput | Allocations |
 |:--|--:|--:|--:|--:|--:|--:|
-| `ParseAST` | 518 µs | 5.6 MB/s | 3.2 MB in 283 | 19.3 ms | 13.6 MB/s | 5.2 MB in 476 |
+| `ParseValue` | 518 µs | 5.6 MB/s | 3.2 MB in 283 | 19.3 ms | 13.6 MB/s | 5.2 MB in 476 |
 | `ParseExpr` | 570 µs | 5.1 MB/s | 3.2 MB in 482 | | | |
 | cel-go's parser, with the standard macros | 1,314 µs | 2.2 MB/s | 975 KB in 13,970 | 114 ms | 2.3 MB/s | 82 MB in 1,021,558 |
 
-`ParseAST` takes 2.5 times less time than cel-go's parser on typical expressions and 6 times less on a long one, with
+`ParseValue` takes 2.5 times less time than cel-go's parser on typical expressions and 6 times less on a long one, with
 15 times less memory on the long one. The 3.2 MB allocated for 28 expressions is the slabs of the typed values: the
 generated parser takes the values of each type (256 of each, 1,024 of each list) from chunks that it allocates when the
-type is first used, about 115 KB for each small expression; with chunks of 8 and 64, `ParseAST` of the 28 expressions
+type is first used, about 115 KB for each small expression; with chunks of 8 and 64, `ParseValue` of the 28 expressions
 took 22% less time on one CPU (547 µs instead of 703 µs; the time of a long expression does not change).
 
 ## Development

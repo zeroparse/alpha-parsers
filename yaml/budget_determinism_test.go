@@ -32,8 +32,8 @@ func TestBudgetErrorsAreDeterministic(t *testing.T) {
 			n, err := yaml.Parse(in, yaml.WithLimits(yaml.Limits{Compute: b}))
 			return describe(n != nil, err)
 		},
-		"ParseAST": func(in string, b uint64) string {
-			v, err := yaml.ParseAST(in, yaml.WithLimits(yaml.Limits{Compute: b}))
+		"ParseValue": func(in string, b uint64) string {
+			v, err := yaml.ParseValue(in, yaml.WithLimits(yaml.Limits{Compute: b}))
 			return describe(v != nil, err)
 		},
 		"Recognize": func(in string, b uint64) string {

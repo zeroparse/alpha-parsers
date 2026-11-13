@@ -22,7 +22,7 @@ v, err := yaml.Load("name: zp\ntags: [peg, operators-rule]\nstars: 42\n")
 docs, err := yaml.LoadAll("--- a\n--- [b, c]\n") // one value per document
 
 // Typed values with positions, tags, anchors and styles.
-s, err := yaml.ParseAST("key: &x value # comment\nlist:\n- 'single'\n- *x\n")
+s, err := yaml.ParseValue("key: &x value # comment\nlist:\n- 'single'\n- *x\n")
 for _, p := range s.Documents[0].Root.(*types.Mapping).Pairs {
 	k := p.Key.(*types.Scalar)
 	fmt.Printf("%s at %d-%d: %T\n", k.Value(), k.Start, k.End, p.Value)
@@ -40,7 +40,7 @@ ok := yaml.Valid("a: b: c") // false
 
 | | |
 |:--|:--|
-| `ParseAST(input, opts...) (*types.Stream, error)` | The stream: `Documents`, each with its `Directives`, `Start_` (`---`) and `End_` (`...`) markers and its `Root` node, a `*types.Mapping`, `*types.Sequence`, `*types.Scalar` or `*types.Alias`, each with its `Span` |
+| `ParseValue(input, opts...) (*types.Stream, error)` | The stream: `Documents`, each with its `Directives`, `Start_` (`---`) and `End_` (`...`) markers and its `Root` node, a `*types.Mapping`, `*types.Sequence`, `*types.Scalar` or `*types.Alias`, each with its `Span` |
 | `Load(input) (any, error)`, `LoadAll(input) ([]any, error)` | Go values of the documents, with the core schema (below); `LoadDocument(*types.Document)` for one parsed document |
 | `Events(input) (string, error)`, `StreamEvents(*types.Stream)` | The event stream in the format of the yaml-test-suite (`test.event`) |
 | `Valid(input) bool`, `Check(*types.Stream) error` | The checks that are not syntax (below); `Valid` also parses and requires UTF-8 |
@@ -55,7 +55,7 @@ A node's `Props` holds its tag and anchor; `Mapping.Flow` and `Sequence.Flow` te
 the block style; `Scalar.Style` is `Plain`, `SingleQuoted`, `DoubleQuoted`, `Literal` or `Folded`, and
 `Scalar.Indent` is the indentation of the content of a block scalar. An empty node (`key:`) is an empty plain
 `*Scalar`, and a pair of a flow sequence (`[a: b]`) a flow `*Mapping` of one pair. Positions are in code points by
-default; `yaml.ParseAST(src, yaml.WithUnit(yaml.Bytes))` counts bytes.
+default; `yaml.ParseValue(src, yaml.WithUnit(yaml.Bytes))` counts bytes.
 
 ### Checks That Are Not Syntax
 
@@ -110,7 +110,7 @@ The tests run the [yaml-test-suite](https://github.com/yaml/yaml-test-suite), da
 fetched by `go run ./hack/corpora fetch yaml-test-suite` (MIT License; the tests skip without it): for each of the 402 tests, a valid input must give the events
 of `test.event` and the values of `in.json` where it exists, and an invalid input must be rejected by `Events` and
 `LoadAll`. All 402 pass: 308 valid inputs (279 with JSON values) and 94 invalid ones, 92 of which the parser
-rejects and 2 `Check` (an undeclared tag handle, QLJ7, and a second `%YAML` directive, SF5V). `ParseAST` and
+rejects and 2 `Check` (an undeclared tag handle, QLJ7, and a second `%YAML` directive, SF5V). `ParseValue` and
 `Recognize` agree on every input.
 
 `TestSuiteSource` runs the source definitions of the suite's main branch instead, where `YAML_TEST_SUITE_SRC` names
@@ -119,7 +119,7 @@ the suite's `bin/suite-to-data.pl` does). At commit da267a5 (2025-12-25) they gi
 input, events and JSON, and all pass.
 
 Other tests decode every scalar style, compose values with the core schema, check the errors of `Load` and `Check`,
-nest deeply, and fuzz the parser (`go test -fuzz FuzzParse`: `ParseAST` and `Recognize` agree, `Valid` and `Events`
+nest deeply, and fuzz the parser (`go test -fuzz FuzzParse`: `ParseValue` and `Recognize` agree, `Valid` and `Events`
 agree, nothing panics).
 
 Known deviations and choices where the specification leaves room:
@@ -128,9 +128,9 @@ Known deviations and choices where the specification leaves room:
   test the start of a line (a ZeroParse `^` matches after a line feed only): there, a comment or a document marker at
   the start of the line is rejected (`"a: 1\r# c\rb: 2"`). Line feeds and CR LF are not affected.
 - **The 1024-character limit of implicit keys** is not enforced.
-- **Encodings**: the input is UTF-8; UTF-16 and UTF-32 are not detected. `ParseAST`, `Parse` and `Recognize` read
+- **Encodings**: the input is UTF-8; UTF-16 and UTF-32 are not detected. `ParseValue`, `Parse` and `Recognize` read
   invalid UTF-8 as U+FFFD; the other functions reject it.
-- **Duplicate keys** are kept by `ParseAST` and `Events`, as the suite expects (2JQS), and rejected by `Load`.
+- **Duplicate keys** are kept by `ParseValue` and `Events`, as the suite expects (2JQS), and rejected by `Load`.
 - **`?` and `:` of block mappings** (explicit keys and values) must be followed by white space or a line break, like
   `-`; otherwise they start a plain scalar (`?x: y` is the key `?x`).
 - **An indentation indicator at the top level** adds to the indentation -1 of the top-level node, as the productions
@@ -178,7 +178,7 @@ M3 Max):
 
 | | Time | Throughput | Allocations |
 |:--|--:|--:|--:|
-| `ParseAST` | 9.2 ms | 28 MB/s | 46,000 |
+| `ParseValue` | 9.2 ms | 28 MB/s | 46,000 |
 | `Events` | 11.6 ms | 23 MB/s | 52,000 |
 | `LoadAll` | 11.4 ms | 23 MB/s | 84,000 |
 | `Recognize` | 12.9 ms | 20 MB/s | 27,000 |
@@ -186,10 +186,10 @@ M3 Max):
 | `encoding/json` on the same documents as JSON (for comparison) | 2.7 ms | 82 MB/s | 48,000 |
 
 The standard library has no YAML parser; decoding the same values from JSON with `encoding/json` takes a quarter of
-the time of `LoadAll`. `Recognize` builds nothing but is slower than `ParseAST`, whose rules the generator compiles
+the time of `LoadAll`. `Recognize` builds nothing but is slower than `ParseValue`, whose rules the generator compiles
 into direct code (see the [code generation guide](https://github.com/zeroparse/zp/blob/main/docs/guide/generated-typed-values.md)). The
 first version of the grammar, which tried every alternative of the specification in order, took 39 ms for
-`ParseAST`; most of the difference is calls that could not match and the memoization they caused.
+`ParseValue`; most of the difference is calls that could not match and the memoization they caused.
 
 ## Development
 

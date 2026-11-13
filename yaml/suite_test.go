@@ -59,7 +59,7 @@ func dataCases(t *testing.T, root string) []suiteCase {
 
 // TestSuite runs every test of the yaml-test-suite (the corpus "yaml-test-suite", data release
 // 2022-01-17, fetched by go run ./hack/corpora fetch): a valid input must give the events of test.event and, where in.json exists, the values
-// it holds; an input with an error file must be rejected by Events and LoadAll. Recognize and ParseAST
+// it holds; an input with an error file must be rejected by Events and LoadAll. Recognize and ParseValue
 // must agree on every input.
 func TestSuite(t *testing.T) {
 	cases := dataCases(t, corporatest.Dir(t, "yaml-test-suite"))
@@ -91,9 +91,9 @@ func runSuite(t *testing.T, cases []suiteCase) {
 type suiteStats struct{ valid, json, errors, syntax int }
 
 func runSuiteCase(c suiteCase, st *suiteStats) error {
-	_, perr := yaml.ParseAST(c.in)
+	_, perr := yaml.ParseValue(c.in)
 	if rerr := yaml.Recognize(c.in); (perr == nil) != (rerr == nil) {
-		return errorf("ParseAST: %v, Recognize: %v", perr, rerr)
+		return errorf("ParseValue: %v, Recognize: %v", perr, rerr)
 	}
 	events, eerr := yaml.Events(c.in)
 	_, lerr := yaml.LoadAll(c.in)

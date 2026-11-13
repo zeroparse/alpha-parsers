@@ -34,21 +34,21 @@ var benchInput = func() string {
 	return b.String()
 }()
 
-func BenchmarkParseAST(b *testing.B) {
+func BenchmarkParseValue(b *testing.B) {
 	b.SetBytes(int64(len(benchInput)))
 	b.ReportAllocs()
 	for b.Loop() {
-		if _, err := csv.ParseAST(benchInput); err != nil {
+		if _, err := csv.ParseValue(benchInput); err != nil {
 			b.Fatal(err)
 		}
 	}
 }
 
-func BenchmarkParseASTBytes(b *testing.B) {
+func BenchmarkParseValueBytes(b *testing.B) {
 	b.SetBytes(int64(len(benchInput)))
 	b.ReportAllocs()
 	for b.Loop() {
-		if _, err := csv.ParseAST(benchInput, csv.WithUnit(csv.Bytes)); err != nil {
+		if _, err := csv.ParseValue(benchInput, csv.WithUnit(csv.Bytes)); err != nil {
 			b.Fatal(err)
 		}
 	}

@@ -9,7 +9,7 @@ import (
 
 // TestASTHelpers checks the methods of the typed values.
 func TestASTHelpers(t *testing.T) {
-	doc, err := xml.ParseAST("<!DOCTYPE a PUBLIC ' -//X//\r\n Y// ' 's\r\n'><a x=' &lt;1&#x9;\r\n2&amp; '>t\r\n&e;&#x1F600;<![CDATA[c\r]]><!--m\r\n--><?p d\r?></a>")
+	doc, err := xml.ParseValue("<!DOCTYPE a PUBLIC ' -//X//\r\n Y// ' 's\r\n'><a x=' &lt;1&#x9;\r\n2&amp; '>t\r\n&e;&#x1F600;<![CDATA[c\r]]><!--m\r\n--><?p d\r?></a>")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -42,14 +42,14 @@ func TestASTHelpers(t *testing.T) {
 	if got := c[5].(*types.PI).Data.Value(); got != "d\n" {
 		t.Errorf("PIData.Value: %q", got)
 	}
-	doc, err = xml.ParseAST(`<a x="&e;"/>`)
+	doc, err = xml.ParseValue(`<a x="&e;"/>`)
 	if err != nil {
 		t.Fatal(err)
 	}
 	if _, err := xml.ExpandAttValue(doc.Root.Attrs[0].Value); err == nil || err.Error() != "entity &e; is not declared" {
 		t.Errorf("ExpandAttValue with an entity: %v", err)
 	}
-	doc, err = xml.ParseAST(`<a>&#0;</a>`)
+	doc, err = xml.ParseValue(`<a>&#0;</a>`)
 	if err != nil {
 		t.Fatal(err)
 	}

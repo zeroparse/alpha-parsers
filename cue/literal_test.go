@@ -56,7 +56,7 @@ func TestLiterals(t *testing.T) {
 		}
 		var got string
 		var gotErr error
-		file, err := ParseAST("x: " + lit)
+		file, err := ParseValue("x: " + lit)
 		if err != nil {
 			t.Errorf("%s %q: %v", kind, lit, err)
 			bad++

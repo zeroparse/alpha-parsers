@@ -9,9 +9,9 @@ import (
 	"zeroparse.dev/alpha-parsers/typescript/types"
 )
 
-func ExampleParseAST() {
+func ExampleParseValue() {
 	src := `export const answer: number = 6 * 7;`
-	f, err := typescript.ParseAST(src)
+	f, err := typescript.ParseValue(src)
 	if err != nil {
 		panic(err)
 	}
@@ -32,7 +32,7 @@ func ExampleParseAST() {
 // the compiler's forEachChild.
 func ExampleInspect() {
 	src := "const f = (a: string) => a.length > 0 ? `yes` : null;"
-	f, err := typescript.ParseAST(src)
+	f, err := typescript.ParseValue(src)
 	if err != nil {
 		panic(err)
 	}
@@ -110,7 +110,7 @@ func ExampleParseFile() {
 }
 
 func ExampleSyntaxError() {
-	_, err := typescript.ParseAST("const a = 1;\nconst b = ;\n", typescript.WithExpectations())
+	_, err := typescript.ParseValue("const a = 1;\nconst b = ;\n", typescript.WithExpectations())
 	var se *typescript.SyntaxError
 	if errors.As(err, &se) {
 		fmt.Println(se.Line, se.Col, se.Pos, se.Message())
@@ -118,10 +118,10 @@ func ExampleSyntaxError() {
 	// Output: 2 11 23 expected an expression
 }
 
-func ExampleParseAST_invalid() {
-	_, err := typescript.ParseAST("interface A { x: number }")
+func ExampleParseValue_invalid() {
+	_, err := typescript.ParseValue("interface A { x: number }")
 	fmt.Println(err)
-	_, err = typescript.ParseAST("interface A { x: number")
+	_, err = typescript.ParseValue("interface A { x: number")
 	fmt.Println(err != nil)
 	// Output:
 	// <nil>

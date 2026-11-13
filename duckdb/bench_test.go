@@ -71,10 +71,10 @@ COPY (SELECT * FROM %s) TO 'out_%d.csv' (FORMAT CSV, HEADER);
 	return b.String()
 }()
 
-func BenchmarkParseAST(b *testing.B) {
+func BenchmarkParseValue(b *testing.B) {
 	b.SetBytes(int64(len(benchScript)))
 	for b.Loop() {
-		if _, err := duckdb.ParseAST(benchScript); err != nil {
+		if _, err := duckdb.ParseValue(benchScript); err != nil {
 			b.Fatal(err)
 		}
 	}

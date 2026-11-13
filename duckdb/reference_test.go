@@ -232,11 +232,11 @@ func checkAcceptance(t *testing.T, cases []refCase, dev map[string]string, devia
 		failures                                                    []string
 	)
 	for _, c := range cases {
-		_, err := duckdb.ParseAST(c.SQL)
-		_, rerr := duckdb.ParseAST(c.SQL, duckdb.WithUnit(duckdb.Bytes))
+		_, err := duckdb.ParseValue(c.SQL)
+		_, rerr := duckdb.ParseValue(c.SQL, duckdb.WithUnit(duckdb.Bytes))
 		if (err == nil) != (rerr == nil) {
 			unitDiffers++
-			failures = append(failures, fmt.Sprintf("ParseAST differs between code points and bytes on %q: %v, %v", c.SQL, err, rerr))
+			failures = append(failures, fmt.Sprintf("ParseValue differs between code points and bytes on %q: %v, %v", c.SQL, err, rerr))
 		}
 		mine := err == nil
 		_, isKnown := dev[c.SQL]

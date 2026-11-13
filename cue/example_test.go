@@ -43,9 +43,9 @@ web: #Service & {name: strings.ToLower("WEB")} @go(Web)
 	// field web (definition false) at 126-181
 }
 
-func ExampleParseAST() {
+func ExampleParseValue() {
 	src := `a: b + 1 * c.d`
-	f, err := cue.ParseAST(src)
+	f, err := cue.ParseValue(src)
 	if err != nil {
 		panic(err)
 	}

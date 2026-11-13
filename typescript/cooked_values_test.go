@@ -50,9 +50,9 @@ func cookedLiteralCases() []cookedLiteralCase {
 
 func cookedValue(t *testing.T, src string, unit typescript.PositionUnit) string {
 	t.Helper()
-	f, err := typescript.ParseAST(src, typescript.WithUnit(unit))
+	f, err := typescript.ParseValue(src, typescript.WithUnit(unit))
 	if err != nil {
-		t.Fatalf("ParseAST(%q): %v", src, err)
+		t.Fatalf("ParseValue(%q): %v", src, err)
 	}
 	switch lit := f.Statements[0].(*types.ExpressionStatement).Expression.(type) {
 	case *types.StringLiteral:

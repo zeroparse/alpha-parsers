@@ -23,7 +23,7 @@ fset := token.NewFileSet()
 f, err := golang.ParseFile(fset, "x.go", src, 0) // golang.ParseComments collects File.Comments too
 
 // Typed values modeled on go/ast, each with its Span in the input (Bytes counts bytes).
-file, err := golang.ParseAST(string(src), golang.WithUnit(golang.Bytes))
+file, err := golang.ParseValue(string(src), golang.WithUnit(golang.Bytes))
 for _, d := range file.Decls {
 	if fn, ok := d.(*types.FuncDecl); ok {
 		fmt.Println(fn.Name.Value, fn.Start, fn.End)
@@ -37,7 +37,7 @@ ok := golang.Valid(string(src))
 | | |
 |:--|:--|
 | `ParseFile(fset, filename, src, mode) (*ast.File, error)` | The `go/ast` tree, with the line table, `//line` directives and comment groups of `go/parser`; an error is a `scanner.ErrorList` with one error |
-| `ParseAST(input, opts...) (*types.File, error)` | The tree as the Go types of the grammar (`types.File`, `types.GenDecl`, `types.FuncDecl`, `types.CallExpr`, ...), each with its `Span` |
+| `ParseValue(input, opts...) (*types.File, error)` | The tree as the Go types of the grammar (`types.File`, `types.GenDecl`, `types.FuncDecl`, `types.CallExpr`, ...), each with its `Span` |
 | `ToGoAST(fset, filename, src, f, mode) *ast.File` | The conversion `ParseFile` uses; `f` must be parsed with `Bytes` |
 | `Valid(src) bool` | Only checks the input, as `go/parser` accepts it |
 | `(*types.StringLit).Value()`, `(*types.CharLit).Value()` | The string or rune a literal denotes |
@@ -87,7 +87,7 @@ and the text and number of errors.
 
 ## Deviations
 
-- **Errors.** A syntax error is reported once, as a `*SyntaxError` listing the expected tokens (`ParseAST`) or as a `scanner.ErrorList` with one error (`ParseFile`), and no tree is returned. `go/parser` reports up
+- **Errors.** A syntax error is reported once, as a `*SyntaxError` listing the expected tokens (`ParseValue`) or as a `scanner.ErrorList` with one error (`ParseFile`), and no tree is returned. `go/parser` reports up
   to ten errors with messages of its own and returns the part of the tree that it could parse. Whether a file is
   accepted is the same (as measured above); the position and text of the error are not compared.
 - **Mode.** `ParseFile` behaves like `go/parser` with `SkipObjectResolution`: `Scope`, `Unresolved` and `Obj` are not
@@ -99,8 +99,8 @@ and the text and number of errors.
   deep") instead of exhausting the stack. `TestNesting` pins this.
 - **Invalid UTF-8.** With the default position unit, an invalid byte is read as U+FFFD, so the grammar cannot tell it
   from a spelled-out U+FFFD in a comment, which `go/scanner` accepts. `ParseFile` and `Valid` check the encoding first;
-  with `Recognize` and `ParseAST` pass `Bytes`, with which the grammar rejects invalid UTF-8 everywhere (`TestInvalidUTF8`).
-- **Memory.** The parser memoizes while it parses: `ParseAST` allocates about 14 times the size of the source
+  with `Recognize` and `ParseValue` pass `Bytes`, with which the grammar rejects invalid UTF-8 everywhere (`TestInvalidUTF8`).
+- **Memory.** The parser memoizes while it parses: `ParseValue` allocates about 14 times the size of the source
   (`go/parser` about 8 times; see Performance).
 - **The toolchain.** The grammar follows the Go 1.27 `go/parser`. With another toolchain the comparison tests measure
   the difference, if any.
@@ -113,17 +113,17 @@ and the text and number of errors.
 | | time | throughput | allocated | allocations |
 |:--|--:|--:|--:|--:|
 | `go/parser.ParseFile` (`SkipObjectResolution`) | 4.5 ms | 103 MB/s | 3.9 MB | 98,776 |
-| `golang.ParseAST` | 23.4 ms | 19.6 MB/s | 6.6 MB | 4,950 |
-| `golang.ParseFile` (`ParseAST` and `ToGoAST`) | 28.8 ms | 16.0 MB/s | 12.3 MB | 71,800 |
+| `golang.ParseValue` | 23.4 ms | 19.6 MB/s | 6.6 MB | 4,950 |
+| `golang.ParseFile` (`ParseValue` and `ToGoAST`) | 28.8 ms | 16.0 MB/s | 12.3 MB | 71,800 |
 
-`ParseAST` is about five times slower than the hand-written parser of the standard library, and `ParseFile` about six,
+`ParseValue` is about five times slower than the hand-written parser of the standard library, and `ParseFile` about six,
 for a grammar that mirrors its decisions: the generated parser is a packrat parser with memoization, where `go/parser`
-is a predictive parser that never backtracks. `ParseAST` builds the typed values directly (every value of the grammar
+is a predictive parser that never backtracks. `ParseValue` builds the typed values directly (every value of the grammar
 has a Go type of its own).
 
 The grammar's optimizations are commented in [golang.zp](golang.zp): not memoizing the whitespace rules, guarding
 operators and operands by their first character so that failed attempts do not merge long lists of expected tokens (the
 comments there give about a tenth, a third and a fifth of the time of a parse), and a shortcut for expressions without a
 binary operator (15%, measured by removing it). Guarding the postfix operators and trying expression statements first did
-not help and were dropped. These changes made the first version of the grammar about 2.5 times faster (`ParseAST` on the
+not help and were dropped. These changes made the first version of the grammar about 2.5 times faster (`ParseValue` on the
 same files: 61 ms before, 23 ms after). See the [benchmarks of ZeroParse](https://github.com/zeroparse/zp/blob/main/docs/benchmarks.md) for the other backends.

@@ -16,7 +16,7 @@ import (
 
 // TestJSONTestSuite runs the parsing tests of JSONTestSuite: y_ files must be accepted and decode to
 // what encoding/json decodes, n_ files must be rejected, and i_ files may go either way, but Recognize
-// and ParseAST must agree.
+// and ParseValue must agree.
 func TestJSONTestSuite(t *testing.T) {
 	dir := corporatest.Dir(t, "jsontestsuite")
 	files, err := filepath.Glob(filepath.Join(dir, "test_parsing", "*.json"))
@@ -29,10 +29,10 @@ func TestJSONTestSuite(t *testing.T) {
 			t.Fatal(err)
 		}
 		name := filepath.Base(f)
-		_, perr := json.ParseAST(string(data))
+		_, perr := json.ParseValue(string(data))
 		rerr := json.Recognize(string(data))
 		if (perr == nil) != (rerr == nil) {
-			t.Errorf("%s: ParseAST: %v, Recognize: %v", name, perr, rerr)
+			t.Errorf("%s: ParseValue: %v, Recognize: %v", name, perr, rerr)
 		}
 		switch name[0] {
 		case 'y':
@@ -234,9 +234,9 @@ func TestDeepNesting(t *testing.T) {
 		ok    bool
 	}{{30000, true}, {40000, false}, {1000000, false}} {
 		src := strings.Repeat("[", tc.depth) + strings.Repeat("]", tc.depth)
-		_, err := json.ParseAST(src)
+		_, err := json.ParseValue(src)
 		if (err == nil) != tc.ok {
-			t.Errorf("depth %d: ParseAST: %v", tc.depth, err)
+			t.Errorf("depth %d: ParseValue: %v", tc.depth, err)
 		}
 		if err := json.Recognize(src); (err == nil) != tc.ok {
 			t.Errorf("depth %d: Recognize: %v", tc.depth, err)

@@ -16,8 +16,8 @@ func TestMalformedDirectives(t *testing.T) {
 	} {
 		t.Run(directive, func(t *testing.T) {
 			src := directive + "\n--- x\n"
-			if _, err := yaml.ParseAST(src); err == nil {
-				t.Fatal("ParseAST accepted malformed directive")
+			if _, err := yaml.ParseValue(src); err == nil {
+				t.Fatal("ParseValue accepted malformed directive")
 			}
 			if _, err := yaml.Parse(src); err == nil {
 				t.Error("Parse accepted malformed directive")
@@ -50,7 +50,7 @@ func TestDirectiveNameBoundaries(t *testing.T) {
 		"%TAG !a-9! tag:example:\n--- !a-9!kind x\n",
 	} {
 		t.Run(src, func(t *testing.T) {
-			if _, err := yaml.ParseAST(src); err != nil {
+			if _, err := yaml.ParseValue(src); err != nil {
 				t.Fatal(err)
 			}
 			if err := yaml.Recognize(src); err != nil {
@@ -98,7 +98,7 @@ func TestMalformedDirectiveAST(t *testing.T) {
 		{"invalid TAG handle", &types.Directive{Name: word("TAG"), Params: []*types.Word{word("notahandle"), word("tag:x")}}},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
-			s, err := yaml.ParseAST("x\n")
+			s, err := yaml.ParseValue("x\n")
 			if err != nil {
 				t.Fatal(err)
 			}

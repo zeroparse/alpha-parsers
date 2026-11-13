@@ -5,7 +5,7 @@
 // attribute values normalized, attribute defaults applied, and every well-formedness constraint checked
 // that does not need an external entity. DecodeBytes does the same from bytes in UTF-8, UTF-16,
 // ISO-8859-1 or US-ASCII (Transcode). Tree.ResolveNamespaces sets the namespace names and checks the
-// constraints of Namespaces in XML. ParseAST returns the syntax tree, with positions; Parse returns it as
+// constraints of Namespaces in XML. ParseValue returns the syntax tree, with positions; Parse returns it as
 // a tree of Nodes, and Recognize only checks it. These three check the syntax, the Char production and
 // the element type match, not the other constraints, and read invalid UTF-8 as U+FFFD.
 //

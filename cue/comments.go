@@ -12,7 +12,7 @@ type Comment struct {
 // Comments returns the comments of a source that parses, in order. Comments are not part of the syntax tree
 // (the parser skips them like white space); this function finds them with a scan of the source that knows
 // strings, interpolations and attributes. Positions are in code points, or in bytes with Bytes, as in
-// ParseAST. The result for a source that does not parse is unspecified.
+// ParseValue. The result for a source that does not parse is unspecified.
 func Comments(src string, unit ...PositionUnit) []Comment {
 	s := &commentScanner{src: src}
 	s.code(0, false)

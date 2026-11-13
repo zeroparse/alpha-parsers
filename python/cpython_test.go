@@ -200,9 +200,9 @@ func TestCPythonSnippets(t *testing.T) {
 			}
 		}
 		m, err := python.ParseModule(r.Source)
-		_, aerr := python.ParseAST(r.Source)
-		if _, rerr := python.ParseAST(r.Source, python.WithUnit(python.Bytes)); utf8.ValidString(r.Source) && (rerr == nil) != (aerr == nil) {
-			bad = append(bad, fmt.Sprintf("%q: ParseAST: %v, in bytes: %v", r.Source, aerr, rerr))
+		_, aerr := python.ParseValue(r.Source)
+		if _, rerr := python.ParseValue(r.Source, python.WithUnit(python.Bytes)); utf8.ValidString(r.Source) && (rerr == nil) != (aerr == nil) {
+			bad = append(bad, fmt.Sprintf("%q: ParseValue: %v, in bytes: %v", r.Source, aerr, rerr))
 		}
 		if aerr == nil && err != nil {
 			byCheck++ // rejected only by Check

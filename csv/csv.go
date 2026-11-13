@@ -2,7 +2,7 @@
 //
 // Records returns the records of a file as strings, with the quotes of quoted fields removed and their
 // doubled quotes decoded, as encoding/csv's ReadAll does; Table reads a file with a header record.
-// ParseAST returns the file as typed values with their positions in the input (a File of Records of
+// ParseValue returns the file as typed values with their positions in the input (a File of Records of
 // Fields, each with its Span), Parse returns it as a tree of Nodes, and Recognize and Valid only check
 // it.
 //
@@ -30,10 +30,10 @@
 //
 // # Values
 //
-// ParseAST represents the input as the RFC's grammar does: an empty line is a record with one empty
+// ParseValue represents the input as the RFC's grammar does: an empty line is a record with one empty
 // field (Record.Blank), and records may have different numbers of fields. A record's span includes
 // its line break. Records and Table drop blank records, as encoding/csv skips empty lines (so a file of
-// one column loses its empty values, which ParseAST keeps). Records does not require every record to
+// one column loses its empty values, which ParseValue keeps). Records does not require every record to
 // have the same number of fields (the RFC says only that they should; encoding/csv requires it unless
 // FieldsPerRecord is -1); Table requires every record to have as many fields as the header.
 //
@@ -78,8 +78,8 @@ func Records(input string) ([][]string, error) {
 	return f.Strings(), nil
 }
 
-// parseFile parses input with ParseAST. Positions count code points, which is the faster unit (byte
-// positions make ParseAST about 15% slower), unless input is not valid UTF-8: with code points, Text
+// parseFile parses input with ParseValue. Positions count code points, which is the faster unit (byte
+// positions make ParseValue about 15% slower), unless input is not valid UTF-8: with code points, Text
 // would hold U+FFFD for each byte that is not, so such input is parsed with byte positions, which keep
 // the bytes.
 func parseFile(input string) (*types.File, PositionUnit, error) {
@@ -87,7 +87,7 @@ func parseFile(input string) (*types.File, PositionUnit, error) {
 	if !utf8.ValidString(input) {
 		unit = Bytes
 	}
-	f, err := ParseAST(input, WithUnit(unit))
+	f, err := ParseValue(input, WithUnit(unit))
 	return f, unit, err
 }
 

@@ -46,16 +46,16 @@ func equal(a, b [][]string) bool {
 	return reflect.DeepEqual(a, b)
 }
 
-// compareStd checks that Records, Valid, Recognize and ParseAST agree with one another and with
+// compareStd checks that Records, Valid, Recognize and ParseValue agree with one another and with
 // encoding/csv (stdRecords) on input: both accept it or both reject it, and the records are the same
 // once CRLFs in values are normalized. It returns this package's records and error.
 func compareStd(t *testing.T, input string) ([][]string, error) {
 	t.Helper()
 	got, err := csv.Records(input)
 	valid := csv.Valid(input)
-	_, perr := csv.ParseAST(input)
+	_, perr := csv.ParseValue(input)
 	if valid != (err == nil) || valid != (perr == nil) || valid != (csv.Recognize(input) == nil) {
-		t.Fatalf("%q: Records: %v, Valid: %v, ParseAST: %v", input, err, valid, perr)
+		t.Fatalf("%q: Records: %v, Valid: %v, ParseValue: %v", input, err, valid, perr)
 	}
 	want, werr := stdRecords(input)
 	if (err == nil) != (werr == nil) {
@@ -202,8 +202,8 @@ func TestEdgeCases(t *testing.T) {
 			if err := csv.Recognize(tc.in); (err == nil) != !tc.err {
 				t.Errorf("%q: Recognize: %v", tc.in, err)
 			}
-			if _, err := csv.ParseAST(tc.in); (err == nil) != !tc.err {
-				t.Errorf("%q: ParseAST: %v", tc.in, err)
+			if _, err := csv.ParseValue(tc.in); (err == nil) != !tc.err {
+				t.Errorf("%q: ParseValue: %v", tc.in, err)
 			}
 			// encoding/csv, as documented by the case.
 			std, serr := readStd(tc.in)
@@ -251,9 +251,9 @@ func TestCompareStd(t *testing.T) {
 	}
 }
 
-func TestParseAST(t *testing.T) {
+func TestParseValue(t *testing.T) {
 	in := bom + "a,\"b\"\"c\"\r\n\nx,\"y\nz\",\n"
-	f, err := csv.ParseAST(in)
+	f, err := csv.ParseValue(in)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -298,7 +298,7 @@ func TestParseAST(t *testing.T) {
 		}
 	}
 	// Byte positions.
-	f, err = csv.ParseAST("é,\"ü\"", csv.WithUnit(csv.Bytes))
+	f, err = csv.ParseValue("é,\"ü\"", csv.WithUnit(csv.Bytes))
 	if err != nil {
 		t.Fatal(err)
 	}

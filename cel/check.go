@@ -88,14 +88,14 @@ func Check(e types.Expr, opts ...Option) error {
 // accumulator).
 func CheckMacros(e types.Expr) error { return checkMacros(e) }
 
-// ParseExpr parses an expression and checks it: ParseAST followed by Check, with a check of the size of the input
+// ParseExpr parses an expression and checks it: ParseValue followed by Check, with a check of the size of the input
 // against the limit first. It returns a *SyntaxError for input that is not an expression and a *CheckError for the rest.
 func ParseExpr(input string, opts ...Option) (types.Expr, error) {
 	o := newCheckOptions(opts)
 	if err := checkSize(input, o.limits); err != nil {
 		return nil, err
 	}
-	e, err := ParseAST(input)
+	e, err := ParseValue(input)
 	if err != nil {
 		return nil, err
 	}

@@ -44,14 +44,14 @@ func bench(b *testing.B, parse func(src string) error) {
 	}
 }
 
-func BenchmarkParseAST(b *testing.B) {
+func BenchmarkParseValue(b *testing.B) {
 	bench(b, func(src string) error {
-		_, err := golang.ParseAST(src, golang.WithUnit(golang.Bytes))
+		_, err := golang.ParseValue(src, golang.WithUnit(golang.Bytes))
 		return err
 	})
 }
 
-// BenchmarkParseFile parses into go/ast: ParseAST and ToGoAST.
+// BenchmarkParseFile parses into go/ast: ParseValue and ToGoAST.
 func BenchmarkParseFile(b *testing.B) {
 	bench(b, func(src string) error {
 		_, err := golang.ParseFile(token.NewFileSet(), "x.go", []byte(src), 0)

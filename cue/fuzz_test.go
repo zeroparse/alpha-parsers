@@ -7,7 +7,7 @@ import (
 	"unicode/utf8"
 )
 
-// FuzzParse checks that ParseAST agrees with the interpreter running the grammar (the same inputs accepted, the
+// FuzzParse checks that ParseValue agrees with the interpreter running the grammar (the same inputs accepted, the
 // same errors, in either position unit), that no input makes it panic, and that the spans of an accepted file are inside the input and nested in order.
 //
 //	go test -fuzz FuzzParse -fuzztime 1m
@@ -29,10 +29,10 @@ func FuzzParse(f *testing.F) {
 		if !utf8.ValidString(in) {
 			return
 		}
-		file, aerr := ParseAST(in)
-		_, berr := ParseAST(in, WithUnit(Bytes))
+		file, aerr := ParseValue(in)
+		_, berr := ParseValue(in, WithUnit(Bytes))
 		if (aerr == nil) != (berr == nil) {
-			t.Fatalf("%q: ParseAST: %v; in bytes: %v", in, aerr, berr)
+			t.Fatalf("%q: ParseValue: %v; in bytes: %v", in, aerr, berr)
 		}
 		agreeWithInterpreter(t, in)
 		_ = Comments(in)

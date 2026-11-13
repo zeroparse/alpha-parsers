@@ -24,7 +24,7 @@ func TestStringValue(t *testing.T) {
 		{`"日本語"`, "日本語"},
 		{`""`, ""},
 	} {
-		f, err := typescript.ParseAST(c.src)
+		f, err := typescript.ParseValue(c.src)
 		if err != nil {
 			t.Fatalf("%s: %v", c.src, err)
 		}
@@ -36,7 +36,7 @@ func TestStringValue(t *testing.T) {
 }
 
 func TestTemplateValue(t *testing.T) {
-	f, err := typescript.ParseAST("`a\\n${1}`; `b\\u0041\r\nc`")
+	f, err := typescript.ParseValue("`a\\n${1}`; `b\\u0041\r\nc`")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -58,7 +58,7 @@ func TestNumberValue(t *testing.T) {
 		{"0x1F", 31}, {"0XfF", 255}, {"0b101", 5}, {"0o17", 15}, {"0xFFFF_FFFF", 4294967295},
 		{"1e999", math.Inf(1)}, {"0x" + strings.Repeat("F", 300), math.Inf(1)},
 	} {
-		f, err := typescript.ParseAST(c.src)
+		f, err := typescript.ParseValue(c.src)
 		if err != nil {
 			t.Fatalf("%s: %v", c.src, err)
 		}
@@ -74,7 +74,7 @@ func TestBigIntValue(t *testing.T) {
 		{"0n", "0"}, {"123n", "123"}, {"1_000_000n", "1000000"}, {"0xFFn", "255"}, {"0b11n", "3"},
 		{"0o17n", "15"}, {"123456789012345678901234567890n", "123456789012345678901234567890"},
 	} {
-		f, err := typescript.ParseAST(c.src)
+		f, err := typescript.ParseValue(c.src)
 		if err != nil {
 			t.Fatalf("%s: %v", c.src, err)
 		}
@@ -86,7 +86,7 @@ func TestBigIntValue(t *testing.T) {
 }
 
 func TestIdentifierValue(t *testing.T) {
-	f, err := typescript.ParseAST(`abc; \u{62}c; plain; é`)
+	f, err := typescript.ParseValue(`abc; \u{62}c; plain; é`)
 	if err != nil {
 		t.Fatal(err)
 	}

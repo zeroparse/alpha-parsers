@@ -13,12 +13,12 @@ import (
 )
 
 // Dump returns the tree as CPython's ast.dump(tree) prints it (with its default arguments: field
-// names, no attributes, on one line), for a value returned by ParseAST or any node in it. It
+// names, no attributes, on one line), for a value returned by ParseValue or any node in it. It
 // computes what the AST of this package keeps as source text: the values of constants, the
 // concatenation of adjacent string literals and f-string parts, the operator classes, the
 // contexts and the conversions of replacement fields.
 //
-// A value that cannot be computed (an unknown name in \N{...}, which ParseAST accepts) is printed
+// A value that cannot be computed (an unknown name in \N{...}, which ParseValue accepts) is printed
 // as <error: ...>.
 func Dump(node any) string {
 	var b strings.Builder

@@ -130,13 +130,13 @@ services: svc` + n + `: {
 	return b.String()
 }()
 
-func BenchmarkParseAST(b *testing.B) {
+func BenchmarkParseValue(b *testing.B) {
 	for _, in := range []struct{ name, src string }{{"config", configInput}, {"corpus", benchInput(b)}} {
 		b.Run(in.name, func(b *testing.B) {
 			b.SetBytes(int64(len(in.src)))
 			b.ReportAllocs()
 			for b.Loop() {
-				if _, err := ParseAST(in.src); err != nil {
+				if _, err := ParseValue(in.src); err != nil {
 					b.Fatal(err)
 				}
 			}

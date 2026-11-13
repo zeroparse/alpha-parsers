@@ -11,7 +11,7 @@ import (
 	"zeroparse.dev/alpha-parsers/internal/corpora/corporatest"
 )
 
-// FuzzParse checks the properties of the parser on arbitrary input (go test -fuzz FuzzParse): ParseAST accepts the same
+// FuzzParse checks the properties of the parser on arbitrary input (go test -fuzz FuzzParse): ParseValue accepts the same
 // inputs as the interpreter running the grammar, in either position unit, with the same errors, the spans of the values of an accepted input are
 // consistent, and what Format prints for it parses to the same expression.
 //
@@ -35,10 +35,10 @@ func FuzzParse(f *testing.F) {
 	}
 	nolimits := cel.WithExprLimits(cel.ExprLimits{})
 	f.Fuzz(func(t *testing.T, src string) {
-		e, aerr := cel.ParseAST(src)
-		_, berr := cel.ParseAST(src, cel.WithUnit(cel.Bytes))
+		e, aerr := cel.ParseValue(src)
+		_, berr := cel.ParseValue(src, cel.WithUnit(cel.Bytes))
 		if (aerr == nil) != (berr == nil) {
-			t.Fatalf("ParseAST: %v, in bytes: %v", aerr, berr)
+			t.Fatalf("ParseValue: %v, in bytes: %v", aerr, berr)
 		}
 		agreeWithInterpreter(t, src)
 		if aerr != nil {
@@ -46,7 +46,7 @@ func FuzzParse(f *testing.F) {
 		}
 		if utf8.ValidString(src) {
 			checkSpans(t, src, e, false)
-			if b, err := cel.ParseAST(src, cel.WithUnit(cel.Bytes)); err == nil {
+			if b, err := cel.ParseValue(src, cel.WithUnit(cel.Bytes)); err == nil {
 				checkSpans(t, src, b, true)
 			}
 		}

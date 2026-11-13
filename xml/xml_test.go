@@ -319,7 +319,7 @@ func TestEntityPositions(t *testing.T) {
 	}
 }
 
-// TestRecognize checks that Recognize and ParseAST agree on every input of the tests.
+// TestRecognize checks that Recognize and ParseValue agree on every input of the tests.
 func TestRecognize(t *testing.T) {
 	inputs := []string{`<a/>`, `<a></b>`, `<!DOCTYPE a [<!ENTITY e "x">]><a>&e;</a>`, `<a>]]></a>`, ``}
 	files, _ := filepath.Glob("testdata/*.txt")
@@ -331,10 +331,10 @@ func TestRecognize(t *testing.T) {
 		inputs = append(inputs, string(data))
 	}
 	for _, in := range inputs {
-		_, perr := xml.ParseAST(in)
+		_, perr := xml.ParseValue(in)
 		rerr := xml.Recognize(in)
 		if (perr == nil) != (rerr == nil) || perr != nil && perr.Error() != rerr.Error() {
-			t.Errorf("%q: ParseAST: %v, Recognize: %v", in, perr, rerr)
+			t.Errorf("%q: ParseValue: %v, Recognize: %v", in, perr, rerr)
 		}
 	}
 }

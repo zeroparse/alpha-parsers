@@ -58,19 +58,19 @@ func TestPolicies(t *testing.T) {
 			t.Errorf("%q: %v", p, err)
 		}
 	}
-	if _, err := cel.ParseAST(large); err != nil {
+	if _, err := cel.ParseValue(large); err != nil {
 		t.Error(err)
 	}
 }
 
 // The benchmarks parse every policy in turn, so that the time per op is that of parsing the full suite of typical expressions.
 
-func BenchmarkPoliciesParseAST(b *testing.B) {
+func BenchmarkPoliciesParseValue(b *testing.B) {
 	b.SetBytes(policyBytes())
 	b.ReportAllocs()
 	for b.Loop() {
 		for _, p := range policies {
-			if _, err := cel.ParseAST(p); err != nil {
+			if _, err := cel.ParseValue(p); err != nil {
 				b.Fatal(err)
 			}
 		}
@@ -89,11 +89,11 @@ func BenchmarkPoliciesParseExpr(b *testing.B) {
 	}
 }
 
-func BenchmarkLargeParseAST(b *testing.B) {
+func BenchmarkLargeParseValue(b *testing.B) {
 	b.SetBytes(int64(len(large)))
 	b.ReportAllocs()
 	for b.Loop() {
-		if _, err := cel.ParseAST(large); err != nil {
+		if _, err := cel.ParseValue(large); err != nil {
 			b.Fatal(err)
 		}
 	}

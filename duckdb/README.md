@@ -20,7 +20,7 @@ The module `zeroparse.dev/alpha-parsers` is not published, so `go get` cannot fe
 import "zeroparse.dev/alpha-parsers/duckdb/types"
 
 // The script as typed values, each node with its Span in the input.
-script, err := duckdb.ParseAST(`SELECT region, sum(amount) AS total FROM sales WHERE year = 2024 GROUP BY region`)
+script, err := duckdb.ParseValue(`SELECT region, sum(amount) AS total FROM sales WHERE year = 2024 GROUP BY region`)
 sel := script.Statements[0].(*types.Select)
 core := sel.Body.(*types.SelectCore)
 for _, item := range core.Items {
@@ -42,12 +42,12 @@ duckdb.Inspect(script, func(n any) bool {
 })
 
 // A syntax error.
-_, err = duckdb.ParseAST("SELECT 1 UNION")    // a *duckdb.SyntaxError with Line, Col, Pos
+_, err = duckdb.ParseValue("SELECT 1 UNION")    // a *duckdb.SyntaxError with Line, Col, Pos
 ```
 
 | | |
 |:--|:--|
-| `ParseAST(input, opts...) (*types.Script, error)` | The script: `Statements`, each a `types.Select`, `types.InsertStmt`, `types.CreateTableStmt`, ... (the `types.Statement` union), with expressions, types and table references below them, and their `Span` |
+| `ParseValue(input, opts...) (*types.Script, error)` | The script: `Statements`, each a `types.Select`, `types.InsertStmt`, `types.CreateTableStmt`, ... (the `types.Statement` union), with expressions, types and table references below them, and their `Span` |
 | `Split(input) ([]StatementText, error)` | The statements as DuckDB splits the script: `Statement`, `Text`, `Start`, `End` |
 | `Kind(types.Statement) string` | The type DuckDB gives it: `SELECT`, `INSERT`, `CREATE`, `ALTER`, `COPY`, `SET`, ... |
 | `Inspect(node, fn)`, `SpanOf(node)` | The nodes in the order of the input (`fn` returns false to skip the children), and the span of any node |
@@ -61,7 +61,7 @@ _, err = duckdb.ParseAST("SELECT 1 UNION")    // a *duckdb.SyntaxError with Line
 | `QuoteIdent(name) string` | The name written so that it reads back as one identifier: between double quotes unless it is a plain word that is not a keyword that forbids it |
 | `*SyntaxError` | The position (`Line`, `Col`, `Pos`) and the expected tokens of a syntax error |
 
-Positions are in code points by default; `duckdb.ParseAST(src, duckdb.WithUnit(duckdb.Bytes))` counts bytes (`Split` uses bytes).
+Positions are in code points by default; `duckdb.ParseValue(src, duckdb.WithUnit(duckdb.Bytes))` counts bytes (`Split` uses bytes).
 
 ## The Syntax Tree
 
@@ -261,7 +261,7 @@ TestWriteBenchScript`), `go test -bench .` on an Apple M3 Max:
 
 | | Time | Throughput | Allocations |
 |:--|--:|--:|--:|
-| `ParseAST` | 46.6 ms | 5.6 MB/s | 74,000 |
+| `ParseValue` | 46.6 ms | 5.6 MB/s | 74,000 |
 | DuckDB 1.5.6: `extract_statements` of the same script (Python, which includes making the statement objects) | 11.9 ms | 22 MB/s | |
 
 DuckDB's time is the best of ten runs of `extract_statements` (the parser of DuckDB, and the step that makes its
@@ -283,9 +283,9 @@ print(len(statements), 'statements', round(best * 1000, 1), 'ms', round(len(sql)
 
 DuckDB's parser is C++ and parses the same script about four times as fast. The time here is mostly the cost of a grammar
 that has to decide, at each token, among the alternatives that the Bison automaton chooses by a table: the ordered choice
-of a PEG tries them one after the other. In the CPU profile of `ParseAST`, about a tenth of the time is spent recording
+of a PEG tries them one after the other. In the CPU profile of `ParseValue`, about a tenth of the time is spent recording
 what each failed alternative expected (for the error message), another tenth in the memo table, and another in the
-allocator and the garbage collector. Tuning the grammar took `ParseAST` from 4.1 MB/s to
+allocator and the garbage collector. Tuning the grammar took `ParseValue` from 4.1 MB/s to
 5.6 MB/s: the operators of the expressions are tried only when the character that follows could begin them, a function call
 is not parsed twice to find that no string literal follows it, `IN`, `LIKE`, `IS` and the rest are one operator each, and
 the benchmarked version compared a word with unreserved keywords beginning with its letter, rather than all 330
@@ -306,7 +306,7 @@ go test .                             # parser.go up to date; golden files on ev
 cd duckdb && go test ./...            # conformance against the reference data, the examples, the other tests
 go test -short                        # a fraction of the texts
 go test -bench .                      # benchmarks
-go test -fuzz FuzzParse               # fuzz the parser (ParseAST agrees between position units, nothing panics)
+go test -fuzz FuzzParse               # fuzz the parser (ParseValue agrees between position units, nothing panics)
 NESTING_LIMITS=1 go test -v -run TestNesting   # the depth at which each construct fails
 ```
 

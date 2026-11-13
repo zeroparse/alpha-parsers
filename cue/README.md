@@ -40,7 +40,7 @@ for _, d := range f.Decls {
 }
 
 // Only the syntax tree of the grammar, without the checks that come after it (see Conformance).
-f, err = cue.ParseAST(`a: b + 1 * c.d`)
+f, err = cue.ParseValue(`a: b + 1 * c.d`)
 be := f.Decls[0].(*types.Field).Value.(*types.BinaryExpr) // be.Op.Text is "+"; be.Y is the product
 
 // Values of literals.
@@ -60,11 +60,11 @@ var ce *cue.SemanticError // found after the syntax: Msg, Line, Col, Span
 
 | | |
 |:--|:--|
-| `ParseFile(input, unit...) (*types.File, error)` | The syntax tree, accepted exactly when `cue/parser.ParseFile` accepts the input: `ParseAST`, then `Check`, and an error for invalid UTF-8 |
+| `ParseFile(input, unit...) (*types.File, error)` | The syntax tree, accepted exactly when `cue/parser.ParseFile` accepts the input: `ParseValue`, then `Check`, and an error for invalid UTF-8 |
 | `Valid(input) bool` | Whether `ParseFile` accepts the input |
-| `ParseAST(input, opts...) (*types.File, error)` | The syntax tree as the grammar reads it: the syntax of every experiment, without the checks of `Check` |
+| `ParseValue(input, opts...) (*types.File, error)` | The syntax tree as the grammar reads it: the syntax of every experiment, without the checks of `Check` |
 | `Check(*types.File) error` | The errors `cue/parser` reports besides those of the syntax (see Conformance), as a `*SemanticError` |
-| `Parse(input, opts...) (*Node, error)`, `Recognize(input, opts...) error` | The tree of `*Node`, as the engine returns it; only checking (the same syntax as `ParseAST`) |
+| `Parse(input, opts...) (*Node, error)`, `Recognize(input, opts...) error` | The tree of `*Node`, as the engine returns it; only checking (the same syntax as `ParseValue`) |
 | `types.File`, `types.Package`, `types.ImportDecl`, `types.Field`, `types.Comprehension`, `types.StructLit`, `types.ListLit`, `types.BinaryExpr`, ... | The syntax tree, modeled on `cuelang.org/go/cue/ast`, each node with its `Span` |
 | `Inspect(node, f)`, `SpanOf(node)` | Depth-first traversal as `ast.Inspect`; the span of any node |
 | `Comments(src, unit...) []Comment` | The comments of the source, in order, with their spans |
@@ -103,7 +103,7 @@ joined to the sources by name and hash:
 | `TestMutants` | Each source with 8 random single edits (a byte or a span of bytes inserted, deleted or replaced, a line deleted, duplicated, swapped or joined, a token deleted, duplicated, swapped, inserted or replaced from a vocabulary of CUE tokens, truncation): acceptance and the hash of the tree | 32,488 | 0 differ |
 | `TestGenerated` | Random strings (hashes, quotes, multi-line, escapes, interpolations, flaws), numbers and token sequences: acceptance and the hash of the tree | 15,000 (1,493 accepted) | 0 differ |
 | `TestLiterals` | `Unquote`, `Int.Value` and `Float.Rat` against `cue/literal`: whether decoding fails, and the value | 4,126 literals (3,626 strings, 359 integers, 141 floats) | 0 differ |
-| `FuzzParse` | `ParseAST`, `Parse` and `Recognize` accept the same inputs, no panic, spans nest | `go test -fuzz FuzzParse`; 1.5 million inputs in 90 s | no failure |
+| `FuzzParse` | `ParseValue`, `Parse` and `Recognize` accept the same inputs, no panic, spans nest | `go test -fuzz FuzzParse`; 1.5 million inputs in 90 s | no failure |
 
 The same tests run on sets that are too large to store, made by `refgen` with other seeds (the mutants and the
 generated inputs are recorded with the hash of the input, so the test detects that its generator and `refgen`'s are
@@ -130,7 +130,7 @@ have; the indentation of the lines of a string with interpolations on several li
 `astutil.Resolve` (an alias or `let` declared twice in a scope, a field named as an alias of the scope, a postfix
 alias with the blank identifier or that clashes with a label alias, a reference in a pattern constraint to a field of its
 struct); and input that is not UTF-8. Of the 98 sources of the corpus that the reference rejects, 16 are rejected
-by these checks and not by the syntax: `ParseAST`, `Parse` and `Recognize` accept them. The grammar reads the syntax of
+by these checks and not by the syntax: `ParseValue`, `Parse` and `Recognize` accept them. The grammar reads the syntax of
 all experiments because a variable of the grammar that says which experiments are on would make every memoized rule a
 function of it.
 
@@ -148,7 +148,7 @@ function of it.
   parentheses, about 50,000 of calls, 99,981 prefix operators in a chain). Input nested between the two limits is
   accepted by one and rejected by the other.
 - **Language versions.** Only the latest syntax is read: there is no `@lang` version selection of older releases.
-- **Invalid UTF-8.** `ParseFile` rejects it as `cue/parser` does; `ParseAST` reads it inside strings and comments as
+- **Invalid UTF-8.** `ParseFile` rejects it as `cue/parser` does; `ParseValue` reads it inside strings and comments as
   U+FFFD, and rejects it elsewhere.
 - **The Unicode tables** (letters and digits in identifiers) are those of Go 1.27.1's `unicode` package (Unicode 17.0.0), written into
   the grammar by [internal/unitab](internal/unitab); `TestUnicodeTables` checks the edges of every range against the
@@ -163,7 +163,7 @@ On 256 KB of CUE (`go test -bench .`; minimum of 6 runs on a shared Apple M3 Max
 |:--|--:|--:|
 | `cue/parser.ParseFile` | 7.6 ms (34 MB/s), 6.0 MB, 107,946 allocs | 6.2 ms (42 MB/s), 5.0 MB, 73,570 allocs |
 | `ParseFile` | 26.9 ms (9.8 MB/s), 14.8 MB, 141,878 allocs | 20.1 ms (13 MB/s), 10.3 MB, 115,313 allocs |
-| `ParseAST` | 24.6 ms | 17.9 ms |
+| `ParseValue` | 24.6 ms | 17.9 ms |
 
 *config* is a synthetic configuration of services (definitions, constraints, disjunctions, comprehensions,
 interpolations, comments; 262,824 bytes); *corpus* is the sources of the test corpus that have no package clause,
@@ -177,7 +177,7 @@ CUE_BENCH_OUT=/tmp/corpus.cue CUE_BENCH_CONFIG_OUT=/tmp/config.cue go test -run 
 cd internal/refgen && go run . -bench /tmp/config.cue                      # cue/parser on them
 ```
 
-How the grammar got there (each step measured on *config*, `ParseAST`):
+How the grammar got there (each step measured on *config*, `ParseValue`):
 
 - Rules start with a lookahead on the first character, where a rule is tried at every declaration and rarely matches
   (a failure that is recorded in the set of expectations costs a search of the set).

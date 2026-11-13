@@ -47,8 +47,8 @@ func ExampleDecode_error() {
 	// 1 10 mismatched end tag
 }
 
-func ExampleParseAST() {
-	doc, err := xml.ParseAST(`<a x="1"><b>text</b><!-- note --></a>`)
+func ExampleParseValue() {
+	doc, err := xml.ParseValue(`<a x="1"><b>text</b><!-- note --></a>`)
 	if err != nil {
 		panic(err)
 	}

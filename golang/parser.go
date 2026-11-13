@@ -858,22 +858,22 @@ func (a *tslabs) MemoryBytes() uint64 {
 	return a.tArrayType.MemoryBytes() + a.tAssignStmt.MemoryBytes() + a.tBinaryExpr.MemoryBytes() + a.tBlockStmt.MemoryBytes() + a.tBranchStmt.MemoryBytes() + a.tCallExpr.MemoryBytes() + a.tCaseClause.MemoryBytes() + a.tChanType.MemoryBytes() + a.tCommClause.MemoryBytes() + a.tCompositeLit.MemoryBytes() + a.tDeclStmt.MemoryBytes() + a.tDeferStmt.MemoryBytes() + a.tEllipsis.MemoryBytes() + a.tEmptyStmt.MemoryBytes() + a.tExprStmt.MemoryBytes() + a.tField.MemoryBytes() + a.tFieldList.MemoryBytes() + a.tFile.MemoryBytes() + a.tForStmt.MemoryBytes() + a.tFuncDecl.MemoryBytes() + a.tFuncLit.MemoryBytes() + a.tFuncType.MemoryBytes() + a.tGenDecl.MemoryBytes() + a.tGoStmt.MemoryBytes() + a.tIfStmt.MemoryBytes() + a.tImportSpec.MemoryBytes() + a.tIncDecStmt.MemoryBytes() + a.tIndexExpr.MemoryBytes() + a.tIndexListExpr.MemoryBytes() + a.tInterfaceType.MemoryBytes() + a.tKeyValueExpr.MemoryBytes() + a.tLabeledStmt.MemoryBytes() + a.tMapType.MemoryBytes() + a.tParenExpr.MemoryBytes() + a.tRangeStmt.MemoryBytes() + a.tReturnStmt.MemoryBytes() + a.tSelectStmt.MemoryBytes() + a.tSelectorExpr.MemoryBytes() + a.tSendStmt.MemoryBytes() + a.tSliceExpr.MemoryBytes() + a.tStarExpr.MemoryBytes() + a.tStructType.MemoryBytes() + a.tSwitchStmt.MemoryBytes() + a.tTypeAssertExpr.MemoryBytes() + a.tTypeSpec.MemoryBytes() + a.tTypeSwitchStmt.MemoryBytes() + a.tUnaryExpr.MemoryBytes() + a.tValueSpec.MemoryBytes() + a.tl0Chunk.MemoryBytes() + a.tl1Chunk.MemoryBytes() + a.tl2Chunk.MemoryBytes() + a.tl3Chunk.MemoryBytes() + a.tl4Chunk.MemoryBytes() + a.tl5Chunk.MemoryBytes()
 }
 
-// ParseAST parses the input like Parse and returns the result as typed values. If the parse recovered
+// ParseValue parses the input like Parse and returns the result as typed values. If the parse recovered
 // from errors, the result is returned together with SyntaxErrors; an Error node where a struct
 // type is expected becomes nil.
 // It builds the values directly, without the nodes Parse returns.
-func ParseAST(input string, opts ...rt.ParseOption) (*types.File, error) {
+func ParseValue(input string, opts ...rt.ParseOption) (*types.File, error) {
 	a := &tslabs{}
 	return rt.TParse(trules[0], input, opts, a, func(v any) *types.File { return rt.TAs[*types.File](v) })
 }
 
-// ParseRuleAST parses the whole input with the named start rule and returns its typed value; an empty
+// ParseRuleValue parses the whole input with the named start rule and returns its typed value; an empty
 // name selects the grammar's default start rule.
 // Recovered values accompany SyntaxErrors. Nil results and failed parses return the selected type's zero value.
 // Invalid options and names of rules that are not start rules return nil with an error. Start rule result types:
 //
 //	main: *types.File
-func ParseRuleAST(name, input string, opts ...rt.ParseOption) (any, error) {
+func ParseRuleValue(name, input string, opts ...rt.ParseOption) (any, error) {
 	o, err := rt.ResolveOptions(zpGrammar, opts)
 	if err != nil {
 		return nil, err

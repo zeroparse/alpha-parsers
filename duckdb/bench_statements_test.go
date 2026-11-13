@@ -52,7 +52,7 @@ func BenchmarkStatements(b *testing.B) {
 		b.Run(tc.name, func(b *testing.B) {
 			b.SetBytes(int64(len(src)))
 			for b.Loop() {
-				if _, err := duckdb.ParseAST(src); err != nil {
+				if _, err := duckdb.ParseValue(src); err != nil {
 					b.Fatal(err)
 				}
 			}

@@ -18,8 +18,8 @@ func ExampleDecode() {
 	// Output: zp [peg pratt] 42
 }
 
-func ExampleParseAST() {
-	v, err := json.ParseAST(`{"a": [1, true], "b": "x\ty"}`)
+func ExampleParseValue() {
+	v, err := json.ParseValue(`{"a": [1, true], "b": "x\ty"}`)
 	if err != nil {
 		panic(err)
 	}
@@ -31,8 +31,8 @@ func ExampleParseAST() {
 	// "b" at 17-28: *types.String
 }
 
-func ExampleParseAST_syntaxError() {
-	_, err := json.ParseAST(`{"a": [1, 2,]}`)
+func ExampleParseValue_syntaxError() {
+	_, err := json.ParseValue(`{"a": [1, 2,]}`)
 	var se *json.SyntaxError
 	if errors.As(err, &se) {
 		fmt.Println(se.Line, se.Col, se.Message())

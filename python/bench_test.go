@@ -43,22 +43,22 @@ func benchmark(b *testing.B, parse func(string) error) {
 	}
 }
 
-// BenchmarkParseAST parses to the typed AST, without the checks of ParseModule.
-func BenchmarkParseAST(b *testing.B) {
-	benchmark(b, func(src string) error { _, err := python.ParseAST(src); return err })
+// BenchmarkParseValue parses to the typed AST, without the checks of ParseModule.
+func BenchmarkParseValue(b *testing.B) {
+	benchmark(b, func(src string) error { _, err := python.ParseValue(src); return err })
 }
 
-// BenchmarkParseASTBytes measures the same typed inputs with byte positions.
-func BenchmarkParseASTBytes(b *testing.B) {
-	benchmark(b, func(src string) error { _, err := python.ParseAST(src, python.WithUnit(python.Bytes)); return err })
+// BenchmarkParseValueBytes measures the same typed inputs with byte positions.
+func BenchmarkParseValueBytes(b *testing.B) {
+	benchmark(b, func(src string) error { _, err := python.ParseValue(src, python.WithUnit(python.Bytes)); return err })
 }
 
-// BenchmarkParseModule is ParseAST and the checks that ast.parse makes outside its grammar.
+// BenchmarkParseModule is ParseValue and the checks that ast.parse makes outside its grammar.
 func BenchmarkParseModule(b *testing.B) {
 	benchmark(b, func(src string) error { _, err := python.ParseModule(src); return err })
 }
 
-// BenchmarkDump prints the tree as ast.dump does (ParseAST is not part of the measurement).
+// BenchmarkDump prints the tree as ast.dump does (ParseValue is not part of the measurement).
 func BenchmarkDump(b *testing.B) {
 	data, err := os.ReadFile(filepath.Join(benchDir(b), "typing.py"))
 	if err != nil {

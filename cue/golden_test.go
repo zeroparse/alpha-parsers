@@ -20,7 +20,7 @@ func TestGolden(t *testing.T) {
 			t.Fatal(err)
 		}
 		var got string
-		n, err := ParseAST(string(data))
+		n, err := ParseValue(string(data))
 		if n != nil {
 			got = render(n)
 		}

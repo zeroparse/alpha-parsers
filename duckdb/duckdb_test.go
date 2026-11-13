@@ -26,7 +26,7 @@ func TestGolden(t *testing.T) {
 			t.Fatal(err)
 		}
 		var got string
-		n, err := duckdb.ParseAST(string(data))
+		n, err := duckdb.ParseValue(string(data))
 		if n != nil {
 			got = render(n)
 		}
@@ -49,7 +49,7 @@ func TestGolden(t *testing.T) {
 // find returns the nodes of type T of the tree that parsing sql gives.
 func find[T any](t *testing.T, sql string) []*T {
 	t.Helper()
-	script, err := duckdb.ParseAST(sql, duckdb.WithUnit(duckdb.Bytes))
+	script, err := duckdb.ParseValue(sql, duckdb.WithUnit(duckdb.Bytes))
 	if err != nil {
 		t.Fatalf("%q: %v", sql, err)
 	}
@@ -294,7 +294,7 @@ func TestKind(t *testing.T) {
 		{"CHECKPOINT", "CALL"},
 		{"CALL f()", "CALL"},
 	} {
-		script, err := duckdb.ParseAST(tc.sql)
+		script, err := duckdb.ParseValue(tc.sql)
 		if err != nil {
 			t.Errorf("%q: %v", tc.sql, err)
 			continue
@@ -350,7 +350,7 @@ func TestSpans(t *testing.T) {
 			t.Fatal(err)
 		}
 		src := string(data)
-		script, err := duckdb.ParseAST(src, duckdb.WithUnit(duckdb.Bytes))
+		script, err := duckdb.ParseValue(src, duckdb.WithUnit(duckdb.Bytes))
 		if err != nil {
 			continue // syntax_error.txt
 		}
@@ -387,7 +387,7 @@ func TestSpans(t *testing.T) {
 }
 
 func TestInspect(t *testing.T) {
-	script, err := duckdb.ParseAST("SELECT a + 1 AS x FROM t WHERE b")
+	script, err := duckdb.ParseValue("SELECT a + 1 AS x FROM t WHERE b")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -416,7 +416,7 @@ func TestInspect(t *testing.T) {
 }
 
 func TestSyntaxError(t *testing.T) {
-	_, err := duckdb.ParseAST("SELECT 1\nFROM")
+	_, err := duckdb.ParseValue("SELECT 1\nFROM")
 	se, ok := err.(*duckdb.SyntaxError)
 	if !ok {
 		t.Fatalf("error %T: %v", err, err)
@@ -424,15 +424,15 @@ func TestSyntaxError(t *testing.T) {
 	if se.Line != 2 || se.Col != 5 {
 		t.Errorf("error at %d:%d: %v", se.Line, se.Col, se)
 	}
-	if _, err := duckdb.ParseAST("SELECT 1\nFROM"); err == nil {
-		t.Error("ParseAST accepted SELECT 1 FROM")
+	if _, err := duckdb.ParseValue("SELECT 1\nFROM"); err == nil {
+		t.Error("ParseValue accepted SELECT 1 FROM")
 	}
-	if _, err := duckdb.ParseAST("SELECT 1"); err != nil {
-		t.Errorf("ParseAST: %v", err)
+	if _, err := duckdb.ParseValue("SELECT 1"); err != nil {
+		t.Errorf("ParseValue: %v", err)
 	}
 }
 
-// FuzzParse checks that ParseAST agrees with the interpreter running the grammar and with itself in both position units, and that Split and Inspect do not panic.
+// FuzzParse checks that ParseValue agrees with the interpreter running the grammar and with itself in both position units, and that Split and Inspect do not panic.
 func FuzzParse(f *testing.F) {
 	for _, s := range []string{
 		"SELECT 1", "SELECT a, b FROM t WHERE c IN (1, 2) ORDER BY 1", "FROM t SELECT [x for x in l]",
@@ -442,14 +442,14 @@ func FuzzParse(f *testing.F) {
 		f.Add(s)
 	}
 	f.Fuzz(func(t *testing.T, s string) {
-		script, perr := duckdb.ParseAST(s)
-		_, rerr := duckdb.ParseAST(s, duckdb.WithUnit(duckdb.Bytes))
+		script, perr := duckdb.ParseValue(s)
+		_, rerr := duckdb.ParseValue(s, duckdb.WithUnit(duckdb.Bytes))
 		// The interpreter running the grammar gives the same result, errors and range.
 		agreeWithInterpreter(t, s)
 		// A byte that is not UTF-8 is one code point (U+FFFD) and one byte, which decide differently where a
 		// character is required to match another (the tag of a dollar-quoted string).
 		if utf8.ValidString(s) && (perr == nil) != (rerr == nil) {
-			t.Fatalf("%q: ParseAST: %v, in bytes: %v", s, perr, rerr)
+			t.Fatalf("%q: ParseValue: %v, in bytes: %v", s, perr, rerr)
 		}
 		if perr == nil {
 			duckdb.Inspect(script, func(any) bool { return true })

@@ -40,11 +40,11 @@ var benchInput = func() string {
 	return b.String()
 }()
 
-func BenchmarkParseAST(b *testing.B) {
+func BenchmarkParseValue(b *testing.B) {
 	b.SetBytes(int64(len(benchInput)))
 	b.ReportAllocs()
 	for b.Loop() {
-		if _, err := xml.ParseAST(benchInput); err != nil {
+		if _, err := xml.ParseValue(benchInput); err != nil {
 			b.Fatal(err)
 		}
 	}

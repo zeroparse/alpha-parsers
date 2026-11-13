@@ -47,7 +47,7 @@ func spanOf(v any) (start, end int, ok bool) {
 	return start, end, true
 }
 
-// interpreterDiff compares ParseAST with the interpreter p, in both position units: they must accept the same input
+// interpreterDiff compares ParseValue with the interpreter p, in both position units: they must accept the same input
 // with the same error (message, line, column and offset), and the value must cover the range of p's node. It
 // returns what differs, or "".
 func interpreterDiff(src string, p *zp.Parser) string {
@@ -56,16 +56,16 @@ func interpreterDiff(src string, p *zp.Parser) string {
 		g    PositionUnit
 		i    zp.PositionUnit
 	}{{"code points", CodePoints, zp.CodePoints}, {"bytes", Bytes, zp.Bytes}} {
-		v, gerr := ParseAST(src, WithUnit(unit.g))
+		v, gerr := ParseValue(src, WithUnit(unit.g))
 		n, ierr := p.Parse(src, zp.WithUnit(unit.i))
 		if (gerr == nil) != (ierr == nil) || (gerr != nil && gerr.Error() != ierr.Error()) {
-			return fmt.Sprintf("%q (%s): ParseAST: %v; interpreter: %v", src, unit.name, gerr, ierr)
+			return fmt.Sprintf("%q (%s): ParseValue: %v; interpreter: %v", src, unit.name, gerr, ierr)
 		}
 		if gerr != nil {
 			continue
 		}
 		if start, end, ok := spanOf(v); ok && n != nil && (start != n.Start() || end != n.End()) {
-			return fmt.Sprintf("%q (%s): ParseAST covers %d..%d; interpreter %d..%d", src, unit.name, start, end, n.Start(), n.End())
+			return fmt.Sprintf("%q (%s): ParseValue covers %d..%d; interpreter %d..%d", src, unit.name, start, end, n.Start(), n.End())
 		}
 	}
 	return ""
@@ -104,7 +104,7 @@ func TestInterpreterOracle(t *testing.T) {
 	if interpreterDiff("x: a &| b", other) == "" {
 		t.Error("a mutated interpreter agrees on an input it accepts")
 	}
-	v, err := ParseAST("x: \"é\" + 1", WithUnit(Bytes))
+	v, err := ParseValue("x: \"é\" + 1", WithUnit(Bytes))
 	if err != nil {
 		t.Fatal(err)
 	}

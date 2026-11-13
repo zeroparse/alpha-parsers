@@ -28,24 +28,24 @@ var benchInput = func() string {
 	return b.String()
 }()
 
-func BenchmarkParseAST(b *testing.B) {
+func BenchmarkParseValue(b *testing.B) {
 	b.SetBytes(int64(len(benchInput)))
 	b.ReportAllocs()
 	for b.Loop() {
-		if _, err := json.ParseAST(benchInput); err != nil {
+		if _, err := json.ParseValue(benchInput); err != nil {
 			b.Fatal(err)
 		}
 	}
 }
 
-func BenchmarkSmallParseAST(b *testing.B) {
+func BenchmarkSmallParseValue(b *testing.B) {
 	const input = `{"id":1,"name":"a","ok":true}`
 	for _, unit := range []json.PositionUnit{json.CodePoints, json.Bytes} {
 		b.Run(fmt.Sprint(unit), func(b *testing.B) {
 			b.SetBytes(int64(len(input)))
 			b.ReportAllocs()
 			for b.Loop() {
-				if _, err := json.ParseAST(input, json.WithUnit(unit)); err != nil {
+				if _, err := json.ParseValue(input, json.WithUnit(unit)); err != nil {
 					b.Fatal(err)
 				}
 			}

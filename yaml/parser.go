@@ -344,22 +344,22 @@ func (a *tslabs) MemoryBytes() uint64 {
 	return a.tDirective.MemoryBytes() + a.tDocument.MemoryBytes() + a.tMapping.MemoryBytes() + a.tPair.MemoryBytes() + a.tProperties.MemoryBytes() + a.tScalar.MemoryBytes() + a.tSequence.MemoryBytes() + a.tStream.MemoryBytes() + a.tl0Chunk.MemoryBytes() + a.tl1Chunk.MemoryBytes() + a.tl2Chunk.MemoryBytes() + a.tl3Chunk.MemoryBytes() + a.tl4Chunk.MemoryBytes()
 }
 
-// ParseAST parses the input like Parse and returns the result as typed values. If the parse recovered
+// ParseValue parses the input like Parse and returns the result as typed values. If the parse recovered
 // from errors, the result is returned together with SyntaxErrors; an Error node where a struct
 // type is expected becomes nil.
 // It builds the values directly, without the nodes Parse returns.
-func ParseAST(input string, opts ...rt.ParseOption) (*types.Stream, error) {
+func ParseValue(input string, opts ...rt.ParseOption) (*types.Stream, error) {
 	a := &tslabs{}
 	return rt.TParse(trules[0], input, opts, a, func(v any) *types.Stream { return rt.TAs[*types.Stream](v) })
 }
 
-// ParseRuleAST parses the whole input with the named start rule and returns its typed value; an empty
+// ParseRuleValue parses the whole input with the named start rule and returns its typed value; an empty
 // name selects the grammar's default start rule.
 // Recovered values accompany SyntaxErrors. Nil results and failed parses return the selected type's zero value.
 // Invalid options and names of rules that are not start rules return nil with an error. Start rule result types:
 //
 //	main: *types.Stream
-func ParseRuleAST(name, input string, opts ...rt.ParseOption) (any, error) {
+func ParseRuleValue(name, input string, opts ...rt.ParseOption) (any, error) {
 	o, err := rt.ResolveOptions(zpGrammar, opts)
 	if err != nil {
 		return nil, err

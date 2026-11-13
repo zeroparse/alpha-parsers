@@ -21,14 +21,14 @@ type StatementText struct {
 // Split parses a script and returns its statements with their texts, as DuckDB splits it. The error is the
 // syntax error of the script (the script is not split if it has one: DuckDB parses all of it first).
 func Split(input string) ([]StatementText, error) {
-	script, err := ParseAST(input, WithUnit(Bytes))
+	script, err := ParseValue(input, WithUnit(Bytes))
 	if err != nil {
 		return nil, err
 	}
 	return SplitScript(input, script), nil
 }
 
-// SplitScript is Split for a script that ParseAST parsed with the position unit Bytes.
+// SplitScript is Split for a script that ParseValue parsed with the position unit Bytes.
 func SplitScript(input string, script *types.Script) []StatementText {
 	out := make([]StatementText, 0, len(script.Statements))
 	// the last semicolon before the next statement starts the text of the statement

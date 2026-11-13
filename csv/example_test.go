@@ -40,8 +40,8 @@ func ExampleTable() {
 	// csv: line 3: record has 1 fields, the header has 2
 }
 
-func ExampleParseAST() {
-	f, err := csv.ParseAST("a,\"b\"\"c\"\n\nd\n")
+func ExampleParseValue() {
+	f, err := csv.ParseValue("a,\"b\"\"c\"\n\nd\n")
 	if err != nil {
 		panic(err)
 	}

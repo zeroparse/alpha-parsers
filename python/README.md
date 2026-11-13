@@ -56,7 +56,7 @@ if errors.As(err, &se) {
 | | |
 |:--|:--|
 | `ParseModule(src, unit...) (*types.Module, error)` | Parses a module, as `ast.parse(src)` does, and makes the checks below |
-| `ParseAST(src, opts...) (*types.Module, error)` | The parser alone, to the typed AST |
+| `ParseValue(src, opts...) (*types.Module, error)` | The parser alone, to the typed AST |
 | `Check(m, src, unit...) error` | The checks of `ast.parse` that are not in its grammar: `\N{...}` names, the limit of 4300 digits of integers, `from __future__` features, identifiers that normalize to `None`/`True`/`False`, `<>` and `!=` (with `barry_as_FLUFL`) |
 | `Dump(node) string`, `DumpWithPositions(node, src, unit...) string` | The tree printed as `ast.dump` does, without and with `include_attributes=True` |
 | `Inspect(node, f)` | Walks the tree depth first |
@@ -95,7 +95,7 @@ same `ast.dump`, and for the accepted ones the same positions of every node (`Du
 Every difference these tests found was fixed (the snippets alone found five rules the grammar had missed, and the
 mutations a line continuation before the end of the input). The positions are the same for all 28,362 sources that
 both accept (the files and the snippets of the table). A fuzz test (`FuzzParse`) checks that the parser never panics and that
-`ParseAST`, `Recognize` and the dumps agree.
+`ParseValue`, `Recognize` and the dumps agree.
 
 The tests that need only Go (`go test`) run the reference data in `testdata`: the CPython results, from
 `ast.parse`, for the 61,540 snippets and for 13 test files of `Lib/test` (see [testdata/README.md](testdata/README.md)).
@@ -111,9 +111,9 @@ The others run CPython 3.14 and are skipped without it.
   a failed parse with its `invalid_*` rules (`Maybe you meant '==' or ':=' instead of '='?`, `Missing parentheses in
   call to 'print'`, `'(' was never closed`) and has classes of its own for tabs and indentation (`TabError`,
   `IndentationError`). None of that is reproduced, and error positions are not compared with CPython's.
-- **`ParseAST` does not make the checks that `ParseModule` makes** (`Check`): the names of `\N{...}` escapes, the digit
+- **`ParseValue` does not make the checks that `ParseModule` makes** (`Check`): the names of `\N{...}` escapes, the digit
   limit, future features, `<>` and `!=`, and identifiers that normalize to a constant. 10 of the 35,341 invalid
-  snippets are rejected only by them, and `ParseAST` alone accepts them.
+  snippets are rejected only by them, and `ParseValue` alone accepts them.
 - **The input is text**, as for `ast.parse(str)`: the encoding declaration (`# coding: latin-1`) and a byte order mark
   are not read, so decode the file first (a BOM left in the text is an error, as in `ast.parse(str)`). Invalid UTF-8 is read as U+FFFD, which
   is accepted in strings and comments and rejected elsewhere. Only mode `exec` is implemented, with no type comments,
@@ -153,7 +153,7 @@ Choices that measurably help, each commented in the grammar:
 - Constants and string parts are kept as source text and decoded on demand (`ConstantValue`), and the large integers
   of the grammar are computed with multiplications (the bytecode backends truncate integer literals of 2^31 and more).
 
-`ParseAST` builds its values directly, since every value has a Go type of its own, which the generator compiles into
+`ParseValue` builds its values directly, since every value has a Go type of its own, which the generator compiles into
 direct code (see the [code generation guide](https://github.com/zeroparse/zp/blob/main/docs/guide/generated-typed-values.md)).
 
 ## Performance
@@ -165,16 +165,16 @@ Apple M3 Max, Go 1.27, median of 3 runs of 100 iterations):
 | | `_pydecimal.py` (229 KB) | | `typing.py` (135 KB) | |
 |:--|--:|--:|--:|--:|
 | | Time | Allocations | Time | Allocations |
-| `ParseAST` | 24.7 ms (9.3 MB/s) | 8.6 MB, 119,000 | 12.6 ms (10.7 MB/s) | 4.7 MB, 60,000 |
+| `ParseValue` | 24.7 ms (9.3 MB/s) | 8.6 MB, 119,000 | 12.6 ms (10.7 MB/s) | 4.7 MB, 60,000 |
 | `ParseModule` | 25.5 ms (9.0 MB/s) | 8.6 MB, 119,000 | 13.0 ms (10.4 MB/s) | 4.7 MB, 60,000 |
 | CPython 3.14.0 `ast.parse` (same files; builds Python objects) | 13.1 ms (17.5 MB/s) | | 8.4 ms (16.0 MB/s) | |
 
 CPython's `ast.parse` was timed outside the Go tests with `python3.14 -I internal/refgen/astparse_time.py
-_pydecimal.py typing.py` (median of 30 runs after 30 warm-ups). So `ParseAST` takes about 1.9 times and 1.5 times as long
+_pydecimal.py typing.py` (median of 30 runs after 30 warm-ups). So `ParseValue` takes about 1.9 times and 1.5 times as long
 as CPython's hand-written C parser, which builds its tree with Python objects, from a grammar that has no tokenizer.
 There is no Python parser in the Go standard library to compare with.
 
-About a third of the time of `ParseAST` is the tracking of what was expected for error messages: with that tracking
+About a third of the time of `ParseValue` is the tracking of what was expected for error messages: with that tracking
 switched off in a copy of the generated parser, `_pydecimal.py` takes 17.3 ms instead of 25.8 ms. The cost is in the
 generated runtime (`expect` and `mergeExpected`: a linear search in sets of up to 40 expectations, repeated for every
 memoized call), not in the grammar.

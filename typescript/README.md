@@ -20,7 +20,7 @@ The module `zeroparse.dev/alpha-parsers` is not published, so `go get` cannot fe
 import "zeroparse.dev/alpha-parsers/typescript/types"
 
 // Typed values with positions: a SourceFile of Statements, each node with its Span in the input.
-f, err := typescript.ParseAST("export const answer: number = 6 * 7;")
+f, err := typescript.ParseValue("export const answer: number = 6 * 7;")
 decl := f.Statements[0].(*types.VariableStatement).DeclarationList.Declarations[0]
 fmt.Println(typescript.AsNode(decl.Initializer).Range()) // 30 35: the BinaryExpression 6 * 7
 
@@ -29,7 +29,7 @@ f, err = typescript.ParseTSX("const el = <ul className=\"list\">{items.map((i) =
 f, err = typescript.ParseFile("main.mts", src) // by the name: "x.tsx" is TSX; a module's top level may await
 
 // Walk the tree by kind, in the order of forEachChild.
-f, err = typescript.ParseAST("fetch(url).then(log)")
+f, err = typescript.ParseValue("fetch(url).then(log)")
 typescript.Inspect(f, func(n typescript.ASTNode) bool {
 	if call, ok := n.(*types.CallExpression); ok {
 		fmt.Println(typescript.Kind(call.Expression), call.Start, call.End)
@@ -40,17 +40,17 @@ typescript.Inspect(f, func(n typescript.ASTNode) bool {
 // Identifier 0 10
 
 // Syntax errors, and only checking.
-_, err = typescript.ParseAST("const a = 1;\nconst b = ;")
+_, err = typescript.ParseValue("const a = 1;\nconst b = ;")
 var se *typescript.SyntaxError
 if errors.As(err, &se) {
 	fmt.Println(se.Line, se.Col, se.Message()) // 2 11 expected an expression
 }
-_, err = typescript.ParseAST("interface A { x: number }") // nil
+_, err = typescript.ParseValue("interface A { x: number }") // nil
 ```
 
 | | |
 |:--|:--|
-| `ParseAST(input, opts...) (*types.SourceFile, error)` | A `.ts` file as typed values: `Statements` and `EndOfFileToken`, every node a pointer to a struct or terminal type of this package, with its `Span` (`Start`, `End`) |
+| `ParseValue(input, opts...) (*types.SourceFile, error)` | A `.ts` file as typed values: `Statements` and `EndOfFileToken`, every node a pointer to a struct or terminal type of this package, with its `Span` (`Start`, `End`) |
 | `ParseTSX(input, unit...)`, `RecognizeTSX(input, unit...)` | The same for a `.tsx` file, where `<T>x` is not a type assertion and `<` starts JSX |
 | `ParseFile(name, input, unit...)` | By the name of the file (`IsTSX`); a module (see `IsExternalModule`) that may contain `await` at its top level is read in the await context, as the compiler reparses it, except `.d.ts` files |
 | `Kind(node) string` | The `SyntaxKind` name of a node (`"CallExpression"`, `"PlusToken"`, `"ExportKeyword"`, `"ThisKeyword"`) |
@@ -62,7 +62,7 @@ _, err = typescript.ParseAST("interface A { x: number }") // nil
 | `(*types.Identifier).Value()`, `(*types.PrivateIdentifier).Value()` | The name with its unicode escapes decoded |
 | `*SyntaxError`, `SyntaxErrors` | `Line`, `Col`, `Pos` and the expected tokens (or `Message()`) (with `WithExpectations()`; `ParseFile` passes it) of the first syntax error, after which parsing stops |
 
-Positions are in code points by default; `typescript.ParseAST(src, typescript.WithUnit(typescript.Bytes))` counts bytes. A node's `Span` covers its
+Positions are in code points by default; `typescript.ParseValue(src, typescript.WithUnit(typescript.Bytes))` counts bytes. A node's `Span` covers its
 tokens without the white space and comments before it, and the tree has the nodes the compiler's `forEachChild`
 visits: modifiers, decorators and type parameters are lists, tokens such as `?`, `!`, `...` and `=>` are nodes (only
 where the compiler keeps them), and `Identifier`, `Token`, `Modifier`, `KeywordTypeNode` and the literals hold their
@@ -172,7 +172,7 @@ Other tests, which need the compiler too:
 The tests that need no external tool: `TestGolden` (the trees of `testdata/*.txt`, also checked on every backend of
 the engine by `go test .`), `TestValid` and `TestInvalid` (sources the parser must accept and reject),
 `TestSpans`, `TestUnits`, `TestParseFile`, `TestErrors`, `TestKind`, the `Value` tests and `FuzzParse`
-(`go test -fuzz FuzzParse`: `ParseAST` agrees between position units on any input, and the ranges of a parsed file are
+(`go test -fuzz FuzzParse`: `ParseValue` agrees between position units on any input, and the ranges of a parsed file are
 valid; 2.8 million executions in 60 seconds without a failure).
 
 Cooked literal values discard line continuations, including LF, CR, CRLF, U+2028 and U+2029. These zero-width
@@ -222,12 +222,12 @@ parser (see the package documentation), and the other differences from it are th
 
 ## Performance
 
-`ParseAST` on files of 220 KB to 6 MB, on an Apple M3 Max (`go test -bench .`, the fastest of five runs of ten
+`ParseValue` on files of 220 KB to 6 MB, on an Apple M3 Max (`go test -bench .`, the fastest of five runs of ten
 iterations; the machine was not idle, so the figures are conservative), next to the compiler's parser
 (`ts.createSourceFile` on the same file in node 24 after a warm-up, with
 `node testdata/tsc-bench.js $ZP_TYPESCRIPT file...`, which is not part of the Go tests):
 
-| Source | Size | `ParseAST` | Throughput | Allocations | the compiler's parser |
+| Source | Size | `ParseValue` | Throughput | Allocations | the compiler's parser |
 |:--|--:|--:|--:|--:|--:|
 | synthetic code (generated by the benchmark) | 263 KB | 46.0 ms | 5.7 MB/s | 172,000 | 10.4 ms |
 | `lib.es5.d.ts` | 218 KB | 6.1 ms | 36 MB/s | 12,000 | 4.0 ms |
@@ -240,7 +240,7 @@ are left out without it. The parser is 1.5 to 2.5 times slower than the compiler
 files and 3 to 4.5 times on code (the synthetic source, dense in generics and types, is the slowest per byte).
 
 The first version of the grammar, which followed the compiler's order of alternatives, took about 110 ms, 10 ms, 110 ms,
-60 ms and 1.55 s for `ParseAST` on these files. The optimizations are commented in the grammar; what paid was
+60 ms and 1.55 s for `ParseValue` on these files. The optimizations are commented in the grammar; what paid was
 testing the next character before trying a rule that fails at once and records what it expected (the operators of
 the Operators Rule loops, whitespace, modifiers, arrow functions), dispatching on the first character or word (primary
 expressions, types, statements), and parsing a union, intersection or conditional type or expression once instead of

@@ -154,8 +154,8 @@ func TestConformanceSuite(t *testing.T) {
 			if _, err := cel.ParseExpr(src); err != nil {
 				t.Errorf("%s: %q: %v", filepath.Base(f), src, err)
 			}
-			if _, err := cel.ParseAST(src, cel.WithUnit(cel.Bytes)); err != nil {
-				t.Errorf("%s: %q: ParseAST in bytes: %v", filepath.Base(f), src, err)
+			if _, err := cel.ParseValue(src, cel.WithUnit(cel.Bytes)); err != nil {
+				t.Errorf("%s: %q: ParseValue in bytes: %v", filepath.Base(f), src, err)
 			}
 			agreeWithInterpreter(t, src)
 		}
@@ -179,7 +179,7 @@ func TestGolden(t *testing.T) {
 			t.Fatal(err)
 		}
 		var got string
-		n, err := cel.ParseAST(string(data))
+		n, err := cel.ParseValue(string(data))
 		if n != nil {
 			got = render(n)
 		}
@@ -213,14 +213,14 @@ func refSources(t testing.TB) []string {
 	return out
 }
 
-// TestAgreement checks that ParseAST accepts the same inputs and reports the same errors in both position units,
+// TestAgreement checks that ParseValue accepts the same inputs and reports the same errors in both position units,
 // and that it agrees with the interpreter running the grammar (agreeWithInterpreter).
 func TestAgreement(t *testing.T) {
 	for _, src := range refSources(t) {
-		_, aerr := cel.ParseAST(src)
-		_, berr := cel.ParseAST(src, cel.WithUnit(cel.Bytes))
+		_, aerr := cel.ParseValue(src)
+		_, berr := cel.ParseValue(src, cel.WithUnit(cel.Bytes))
 		if (aerr == nil) != (berr == nil) {
-			t.Fatalf("%q: ParseAST: %v, ParseAST in bytes: %v", src, aerr, berr)
+			t.Fatalf("%q: ParseValue: %v, ParseValue in bytes: %v", src, aerr, berr)
 		}
 		agreeWithInterpreter(t, src)
 	}
@@ -271,10 +271,10 @@ func checkSpans(t testing.TB, src string, e types.Expr, bytes bool) {
 // TestSpans checks the spans of every expression of the reference corpora, in both position units.
 func TestSpans(t *testing.T) {
 	for _, src := range refSources(t) {
-		if e, err := cel.ParseAST(src); err == nil {
+		if e, err := cel.ParseValue(src); err == nil {
 			checkSpans(t, src, e, false)
 		}
-		if e, err := cel.ParseAST(src, cel.WithUnit(cel.Bytes)); err == nil {
+		if e, err := cel.ParseValue(src, cel.WithUnit(cel.Bytes)); err == nil {
 			checkSpans(t, src, e, true)
 		}
 	}
@@ -452,8 +452,8 @@ func TestAdversarial(t *testing.T) {
 		{"names", "[" + r("abc.def.ghi, ", 5000) + "1]"},
 	} {
 		start := time.Now()
-		cel.ParseAST(tc.src)
-		cel.ParseAST(tc.src, cel.WithUnit(cel.Bytes))
+		cel.ParseValue(tc.src)
+		cel.ParseValue(tc.src, cel.WithUnit(cel.Bytes))
 		if d := time.Since(start); d > time.Second {
 			t.Errorf("%s: %d bytes took %v", tc.name, len(tc.src), d)
 		}
