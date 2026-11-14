@@ -4,7 +4,7 @@ package cue
 
 import (
 	types "zeroparse.dev/alpha-parsers/cue/types"
-	rt "zeroparse.dev/zp/runtime"
+	rt "zeroparse.dev/zp/codegen/go/lib"
 )
 
 var rules []*rt.Rule
@@ -21105,4 +21105,4 @@ fail:
 
 const _ = types.ZPSchema_46d8b5ab79879be3
 
-const _ = rt.Protocol13
+const _ = rt.Protocol15

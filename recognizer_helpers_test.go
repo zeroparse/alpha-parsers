@@ -10,8 +10,8 @@ import (
 	"sort"
 	"testing"
 
-	"zeroparse.dev/zp"
-	"zeroparse.dev/zp/gen"
+	"zeroparse.dev/zp/codegen"
+	"zeroparse.dev/zp/engine"
 )
 
 // helperName matches the names of the generated helpers: eN are the methods of expressions and qN the
@@ -63,11 +63,11 @@ func TestRecognizerHelpersReferenced(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		gr, err := zp.ParseGrammar(string(src))
+		gr, err := engine.ParseGrammar(string(src))
 		if err != nil {
 			t.Fatalf("%s: %v", g.path, err)
 		}
-		files, err := gen.Go{Module: "gentest/" + g.name, Runtime: gen.RuntimeImport, Recognize: true}.Generate(gr, "")
+		files, err := codegen.Go{Module: "gentest/" + g.name, Lib: codegen.LibImport, Recognize: true}.Generate(gr, "")
 		if err != nil {
 			t.Fatalf("%s: %v", g.path, err)
 		}

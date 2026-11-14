@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"zeroparse.dev/zp"
-	"zeroparse.dev/zp/runtime/parse"
+	"zeroparse.dev/zp/core"
+	"zeroparse.dev/zp/engine"
 )
 
 func TestYAMLDirectiveBackends(t *testing.T) {
@@ -13,7 +13,7 @@ func TestYAMLDirectiveBackends(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	p, err := zp.CompileSource(string(src), "main")
+	p, err := engine.CompileSource(string(src), "main")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -28,12 +28,12 @@ func TestYAMLDirectiveBackends(t *testing.T) {
 		{"%YAML 0001.02", true}, {"%TAG !e! notahandle", true},
 	} {
 		t.Run(tc.directive, func(t *testing.T) {
-			for _, backend := range []zp.Backend{zp.Closure, zp.Bytecode, zp.BytecodeIterative} {
-				for _, unit := range []parse.PositionUnit{parse.CodePoints, parse.Bytes} {
+			for _, backend := range []engine.Backend{engine.Closure, engine.Bytecode, engine.BytecodeIterative} {
+				for _, unit := range []core.PositionUnit{core.CodePoints, core.Bytes} {
 					for _, recognize := range []bool{false, true} {
-						opts := []zp.ParseOption{zp.WithBackend(backend), zp.WithUnit(unit)}
+						opts := []engine.ParseOption{engine.WithBackend(backend), engine.WithUnit(unit)}
 						if recognize {
-							opts = append(opts, zp.RecognizeOnly())
+							opts = append(opts, engine.RecognizeOnly())
 						}
 						_, err := p.Parse(tc.directive+"\n--- x\n", opts...)
 						if (err == nil) != tc.valid {

@@ -1,8 +1,8 @@
 # Ready-Made Parsers
 
 Parsers for common languages, written in ZeroParse and generated into Go with `zp gen`. They are packages of the one Go
-module `zeroparse.dev/alpha-parsers` and depend only on the standard library and the ZeroParse runtime
-(`zeroparse.dev/zp/runtime`): import one and parse, with nothing to generate or compile at run time.
+module `zeroparse.dev/alpha-parsers` and depend only on the standard library, the ZeroParse library
+(`zeroparse.dev/zp/codegen/go/lib`) and `zeroparse.dev/zp/core`: import one and parse, with nothing to generate or compile at run time.
 
 | Language | Module | Specification | Checked against |
 |:--|:--|:--|:--|
@@ -20,7 +20,7 @@ module `zeroparse.dev/alpha-parsers` and depend only on the standard library and
 ## Install
 
 The module `zeroparse.dev/alpha-parsers` is not published, so `go get zeroparse.dev/alpha-parsers/json` does not work
-from another module. It requires published versions of `zeroparse.dev/zp` and `zeroparse.dev/zp/runtime`, so a checkout
+from another module. It requires a published version of `zeroparse.dev/zp`, so a checkout
 of this repository is all a parser needs. Use it in one of two ways.
 
 With a `go.work` file next to your module's `go.mod`:
@@ -67,7 +67,7 @@ Each directory holds:
 | File | Contents |
 |:--|:--|
 | `<language>.zp` | The grammar. It can be used with the engine too (`zp.CompileSource`), for streaming, incremental parsing or the `zp` tools. |
-| `parser.go`, `api.go`, `types/types.go` | The parser generated from the grammar, the names it re-exports from the runtime, and the Go types of the grammar (the package `types`). The parser imports the runtime package `zeroparse.dev/zp/runtime` (generated with `-runtime import`). Do not edit them. |
+| `parser.go`, `api.go`, `types/types.go` | The parser generated from the grammar, the names it re-exports from the library, and the Go types of the grammar (the package `types`). The parser imports the library package `zeroparse.dev/zp/codegen/go/lib` (generated with `-lib import`). Do not edit them. |
 | other `.go` files | Code written for the language: documentation, conversions to Go values, helpers. Those in `types/` hold the methods of the types of the grammar (a method can only be declared in the package of its type); what needs the parser or the decoder is a function of the module instead. |
 | `*_test.go` | Tests against the language's specification, conformance suites and reference implementations; examples; benchmarks |
 | `testdata/*.txt`, `*.golden` | Inputs and the expected trees and errors, checked on the generated parser here and on every backend of the engine by [parsers_test.go](parsers_test.go) |
@@ -77,7 +77,7 @@ Each directory holds:
 From the root of the repository:
 
 ```bash
-go generate .       # regenerate every parser (after changing a grammar, the runtime or the generator)
+go generate .       # regenerate every parser (after changing a grammar, the library or the generator)
 go test .           # generated files up to date; golden files on every backend of the engine
 go test . -update   # rewrite the golden files from the engine
 ./test.sh           # fetch the test corpora, then vet and test every package

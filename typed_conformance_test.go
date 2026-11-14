@@ -14,8 +14,8 @@ import (
 	"strings"
 	"testing"
 
-	"zeroparse.dev/zp"
-	"zeroparse.dev/zp/gen"
+	"zeroparse.dev/zp/codegen"
+	"zeroparse.dev/zp/engine"
 )
 
 // The typed conformance checks compare the generated typed outputs with the output schema of their
@@ -72,11 +72,11 @@ func conformanceSchema(t *testing.T, path string) confSchema {
 	if err != nil {
 		t.Fatal(err)
 	}
-	p, err := zp.CompileSource(string(src), "")
+	p, err := engine.CompileSource(string(src), "")
 	if err != nil {
 		t.Fatalf("%s: %v", path, err)
 	}
-	s, err := p.OutputSchema(zp.WithAllSchemaRules())
+	s, err := p.OutputSchema(engine.WithAllSchemaRules())
 	if err != nil {
 		t.Fatalf("%s: schema: %v", path, err)
 	}
@@ -542,11 +542,11 @@ func checkTypedGeneration(t *testing.T, sc confSchema, g typedGeneration, src st
 			out = append(out, "Go: "+v)
 		}
 	}
-	gr, err := zp.ParseGrammar(src)
+	gr, err := engine.ParseGrammar(src)
 	if err != nil {
 		t.Fatal(err)
 	}
-	ts, err := gen.TypeScript{Types: true}.Generate(gr, "")
+	ts, err := codegen.TypeScript{Types: true}.Generate(gr, "")
 	if err != nil {
 		t.Fatal(err)
 	}

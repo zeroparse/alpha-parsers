@@ -4,7 +4,7 @@ package golang
 
 import (
 	types "zeroparse.dev/alpha-parsers/golang/types"
-	rt "zeroparse.dev/zp/runtime"
+	rt "zeroparse.dev/zp/codegen/go/lib"
 )
 
 var rules []*rt.Rule
@@ -31658,4 +31658,4 @@ fail:
 
 const _ = types.ZPSchema_55e6fdda92ef36bc
 
-const _ = rt.Protocol13
+const _ = rt.Protocol15

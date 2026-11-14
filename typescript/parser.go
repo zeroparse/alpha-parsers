@@ -4,7 +4,7 @@ package typescript
 
 import (
 	types "zeroparse.dev/alpha-parsers/typescript/types"
-	rt "zeroparse.dev/zp/runtime"
+	rt "zeroparse.dev/zp/codegen/go/lib"
 )
 
 var rules []*rt.Rule
@@ -53252,4 +53252,4 @@ fail:
 
 const _ = types.ZPSchema_bd0fc995c7788152
 
-const _ = rt.Protocol13
+const _ = rt.Protocol15
